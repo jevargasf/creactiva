@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import index
+from main.views import IndexView
 
 urlpatterns = [
-    path('', index, name='index')
+    path('', IndexView.as_view(), name='index')
+#    path('accounts/register', RegisterView.as_view(), name='register')
 ]
