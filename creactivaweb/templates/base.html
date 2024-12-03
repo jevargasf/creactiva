@@ -5,20 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <title>Creactiva DEMO</title>
+    <title>Creactiva Animaciones</title>
 </head>
 <body>
-    <header>
-        <h1>acá va un header, si se quiere</h1>
-        {% block navbar %}
-            {% include 'snippets/navbar.html' %}
-        {% endblock %}
-    </header>
+
 
     <main>
         {% block content %}
             Contenido que se actualiza en cada página
         {% endblock %}
+
+        {% block slider-main %}
+            {% include 'snippets/slider-main.html' %}
+        {% endblock %}
+        <header>
+            <img id="logo" src="{% static 'icon/logo_creactiva.png' %}"></img>
+        </header>
+
     </main>
+        <!--JQUERY-->
+        {% load static %}
+        <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+        <script src="{% static 'js/slick.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
