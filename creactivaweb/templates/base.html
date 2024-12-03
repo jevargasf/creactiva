@@ -8,7 +8,14 @@
     <title>Creactiva Animaciones</title>
 </head>
 <body>
+    <div id="fondo_animado">
 
+        <div id="top"></div>
+        <div id="bottom"></div>
+        <div id="left"></div>
+        <div id="right"></div>
+    </div>
+    <span id="cuadricula"></span>
 
     <main>
         {% block content %}
@@ -18,6 +25,11 @@
         {% block slider-main %}
             {% include 'snippets/slider-main.html' %}
         {% endblock %}
+
+        {% block fila %}
+            {% include 'snippets/fila.html' %}
+        {% endblock %}
+
         <header>
             <img id="logo" src="{% static 'icon/logo_creactiva.png' %}"></img>
         </header>
