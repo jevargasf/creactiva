@@ -19,24 +19,14 @@
 
     <main>
         {% block content %}
-            Contenido que se actualiza en cada página
-        {% endblock %}
+      
 
-        {% block slider-main %}
-            {% include 'snippets/slider-main.html' %}
         {% endblock %}
-
-        {% block fila %}
-            {% include 'snippets/fila.html' %}
-        {% endblock %}
-
         <header>
             <img id="logo" src="{% static 'icon/logo_creactiva.png' %}"></img>
         </header>
-
     </main>
         <!--JQUERY-->
-        {% load static %}
         <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
         <script src="{% static 'js/slick.js' %}"></script>
         <script src="{% static 'js/index.js' %}"></script>

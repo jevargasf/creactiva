@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'main',
-    'cursos'
+    'cursos',
+    'suscripciones',
+    'dashboards'
 ]
 
 MIDDLEWARE = [
