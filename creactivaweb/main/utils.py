@@ -13,6 +13,6 @@ def crear_usuario(username: str, first_name: str, last_name: str, email: str, pa
         codigo_perfil='100',
         user=user
     )
-    # user.save()
-    # perfil.save()
+    user.save()
+    perfil.save()
     return True
