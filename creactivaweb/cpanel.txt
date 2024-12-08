@@ -224,3 +224,36 @@ MIGRACIONES
 > python manage.py migrate
 > python manage.py collectstatic
 > reiniciar app
+
+
+
+APUNTE MÍO
+
+settings.py
+
+/
+    .env
+        SECRET_KEY=django-insecure-4zry&uyfh2d-@gvv_b*j1_)9&sx*!a2m6bktux_71*!$!jbeub
+
+DEBUG=False
+
+ALLOWED_HOSTS=['www.creactivaanimaciones.cl']
+SECURE_SSL_REDIRECT = True
+
+WARNINGS:
+?: (security.W004) You have not set a value for the SECURE_HSTS_SECONDS setting. If your entire site is served only over SSL, you may want to consider setting a value and enabling HTTP Strict Transport Security. Be sure to read the documentation first; enabling HSTS carelessly can cause serious, irreversible problems.
+?: (security.W009) Your SECRET_KEY has less than 50 characters, less than 5 unique characters, or it's prefixed with 'django-insecure-' indicating that it was generated automatically by Django. Please generate a long and random value, otherwise many of Django's security-critical features will be vulnerable to attack.
+?: (security.W012) SESSION_COOKIE_SECURE is not set to True. Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.
+?: (security.W016) You have 'django.middleware.csrf.CsrfViewMiddleware' in your MIDDLEWARE, but you have not set CSRF_COOKIE_SECURE to True. Using a secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.
+
+
+# Static asset configuration
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, 'static'),
+)
+
+/static
+    placeholder.txt
+
