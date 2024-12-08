@@ -4,3 +4,9 @@
 /Presupuestos
 /Reuniones
 /VMs
+.env
+cpanel.txt
+pyenv.cfg
+creactivaweb.png
+creactivaweb.dot
+graph.py
