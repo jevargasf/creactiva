@@ -348,7 +348,6 @@ h1{
     height: 100%;
     position: fixed;
     overflow: none; 
-    filter:blur(150px);
     background-color: #024C8D;
     animation-timing-function: ease-in-out;
 }
