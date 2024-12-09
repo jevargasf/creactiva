@@ -57,3 +57,10 @@ class CustomLogoutView(LogoutView):
         response = super().dispatch(request, *args, **kwargs)
         #messages.add_message(request, messages.WARNING, "Sesión Cerrada Exitosamente")
         return response
+    
+class ContactoView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get (self, request):
+        return render(request, 'contacto.html')
