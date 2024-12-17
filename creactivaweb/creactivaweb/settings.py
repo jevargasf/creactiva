@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import mimetypes
 
 load_dotenv()
 
@@ -45,7 +46,8 @@ INSTALLED_APPS = [
     'main',
     'cursos',
     'suscripciones',
-    'dashboards'
+    'dashboards',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'creactivaweb.urls'
@@ -126,10 +129,22 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
-    #"/var/www/static/",
-]
+    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / STATIC_URL
+     #"/var/www/static/",
+ ]
+
+#Whitenoise Middleware para manejo de archivos estáticos
+# STORAGES = {
+#     # ...
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+#     },
+# }
+WHITENOISE_INDEX_FILE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -142,3 +157,9 @@ LOGOUT_REDIRECT_URL = '/accounts/login'
 
 # SSL
 #SECURE_SSL_REDIRECT = True
+
+# algo sobre middleware para iFrames
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
+# MIME types
+#mimetypes.add_type("text/html", ".js", True)
