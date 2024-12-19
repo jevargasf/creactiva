@@ -17,15 +17,5 @@ class CapituloView(View):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request: HttpRequest):
-        request.content_params = {
-            'embedIFrameId': 'embeddedSmartPlayerInstance'
-        }
-        return render(request, 'c1e1_player.html')
-    
-class SmartPlayer(View):
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
-    def get (self, request: HttpRequest):
-
-        return render(request, 'c1e1_player.html')
+        return render(request, 'capitulo.html')

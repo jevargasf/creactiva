@@ -26,6 +26,7 @@ la app web (no así el js)
     - mp4
     - ?? no sé qué más
 
+
 Apuntes configuración de un capítulo:
 - usar XXXX_player.html (sin iframe)
 - smart player:
@@ -33,6 +34,17 @@ Apuntes configuración de un capítulo:
     - servir min.js desde cdn de techsmith
     - servir thumbnail desde hosting creactiva (porque lo necesita el js y no sirven las rutas que ofrece
     django)
-    - video: guardado en local, ignorado en github
-DEBUG:
-- 404 desde capitulo/c1e1_Thumbnails.png:1
+    - video: no funciona servido desde django, tiene que ser servido desde afuera, si no, ocurre el error
+    de que no funciona la barra de progreso
+    - config_xml.js llega desde local, thumbnail servido desde hosting
+    - XXXX_config.xml servido desde local, thumbnail y first frame pueden ser servidos desde django, cap
+    desde hosting
+    - first frame servido desde django
+
+Investigación:
+- Problema: ¿cómo hacer para que el link no sea visible de esta manera?
+![Alt text](debug/debug-link-video.png)
+    - Respuestas: 
+        Me da la impresión de que servir los videos a partir de un iframe soluciona el problema.
+        Me da la impresión de que esto es una limitación de SSR
+        
