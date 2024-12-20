@@ -52,7 +52,7 @@ class CustomLoginView(SuccessMessageMixin, LoginView):
     redirect_authenticated_user = True
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('login')
+    next_page = reverse_lazy('index')
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
         #messages.add_message(request, messages.WARNING, "Sesión Cerrada Exitosamente")

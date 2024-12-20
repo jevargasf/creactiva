@@ -18,4 +18,4 @@ class CapituloView(View):
     
     def get (self, request: HttpRequest):
 
-        return render(request, 'capitulo.html')
+        return render(request, 'reproductor.html')

@@ -6,25 +6,42 @@ Enviando un saludo desde mi máquina local
 admin
 creactiva
 
+javier@creactiva.cl
+usuario1
+
 próximos pasos:
-- hacer un html específico que funcione como máscara de reproducción
-- techsmith-smart-player.min.css es suficiente para manejar los estilos y se puede servir desde 
-la app web (no así el js)
-- confirmar que se puede servir el video desde app django
-- para desarrollo: servir desde hosting con un link externo (y así no )
-    - alternativa: que josé tenga su propia carpeta con los archivos y agregarlos BIEN al gitignore
-    para que no se suban
-- para probar seguridad: servir desde local
-- en producción: servir desde dentro de app django (similar a pruebas desde local)
-- hacer html para servir videos públicos (no hay necesidad de smart player)
-- insertar c1e1_player en base.html
-- servir thumbnail desde local
-- recopilar los archivos que requiere cada vídeo para funcionar en el servidor:
-    - thumbnail
-    - xml(previamente configurado para servirse desde django)
-    - first frame
-    - mp4
-    - ?? no sé qué más
+
+App cursos:
+    - sistema de permisos: bloque if else para manejar permisos de visualización en template
+    - insertar c1e1_player en base.html: ahora será un html aparte exclusivo para servir los videos
+    - curso: público, capítulo: privado
+
+App principal, control de permisos:
+    ✔ sección login/registro
+    ✔ primera restricción de permisos: invitado/usuario (usuarios no logueados no pueden acceder al contenido)
+    - segunda restricción de permisos: usuario/cliente
+
+Tareas app principal:
+    ✔ login y registro no se ven porque el estilo del fondo está por encima
+    ✔ quitar el fondo animado, no sé por qué se sigue visualizando si el josé lo corrigió (parece que  solo
+    en la versión desplegada)
+    ✔ disponibilizar registro y login público
+    ✔ botón de logout, ¿dónde va según diseño?
+    - estilo navbar
+
+Tareas app cursos:
+    - subir un curso completo: básicamente, agregar el registro de 5 capítulos
+    - armar el estilo de la vista general de un curso
+        - imagen referencial de fondo
+        - botón conoce más (que redirige más abajo)
+        - botón comenzar (darle estilo al botón play de smart player)
+        - información del curso
+        - slide de 5 caps
+        - elemento ul desplegable para navegar por capítulos
+    - armar el estilo de un capítulo
+        ✔ botón reproducir (darle estilo al botón play de smart player)
+        - botón ver más que redirige más abajo
+        - first frame del cap (configurar en smart player)
 
 
 Apuntes configuración de un capítulo:
@@ -44,7 +61,21 @@ Apuntes configuración de un capítulo:
 Investigación:
 - Problema: ¿cómo hacer para que el link no sea visible de esta manera?
 ![Alt text](debug/debug-link-video.png)
+    - Desarrollo: ¿por quién es realmente visible? Por la persona a la que la app django le da acceso pues.
+    - Vulnerabilidad: la persona podría tomar el link del video mirando el código con las herramientas de 
+    desarrollador, copiarlo y compartirlo.
+    - Solución 1: Agregar una capa de seguridad desde el servidor donde se estén almacenando los videos. El
+    tema será que para que django pueda acceder a esos videos también debo agregarle un sistema de auten-
+    tificación. Lo bueno, es que eso solucionaría 100% el problema.
+    - Solución 2: Buscar una funcionalidad django que permita servir videos ?? pero eso significaría perder
+    el smart player y descartar camtasia xd.
     - Respuestas: 
-        Me da la impresión de que servir los videos a partir de un iframe soluciona el problema.
-        Me da la impresión de que esto es una limitación de SSR
+        Me da la impresión de que servir los videos a partir de un iframe soluciona el problema (no, porque
+        desde el iframe se puede ver el html que está sirviendo)
+        Me da la impresión de que esto es una limitación de SSR (en parte, porque el código del smart player
+        se renderiza desde el navegador) -> ¿y si lo integro con react?
         
+- Problema: Servir js minificados desde el servidor que requieren un mapeo. No solo pasa con smartplayer,
+            también pasa con jquery. Quizás por ahí podría encontrar solución al problema en general.
+    - Solución 1: Se puede descargar el archivo map de jqery acá: https://www.cdnpkg.com/jquery/1.11.3
+    ¿Servirá servir este archivo? ¿Cómo se puede linkear?

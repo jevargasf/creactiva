@@ -77,11 +77,11 @@
 
 
 /*-----------LIMPIEZA DE CSS----------------------------------------------------------------------*/
-html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, pre, code, address, variable, form, fieldset, blockquote {
+html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, pre, code, address, variable, fieldset, blockquote {
     padding: 0;
     margin: 0;
     font-weight: normal;
-    overflow-x:hidden;
+    /* overflow-x:hidden; */
     font-family:'latoregular', sans-serif;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color:#fff;
@@ -187,6 +187,7 @@ button {
 
 
 /*------------HEADER--------------------------------------------------*/
+
 
 #logo{
     position: fixed;
@@ -351,6 +352,7 @@ h1{
     filter:blur(150px);
     background-color: #024C8D;
     animation-timing-function: ease-in-out;
+    z-index: -1;
 }
 #fondo_animado div{
     position: absolute;
@@ -614,7 +616,24 @@ h1{
 }
 
 
+/* -------------- FORMULARIO LOGIN Y REGISTRO ----------------------------- */
 
+
+.form{
+    position: relative;
+    top: 100px;
+    z-index: 1;
+}
+
+.form button{
+    background-color: #c5dbe9;
+}
+
+/* -------------- NAVBAR ----------------------------- */
+
+.link-nav{
+    color:white;
+}
 
 
 

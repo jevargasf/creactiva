@@ -3222,9 +3222,12 @@
 }
 
 .tsc-smartplayer .play-button-overlay-glyph {
-    width: 150px;
-    height: 150px;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 138 138'%3E%3Ctitle%3Eplay_button_overlay%3C/title%3E%3Cg data-name='play button overlay'%3E%3Cpath data-name='path0' fill='%2315191c' d='M136 69A67 67 0 1 1 69 2a67 67 0 0 1 67 67z'/%3E%3Cpath data-name='path1' fill='%23a7b2b7' d='M94 66.9a3 3 0 0 1 0 5.2L56.5 93.8a3 3 0 0 1-4.5-2.6V47.9a3 3 0 0 1 4.5-2.6z'/%3E%3Cpath data-name='path2' fill='%23a7b2b7' d='M69 138A69 69 0 1 0 0 69a69 69 0 0 0 69 69zm65-69A65 65 0 1 1 69 4a65 65 0 0 1 65 65z'/%3E%3C/g%3E%3C/svg%3E")
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 75px;
+    background-color: gray;
+    /* background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 138 138'%3E%3Ctitle%3Eplay_button_overlay%3C/title%3E%3Cg data-name='play button overlay'%3E%3Cpath data-name='path0' fill='%2315191c' d='M136 69A67 67 0 1 1 69 2a67 67 0 0 1 67 67z'/%3E%3Cpath data-name='path1' fill='%23a7b2b7' d='M94 66.9a3 3 0 0 1 0 5.2L56.5 93.8a3 3 0 0 1-4.5-2.6V47.9a3 3 0 0 1 4.5-2.6z'/%3E%3Cpath data-name='path2' fill='%23a7b2b7' d='M69 138A69 69 0 1 0 0 69a69 69 0 0 0 69 69zm65-69A65 65 0 1 1 69 4a65 65 0 0 1 65 65z'/%3E%3C/g%3E%3C/svg%3E") */
 }
 
 .tsc-smartplayer .replay-button-overlay-glyph {
