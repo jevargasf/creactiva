@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="form">
+{% include 'snippets/navbar.html' %}
+    <div class="form form-register">
         <h3>Regístrate</h3>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}

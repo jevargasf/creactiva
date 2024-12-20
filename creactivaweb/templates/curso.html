@@ -1,5 +1,16 @@
-esto es un curso
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'snippets/navbar.html' %}
 
 <div>
-    {% include 'snippets/menu_capitulos.html' %}
+    <img class="img-curso" src="{% static 'img/4.png' %}" alt="fondo-curso">
+    <h1>Introducción a la lengua mapuche</h1>
+    <a href="#">Conoce más</a>
+    <a href="{% url 'capitulo' %}">Comenzar</a>
 </div>
+
+    {% include 'snippets/fila.html' %}
+    {% include 'snippets/menu_capitulos.html' %}
+
+{% endblock %}

@@ -77,7 +77,7 @@
 
 
 /*-----------LIMPIEZA DE CSS----------------------------------------------------------------------*/
-html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, pre, code, address, variable, fieldset, blockquote {
+html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, variable, fieldset, blockquote {
     padding: 0;
     margin: 0;
     font-weight: normal;
@@ -373,6 +373,7 @@ h1{
     height: 800px;
     animation: top 15s infinite;
     top:-20%;
+    z-index: -1;
 }
 
 @keyframes top{
@@ -386,6 +387,7 @@ h1{
     height: 1000px;
     animation: bottom 20s infinite;
     bottom:-10%;
+    z-index: -1;
 }
 
 @keyframes bottom{
@@ -400,6 +402,7 @@ h1{
     height: 1000px;
     animation: left 22s infinite;
     left:-20%;
+    z-index: -1;
 }
 
 
@@ -416,6 +419,7 @@ h1{
     height: 600px;
     animation: right 25s infinite;
     right:-10%;
+    z-index: -1;
 }
 
 @keyframes right{
@@ -435,6 +439,7 @@ h1{
     background-position: center;
     animation: rotatebg 100s infinite;
     animation-timing-function: linear;
+    z-index: -1;
 }
 
 
@@ -618,11 +623,17 @@ h1{
 
 /* -------------- FORMULARIO LOGIN Y REGISTRO ----------------------------- */
 
-
-.form{
+form{
     position: relative;
     top: 100px;
-    z-index: 1;
+}
+
+.form-login{
+
+}
+
+.form-logout{
+    top: 0px;
 }
 
 .form button{
@@ -631,10 +642,19 @@ h1{
 
 /* -------------- NAVBAR ----------------------------- */
 
-.link-nav{
-    color:white;
+.main-nav{
+    position: fixed;
+    right: 100px;
+    z-index: 1;
 }
 
+
+li{
+    list-style: none;
+}
+
+
+/* ------------- BLOCK CONTENT - MAIN --------------- */
 
 
 
@@ -1067,3 +1087,10 @@ h1{
         display: none;
     }
     
+
+/* -------------------- CURSO ------------------ */
+
+.img-curso{
+    margin-top: 100px;
+    width: 100%;
+}

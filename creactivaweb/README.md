@@ -27,7 +27,7 @@ Tareas app principal:
     en la versión desplegada)
     ✔ disponibilizar registro y login público
     ✔ botón de logout, ¿dónde va según diseño?
-    - estilo navbar
+    - estilo navbar (tirarlo pa la derecha)
 
 Tareas app cursos:
     - subir un curso completo: básicamente, agregar el registro de 5 capítulos
@@ -78,4 +78,15 @@ Investigación:
 - Problema: Servir js minificados desde el servidor que requieren un mapeo. No solo pasa con smartplayer,
             también pasa con jquery. Quizás por ahí podría encontrar solución al problema en general.
     - Solución 1: Se puede descargar el archivo map de jqery acá: https://www.cdnpkg.com/jquery/1.11.3
-    ¿Servirá servir este archivo? ¿Cómo se puede linkear?
+    ¿Servirá servir este archivo? ¿Cómo se puede linkear
+
+
+
+Debug estilo:
+- menú slider inicial queda fijo a la pantalla y no al carrusel de imágenes
+- todos los elementos del fondo animado tienen z-index -1 para solucionar el problema con la "carga" de los
+links
+- si necesitamos que un mismo elemento tenga un estilo diferente en otro template, hacemos una hoja de
+estilos propia para ese template y así no sobreescribimos el estilo original
+- hay que arreglar slick del template cursos (el snipper fila.html no está configurado para funcionar
+solo, depende todavía de incluir slider-main.html)

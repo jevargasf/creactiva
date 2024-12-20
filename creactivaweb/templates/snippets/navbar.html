@@ -1,26 +1,40 @@
-<nav>
+<nav class="main-nav">
+    <button class="btn-busqueda">
+        Buscar
+    </button>
+    <ul>
+        <li>
+            <a class="link-nav" href="{% url 'cursos' %}">Cursos</a>
+        </li>
+        <li>
+            <a class="link-nav" href="{% url 'index' %}">Planes</a>
+        </li>
+        <li>
+            <a class="link-nav" href="{% url 'contacto' %}">Contacto</a>
+        </li>
+        <li>
+            <a class="link-nav" href="{% url 'index' %}">Preguntas frecuentes</a>
+        </li>
+        <li>
+            <a class="link-nav" href="{% url 'index' %}">Sobre nosotros</a>
+        </li>
+
+        <li>
+            <a class="link-nav" href="{% url 'index' %}">¿Necesitas un video?</a>
+        </li>
+    </ul>
     {% if user.is_authenticated %}
-    <li>
-        <span>Bienvenido, {{ user.first_name }}</span>
-    </li>
-    <li>
-        <form class="form" action="{% url 'logout' %}" method="post">
+    <div>
+        <button>
+            ampolleta(mi perfil)
+        </button>
+        <form class="form-logout" action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <button type="submit">Salir</button>
         </form>
-    </li>
-    <li>
-        <a class="link-nav" href="{% url 'capitulo' %}">Mis cursos</a>
-    </li>
+    </div>
+
     {% else %}
-    <li>
-        <a class="link-nav" href="{% url 'login' %}">Ingresa</a>
-    </li>
-    <li>
-        <a class="link-nav" href="{% url 'register' %}">Regístrate</a>
-    </li>
+        <a class="link-nav" href="{% url 'login' %}">Inicia sesión</a>
     {% endif %}
-    <li>
-        <a class="link-nav" href="{% url 'cursos' %}">Listado cursos</a>
-    </li>
 </nav>

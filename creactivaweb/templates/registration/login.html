@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
 
-<div class="form">
+{% block content %}
+{% include 'snippets/navbar.html' %}
+<div class="form form-login">
     <h3>Ingresa a tu cuenta:</h3>
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
