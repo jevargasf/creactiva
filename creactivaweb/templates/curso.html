@@ -7,7 +7,11 @@
     <img class="img-curso" src="{% static 'img/4.png' %}" alt="fondo-curso">
     <h1>Introducción a la lengua mapuche</h1>
     <a href="#">Conoce más</a>
+    {% if user.is_authenticated %}
     <a href="{% url 'capitulo' %}">Comenzar</a>
+    {% else %}
+    <a href="{% url 'login' %}">Comenzar</a>
+    {% endif %}
 </div>
 
     {% include 'snippets/fila.html' %}

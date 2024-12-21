@@ -12,9 +12,9 @@ usuario1
 próximos pasos:
 
 App cursos:
-    - sistema de permisos: bloque if else para manejar permisos de visualización en template
-    - insertar c1e1_player en base.html: ahora será un html aparte exclusivo para servir los videos
-    - curso: público, capítulo: privado
+    ✔ sistema de permisos: bloque if else para manejar permisos de visualización en template
+    ✔ insertar c1e1_player en base.html: ahora será un html aparte exclusivo para servir los videos
+    ✔ curso: público, capítulo: privado
 
 App principal, control de permisos:
     ✔ sección login/registro

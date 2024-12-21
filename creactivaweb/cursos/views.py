@@ -18,4 +18,7 @@ class CapituloView(View):
     
     def get (self, request: HttpRequest):
 
-        return render(request, 'reproductor.html')
+        if request.user.is_authenticated == True:
+            return render(request, 'reproductor.html')
+        else:
+            return render(request, 'registration/login.html')
