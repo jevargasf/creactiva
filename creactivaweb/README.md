@@ -24,6 +24,7 @@ App cursos:
         - mp4: https://www.creactivaanimaciones.cl/static/media/c1e1.mp4
 
     -  generar un uuid para que no se "note" que el id del curso es 1, 2, etc
+    ✔ ejecución asíncrona del script reproductor.js que corrige el estilo del smart player
 
 App principal, control de permisos:
     ✔ sección login/registro

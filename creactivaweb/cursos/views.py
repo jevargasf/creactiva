@@ -23,8 +23,10 @@ class CapituloView(View):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request: HttpRequest):
-
         if request.user.is_authenticated == True:
             return render(request, 'reproductor.html')
         else:
             return render(request, 'registration/login.html')
+        
+    def post(self, request: HttpRequest):
+        print(request.POST)
