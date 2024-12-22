@@ -15,6 +15,15 @@ App cursos:
     ✔ sistema de permisos: bloque if else para manejar permisos de visualización en template
     ✔ insertar c1e1_player en base.html: ahora será un html aparte exclusivo para servir los videos
     ✔ curso: público, capítulo: privado
+    - problema: ¿cómo restringir el acceso a los links de los mp4 que están alojados en el hosting?
+    - ¿qué necesita un capítulo? *diferenciarlo de los archivos necesarios para el reproductor, que son todos el mismo
+        - config.xml: img/1.png
+        - config_xml.js: scripts/config_xml.js // Ojo, en este se deben configurar más links, pero todavía no puedo hacerlo desde el backend, se debe hacer manual
+        - thumbnails.png: c1e1_Thumbnails.png
+        - first_frame.png: img/1.png
+        - mp4: https://www.creactivaanimaciones.cl/static/media/c1e1.mp4
+
+    -  generar un uuid para que no se "note" que el id del curso es 1, 2, etc
 
 App principal, control de permisos:
     ✔ sección login/registro
@@ -90,3 +99,4 @@ links
 estilos propia para ese template y así no sobreescribimos el estilo original
 - hay que arreglar slick del template cursos (el snipper fila.html no está configurado para funcionar
 solo, depende todavía de incluir slider-main.html)
+

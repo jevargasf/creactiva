@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpRequest
 from django.templatetags.static import static
+from cursos.models import Curso, Capitulo
 
 # Create your views here.
 class CursoView(View):
@@ -9,7 +10,12 @@ class CursoView(View):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request):
-        return render(request, 'curso.html')
+        curso = Curso.objects.get(pk=1)
+        
+        context = {
+            'curso': curso 
+        }
+        return render(request, 'curso.html', context)
     
 
 class CapituloView(View):
