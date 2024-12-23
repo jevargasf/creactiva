@@ -2,15 +2,15 @@
 
 
 <!-----------------------------------------------FILA--------------------------------------------------------->
-    <section id="fila">
+<section id="fila">
     <h1 class="titulo_fila">Podría Interesarte</h1>
     <article>
-
             {% block capitulo_fila %}
                 {% include 'snippets/capitulo_fila.html' %}
             {% endblock %}
-
-
-
+            
+            <div style="display: none;">{% include 'snippets/slider-main.html' %}</div>
     </article>
 </section>
+
+
