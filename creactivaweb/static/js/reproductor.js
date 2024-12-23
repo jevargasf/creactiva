@@ -73,6 +73,7 @@ const beforeUnloadHandler = (e) => {
     // Esto es para soporte legacy como Chrome < 119
     e.returnValue = true;
     // y aquí iría este código??
+    
     post(req);
 };
 
@@ -95,8 +96,18 @@ btnReproduccion.addEventListener("click", (e) => {
         console.log("Añadido el event listener");
     } else {
         window.removeEventListener("beforeunload", beforeUnloadHandler);
+        console.log("Quitado el event listener");
     }
 });
 
 // DEBUG: no está agregando el event listener
 // DEBUG: hay problemas serios de carga de la página en google chrome normal
+window.onbeforeunload = function() {
+    console.log("Sí")
+    return "Hay cambios sin guardar. ¿Salir ahora?";
+  };
+
+window.addEventListener("beforeunload", (event) => {
+// funciona, lo mismo que si devolviera desde window.onbeforeunload
+event.returnValue = "Hsy cambios sin grabar. ¿Abandonar ahora?";
+});

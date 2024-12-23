@@ -101,3 +101,7 @@ estilos propia para ese template y así no sobreescribimos el estilo original
 - hay que arreglar slick del template cursos (el snipper fila.html no está configurado para funcionar
 solo, depende todavía de incluir slider-main.html)
 
+
+Planes:
+- ususario: id = 101 no se le muestra nada//  Javier
+- usuario: id = 111 se le muestra el contenido // José
