@@ -1,4 +1,3 @@
-document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
 // SLIDER NOTICIAS
 $(document).ready(function(){
     $('#slider-fila').slick({

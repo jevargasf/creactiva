@@ -202,6 +202,9 @@ h1{
     text-align: center;
 }
 
+h6{
+    font-size: 14px;
+}
 
 /*-----------PRINCIPAL--------------------------------------------------*/
 #spotlight {
@@ -649,11 +652,88 @@ form{
     position: fixed;
     right: 100px;
     z-index: 1;
+    width:25%;
 }
 
 
-li{
+
+.main-nav div{
+    z-index: 1;
+    text-align: right;
+}
+
+
+.main-nav div p{
+    text-align: right;
+}
+
+#iniciarsesion{
+    transition: all 0.2s ease-in-out;
+    opacity: .8;
+}
+
+
+#iniciarsesion:hover{
+    opacity: 1;
+}
+
+#iniciarsesion h6{
+    float:left;
+    padding:8px 13px 0px 0px;
+}
+
+#amp_off{
+    float:right;
+    width: 30px;
+}
+
+.main-nav ul{
+    background-color: #024C8D;
+    float: right;
+    position: fixed;
+    top: 50px;
+    right: 140px;
+
+}
+
+.main-nav li{
     list-style: none;
+    
+}
+.main-nav a{
+    padding: 15px;
+    float: right;
+}
+
+.main-nav ul a{
+    padding: 15px;
+    float: right;
+    width: 100%;
+    background-color: #024C8D;
+    box-sizing: border-box;
+    transition: background-color 0.1s ease-in-out;
+    text-align: right;
+}
+
+.main-nav ul a.barracolor{
+    padding: 15px;
+    float: right;
+    width: 100%;
+    background-color: #0f61a8;
+    box-sizing: border-box;
+    transition: background-color 0.1s ease-in-out;
+    text-align: right;
+}
+
+
+.main-nav ul a:hover{
+    background-color: #1787e9;
+
+}
+
+.main-nav button{
+    padding: 15px;
+    float: right;
 }
 
 
