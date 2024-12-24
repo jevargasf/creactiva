@@ -2,21 +2,27 @@
 {% load static %}
 
 {% block content %}
-<div class="form form-login">
-    <h3>Ingresa a tu cuenta:</h3>
+        {% include 'snippets/navbar_log.html' %}
+        {% include 'snippets/header_volver.html' %}
+        <div class="form form-login">
+    <h3>Bienvenido:</h3>
+    <h7>CreActiv@</h7>
+
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         <div>
-            <label for="username">Ingresa tu usuario:</label>
-            <input type="text" name="{{ form.username.name }}" id="username" required>
+            <input type="text" name="{{ form.username.name }}" id="username" required placeholder="Correo">
         </div>
         <div>
-            <label for="password">Ingresa tu contraseña:</label>
-            <input type="password" name="{{ form.password.name }}" id="password" required>
+            <input type="password" name="{{ form.password.name }}" id="password" required placeholder="Contraseña">
         </div>
-        <button type="submit">Ingresar</button>
+        <p>¿Hás olvidado tu contraseña?</p>
+
+        <button type="submit">Entrar</button>
     </form>
-    <p>Si no te has registrado, haz clic <a href="{% url 'register' %}">AQUÍ</a></p>
+    <p><a href="{% url 'register' %}">Crear Cuenta</a></p>
+
+    <p>¿Te facilitaron una cuenta desde tu institución?<br><a href="{% url 'register' %}">Ingresa Aquí</a></p>
 </div>
 
 

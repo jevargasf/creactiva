@@ -2,77 +2,83 @@
 /*-----------TIPOGRAFIAS----------------------------------------------------------------------*/
 @font-face {
     font-family: latolight;
-    src: url(lato/Lato-Light.ttf);
+    src: url(fonts/Lato-Light.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latolight;
-    src: url(lato/Lato-LightItalic.ttf);
+    src: url(fonts/Lato-LightItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latoregular;
-    src: url(lato/Lato-Regular.ttf);
+    src: url(fonts/Lato-Regular.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latoregular;
-    src: url(lato/Lato-Italic.ttf);
+    src: url(fonts/Lato-Italic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latomedium;
-    src: url(lato/Lato-Medium.ttf);
+    src: url(fonts/Lato-Medium.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latomedium;
-    src: url(lato/Lato-MediumItalic.ttf);
+    src: url(fonts/Lato-MediumItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latobold;
-    src: url(lato/Lato-Bold.ttf);
+    src: url(fonts/Lato-Bold.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latobold;
-    src: url(lato/Lato-BoldItalic.ttf);
+    src: url(fonts/Lato-BoldItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latoblack;
-    src: url(lato/Lato-Black.ttf);
+    src: url(fonts/Lato-Black.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latoblack;
-    src: url(lato/Lato-BlackItalic.ttf);
+    src: url(fonts/Lato-BlackItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latoheavy;
-    src: url(lato/Lato-Heavy.ttf);
+    src: url(fonts/Lato-Heavy.ttf);
     font-style:normal;
 }
 
 @font-face {
-    font-family: lagoheavy;
-    src: url(lato/Lato-HeavyItalic.ttf);
+    font-family: latoheavy;
+    src: url(fonts/Lato-HeavyItalic.ttf);
     font-style:italic;
 }
 
 
+
+@font-face {
+    font-family: FSJoey;
+    src: url(fonts/FS-Joey-Bold.ttf);
+    font-style:normal;
+}
 
 
 
@@ -207,6 +213,14 @@ h6{
     font-size: 14px;
     letter-spacing: .5px;
     font-family: latoregular;
+}
+
+h7{
+    font-family: FSJoey;
+    font-size:50px;
+    letter-spacing: 1px;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, .5));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, .5));
 }
 
 /*-----------PRINCIPAL--------------------------------------------------*/
@@ -633,12 +647,20 @@ h6{
 /* -------------- FORMULARIO LOGIN Y REGISTRO ----------------------------- */
 
 form{
-    position: relative;
-    top: 100px;
+
 }
 
 .form-login{
-
+    position: absolute;
+    width:50%;
+    background-image: url('../img/fondo.png');
+    background-size:200%;
+    background-repeat: repeat;
+    top:50%;
+    left:50%;
+    translate: -50% -50%;
+    text-align: center;
+    padding:60px 0px 60px 0px;
 }
 
 .form-logout{
@@ -647,6 +669,23 @@ form{
 
 .form button{
     background-color: #c5dbe9;
+}
+
+
+#flecha_izquierda{
+    height: 14px;
+    float: left;
+    margin: 2px 7px 0px 0px;
+}
+
+#sigue_explorando{
+    position: fixed;
+    top:45px;
+    left:60px;
+}
+
+#sigue_explorando h6{
+float: left;
 }
 
 /* -------------- NAVBAR ----------------------------- */

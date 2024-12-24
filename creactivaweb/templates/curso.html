@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% include 'snippets/navbar.html' %}
-
+{% include 'snippets/header_volver.html' %}
 <div>
     <img class="img-curso" src="{% static 'img/' %}{{ curso.imagen_portada }}" alt="fondo-curso">
     <h1>{{ curso.nombre }}</h1>
