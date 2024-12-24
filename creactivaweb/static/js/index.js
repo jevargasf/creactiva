@@ -1,3 +1,11 @@
+
+document.querySelector('#btn-menu').addEventListener('click', function() {
+    document.querySelector('#menudesplegabe').classList.toggle('collapsed');
+    document.querySelector('#btn-menu').classList.toggle('collapsed');
+});
+
+
+
 // SLIDER NOTICIAS
 $(document).ready(function(){
     $('#slider-fila').slick({
@@ -62,7 +70,7 @@ arrows: false,
 easing: true,
 autoplay: true,
 infinte: true,
-speed: 350,
+speed: 500,
 fade:true,
 pauseOnFocus:false,
 pauseOnHover:true,
@@ -151,3 +159,6 @@ document.querySelector('#slider-inicial-descripcion-2').classList.remove('collap
 document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
 document.querySelector('#slider-inicial-descripcion-4').classList.add('collapsed');
 });
+
+
+

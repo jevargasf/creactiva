@@ -85,6 +85,7 @@ html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, v
     font-family:'latoregular', sans-serif;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color:#fff;
+    user-select:none;
 }
 
 
@@ -192,7 +193,7 @@ button {
 #logo{
     position: fixed;
     left:50px;
-    top:20px;
+    top:30px;
     width:150px;
 }
 
@@ -204,6 +205,8 @@ h1{
 
 h6{
     font-size: 14px;
+    letter-spacing: .5px;
+    font-family: latoregular;
 }
 
 /*-----------PRINCIPAL--------------------------------------------------*/
@@ -650,11 +653,12 @@ form{
 
 .main-nav{
     position: fixed;
-    right: 100px;
+    right: 50px;
     z-index: 1;
     width:25%;
+    top:35px;
+    display: inline-block;
 }
-
 
 
 .main-nav div{
@@ -675,11 +679,14 @@ form{
 
 #iniciarsesion:hover{
     opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
 #iniciarsesion h6{
     float:left;
-    padding:8px 13px 0px 0px;
+    padding:10px 15px 0px 0px;
+    letter-spacing: 1px;
 }
 
 #amp_off{
@@ -687,36 +694,44 @@ form{
     width: 30px;
 }
 
-.main-nav ul{
+#menudesplegabe{
     background-color: #024C8D;
-    float: right;
-    position: fixed;
-    top: 50px;
-    right: 140px;
-
+    position: absolute;
+    transform: scale(0);
+    translate: -191px 19px;
+    transform-origin: 210px 0px;
+    width:210px;
+    transition: all 0.5s ease-in-out;
+    opacity:1;
 }
+
+#menudesplegabe.collapsed{
+    transform: scale(1);
+}
+
+
 
 .main-nav li{
     list-style: none;
+    font-size:16px;
     
 }
 .main-nav a{
-    padding: 15px;
     float: right;
 }
 
 .main-nav ul a{
-    padding: 15px;
     float: right;
     width: 100%;
     background-color: #024C8D;
     box-sizing: border-box;
     transition: background-color 0.1s ease-in-out;
     text-align: right;
+    padding: 15px 15px 15px 35px;
+
 }
 
 .main-nav ul a.barracolor{
-    padding: 15px;
     float: right;
     width: 100%;
     background-color: #0f61a8;
@@ -726,14 +741,134 @@ form{
 }
 
 
+.main-nav ul a.botonvideo{
+    float: right;
+    width: 100%;
+    background-color: #08CD97;
+    box-sizing: border-box;
+    transition: background-color 0.1s ease-in-out;
+    color: #024C8D;
+    text-align: right;
+}
+
 .main-nav ul a:hover{
     background-color: #1787e9;
 
 }
 
+.main-nav ul a.botonvideo:hover{
+
+    background-color: #0bf7b8;
+
+}
+
 .main-nav button{
-    padding: 15px;
     float: right;
+}
+
+.btn-busqueda{
+    
+}
+
+
+#btn-menu {
+    padding: 19px;
+    margin: 0px 10px 0px 0px;
+    width: 18px;
+    height: 18px;
+    background-position: 50% 50%;
+    background-size: 16px 16px;
+    transition: all 0.3s ease-in-out;
+    opacity: .8;
+    background-image: url(../icon/menu.svg);
+
+}
+
+#btn-menu.collapsed{
+    background-color: #024C8D;
+    background-size: 13px 13px;
+    background-image: url(../icon/equis.svg);
+
+}
+
+
+#btn-menu:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+}
+
+#btn-busqueda {
+    padding: 19px;
+    width: 18px;
+    height: 18px;
+    background-position: 50% 50%;
+    background-size: 18px 18px;
+    transition: all 0.3s ease-in-out;
+    opacity: .8;
+    background-image: url(../icon/lupa.svg);
+}
+
+
+#btn-busqueda:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+}
+#btn-perfil{
+    float:right;
+    display: inline-block;
+    padding:2px 10px 0px 0px;
+    min-width:95px;
+}
+
+#btn-perfil h6{
+    float: right;
+    opacity: 1;
+    font-size:15px;
+}
+
+
+#verperfil{
+    transition: all 0.1s ease-in-out;
+    opacity: .8;
+}
+
+#verperfil p{
+    color:#57DEFF;
+}
+
+#verperfil:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+}
+
+
+#deslogin{
+    opacity: .8;
+    transition: all 0.1s ease-in-out;
+    color:#57DEFF;
+}
+
+#deslogin:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+}
+
+
+#amp_on{
+    transition: all 0.1s ease-in-out;
+    opacity: .8;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, .5));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, .5));
+}
+
+#amp_on:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
 
