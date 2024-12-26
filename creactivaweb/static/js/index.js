@@ -1,3 +1,10 @@
+
+document.querySelector('#btn-menu').addEventListener('click', function() {
+    document.querySelector('#menudesplegabe').classList.toggle('collapsed');
+    document.querySelector('#btn-menu').classList.toggle('collapsed');
+});
+
+
 // SLIDER NOTICIAS
 $(document).ready(function(){
     $('#slider-fila').slick({
@@ -62,7 +69,7 @@ arrows: false,
 easing: true,
 autoplay: true,
 infinte: true,
-speed: 350,
+speed: 500,
 fade:true,
 pauseOnFocus:false,
 pauseOnHover:true,

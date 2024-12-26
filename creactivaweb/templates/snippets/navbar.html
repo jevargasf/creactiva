@@ -2,15 +2,23 @@
 <nav class="main-nav">
     {% if user.is_authenticated %}
     <div >
-        <img id="amp_off" src="{% static 'icon/amp_off.svg' %}" alt="">
-        <button>
-            <h6>Hola JAVIER</h6><p>ver perfil</p>
-        </button>
+        <button id="amp_on"><img id="amp_off" src="{% static 'icon/amp_on.svg' %}" alt=""></button>
 
+
+        <div id="btn-perfil">
+
+                <h6>Hola JAVIER</h6>
+                
         <form class="form-logout" action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit">Salir</button>
+            <button id="deslogin" type="submit">Salir</button>
         </form>
+        <h6>&nbsp|&nbsp</h6>
+        <button id="verperfil">
+            <p>Ver perfil</p>
+        </button>
+
+        </div>
     </div>
 
     {% else %}
@@ -18,19 +26,25 @@
         <a id="iniciarsesion" class="link-nav" href="{% url 'login' %}"><h6>INICIA SESIÓN</h6><img id="amp_off" src="{% static 'icon/amp_off.svg' %}" alt=""></a>
     {% endif %}
 
-    <button class="btn-busqueda">
-        Buscar
+    <button id="btn-menu">
+        <ul id="menudesplegabe">
+            <li><a class="link-nav" href="{% url 'cursos' %}">Cursos</a></li>
+            <li><a class="link-nav barracolor" href="{% url 'index' %}">Planes</a> </li>
+            <li><a class="link-nav" href="{% url 'contacto' %}">Contacto</a></li>
+            <li><a class="link-nav barracolor" href="{% url 'index' %}">Preguntas frecuentes</a></li>
+            <li><a class="link-nav" href="{% url 'index' %}">Sobre nosotros</a></li>
+            <li><a class="link-nav barracolor botonvideo" href="{% url 'index' %}">¿Necesitas un video?</a></li>
+        </ul>
     </button>
 
 
-    <ul>
-        <li><a class="link-nav" href="{% url 'cursos' %}">Cursos</a></li>
-        <li><a class="link-nav barracolor" href="{% url 'index' %}">Planes</a> </li>
-        <li><a class="link-nav" href="{% url 'contacto' %}">Contacto</a></li>
-        <li><a class="link-nav barracolor" href="{% url 'index' %}">Preguntas frecuentes</a></li>
-        <li><a class="link-nav" href="{% url 'index' %}">Sobre nosotros</a></li>
-        <li><a class="link-nav barracolor" href="{% url 'index' %}">¿Necesitas un video?</a></li>
-    </ul>
+
+
+    <button id="btn-busqueda">
+        
+    </button>
+
+
 
 
 
