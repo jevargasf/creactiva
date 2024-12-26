@@ -9,13 +9,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 # from django.contrib import messages, para cuando queramos implementar alertas de error
 from django.db.utils import IntegrityError
 from main.utils import crear_usuario
-
+from cursos.utils import pedir_cursos
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request):
-        return render(request, 'index.html')
+        cursos = pedir_cursos()
+        context = {
+            'cursos': cursos
+        }
+        return render(request, 'index.html', context)
     
 class RegisterView(View):
     def dispatch(self, request: HttpRequest, *args, **kwargs):

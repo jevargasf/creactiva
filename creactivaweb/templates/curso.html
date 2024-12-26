@@ -7,6 +7,8 @@
     <img class="img-curso" src="{% static 'img/' %}{{ curso.imagen_portada }}" alt="fondo-curso">
     <h1>{{ curso.nombre }}</h1>
     <p>{{ curso.desc_larga }}</p>
+    <p>{{ curso.idiomas }}</p>
+    <p>{{ curso.etiquetas }}</p>
     <a href="#">Conoce más</a>
     {% if user.is_authenticated %}
     <a href="{% url 'capitulo' %}">Comenzar</a>
@@ -14,7 +16,12 @@
     <a href="{% url 'login' %}">Comenzar</a>
     {% endif %}
 </div>
-
     {% include 'snippets/fila.html' %}
 
+    <h1>Lista capítulos</h1>
+    {% for capitulo in capitulos %}
+    <li>
+        <a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a>
+    </li>
+    {% endfor %}
 {% endblock %}

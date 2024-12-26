@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpRequest
 from django.templatetags.static import static
 from cursos.models import Curso, Capitulo
+from cursos.utils import *
 
 # Create your views here.
 class CursoView(View):
@@ -11,9 +12,10 @@ class CursoView(View):
     
     def get (self, request):
         curso = Curso.objects.get(pk=1)
-        
+        capitulos = pedir_capitulos(1)
         context = {
-            'curso': curso 
+            'curso': curso,
+            'capitulos': capitulos
         }
         return render(request, 'curso.html', context)
     
