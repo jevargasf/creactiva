@@ -9,6 +9,11 @@
 </head>
 <body>
     <div id="fondo_animado">
+
+        <div id="top"></div>
+        <div id="bottom"></div>
+        <div id="left"></div>
+        <div id="right"></div>
     </div>
     <span id="cuadricula"></span>
 
@@ -18,7 +23,13 @@
       
 
         {% endblock %}
+        <header>
+            <a href="{% url 'index' %}">
+                <img id="logo" src="{% static 'icon/logo_creactiva.png' %}">
+                </img>
+            </a>
 
+        </header>
     </main>
         <!--JQUERY-->
            <script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>

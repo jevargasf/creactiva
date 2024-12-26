@@ -2,83 +2,77 @@
 /*-----------TIPOGRAFIAS----------------------------------------------------------------------*/
 @font-face {
     font-family: latolight;
-    src: url(fonts/Lato-Light.ttf);
+    src: url(lato/Lato-Light.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latolight;
-    src: url(fonts/Lato-LightItalic.ttf);
+    src: url(lato/Lato-LightItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latoregular;
-    src: url(fonts/Lato-Regular.ttf);
+    src: url(lato/Lato-Regular.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latoregular;
-    src: url(fonts/Lato-Italic.ttf);
+    src: url(lato/Lato-Italic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latomedium;
-    src: url(fonts/Lato-Medium.ttf);
+    src: url(lato/Lato-Medium.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latomedium;
-    src: url(fonts/Lato-MediumItalic.ttf);
+    src: url(lato/Lato-MediumItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latobold;
-    src: url(fonts/Lato-Bold.ttf);
+    src: url(lato/Lato-Bold.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latobold;
-    src: url(fonts/Lato-BoldItalic.ttf);
+    src: url(lato/Lato-BoldItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latoblack;
-    src: url(fonts/Lato-Black.ttf);
+    src: url(lato/Lato-Black.ttf);
     font-style:normal;
 }
 
 @font-face {
     font-family: latoblack;
-    src: url(fonts/Lato-BlackItalic.ttf);
+    src: url(lato/Lato-BlackItalic.ttf);
     font-style:italic;
 }
 
 @font-face {
     font-family: latoheavy;
-    src: url(fonts/Lato-Heavy.ttf);
+    src: url(lato/Lato-Heavy.ttf);
     font-style:normal;
 }
 
 @font-face {
-    font-family: latoheavy;
-    src: url(fonts/Lato-HeavyItalic.ttf);
+    font-family: lagoheavy;
+    src: url(lato/Lato-HeavyItalic.ttf);
     font-style:italic;
 }
 
 
-
-@font-face {
-    font-family: FSJoey;
-    src: url(fonts/FS-Joey-Bold.ttf);
-    font-style:normal;
-}
 
 
 
@@ -91,7 +85,6 @@ html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, v
     font-family:'latoregular', sans-serif;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color:#fff;
-    user-select:none;
 }
 
 
@@ -127,7 +120,7 @@ dl, dt, dd {
 
 input::selection, textarea::selection, b::selection, p::selection, ul::selection, li::selection, dd::selection, dt::selection, dl::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
     text-shadow:none;
-    background:#1787e9;
+    background:#ff9700;
     color:#fff;
 }
 
@@ -199,7 +192,7 @@ button {
 #logo{
     position: fixed;
     left:50px;
-    top:30px;
+    top:20px;
     width:150px;
 }
 
@@ -211,16 +204,6 @@ h1{
 
 h6{
     font-size: 14px;
-    letter-spacing: .5px;
-    font-family: latoregular;
-}
-
-h7{
-    font-family: FSJoey;
-    font-size:50px;
-    letter-spacing: 2px;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
 /*-----------PRINCIPAL--------------------------------------------------*/
@@ -359,28 +342,21 @@ h7{
 }
 
 
-/*-----------FONDO--------------------------------------------------*/
+
+
+
+
 
 #fondo_animado{
     width:100%;
     height: 100%;
     position: fixed;
     overflow: none; 
+   /* filter:blur(150px); */
     background-color: #024C8D;
     animation-timing-function: ease-in-out;
     z-index: -1;
-    background-image: url('../img/fondo.png');
-    background-size:4000px;
-    background-repeat: repeat;
-    animation: fondo1 60s infinite linear;
 }
-
-@keyframes fondo1{
-    0%{background-position:0px 0px; }
-    100%{background-position:-4000px -4000px;}
-}
-
-
 #fondo_animado div{
     position: absolute;
     border-radius: 50%;
@@ -390,17 +366,79 @@ h7{
 }
 
 
+@keyframes rotatebg{
+    0%{rotate: 0deg;}
+    50%{rotate: -90deg;}
+    100%{rotate: 0deg;}
+}
+
+#top{
+    width: 800px;
+    height: 800px;
+    animation: top 15s infinite;
+    top:-20%;
+    z-index: -1;
+}
+
+@keyframes top{
+    0%{right:75%;}
+    50%{right:-50%}
+    100%{right:75%;}
+}
+
+#bottom{
+    width: 1000px;
+    height: 1000px;
+    animation: bottom 20s infinite;
+    bottom:-10%;
+    z-index: -1;
+}
+
+@keyframes bottom{
+    0%{left:-50%;}
+    50%{left:75%}
+    100%{left:-50%;}
+}
+
+
+#left{
+    width: 1000px;
+    height: 1000px;
+    animation: left 22s infinite;
+    left:-20%;
+    z-index: -1;
+}
+
+
+@keyframes left{
+    0%{bottom:75%;}
+    50%{bottom:-50%}
+    100%{bottom:75%;}
+}
+
+
+
+#right{
+    width: 600px;
+    height: 600px;
+    animation: right 25s infinite;
+    right:-10%;
+    z-index: -1;
+}
+
+@keyframes right{
+    0%{bottom:-50%;}
+    50%{bottom:75%}
+    100%{bottom:-50%;}
+}
+
+
 #cuadricula{
-    width:200%;
+    width:100%;
     position: fixed;
-    height:200%;
-    left:-50%;
-    top:-50%;
-    opacity: .2;
-    background-size: 20px 20px;
-    background-image:
-      linear-gradient(to right, rgba(30, 41, 104, 1) 1.5px, transparent 1px),
-      linear-gradient(to bottom, rgba(30, 41, 104, 1) 1.5px, transparent 1px);
+    height:100%;
+    background-size: 15%;
+    background-image: url(../icon/cuadricula.png);
     background-repeat:  repeat;
     background-position: center;
     animation: rotatebg 100s infinite;
@@ -592,146 +630,14 @@ h7{
 /* -------------- FORMULARIO LOGIN Y REGISTRO ----------------------------- */
 
 form{
+    position: relative;
+    top: 100px;
 }
 
-::placeholder {
-    color: rgba(256, 256, 256, 0.8);
-}
-
-.form h3{
-    font-family: latobold;
-    font-size:16px;
-    letter-spacing: 1px;
-    line-height: 1px;
-}
-
-.form form{
-    padding:35px 0px 0px 0px;
+.form-login{
 
 }
 
-
-
-
-.form-login, .form-register {
-    position: absolute;
-    width:50%;
-    background-image: url('../img/fondo-oscuro.png');
-    background-size:3000px;
-    background-repeat: repeat;
-    top:50%;
-    left:50%;
-    translate: -50% -50%;
-    text-align: center;
-    padding:90px 0px 0px 0px;
-    animation: fondo 60s infinite linear;
-    
-}
-
-
-@keyframes fondo{
-    0%{background-position:0px 0px; }
-    100%{background-position:3000px -3000px;}
-}
-
-.form-register {
-    padding:90px 0px 50px 0px;
-}
-
-.form form input{
-    background-color:initial;
-    color:#fff;
-    border:none;
-    font-size:14px;
-    font-family: latolight;
-    padding:5px 5px 10px 5px;
-    border-bottom:1px solid #fff;
-    width:200px;
-    margin-bottom:20px;
-    letter-spacing: .5px;
-}
-
-.form-register div input{
-    background-color:initial;
-    color:#fff;
-    border:none;
-    font-size:14px;
-    font-family: latolight;
-    padding:5px 5px 10px 5px;
-    border-bottom:1px solid #fff;
-    width:322px;
-    margin-bottom:20px;
-    letter-spacing: .5px;
-}
-.form div.form-mid input{
-
-    width:150px;
-    margin: 0px 5px 20px 5px;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: #ffffff;
-    transition: background-color 5000s ease-in-out 0s;
-    box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, .0);
-}
-.p-boton{
-    color: #57DEFF;
-    font-family: latobold;
-    margin-bottom:50px;
-    opacity: .9;
-    display: inline-block;
-    font-size:13px;
-    transition: all 0.1s ease-in-out;
-}
-
-.form p.p-texto{
-    color: #fff;
-    font-family: latolight;
-    margin-bottom:5px;
-    font-size:14px;
-}
-.form form p{
-    color: #57DEFF;
-    font-family: latolight;
-    margin-bottom:30px;
-    font-size:13px;
-}
-
-.p-boton:hover{
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
-}
-
-
-.form form button{
-    background-color:#fff;
-    font-size:15px;
-    border:none;
-    font-family: latoblack;
-    color:#00224a;
-    margin-bottom:30px;
-    padding:10px 30px 10px 30px;
-    display: inline-block;
-    border-radius: 5px;
-
-}
-
-.form form button:hover{
-    color:#1787e9;
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
-    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
-}
-
-.form-register form button{
-    margin:40px 0px 0px 0px;
-    
-}
 .form-logout{
     top: 0px;
 }
@@ -740,56 +646,15 @@ input:-webkit-autofill:active{
     background-color: #c5dbe9;
 }
 
-
-#flecha_izquierda{
-    height: 14px;
-    float: left;
-    margin: 2px 7px 0px 0px;
-}
-
-#sigue_explorando{
-    position: fixed;
-    top:45px;
-    left:60px;
-    opacity: 0.8;
-    transition: all 0.1s ease-in-out;
-}
-
-#sigue_explorando:hover{
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
-    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
-
-}
-
-#sigue_explorando h6{
-float: left;
-}
-
-
-/* .form-login, .form-register{
-    opacity: 0;
-    animation: aparecer .5s 1 ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-@keyframes aparecer{
-    0%{    opacity: 0;}
-    100%{    opacity: 1;}
-}
-*/
-
-
 /* -------------- NAVBAR ----------------------------- */
 
 .main-nav{
     position: fixed;
-    right: 50px;
+    right: 100px;
     z-index: 1;
     width:25%;
-    top:35px;
-    display: inline-block;
 }
+
 
 
 .main-nav div{
@@ -810,14 +675,11 @@ float: left;
 
 #iniciarsesion:hover{
     opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
 #iniciarsesion h6{
     float:left;
-    padding:10px 15px 0px 0px;
-    letter-spacing: 1px;
+    padding:8px 13px 0px 0px;
 }
 
 #amp_off{
@@ -825,44 +687,36 @@ float: left;
     width: 30px;
 }
 
-#menudesplegabe{
+.main-nav ul{
     background-color: #024C8D;
-    position: absolute;
-    transform: scale(0);
-    translate: -191px 19px;
-    transform-origin: 210px 0px;
-    width:210px;
-    transition: all 0.5s ease-in-out;
-    opacity:1;
+    float: right;
+    position: fixed;
+    top: 50px;
+    right: 140px;
+
 }
-
-#menudesplegabe.collapsed{
-    transform: scale(1);
-}
-
-
 
 .main-nav li{
     list-style: none;
-    font-size:16px;
     
 }
 .main-nav a{
+    padding: 15px;
     float: right;
 }
 
 .main-nav ul a{
+    padding: 15px;
     float: right;
     width: 100%;
     background-color: #024C8D;
     box-sizing: border-box;
     transition: background-color 0.1s ease-in-out;
     text-align: right;
-    padding: 15px 15px 15px 35px;
-
 }
 
 .main-nav ul a.barracolor{
+    padding: 15px;
     float: right;
     width: 100%;
     background-color: #0f61a8;
@@ -872,134 +726,14 @@ float: left;
 }
 
 
-.main-nav ul a.botonvideo{
-    float: right;
-    width: 100%;
-    background-color: #08CD97;
-    box-sizing: border-box;
-    transition: background-color 0.1s ease-in-out;
-    color: #024C8D;
-    text-align: right;
-}
-
 .main-nav ul a:hover{
     background-color: #1787e9;
 
 }
 
-.main-nav ul a.botonvideo:hover{
-
-    background-color: #0bf7b8;
-
-}
-
 .main-nav button{
+    padding: 15px;
     float: right;
-}
-
-.btn-busqueda{
-    
-}
-
-
-#btn-menu {
-    padding: 19px;
-    margin: 0px 10px 0px 0px;
-    width: 18px;
-    height: 18px;
-    background-position: 50% 50%;
-    background-size: 16px 16px;
-    transition: all 0.3s ease-in-out;
-    opacity: .8;
-    background-image: url(../icon/menu.svg);
-
-}
-
-#btn-menu.collapsed{
-    background-color: #024C8D;
-    background-size: 13px 13px;
-    background-image: url(../icon/equis.svg);
-
-}
-
-
-#btn-menu:hover{
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-}
-
-#btn-busqueda {
-    padding: 19px;
-    width: 18px;
-    height: 18px;
-    background-position: 50% 50%;
-    background-size: 18px 18px;
-    transition: all 0.3s ease-in-out;
-    opacity: .8;
-    background-image: url(../icon/lupa.svg);
-}
-
-
-#btn-busqueda:hover{
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-}
-#btn-perfil{
-    float:right;
-    display: inline-block;
-    padding:2px 10px 0px 0px;
-    min-width:95px;
-}
-
-#btn-perfil h6{
-    float: right;
-    opacity: 1;
-    font-size:15px;
-}
-
-
-#verperfil{
-    transition: all 0.1s ease-in-out;
-    opacity: .8;
-}
-
-#verperfil p{
-    color:#57DEFF;
-}
-
-#verperfil:hover{
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-}
-
-
-#deslogin{
-    opacity: .8;
-    transition: all 0.1s ease-in-out;
-    color:#57DEFF;
-}
-
-#deslogin:hover{
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-}
-
-
-#amp_on{
-    transition: all 0.1s ease-in-out;
-    opacity: .8;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, .5));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, .5));
-}
-
-#amp_on:hover{
-    opacity: 1;
-    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
-    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
 
@@ -1007,49 +741,13 @@ float: left;
 
 
 
-/* ------------- PLAYER --------------- */
-
-.tsc-smartplayer .player-controls {
-    background-color: rgb(19, 44, 97);
-}
- 
-.tsc-smartplayer .video-controls-container{
-    overflow: visible;
-    opacity: 1;
-}
- 
-.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-played-track{
-    background-color: rgb(0, 225, 255);
-}
- 
-.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-background-track{
- 
-}
-.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-loaded-track{
-    background-color: rgb(67, 87, 151);
- 
-}
- 
-.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-seek-hint-track{
-    background-color: rgb(103, 140, 197);
-}
- 
- 
-.tsc-smartplayer .play-pause-state {
-    background-color: rgb(0, 225, 255);
-}
- 
-.tsc-smartplayer .media-wrapper {
- pointer-events: none;
-}
 
 
 
-#tscVideoContent{
-    width: 100%;
-    height: 80%;
-    top:100px;
-}
+
+
+
+
 
 
 
