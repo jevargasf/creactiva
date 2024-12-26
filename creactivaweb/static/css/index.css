@@ -359,30 +359,25 @@ h7{
 }
 
 
-
-
-
-
+/*-----------FONDO--------------------------------------------------*/
 
 #fondo_animado{
     width:100%;
     height: 100%;
     position: fixed;
     overflow: none; 
-   /* filter:blur(150px); */
     background-color: #024C8D;
     animation-timing-function: ease-in-out;
     z-index: -1;
     background-image: url('../img/fondo.png');
-    background-size:300%;
+    background-size:4000px;
     background-repeat: repeat;
-    animation: fondo1 240s infinite linear;
-
+    animation: fondo1 60s infinite linear;
 }
 
 @keyframes fondo1{
-    0%{background-position:0% 0%; }
-    100%{background-position:300% 300%;}
+    0%{background-position:0px 0px; }
+    100%{background-position:-4000px -4000px;}
 }
 
 
@@ -395,73 +390,6 @@ h7{
 }
 
 
-@keyframes rotatebg{
-    0%{rotate: 0deg;}
-    50%{rotate: -90deg;}
-    100%{rotate: 0deg;}
-}
-
-#top{
-    width: 800px;
-    height: 800px;
-    animation: top 15s infinite;
-    top:-20%;
-    z-index: -1;
-}
-
-@keyframes top{
-    0%{right:75%;}
-    50%{right:-50%}
-    100%{right:75%;}
-}
-
-#bottom{
-    width: 1000px;
-    height: 1000px;
-    animation: bottom 20s infinite;
-    bottom:-10%;
-    z-index: -1;
-}
-
-@keyframes bottom{
-    0%{left:-50%;}
-    50%{left:75%}
-    100%{left:-50%;}
-}
-
-
-#left{
-    width: 1000px;
-    height: 1000px;
-    animation: left 22s infinite;
-    left:-20%;
-    z-index: -1;
-}
-
-
-@keyframes left{
-    0%{bottom:75%;}
-    50%{bottom:-50%}
-    100%{bottom:75%;}
-}
-
-
-
-#right{
-    width: 600px;
-    height: 600px;
-    animation: right 25s infinite;
-    right:-10%;
-    z-index: -1;
-}
-
-@keyframes right{
-    0%{bottom:-50%;}
-    50%{bottom:75%}
-    100%{bottom:-50%;}
-}
-
-
 #cuadricula{
     width:200%;
     position: fixed;
@@ -471,8 +399,8 @@ h7{
     opacity: .2;
     background-size: 20px 20px;
     background-image:
-      linear-gradient(to right, rgba(30, 41, 104, 1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(30, 41, 104, 1) 1px, transparent 1px);
+      linear-gradient(to right, rgba(30, 41, 104, 1) 1.5px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 41, 104, 1) 1.5px, transparent 1px);
     background-repeat:  repeat;
     background-position: center;
     animation: rotatebg 100s infinite;
@@ -689,30 +617,26 @@ form{
     position: absolute;
     width:50%;
     background-image: url('../img/fondo-oscuro.png');
-    background-size:400%;
+    background-size:3000px;
     background-repeat: repeat;
     top:50%;
     left:50%;
     translate: -50% -50%;
     text-align: center;
     padding:90px 0px 0px 0px;
-    animation: fondo 120s infinite linear;
+    animation: fondo 60s infinite linear;
     
 }
-
-
-.form-register {
-    padding:90px 0px 50px 0px;
-    
-}
-
 
 
 @keyframes fondo{
-    0%{background-position:0% 0%; }
-    100%{background-position:-400% 400%;}
+    0%{background-position:0px 0px; }
+    100%{background-position:3000px -3000px;}
 }
 
+.form-register {
+    padding:90px 0px 50px 0px;
+}
 
 .form form input{
     background-color:initial;
@@ -1083,13 +1007,49 @@ float: left;
 
 
 
+/* ------------- PLAYER --------------- */
+
+.tsc-smartplayer .player-controls {
+    background-color: rgb(19, 44, 97);
+}
+ 
+.tsc-smartplayer .video-controls-container{
+    overflow: visible;
+    opacity: 1;
+}
+ 
+.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-played-track{
+    background-color: rgb(0, 225, 255);
+}
+ 
+.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-background-track{
+ 
+}
+.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-loaded-track{
+    background-color: rgb(67, 87, 151);
+ 
+}
+ 
+.tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-seek-hint-track{
+    background-color: rgb(103, 140, 197);
+}
+ 
+ 
+.tsc-smartplayer .play-pause-state {
+    background-color: rgb(0, 225, 255);
+}
+ 
+.tsc-smartplayer .media-wrapper {
+ pointer-events: none;
+}
 
 
 
-
-
-
-
+#tscVideoContent{
+    width: 100%;
+    height: 80%;
+    top:100px;
+}
 
 
 
