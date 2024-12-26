@@ -2,59 +2,23 @@
 
 {% block content %}
 {% include 'snippets/navbar.html' %}
+{% include 'snippets/header_volver.html' %}
     <div class="form form-register">
-        <h3>Regístrate</h3>
+        <h3>BIENVENID@</h3>
+        <h7>CreActiv@</h7><br><br><br>
+        <h3>ES UN PLACER RECIBIRTE. CUÉNTANOS SOBRE TI:</h3>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
+    <div class="form-mid">
+        <input id="nombre" type="text" name="first_name" required  placeholder="Nombre">
+        <input id="apellido" type="text" name="last_name" required  placeholder="Apellido">
+    </div>
+        <div><input id="email" type="email" name="email" placeholder="sucorreo@sudominio.com" required  placeholder="Email"></div>
+        <div><input id="password1" type="password" name="password1" required  placeholder="Contraseña"></div>
+        <div><input id="password2" type="password" name="password2" required  placeholder="Repita Contraseña"></div>
 
-            <div>
-                <div>
-                    <label for="nombre">Nombre:</label>
-                </div>
-                <div>
-                    <input id="nombre" type="text" name="first_name" required>
-                </div>
-            </div>
+        <button type="submit">REGISTRARSE</button>
 
-            <div>
-                <div>
-                    <label for="apellido">Apellido:</label>
-                </div>
-                <div>
-                    <input id="apellido" type="text" name="last_name" required>
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <label class="form-label" for="email">Email:</label>
-                </div>
-                <div>
-                    <input id="email" type="email" name="email" placeholder="sucorreo@sudominio.com" required>
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <label for="password1">Ingrese contraseña:</label>
-                </div>
-                <div>
-                    <input id="password1" type="password" name="password1" required>
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <label for="password2">Repita contraseña:</label>
-                </div>
-                <div>
-                    <input id="password2" type="password" name="password2" required>
-                </div>
-            </div>
-
-            <div>
-                <button type="submit">Registrarse</button>
-            </div>
         </form>
     </div>
 {% endblock %}
