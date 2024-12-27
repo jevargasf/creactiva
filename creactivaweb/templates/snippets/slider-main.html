@@ -25,22 +25,30 @@
     		<button id="flecha-derecha-slider-inicial"></button>
 			
 			<nav id="slider-inicial-descripciones">
-				<dl class="collapsible" id="slider-inicial-descripcion-1">
-					<dt>Chaliwún: Saludo</dt>
+				<dl class="collapsible collapsed" id="slider-inicial-descripcion-1">
+					<dd>Capítulo</dd>
+					<dt>Pronombres</dt>
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
 				</dl>
 				<dl class="collapsible" id="slider-inicial-descripcion-2">
-					<dt>Cultura Mapuche</dt>
+					<dd>Curso</dd>
+					<dt>Introducción al Mapuznugun</dt>
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
 				</dl>
 				<dl class="collapsible" id="slider-inicial-descripcion-3">
+					<dd>Capítulo</dd>
 					<dt>Números</dt>
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
 				</dl>
 				<dl class="collapsible" id="slider-inicial-descripcion-4">
-					<dt>Seres Mitológicos</dt>
+					<dd>Curso</dd>
+					<dt>Cultura Mapuche</dt>
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
 				</dl>
 			</nav>
+			<a href="{% url 'capitulo' %}"><button class="btn-spotlight collapsed" id="btn-spotlight1">VER AHORA</button></a>
+			<a href="{% url 'cursos' %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
+			<a href="{% url 'capitulo' %}"><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
+			<a href="{% url 'cursos' %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
             
 </div>

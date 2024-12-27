@@ -199,7 +199,15 @@ button {
 #logo{
     position: fixed;
     left:50px;
-    top:30px;
+    top:25px;
+    width:150px;
+}
+
+#logo_centro{
+    position: fixed;
+    left:50%;
+    translate: -50% 0;
+    top:25px;
     width:150px;
 }
 
@@ -223,12 +231,57 @@ h7{
     filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
+i{
+    font-style: normal;
+    color:#57DEFF;
+}
+
 /*-----------PRINCIPAL--------------------------------------------------*/
 #spotlight {
     width:100%;
     height: 75%;
     position:relative;
 }
+
+.btn-spotlight{
+    position: absolute;
+    background-color:#fff;
+    font-size:14px;
+    border:none;
+    font-family: latoblack;
+    color:#00224a;
+    padding:10px 30px 10px 30px;
+    border-radius: 5px;
+    z-index: 2;
+    bottom:150px;
+    right:150px;
+    opacity: 0;
+    letter-spacing: .5px;
+    pointer-events: none;
+}
+
+.btn-spotlight.collapsed{
+    pointer-events: auto;
+    opacity: 1;
+
+}
+
+.btn-spotlight:hover{
+    color:#1787e9;
+    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+}
+
+.btn-spotlight.collapsed:hover{
+    color:#1787e9;
+    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+}
+
+
+
+
+
 
 /*-----------SLIDER INICIAL--------------------------------------------------*/
 #mascara_spotlight{
@@ -316,7 +369,7 @@ h7{
     box-sizing: border-box;
     padding:0px 0% 0px 0%;
     translate:0px -90px;
-    margin-top:-30px;
+    margin-top:-40px;
 }
 
 #slider-inicial-descripciones dl {
@@ -399,8 +452,8 @@ h7{
     opacity: .2;
     background-size: 20px 20px;
     background-image:
-      linear-gradient(to right, rgba(30, 41, 104, 1) 1.5px, transparent 1px),
-      linear-gradient(to bottom, rgba(30, 41, 104, 1) 1.5px, transparent 1px);
+      linear-gradient(to right, rgb(20, 28, 70) 1.5px, transparent 1px),
+      linear-gradient(to bottom, rgb(20, 28, 70) 1.5px, transparent 1px);
     background-repeat:  repeat;
     background-position: center;
     animation: rotatebg 100s infinite;
@@ -459,7 +512,12 @@ h7{
     opacity:0.8;
 }
 
-
+.fila-slider div a{
+    width:100%;
+    height:100%;
+    position: absolute;
+    cursor: pointer;
+}
 
 
 .fila-slider:hover {
@@ -534,6 +592,7 @@ h7{
     bottom:10px;
     right:10px;
     position:absolute;
+    pointer-events: none;
 }
 
 .fila-slider dl dt {
@@ -749,8 +808,8 @@ input:-webkit-autofill:active{
 
 #sigue_explorando{
     position: fixed;
-    top:45px;
-    left:60px;
+    top:35px;
+    left:45px;
     opacity: 0.8;
     transition: all 0.1s ease-in-out;
 }
@@ -787,7 +846,7 @@ float: left;
     right: 50px;
     z-index: 1;
     width:25%;
-    top:35px;
+    top:25px;
     display: inline-block;
 }
 
@@ -832,7 +891,7 @@ float: left;
     translate: -191px 19px;
     transform-origin: 210px 0px;
     width:210px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     opacity:1;
 }
 
@@ -1007,6 +1066,139 @@ float: left;
 
 
 
+
+/* -------------------- _CURSO_ ------------------ */
+
+#img-curso-cont{
+    position: absolute;
+    margin-top: 0px;
+    width: 100%;
+    height:calc(100% - 70px);
+    overflow: hidden;
+    z-index: -1;
+    background-color: #000;
+}
+
+.img-curso{
+    position: absolute;
+    width: 120%;
+    left: 50%;
+    top:50%;
+    translate: -50% -40%;
+}
+
+
+#curso-fila {
+
+}
+
+#curso-fila #fila{
+    position: absolute;
+    width:1080px;
+    height:auto;
+    padding:0px;
+    bottom:100px;
+    left: 50%;
+    translate: -50% 0%;
+}
+
+#mascara_curso{
+    top:0px;
+    background-image:url(../img/mascara_spotlight.png);
+    background-size: 100% 100%;
+    background-position: 0px 0px;
+    background-blend-mode: multiply;
+    mix-blend-mode: multiply;
+    width:100%;
+    height:calc(100% - 70px);
+    position: absolute;
+
+}
+
+#curso-info1{
+    width:1080px;
+    left:50%;
+    translate:-50% 0;
+    position: absolute;
+    bottom: 270px;
+    text-align: left;
+
+}
+
+#curso-info1 h1{
+    text-transform: uppercase;
+    font-family: latoblack;
+    display: inline-block;
+    margin-bottom:10px;
+}
+
+#curso-info1 p{
+    width:60%;
+    font-size:13px;
+    border-top:1px solid #fff;
+    padding-top:10px;
+    margin-top:10px;
+    user-select: text;
+}
+
+#curso-info1 ul{
+    list-style: none;
+    font-size:13px;
+    
+
+}
+
+#curso-info1 ul li{
+    display: inline-block;
+
+}
+#curso-info1 ul li img{
+    display: inline-block;
+    float:left;
+    height:18px;
+    margin-right:5px;
+
+}
+
+#curso-info1 ul li h4{
+    display: inline-block;
+    margin-right:10px;
+    float:left;
+    line-height: 20px;
+
+}
+
+
+
+.btn-curso{
+    position: absolute;
+    background-color:#fff;
+    font-size:14px;
+    border:none;
+    font-family: latoblack;
+    color:#00224a;
+    padding:10px 30px 10px 30px;
+    border-radius: 5px;
+    z-index: 2;
+    bottom:0px;
+    right:0px;
+    letter-spacing: .5px;
+}
+
+.btn-curso:hover{
+    color:#1787e9;
+    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+}
+
+#btn-curso1{
+    right:170px;
+
+}
+
+#btn-curso2{
+    
+}
 /* ------------- PLAYER --------------- */
 
 .tsc-smartplayer .player-controls {
@@ -1043,28 +1235,111 @@ float: left;
  pointer-events: none;
 }
 
-
-
 #tscVideoContent{
     width: 100%;
-    height: 80%;
-    top:100px;
+    height:calc(100% - 145px);
+    top:75px;
+}
+
+.tsc-smartplayer .play-button-overlay-glyph{
+    position: absolute;
+    background-color:#fff;
+    font-size:14px;
+    border:none;
+    font-family: latoblack;
+    color:#00224a;
+    border-radius: 5px;
+    z-index: 2;
+    letter-spacing: .5px;
+    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    padding:10px 30px 10px 30px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    pointer-events: auto;
+    top: auto;
+    bottom:60px;
+    left:100px;
+    margin:0px;
 }
 
 
 
+.tsc-smartplayer .play-button-overlay-glyph:hover{
+    color:#1787e9;
+    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+}
 
 
 
+.tsc-smartplayer .video-click-to-play-link, .tsc-smartplayer .video-click-to-replay-link {
+    background-size: 110%;
+    pointer-events: none;
+    box-shadow: inset 0 0 1000px #000000;
+}
+
+.btn-capitulo{
+    position: absolute;
+    background-color:#fff;
+    font-size:14px;
+    border:none;
+    font-family: latoblack;
+    color:#00224a;
+    padding:10px 30px 10px 30px;
+    border-radius: 5px;
+    z-index: 2;
+    bottom:130px;
+    left: 280px;
+    letter-spacing: .5px;
+    display: none;
+}
+
+.btn-capitulo:hover{
+    color:#1787e9;
+    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+}
+
+.btn-capitulo .collapsed{
+    display: none;
+}
+
+#mascara_spotlight{
+    top:0px;
+    background-image:url(../img/mascara_spotlight.png);
+    background-size: 100% 76vh;
+    background-position: 0px -1px;
+    background-blend-mode: multiply;
+    mix-blend-mode: multiply;
+    width:100%;
+    height:75vh;
+    position: absolute;
+}
 
 
 
+#cap-banner-top{
+    position: absolute;
+    width:100%;
+    height:80px;
+    z-index: -1;
+    box-sizing: border-box;
+    padding: 32px 0px 0px 250px;
+}
 
-
-
-
-
-
+#cap-banner-top h3{
+    position: absolute;
+    width:100%;
+    height:80px;
+    z-index: -1;
+    box-sizing: border-box;
+    font-size:16px;
+    font-family: latolight;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
 
 
 /*-----------RESPONSIVIDAD 1280px--------------------------------------------------*/
@@ -1472,10 +1747,3 @@ float: left;
         display: none;
     }
     
-
-/* -------------------- CURSO ------------------ */
-
-.img-curso{
-    margin-top: 100px;
-    width: 100%;
-}

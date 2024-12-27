@@ -1,28 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'snippets/navbar.html' %}
-{% include 'snippets/header_volver.html' %}
+
 
 <div>
-    <img class="img-curso" src="{% static 'img/' %}{{ curso.imagen_portada }}" alt="fondo-curso">
-    <h1>{{ curso.nombre }}</h1>
-    <p>{{ curso.desc_larga }}</p>
-    <p>{{ curso.idiomas }}</p>
-    <p>{{ curso.etiquetas }}</p>
-    <a href="#">Conoce más</a>
-    {% if user.is_authenticated %}
-    <a href="{% url 'capitulo' %}">Comenzar</a>
-    {% else %}
-    <a href="{% url 'login' %}">Comenzar</a>
-    {% endif %}
-</div>
-    {% include 'snippets/fila.html' %}
+    <div id="img-curso-cont">
+        <img class="img-curso" src="{% static 'img/' %}{{ curso.imagen_portada }}" alt="fondo-curso">
+    </div>
+    <div id="mascara_curso"></div>
 
-    <h1>Lista capítulos</h1>
-    {% for capitulo in capitulos %}
-    <li>
-        <a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a>
-    </li>
-    {% endfor %}
+    <div id="curso-info1">
+
+    
+    <h1>{{ curso.nombre }}</h1>
+    <ul>
+        <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>5 Capítulos <i>(6hrs)</i></h4></li>
+        <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>2 Recursos adicionales</h4></li>
+        <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>8 Actividades interactivas</h4></li>
+    </ul>
+    <p>{{ curso.desc_larga }}</p>
+
+
+
+    <button class="btn-curso" id="btn-curso1"><a href="#">CONOCE MÁS</a></button>
+
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'capitulo' %}"><button class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+    {% else %}
+    <a href="{% url 'login' %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+    {% endif %}
+
+    </div>
+    {% include 'snippets/fila_curso.html' %}
+</div>
+
+
+
+
+
+    {% include 'snippets/navbar.html' %}
+    {% include 'snippets/header_centro.html' %}
+    {% include 'snippets/header_volver.html' %}
 {% endblock %}
