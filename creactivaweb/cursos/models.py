@@ -15,6 +15,13 @@ class Idioma(models.Model):
     def __str__(self):
         return self.nom_idi
 
+class Autor(models.Model):
+    aut = models.AutoField(primary_key=True, null=False, verbose_name='ID autor')
+    nom_aut = models.CharField(max_length=255, verbose_name='Nombre autor')
+
+    def __str__(self):
+        return self.nom_aut
+
 class MaterialesComplementario(models.Model):
     mat = models.AutoField(primary_key=True, null=False, verbose_name='ID material')
     nom_mat = models.CharField(max_length=255, verbose_name='Nombre material')
@@ -23,13 +30,41 @@ class MaterialesComplementario(models.Model):
     def __str__(self):
         return f'{self.nom_mat}'
 
+class Curso(models.Model):
+    cur = models.AutoField(primary_key=True, null=False, verbose_name='ID curso')
+    nombre = models.CharField(max_length=255, verbose_name='Nombre curso')
+    desc_corta= models.CharField(max_length=255, verbose_name='Descripción Corta')
+    desc_larga = models.TextField(verbose_name='Descripción Larga')
+    imagen_portada = models.CharField(max_length=255, verbose_name='Imagen portada', null=True)
+    etiquetas = models.ForeignKey(
+        Etiqueta,
+        on_delete=models.CASCADE,
+        related_name='etiquetas',
+        verbose_name='Etiqueta'
+    )
+    idiomas = models.ForeignKey(
+        Idioma,
+        on_delete=models.CASCADE,
+        related_name='idiomas',
+        verbose_name='Idioma',
+        default=1
+    )
+    aut = models.ManyToManyField(Autor, verbose_name='Autores', related_name='autores')
+
+    def __str__(self):
+        return self.nombre
+
 class Capitulo(models.Model):
     cap = models.AutoField(primary_key=True, null=False, verbose_name='ID capítulo')
     nom_cap = models.CharField(max_length=255, verbose_name='Nombre capítulo')
     dur_cap = models.IntegerField(verbose_name='Duración (minutos)')
     des_cap = models.TextField(verbose_name='Descripción')
     nin_cap = models.IntegerField(verbose_name='Número de actividades interactivas')
-    lin_cap = models.URLField(verbose_name='Link capítulo')
+    lin_cap = models.URLField(verbose_name='Link capítulo', max_length=255)
+    xml_cap = models.CharField(verbose_name='Link xml', null=True, max_length=255)
+    js_cap = models.CharField(verbose_name='Link xml.js', null=True, max_length=255)
+    thu_cap = models.CharField(verbose_name='Link thumbnail', null=True, max_length=255)
+    fir_cap = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
     mat = models.ForeignKey(
         MaterialesComplementario,
         blank=True, 
@@ -38,45 +73,17 @@ class Capitulo(models.Model):
         related_name='materiales',
         verbose_name='Materiales complementarios'
     )
+    curso = models.ForeignKey(
+        Curso,
+        on_delete=models.CASCADE,
+        related_name='curso',
+        verbose_name='Curso',
+        null=True
+    )
 
     def __str__(self):
         return self.nom_cap
 
-class Autor(models.Model):
-    aut = models.AutoField(primary_key=True, null=False, verbose_name='ID autor')
-    nom_aut = models.CharField(max_length=255, verbose_name='Nombre autor')
-
-    def __str__(self):
-        return self.nom_aut
-
-class Curso(models.Model):
-    cur = models.AutoField(primary_key=True, null=False, verbose_name='ID curso')
-    nom_cur = models.CharField(max_length=255, verbose_name='Nombre curso')
-    dec_cur = models.CharField(max_length=255, verbose_name='Descripción Corta')
-    del_cur = models.TextField(verbose_name='Descripción Larga')
-    eti = models.ForeignKey(
-        Etiqueta,
-        on_delete=models.CASCADE,
-        related_name='etiquetas',
-        verbose_name='Etiqueta'
-    )
-    idi = models.ForeignKey(
-        Idioma,
-        on_delete=models.CASCADE,
-        related_name='idiomas',
-        verbose_name='Idioma',
-        default=1
-    )
-    cap = models.ForeignKey(
-        Capitulo,
-        on_delete=models.CASCADE,
-        related_name='capitulos',
-        verbose_name='Capítulo'
-    )
-    aut = models.ManyToManyField(Autor, verbose_name='Autores', related_name='autores')
-
-    def __str__(self):
-        return self.nom_cur
     
     
 class EstadoCapitulo(models.Model):

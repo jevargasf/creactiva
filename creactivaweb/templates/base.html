@@ -5,29 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <title>Creactiva Animaciones</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
+    <title>CreActiva</title>
 </head>
 <body>
     <div id="fondo_animado">
-
-        <div id="top"></div>
-        <div id="bottom"></div>
-        <div id="left"></div>
-        <div id="right"></div>
     </div>
     <span id="cuadricula"></span>
 
     <main>
+
         {% block content %}
       
 
         {% endblock %}
-        <header>
-            <img id="logo" src="{% static 'icon/logo_creactiva.png' %}"></img>
-        </header>
     </main>
         <!--JQUERY-->
-        <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+           <script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>
+        <!-- <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script> -->
         <script src="{% static 'js/slick.js' %}"></script>
         <script src="{% static 'js/index.js' %}"></script>
 </body>

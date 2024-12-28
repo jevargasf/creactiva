@@ -9,13 +9,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 # from django.contrib import messages, para cuando queramos implementar alertas de error
 from django.db.utils import IntegrityError
 from main.utils import crear_usuario
-
+from cursos.utils import pedir_cursos
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request):
-        return render(request, 'index.html')
+        cursos = pedir_cursos()
+        context = {
+            'cursos': cursos
+        }
+        return render(request, 'index.html', context)
     
 class RegisterView(View):
     def dispatch(self, request: HttpRequest, *args, **kwargs):
@@ -52,8 +56,15 @@ class CustomLoginView(SuccessMessageMixin, LoginView):
     redirect_authenticated_user = True
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('login')
+    next_page = reverse_lazy('index')
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
         #messages.add_message(request, messages.WARNING, "Sesión Cerrada Exitosamente")
         return response
+    
+class ContactoView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get (self, request):
+        return render(request, 'contacto.html')

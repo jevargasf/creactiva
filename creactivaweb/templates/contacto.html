@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'snippets/navbar.html' %}
+{% include 'snippets/header_volver.html' %}
+    <div class="form form-register">
+        <h7>CreActiv@</h7><br><br><br>
+        <h3>CUÉNTANOS...¿QUÉ NECESITAS?</h3>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+    <div class="form-mid">
+        <input id="nombre" type="text" name="first_name" required  placeholder="Nombre">
+        <input id="apellido" type="text" name="last_name" required  placeholder="Apellido">
+    </div>
+        <div><input id="email" type="email" name="email" required  placeholder="Email"></div>
+
+
+        <div><input id="mensaje" type="text" name="mensaje" required  placeholder="Cuéntanos más"></div>
+
+
+        <button type="submit">ENVIAR</button>
+
+        </form>
+    </div>
+{% endblock %}

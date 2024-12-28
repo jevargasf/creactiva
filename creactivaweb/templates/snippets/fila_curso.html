@@ -1,0 +1,17 @@
+{% load static %}
+
+
+<!-----------------------------------------------FILA--------------------------------------------------------->
+<div id="curso-fila">
+<section id="fila">
+    <article>
+            {% block curso_fila %}
+                {% include 'snippets/curso_fila.html' %}
+            {% endblock %}
+            
+    </article>
+</section>
+</div>
+        <div style="display: none;"> {% include 'snippets/slider-main.html' %}</div>
+
+        

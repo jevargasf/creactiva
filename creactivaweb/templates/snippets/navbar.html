@@ -1,3 +1,51 @@
-<nav>
-    código del navbar
+{% load static %}
+<nav class="main-nav">
+    {% if user.is_authenticated %}
+    <div >
+        <button id="amp_on"><img id="amp_off" src="{% static 'icon/amp_on.svg' %}" alt=""></button>
+
+
+        <div id="btn-perfil">
+
+                <h6>Hola JAVIER</h6>
+                
+        <form class="form-logout" action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button id="deslogin" type="submit">Salir</button>
+        </form>
+        <h6>&nbsp|&nbsp</h6>
+        <button id="verperfil">
+            <p>Ver perfil</p>
+        </button>
+
+        </div>
+    </div>
+
+    {% else %}
+        
+        <a id="iniciarsesion" class="link-nav" href="{% url 'login' %}"><h6>INICIA SESIÓN</h6><img id="amp_off" src="{% static 'icon/amp_off.svg' %}" alt=""></a>
+    {% endif %}
+
+    <button id="btn-menu">
+        <ul id="menudesplegabe">
+            <li><a class="link-nav" href="{% url 'index' %}">Cursos</a></li>
+            <li><a class="link-nav barracolor" href="{% url 'index' %}">Planes</a> </li>
+            <li><a class="link-nav" href="{% url 'contacto' %}">Contacto</a></li>
+            <li><a class="link-nav barracolor" href="{% url 'index' %}">Preguntas frecuentes</a></li>
+            <li><a class="link-nav" href="{% url 'index' %}">Sobre nosotros</a></li>
+            <li><a class="link-nav barracolor botonvideo" href="{% url 'index' %}">¿Necesitas un video?</a></li>
+        </ul>
+    </button>
+
+
+
+
+    <button id="btn-busqueda">
+        
+    </button>
+
+
+
+
+
 </nav>

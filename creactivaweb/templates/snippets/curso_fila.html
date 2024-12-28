@@ -1,0 +1,90 @@
+{% load static %}
+    
+{% for capitulo in capitulos %} 
+
+
+
+{% endfor %}
+
+    <div id="slider-fila-curso">
+            <!--CAPITULO FILA-->
+            <div class="fila-slider">
+                <section>
+                    <div>
+                        <button></button>
+                        <img src="{% static 'img/1.png' %}" alt="Noticia">
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
+                    </div>
+                    <dl>
+                        <dd>Capítulo 1</dd>
+                        <dt>El mapuzungun</dt>
+                    </dl>
+                </section>
+            </div>
+
+            <!--CAPITULO FILA-->
+            <div class="fila-slider">
+                <section>
+                    <div>
+                        <button></button>
+                        <img src="{% static 'img/2.png' %}" alt="Noticia">
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
+                    </div>
+                    <dl>
+                        <dd>Capítulo 2</dd>
+                        <dt>Pronombres</dt>
+                    </dl>
+                </section>
+            </div>
+
+           <!--CAPITULO FILA-->
+            <div class="fila-slider">
+                <section>
+                    <div>
+                        <button></button>
+                        <img src="{% static 'img/3.png' %}" alt="Noticia">
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
+                    </div>
+                    <dl>
+                        <dd>Capítulo 3</dd>
+                        <dt>Acciones y números</dt>
+                    </dl>
+                </section>
+            </div>
+
+            <!--CAPITULO FILA-->
+            <div class="fila-slider">
+                <section>
+                    <div>
+                        <button></button>
+                        <img src="{% static 'img/4.png' %}" alt="Noticia">
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
+                    </div>
+                    <dl>
+                        <dd>Capítulo 4</dd>
+                        <dt>Saludos y Presentación</dt>
+                    </dl>
+                </section>
+            </div>
+
+            <!--CAPITULO FILA-->
+            <div class="fila-slider">
+                <section>
+                    <div>
+                        <button></button>
+                        <img src="{% static 'img/1.png' %}" alt="Noticia">
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
+                    </div>
+                    <dl>
+                        <dd>Capítulo 5</dd>
+                        <dt>Conversación</dt>
+                    </dl>
+                </section>
+            </div>
+
+        
+    </div>
+
+    <button  style="display: none;" id="flecha-izquierda-slider-fila"></button>
+    <button  style="display: none;" id="flecha-derecha-slider-fila"></button>
+

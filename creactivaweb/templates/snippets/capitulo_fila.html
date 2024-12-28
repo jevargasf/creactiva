@@ -1,11 +1,12 @@
 {% load static %}
+    <div id="slider-fila">
             <!--CAPITULO FILA-->
             <div class="fila-slider">
                 <section>
                     <div>
                         <button></button>
                         <img src="{% static 'img/1.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -20,7 +21,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/2.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -35,7 +36,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/3.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -50,7 +51,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/4.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -65,7 +66,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/1.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -80,7 +81,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/2.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -95,7 +96,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/3.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -110,7 +111,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/4.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -124,7 +125,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/1.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -139,7 +140,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/2.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -154,7 +155,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/3.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -169,7 +170,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/4.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -184,7 +185,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/1.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -199,7 +200,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/2.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -214,7 +215,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/3.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -229,7 +230,7 @@
                     <div>
                         <button></button>
                         <img src="{% static 'img/4.png' %}" alt="Noticia">
-                        <div></div>
+                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
                     </div>
                     <dl>
                         <dd>Capítulo 1</dd>
@@ -237,3 +238,9 @@
                     </dl>
                 </section>
             </div>
+        
+    </div>
+
+    <button id="flecha-izquierda-slider-fila"></button>
+    <button id="flecha-derecha-slider-fila"></button>
+
