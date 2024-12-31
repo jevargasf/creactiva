@@ -2,11 +2,13 @@
 <!--------------------------------------SLIDER PRINCIPAL-------------------------------------------------------->
 <div id="spotlight">
     <div id="slider-inicial">
+		{% for curso in cursos %}
         <div>
-            <img src="{% static 'img/1.png' %}" alt="imagen-1">
+            <img src="{% static '' %}{{ curso.imagen_portada}}" alt="imagen-{{ forloop.counter }}">
         </div>
-
-        <div>
+		{% endfor %}
+		
+        <!-- <div>
             <img src="{% static 'img/2.png' %}" alt="imagen-2">
         </div>
 
@@ -16,7 +18,7 @@
 
         <div>
             <img src="{% static 'img/4.png' %}" alt="imagen-4">
-        </div>
+        </div> -->
     </div>
 
         <div id="mascara_spotlight"></div>
@@ -25,12 +27,21 @@
     		<button id="flecha-derecha-slider-inicial"></button>
 			
 			<nav id="slider-inicial-descripciones">
-				<dl class="collapsible collapsed" id="slider-inicial-descripcion-1">
-					<dd>Capítulo</dd>
-					<dt>Pronombres</dt>
-					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
+				{% for curso in cursos %}
+				<dl class="collapsible collapsed" id="slider-inicial-descripcion-{{ forloop.counter }}">
+					<dd>Curso</dd>
+					<dt>{{ curso.nombre }}</dt>
+					<dd>{{ curso.desc_corta }}</dd>
 				</dl>
-				<dl class="collapsible" id="slider-inicial-descripcion-2">
+				{% endfor %}
+				{% for curso in cursos %}
+				<dl class="collapsible collapsed" id="slider-inicial-descripcion-{{ forloop.counter |add:2}}">
+					<dd>Curso</dd>
+					<dt>{{ curso.nombre }}</dt>
+					<dd>{{ curso.desc_corta }}</dd>
+				</dl>
+				{% endfor %}
+				<!-- <dl class="collapsible" id="slider-inicial-descripcion-2">
 					<dd>Curso</dd>
 					<dt>Introducción al Mapuznugun</dt>
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
@@ -44,7 +55,7 @@
 					<dd>Curso</dd>
 					<dt>Cultura Mapuche</dt>
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
-				</dl>
+				</dl> -->
 			</nav>
 			<a href="{% url 'capitulo' %}"><button class="btn-spotlight collapsed" id="btn-spotlight1">VER AHORA</button></a>
 			<a href="{% url 'cursos' %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>

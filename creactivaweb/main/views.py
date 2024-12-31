@@ -15,10 +15,12 @@ class IndexView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
-    def get (self, request):
+    def get (self, request: HttpRequest):
         cursos = pedir_cursos()
+        current_user = request.user
         context = {
-            'cursos': cursos
+            'cursos': cursos,
+            'user': current_user
         }
         return render(request, 'index.html', context)
     
