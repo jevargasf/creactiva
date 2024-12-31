@@ -260,7 +260,7 @@ document.querySelector('#btn-spotlight4').classList.add('collapsed');
 
 
 
-
+// Botones
 
 document.querySelector('#cerrar-alerta').addEventListener('click', function() {
     document.querySelector('#alerta').classList.add('collapsed');
