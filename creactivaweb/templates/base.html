@@ -17,9 +17,11 @@
         {% block message%}
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}" role="alert">
+                <div id="alerta" class="alert alert-{{ message.tags }}" role="alert">
+                    <div>
                     <strong>{{ message }}</strong>
-                    <button type="button"></button>
+                    <button id="cerrar-alerta"  type="button"><img src="" alt=""></button>
+                    </div>
                 </div>
             {% endfor %}
         {% endif %}

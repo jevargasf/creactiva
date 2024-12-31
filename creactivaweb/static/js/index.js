@@ -1,10 +1,11 @@
 
 
-
 document.querySelector('#btn-menu').addEventListener('click', function() {
     document.querySelector('#menudesplegabe').classList.toggle('collapsed');
     document.querySelector('#btn-menu').classList.toggle('collapsed');
 });
+
+
 
 
 
@@ -255,3 +256,12 @@ document.querySelector('#btn-spotlight3').classList.remove('collapsed');
 document.querySelector('#btn-spotlight4').classList.add('collapsed');
 });
 
+
+
+
+
+
+
+document.querySelector('#cerrar-alerta').addEventListener('click', function() {
+    document.querySelector('#alerta').classList.add('collapsed');
+});
