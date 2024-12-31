@@ -57,9 +57,15 @@
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
 				</dl> -->
 			</nav>
-			<a href="{% url 'capitulo' %}"><button class="btn-spotlight collapsed" id="btn-spotlight1">VER AHORA</button></a>
-			<a href="{% url 'cursos' %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
-			<a href="{% url 'capitulo' %}"><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
-			<a href="{% url 'cursos' %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
+			{% for curso in cursos %}
+			<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight collapsed" id="btn-spotlight{{ forloop.counter }}">VER AHORA</button></a>
+			<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a> -->
+			{% endfor %}
+			{% for curso in cursos %}
+			<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight collapsed" id="btn-spotlight{{ forloop.counter | add:2 }}">VER AHORA</button></a>
+			<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a> -->
+			{% endfor %}
+			<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
+			<a href=""><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a> -->
             
 </div>

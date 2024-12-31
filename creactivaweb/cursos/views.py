@@ -10,13 +10,15 @@ class CursoView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
-    def get (self, request):
-        curso = Curso.objects.get(pk=1)
-        capitulos = pedir_capitulos(1)
+    def get (self, request, id):
+        curso = Curso.objects.get(pk=id)
+        capitulos = pedir_capitulos(id)
         context = {
             'curso': curso,
             'capitulos': capitulos
         }
+        print(curso)
+        print(capitulos)
         return render(request, 'curso.html', context)
     
 
