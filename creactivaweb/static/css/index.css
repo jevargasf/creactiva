@@ -844,7 +844,7 @@ float: left;
 .main-nav{
     position: fixed;
     right: 50px;
-    z-index: 1;
+    z-index: 3;
     width:25%;
     top:25px;
     display: inline-block;
@@ -893,6 +893,7 @@ float: left;
     width:210px;
     transition: all 0.3s ease-in-out;
     opacity:1;
+    z-index: 10;
 }
 
 #menudesplegabe.collapsed{
@@ -1354,7 +1355,15 @@ float: left;
     z-index: 5;
     -webkit-transition: opacity 1s;
     opacity: 1;
+    animation: cierre-alerta 1s forwards ease;
+    animation-delay: 1s;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+@keyframes cierre-alerta{
+    0%{    opacity: 1;    }
+    100%{    opacity: 0; pointer-events: none;}
 }
 
 .alert.collapsed{
@@ -1389,7 +1398,7 @@ float: left;
     right: 15px;
     top: 15px;
     background-size: 13px 13px;
-    opacity: 0.8;
+    opacity: 0.0;
     background-image: url(../icon/equis.svg);
 }
 
