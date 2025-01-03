@@ -27,6 +27,7 @@ class CapituloView(View):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request: HttpRequest):
+        print(request.get_full_path_info)
         if request.user.is_authenticated == True:
             return render(request, 'reproductor.html')
         else:
