@@ -21,7 +21,7 @@
     <span id="cuadricula"></span>
     
     <div id="cap-banner-top">
-        <h3>Introducción a la lengua mapuche / <b>Capítulo 1: El Mapuzungun</b></h3>
+        <h3>{{ capitulo.curso }} / <b>{{ capitulo.nombre }}</b></h3>
     </div>
 
 <div id="tscVideoContent">
@@ -53,7 +53,7 @@
              TSC.playerConfiguration.skipVideoDuration = 10;
              
              TSC.playerConfiguration.setAutoPlayMedia(false);
-             TSC.playerConfiguration.setPosterImageSrc("{% static 'img/1.png' %}");
+             TSC.playerConfiguration.setPosterImageSrc("{% static '/' %}{{ capitulo.first_frame }}");
              TSC.playerConfiguration.setIsSearchable(true);
              TSC.playerConfiguration.setEndActionType("stop");
              TSC.playerConfiguration.setEndActionParam("true");

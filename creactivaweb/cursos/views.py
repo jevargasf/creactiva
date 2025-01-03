@@ -37,10 +37,10 @@ class CapituloView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
-    def get (self, request: HttpRequest, id_curso):
-        curso = Curso.objects.get(pk=id_curso)
+    def get (self, request: HttpRequest, id):
+        capitulo = Capitulo.objects.get(pk=id)
         context = {
-            'curso': curso
+            'capitulo': capitulo
         }
         if request.user.is_authenticated == True:
             # content_params = {
