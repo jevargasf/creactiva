@@ -14,9 +14,15 @@
     
     <h1>{{ curso.nombre }}</h1>
     <ul>
-        <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>5 Capítulos <i>(6hrs)</i></h4></li>
-        <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>2 Recursos adicionales</h4></li>
-        <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>8 Actividades interactivas</h4></li>
+        <!-- número capítulos y duración total -->
+        <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>{{ capitulos.count }} Capítulos <i>({{ duracion }}hrs)</i></h4></li>
+        <!-- número de recursos adicionales -->
+        {% if num_materiales == 0 %}
+        {% else %}
+        <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recursos adicionales</h4></li>
+        {% endif %}
+        <!-- número de actividades interactivas -->
+        <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
     </ul>
     <p>{{ curso.desc_corta }}</p>
 
@@ -32,6 +38,7 @@
     {% endif %}
 
     </div>
+    <!-- aquí renderizo cada cap, pero en el snippet -->
     {% include 'snippets/fila_curso.html' %}
 </div>
 

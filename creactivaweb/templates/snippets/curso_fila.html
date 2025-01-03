@@ -1,29 +1,28 @@
 {% load static %}
     
-{% for capitulo in capitulos %} 
 
 
 
-{% endfor %}
 
     <div id="slider-fila-curso">
             <!--CAPITULO FILA-->
+            {% for capitulo in capitulos %} 
             <div class="fila-slider">
                 <section>
                     <div>
                         <button></button>
-                        <img src="{% static 'img/1.png' %}" alt="Noticia">
-                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}} </a></div>
+                        <img src="{% static '/' %}{{ capitulo.first_frame }}" alt="Noticia">
+                        <div><a href="{% url 'capitulo' %}"></a></div>
                     </div>
                     <dl>
-                        <dd>Capítulo 1</dd>
-                        <dt>El mapuzungun</dt>
+                        <dd>Capítulo {{ forloop.counter }}</dd>
+                        <dt>{{ capitulo.nombre}} </dt>
                     </dl>
                 </section>
             </div>
-
+            {% endfor %}
             <!--CAPITULO FILA-->
-            <div class="fila-slider">
+            <!-- <div class="fila-slider">
                 <section>
                     <div>
                         <button></button>
@@ -35,10 +34,10 @@
                         <dt>Pronombres</dt>
                     </dl>
                 </section>
-            </div>
+            </div> -->
 
            <!--CAPITULO FILA-->
-            <div class="fila-slider">
+            <!-- <div class="fila-slider">
                 <section>
                     <div>
                         <button></button>
@@ -50,10 +49,10 @@
                         <dt>Acciones y números</dt>
                     </dl>
                 </section>
-            </div>
+            </div> -->
 
             <!--CAPITULO FILA-->
-            <div class="fila-slider">
+            <!-- <div class="fila-slider">
                 <section>
                     <div>
                         <button></button>
@@ -65,10 +64,10 @@
                         <dt>Saludos y Presentación</dt>
                     </dl>
                 </section>
-            </div>
+            </div> -->
 
             <!--CAPITULO FILA-->
-            <div class="fila-slider">
+            <!-- <div class="fila-slider">
                 <section>
                     <div>
                         <button></button>
@@ -80,9 +79,8 @@
                         <dt>Conversación</dt>
                     </dl>
                 </section>
-            </div>
-
-        
+            </div> -->
+    
     </div>
 
     <button  style="display: none;" id="flecha-izquierda-slider-fila"></button>
