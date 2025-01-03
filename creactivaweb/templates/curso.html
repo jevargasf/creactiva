@@ -32,7 +32,9 @@
 
 
     {% if user.is_authenticated %}
-    <a href="{% url 'capitulo' %}"><button class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+    {% for capitulo in capitulos %}
+    <a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-curso" id="btn-curso{{ forloop.counter }}">COMENZAR</button></a>
+    {% endfor %}
     {% else %}
     <a href="{% url 'login' %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
     {% endif %}

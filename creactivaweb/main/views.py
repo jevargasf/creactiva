@@ -10,16 +10,18 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.utils import IntegrityError
 from main.utils import crear_usuario
-from cursos.utils import pedir_cursos
+from cursos.utils import pedir_cursos, capitulos_index
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request: HttpRequest):
         cursos = pedir_cursos()
+        capitulos = capitulos_index()
         current_user = request.user
         context = {
             'cursos': cursos,
+            'capitulos': capitulos,
             'user': current_user
         }
         return render(request, 'index.html', context)

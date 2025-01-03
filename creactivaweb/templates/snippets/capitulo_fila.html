@@ -1,20 +1,21 @@
 {% load static %}
     <div id="slider-fila">
             <!--CAPITULO FILA-->
+            {% for capitulo in capitulos %}
             <div class="fila-slider">
                 <section>
                     <div>
                         <button></button>
-                        <img src="{% static 'img/1.png' %}" alt="Noticia">
-                        <div><a href="{% url 'capitulo' %}">{{ capitulo.nom_cap}}</a></div>
+                        <img src="{% static '/' %}{{ capitulo.first_frame }}" alt="Noticia">
+                        <div><a href="{% url 'capitulo' %}{{ capitulo.cap }}"></a></div>
                     </div>
                     <dl>
-                        <dd>Introducción a la Lengua Mapuche</dd>
-                        <dt>El Mapuzungun</dt>
+                        <dd>Capítulo {{ forloop.counter }}</dd>
+                        <dt>{{ capitulo.nombre }}</dt>
                     </dl>
                 </section>
             </div>
-
+            {% endfor %}
             <!--CAPITULO FILA-->
             <div class="fila-slider">
                 <section>
