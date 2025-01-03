@@ -4,9 +4,22 @@
         {% include 'snippets/navbar.html' %}
         {% include 'snippets/slider-main.html' %}
         
+        <div id="buscador">
+
+            <input id="busqueda" type="text" name="mensaje" required  placeholder="¿Qué te gustaría aprender hoy?">
+
+            <ul id="categorias">
+                <li class="categoria1">Medio Ambiente</li>
+                <li class="categoria1">Pueblos Originarios</li>
+                <li class="categoria1">Sustentablidad</li>
+                <li class="categoria1">Artes</li>
+                <li class="categoria1">Humanidades</li>
+            </ul>
+
+        </div>
         
         {% include 'snippets/fila.html' %}
-        {% include 'snippets/header.html' %}
+        {% include 'snippets/header_index.html' %}
 
 
     {% endblock %}

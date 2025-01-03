@@ -7,7 +7,7 @@
 
         <div id="btn-perfil">
 
-                <h6>Hola {{ user.first_name }}</h6>
+                <h6>&nbsp&nbsp Hola <b>{{ user.first_name }}</b></h6>
                 
         <form class="form-logout" action="{% url 'logout' %}" method="post">
             {% csrf_token %}

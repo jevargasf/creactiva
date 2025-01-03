@@ -26,16 +26,27 @@
             <button id="flecha-izquierda-slider-inicial"></button>
     		<button id="flecha-derecha-slider-inicial"></button>
 			
+
+			<div id="slider-inicial-nav">
+				{% for curso in cursos %}
+				<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight{{ forloop.counter }}">VER AHORA</button></a>
+				<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a> -->
+				{% endfor %}
+				{% for curso in cursos %}
+				<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight{{ forloop.counter | add:2 }}">VER AHORA</button></a>
+				<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a> -->
+				{% endfor %}
+			
 			<nav id="slider-inicial-descripciones">
 				{% for curso in cursos %}
-				<dl class="collapsible collapsed" id="slider-inicial-descripcion-{{ forloop.counter }}">
+				<dl class="collapsible" id="slider-inicial-descripcion-{{ forloop.counter }}">
 					<dd>Curso</dd>
 					<dt>{{ curso.nombre }}</dt>
 					<dd>{{ curso.desc_corta }}</dd>
 				</dl>
 				{% endfor %}
 				{% for curso in cursos %}
-				<dl class="collapsible collapsed" id="slider-inicial-descripcion-{{ forloop.counter |add:2}}">
+				<dl class="collapsible" id="slider-inicial-descripcion-{{ forloop.counter |add:2}}">
 					<dd>Curso</dd>
 					<dt>{{ curso.nombre }}</dt>
 					<dd>{{ curso.desc_corta }}</dd>
@@ -57,14 +68,7 @@
 					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
 				</dl> -->
 			</nav>
-			{% for curso in cursos %}
-			<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight collapsed" id="btn-spotlight{{ forloop.counter }}">VER AHORA</button></a>
-			<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a> -->
-			{% endfor %}
-			{% for curso in cursos %}
-			<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight collapsed" id="btn-spotlight{{ forloop.counter | add:2 }}">VER AHORA</button></a>
-			<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a> -->
-			{% endfor %}
+		</div>
 			<!-- <a href=""><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
 			<a href=""><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a> -->
             

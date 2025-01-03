@@ -5,7 +5,7 @@
 
 <div>
     <div id="img-curso-cont">
-        <img class="img-curso" src="{% static 'img/' %}{{ curso.imagen_portada }}" alt="fondo-curso">
+        <img class="img-curso" src="{% static '/' %}{{ curso.imagen_portada }}" alt="fondo-curso">
     </div>
     <div id="mascara_curso"></div>
 
@@ -18,7 +18,7 @@
         <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>2 Recursos adicionales</h4></li>
         <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>8 Actividades interactivas</h4></li>
     </ul>
-    <p>{{ curso.desc_larga }}</p>
+    <p>{{ curso.desc_corta }}</p>
 
 
 
