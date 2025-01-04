@@ -1,8 +1,6 @@
 # creactiva
 Repositorio aplicación web Creactiva Animaciones
 
-Enviando un saludo desde mi máquina local
-
 admin
 creactiva
 
@@ -31,31 +29,16 @@ App principal, control de permisos:
     ✔ primera restricción de permisos: invitado/usuario (usuarios no logueados no pueden acceder al contenido)
     - segunda restricción de permisos: usuario/cliente
 
-Tareas app principal:
-    ✔ login y registro no se ven porque el estilo del fondo está por encima
-    ✔ quitar el fondo animado, no sé por qué se sigue visualizando si el josé lo corrigió (parece que  solo
-    en la versión desplegada)
-    ✔ disponibilizar registro y login público
-    ✔ botón de logout, ¿dónde va según diseño?
-    - estilo navbar (tirarlo pa la derecha)
 
 Tareas app cursos:
-    - subir un curso completo: básicamente, agregar el registro de 5 capítulos
     - armar el estilo de la vista general de un curso
-        - imagen referencial de fondo
         - botón conoce más (que redirige más abajo)
-        - botón comenzar (darle estilo al botón play de smart player)
-        - información del curso
-        - slide de 5 caps
         - elemento ul desplegable para navegar por capítulos
     - armar el estilo de un capítulo
-        ✔ botón reproducir (darle estilo al botón play de smart player)
         - botón ver más que redirige más abajo
-        - first frame del cap (configurar en smart player)
 
 
 Apuntes configuración de un capítulo:
-- usar XXXX_player.html (sin iframe)
 - smart player:
     - servir min.css desde django, editar el aspecto del reproductor desde este archivo
     - servir min.js desde cdn de techsmith
@@ -91,15 +74,12 @@ Investigación:
     ¿Servirá servir este archivo? ¿Cómo se puede linkear
 
 
-
-Debug estilo:
-- menú slider inicial queda fijo a la pantalla y no al carrusel de imágenes
-- todos los elementos del fondo animado tienen z-index -1 para solucionar el problema con la "carga" de los
-links
-- si necesitamos que un mismo elemento tenga un estilo diferente en otro template, hacemos una hoja de
-estilos propia para ese template y así no sobreescribimos el estilo original
-- hay que arreglar slick del template cursos (el snipper fila.html no está configurado para funcionar
-solo, depende todavía de incluir slider-main.html)
+DEBUG APP CAPÍTULOS:
+- botón comenzar: si el curso no está iniciado, entonces partir desde el capítulo 1. Si el curso está
+iniciado, entonces partir desde el último punto (y cambiar el texto a "continuar").
+- botón comenzar: envía al backend la señal de que el curso fue iniciado.
+- mejorar renderización del script de corrección del estilo del reproductor.
+- terminar la función que recupera el momento de reproducción T_T.
 
 
 Planes:

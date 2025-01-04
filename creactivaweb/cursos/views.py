@@ -43,9 +43,6 @@ class CapituloView(View):
             'capitulo': capitulo
         }
         if request.user.is_authenticated == True:
-            # content_params = {
-            #     'param': 1
-            # }
             return render(request, 'reproductor.html', context)
         else:
             return render(request, 'registration/login.html')

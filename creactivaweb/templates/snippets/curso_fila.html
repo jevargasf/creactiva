@@ -9,11 +9,11 @@
                 <section>
                     <div>
                         <button></button>
-                        <img src="{% static '/' %}{{ capitulo.first_frame }}" alt="Noticia">
+                        <img src="{% static '/img/' %}{{ capitulo.first_frame }}" alt="Noticia">
                         <div><a href="{% url 'capitulo' capitulo.cap %}"></a></div>
                     </div>
                     <dl>
-                        <dd>Capítulo {{ forloop.counter }}</dd>
+                        <dd>Capítulo {{ capitulo.numero }}</dd>
                         <dt>{{ capitulo.nombre}} </dt>
                     </dl>
                 </section>

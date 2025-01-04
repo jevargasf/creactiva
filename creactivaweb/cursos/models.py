@@ -56,6 +56,7 @@ class Curso(models.Model):
 
 class Capitulo(models.Model):
     cap = models.AutoField(primary_key=True, null=False, verbose_name='ID capítulo')
+    numero = models.IntegerField(null=True, verbose_name='Número capítulo')
     nombre = models.CharField(max_length=255, verbose_name='Nombre capítulo')
     duracion = models.IntegerField(verbose_name='Duración (minutos)')
     descripcion = models.TextField(verbose_name='Descripción')
