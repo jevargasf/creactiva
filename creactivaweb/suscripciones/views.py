@@ -9,7 +9,7 @@ class PlanesView(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        return render(request, 'elegir_planes.html')
+        return render(request, 'elegir_tipo.html')
     
 class PlanIndividual(View):
     def dispatch(self, *args, **kwargs):

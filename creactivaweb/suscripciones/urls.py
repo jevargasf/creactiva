@@ -1,7 +1,7 @@
 from django.urls import path
 from suscripciones.views import PlanesView, PlanIndividual, PlanOrganizacion, PagarView
 
-url_patterns = [
+urlpatterns = [
     path('planes/', PlanesView.as_view(), name='planes'),
     path('planes/individual', PlanIndividual.as_view(), name='plan-individual'),
     path('planes/organizacion', PlanOrganizacion.as_view(), name='plan-organizacion'),

@@ -26,8 +26,8 @@ App cursos:
             - elemento ul desplegable para navegar por capítulos
         - armar el estilo de un capítulo
             - botón ver más que redirige más abajo
+        - que josé suba todos los caps de los dos cursos y yo los linkeo a la rama dev
 
-    -  generar un uuid para que no se "note" que el id del curso es 1, 2, etc
     ✔ ejecución asíncrona del script reproductor.js que corrige el estilo del smart player
 
 App principal, control de permisos:
@@ -96,3 +96,4 @@ DEBUG APP CAPÍTULOS:
 
 DEBUG NAVEGACIÓN:
     - hay que ver bien dónde nos va a llevar la pestaña "capítulos" del navbar. Hasta ahora lleva al index.
+    - implementar botón "back" sin necesidad de repetir el snippet para cada template
