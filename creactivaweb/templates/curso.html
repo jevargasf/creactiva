@@ -34,7 +34,7 @@
     {% if user.is_authenticated %}
     {% for capitulo in capitulos %}
     {% if forloop.first %}
-    <a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-curso" id="btn-curso1">COMENZAR</button></a>
+    <a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-curso" id="btn-curso2">COMENZAR</button></a>
     {% else %}
     {% endif %}
     {% endfor %}
