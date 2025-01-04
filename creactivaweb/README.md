@@ -20,6 +20,12 @@ App cursos:
         - thumbnails.png: c1e1_Thumbnails.png
         - first_frame.png: img/1.png
         - mp4: https://www.creactivaanimaciones.cl/static/media/c1e1.mp4
+    Tareas app cursos:
+        - armar el estilo de la vista general de un curso
+            - botón conoce más (que redirige más abajo)
+            - elemento ul desplegable para navegar por capítulos
+        - armar el estilo de un capítulo
+            - botón ver más que redirige más abajo
 
     -  generar un uuid para que no se "note" que el id del curso es 1, 2, etc
     ✔ ejecución asíncrona del script reproductor.js que corrige el estilo del smart player
@@ -29,13 +35,18 @@ App principal, control de permisos:
     ✔ primera restricción de permisos: invitado/usuario (usuarios no logueados no pueden acceder al contenido)
     - segunda restricción de permisos: usuario/cliente
 
+App suscripciones:
+    ✔ templates básicos: eleccion_plan.html, plan_individual.html, plan_organizacion.html
+    - elementos de cada template básico.
+    - registrar formularios: plan organización.
+    Prueba planes:
+        - ususario: id = 101 no se le muestra nada//  Javier
+        - usuario: id = 111 se le muestra el contenido // José
 
-Tareas app cursos:
-    - armar el estilo de la vista general de un curso
-        - botón conoce más (que redirige más abajo)
-        - elemento ul desplegable para navegar por capítulos
-    - armar el estilo de un capítulo
-        - botón ver más que redirige más abajo
+App usuarios:
+    - templates básicos: panel_organizacion.html, panel_individual.html, panel_admin.html
+    - ver si queda mejor la estructura de 3 html distintos o si es mejor 1 solo html con bloques
+    if elif según tipo de usuario.
 
 
 Apuntes configuración de un capítulo:
@@ -75,13 +86,11 @@ Investigación:
 
 
 DEBUG APP CAPÍTULOS:
-- botón comenzar: si el curso no está iniciado, entonces partir desde el capítulo 1. Si el curso está
-iniciado, entonces partir desde el último punto (y cambiar el texto a "continuar").
-- botón comenzar: envía al backend la señal de que el curso fue iniciado.
-- mejorar renderización del script de corrección del estilo del reproductor.
-- terminar la función que recupera el momento de reproducción T_T.
+    - botón comenzar: si el curso no está iniciado, entonces partir desde el capítulo 1. Si el curso está
+    iniciado, entonces partir desde el último punto (y cambiar el texto a "continuar").
+    - botón comenzar: envía al backend la señal de que el curso fue iniciado.
+    - mejorar renderización del script de corrección del estilo del reproductor.
+    - terminar la función que recupera el momento de reproducción T_T.
 
-
-Planes:
-- ususario: id = 101 no se le muestra nada//  Javier
-- usuario: id = 111 se le muestra el contenido // José
+DEBUG NAVEGACIÓN:
+    - hay que ver bien dónde nos va a llevar la pestaña "capítulos" del navbar. Hasta ahora lleva al index.
