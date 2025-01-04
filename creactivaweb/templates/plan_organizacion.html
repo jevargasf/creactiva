@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'snippets/navbar.html' %}
+
+<h1>SELECCIONA UN PLAN</h1>
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <div class="form-mid">
+        <input id="nombre" type="text" name="nombre" required  placeholder="Nombre">
+        <input id="apellido" type="text" name="apellido" required  placeholder="Apellido">
+    </div>
+        <!-- acá el elemento form para el tipo de organización -->
+        <div><input id="email" type="email" name="email" placeholder="sucorreo@sudominio.com" required  placeholder="Email"></div>
+        <!-- acá el elemento form para la selección de los productos que desea -->
+        <!-- comuna -->
+        <!-- región -->
+        <!-- país  -->
+        <div><input id="mensaje" type="text" name="mensaje" required  placeholder="Cuéntanos más"></div>
+        <button type="submit">ENVIAR</button>
+</form>
+
+    {% include 'snippets/header_volver.html' %}
+{% endblock %}

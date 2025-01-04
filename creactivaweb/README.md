@@ -34,11 +34,13 @@ App principal, control de permisos:
     ✔ sección login/registro
     ✔ primera restricción de permisos: invitado/usuario (usuarios no logueados no pueden acceder al contenido)
     - segunda restricción de permisos: usuario/cliente
+    - registrar formulario contacto en bbdd (aprovechar el vuelo con formulario plan organización)
 
 App suscripciones:
     ✔ templates básicos: eleccion_plan.html, plan_individual.html, plan_organizacion.html
     - elementos de cada template básico.
     - registrar formularios: plan organización.
+    - crear modelos: ¿Cuáles?
     Prueba planes:
         - ususario: id = 101 no se le muestra nada//  Javier
         - usuario: id = 111 se le muestra el contenido // José
