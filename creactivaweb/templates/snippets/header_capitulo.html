@@ -1,5 +1,9 @@
 {% load static %}
 
 <header>
+    {% if "capitulo" in request.META.HTTP_REFERER %}
     <a id="sigue_explorando" href="{% url 'cursos' capitulo.curso.cur %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER AL CURSO</h6></a>
+    {% else %}
+    <a id="sigue_explorando" onclick="history.go(-1)"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER AL CURSO</h6></a>
+    {% endif %}
 </header>

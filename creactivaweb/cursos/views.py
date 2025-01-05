@@ -11,6 +11,7 @@ class CursoView(View):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request, id):
+        print(request.META.get("HTTP_REFERER"))
         curso = Curso.objects.get(pk=id)
         capitulos = pedir_capitulos(id)
         duracion_curso = 0
@@ -38,6 +39,7 @@ class CapituloView(View):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request: HttpRequest, id):
+        print(request.META.get("HTTP_REFERER"))
         capitulo = Capitulo.objects.get(pk=id)
         context = {
             'capitulo': capitulo
