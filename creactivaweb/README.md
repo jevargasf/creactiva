@@ -94,6 +94,7 @@ DEBUG APP CAPÍTULOS:
     - mejorar renderización del script de corrección del estilo del reproductor.
     - terminar la función que recupera el momento de reproducción T_T.
 
-DEBUG NAVEGACIÓN:
-    - hay que ver bien dónde nos va a llevar la pestaña "capítulos" del navbar. Hasta ahora lleva al index.
-    - implementar botón "back" sin necesidad de repetir el snippet para cada template
+DEBUG NAVEGACIÓN: RESUELTO
+    SOLUCIÓN: manejo de diferentes casos con bloques if elif en snippet
+    ✔ hay que ver bien dónde nos va a llevar la pestaña "capítulos" del navbar. Hasta ahora lleva al index.
+    ✔ implementar botón "back" sin necesidad de repetir el snippet para cada template
