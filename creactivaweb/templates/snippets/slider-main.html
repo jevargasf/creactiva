@@ -5,28 +5,28 @@
 					{% for capitulo in capitulos %}
 					{% if forloop.counter is 1 %}
 					<div>
-						<img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="imagen-2">
+						<img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="imagen-1">
 					</div>
 					{% endif %}
 					{% endfor %}
 					{% for curso in cursos %}
 					{% if forloop.counter is 1 %}
 					<div>
-						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-1">
+						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-2">
 					</div>
 					{% endif %}
 					{% endfor %}
 					{% for capitulo in capitulos %}
 					{% if forloop.counter is 2 %}
 					<div>
-						<img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="imagen-4">
+						<img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="imagen-3">
 					</div>
 					{% endif %}
 					{% endfor %}
 					{% for curso in cursos %}
 					{% if forloop.counter is 2 %}
 					<div>
-						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-3">
+						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-4">
 					</div>
 					{% endif %}
 					{% endfor %}
@@ -42,29 +42,29 @@
 			<div id="slider-inicial-nav">
 							{% for capitulo in capitulos %}
 							{% if forloop.counter is 1 %}
-							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
+							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight1">VER AHORA</button></a>
 							{% endif %}
 							{% endfor %}
 							{% for curso in cursos %}
 							{% if forloop.counter is 1 %}
-										<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight1">VER AHORA</button></a>
+										<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
 										{% endif %}
 										{% endfor %}
 							{% for capitulo in capitulos %}
 							{% if forloop.counter is 2 %}
-							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
+							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
 							{% endif %}
 							{% endfor %}
 							{% for curso in cursos %}
 							{% if forloop.counter is 2 %}
-							<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
+							<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
 							{% endif %}
 							{% endfor %}
 			
 			<nav id="slider-inicial-descripciones">
 							{% for capitulo in capitulos %}
 							{% if forloop.counter is 1 %}
-							<dl class="collapsible" id="slider-inicial-descripcion-2">
+							<dl class="collapsible" id="slider-inicial-descripcion-1">
 								<dd>Capítulo</dd>
 								<dt>{{ capitulo.nombre }}</dt>
 								<dd>{{ capitulo.desc_corta }}</dd>
@@ -73,7 +73,7 @@
 							{% endfor %}
 							{% for curso in cursos %}
 							{% if forloop.counter is 1 %}
-										<dl class="collapsible" id="slider-inicial-descripcion-1">
+										<dl class="collapsible" id="slider-inicial-descripcion-2">
 											<dd>Curso</dd>
 											<dt>{{ curso.nombre }}</dt>
 											<dd>{{ curso.desc_corta }}</dd>
@@ -82,7 +82,7 @@
 										{% endfor %}
 							{% for capitulo in capitulos %}
 							{% if forloop.counter is 2 %}
-							<dl class="collapsible" id="slider-inicial-descripcion-4">
+							<dl class="collapsible" id="slider-inicial-descripcion-3">
 								<dd>Capítulo</dd>
 								<dt>{{ capitulo.nombre }}</dt>
 								<dd>{{ capitulo.desc_corta }}</dd>
@@ -91,7 +91,7 @@
 							{% endfor %}
 							{% for curso in cursos %}
 							{% if forloop.counter is 2 %}
-							<dl class="collapsible" id="slider-inicial-descripcion-3">
+							<dl class="collapsible" id="slider-inicial-descripcion-4">
 								<dd>Curso</dd>
 								<dt>{{ curso.nombre }}</dt>
 								<dd>{{ curso.desc_corta }}</dd>
