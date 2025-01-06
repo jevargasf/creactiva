@@ -7,6 +7,14 @@
             <img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-{{ forloop.counter }}">
         </div>
 		{% endfor %}
+		{% for capitulo in capitulos %}
+		{% if forloop.counter < 3 %}
+		<div>
+            <img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="imagen-{{ forloop.counter }}">
+        </div>
+		{% else %}
+		{% endif %}
+		{% endfor %}
     </div>
 
         <div id="mascara_spotlight"></div>
@@ -19,8 +27,12 @@
 				{% for curso in cursos %}
 				<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight{{ forloop.counter }}">VER AHORA</button></a>
 				{% endfor %}
+
 				{% for capitulo in capitulos %}
+				{% if forloop.counter < 3 %}
 				<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight{{ forloop.counter | add:2 }}">VER AHORA</button></a>
+				{% else %}
+				{% endif %}
 				{% endfor %}
 			
 			<nav id="slider-inicial-descripciones">
@@ -34,7 +46,7 @@
 				{% for capitulo in capitulos %}
 				{% if forloop.counter < 3 %}
 				<dl class="collapsible" id="slider-inicial-descripcion-{{ forloop.counter |add:2}}">
-					<dd>Capitulo {{ capitulo.numero }}: {{ capitulo.curso }}</dd>
+					<dd>Capítulo</dd>
 					<dt>{{ capitulo.nombre }}</dt>
 					<dd>{{ capitulo.desc_corta }}</dd>
 				</dl>
