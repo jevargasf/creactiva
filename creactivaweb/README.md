@@ -92,6 +92,7 @@ DEBUG APP CAPÍTULOS:
     - botón comenzar: envía al backend la señal de que el curso fue iniciado.
     - mejorar renderización del script de corrección del estilo del reproductor.
     - terminar la función que recupera el momento de reproducción T_T.
+    - en admin django: cada capítulo que se imprima con el curso al que corresponde y nro de cap
 
 DEBUG NAVEGACIÓN: RESUELTO
     SOLUCIÓN: manejo de diferentes casos con bloques if elif en snippet

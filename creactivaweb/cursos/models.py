@@ -83,7 +83,7 @@ class Capitulo(models.Model):
     )
 
     def __str__(self):
-        return self.nombre
+        return f'Curso: {self.curso} | Capítulo {self.numero}: {self.nombre}'
 
     
     
