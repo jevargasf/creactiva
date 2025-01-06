@@ -736,6 +736,7 @@ i{
     font-size:16px;
     bottom:10px;
     right:20px;
+    padding: 0px 0px 0px 15px;
     text-shadow: 1px 1px 3px #000;
 
 }
@@ -1278,6 +1279,13 @@ float: left;
     position: absolute;
     bottom: 270px;
     text-align: left;
+    opacity: 1;
+    transition: all .5s;
+}
+
+
+#curso-info1.collapsed{
+ opacity: 0;
 
 }
 
@@ -1354,6 +1362,55 @@ float: left;
 
 #btn-curso2{
     
+}
+
+
+.brillover{
+    -webkit-transition: opacity .3s;
+}
+
+
+.brillover:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+}
+
+
+#mas-info{
+    position: absolute;
+    bottom:10px;
+    left:50%;
+    translate: 0% -50%;
+    opacity: 0.8;
+    transition: all .5s;
+    
+}
+
+#mas-info.collapsed{
+    opacity:0;
+    pointer-events: none;
+}
+
+#mas-info img{
+    height:20px;
+    position: relative;
+
+}
+
+#contenido-curso1{
+    position: fixed;
+    width:100%;
+    height:100%;
+    display: inline-block;
+    transition: all 1s;
+    top:0px;
+}
+
+
+#contenido-curso1.collapsed{
+    top: calc(-100vh + 320px);
+
 }
 /* ------------- PLAYER --------------- */
 
