@@ -2,13 +2,6 @@
 <!--------------------------------------SLIDER PRINCIPAL-------------------------------------------------------->
 <div id="spotlight">
 	<div id="slider-inicial">
-					{% for curso in cursos %}
-					{% if forloop.counter is 1 %}
-					<div>
-						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-1">
-					</div>
-					{% endif %}
-					{% endfor %}
 					{% for capitulo in capitulos %}
 					{% if forloop.counter is 1 %}
 					<div>
@@ -17,9 +10,9 @@
 					{% endif %}
 					{% endfor %}
 					{% for curso in cursos %}
-					{% if forloop.counter is 2 %}
+					{% if forloop.counter is 1 %}
 					<div>
-						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-3">
+						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-1">
 					</div>
 					{% endif %}
 					{% endfor %}
@@ -30,6 +23,14 @@
 					</div>
 					{% endif %}
 					{% endfor %}
+					{% for curso in cursos %}
+					{% if forloop.counter is 2 %}
+					<div>
+						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-3">
+					</div>
+					{% endif %}
+					{% endfor %}
+
 	</div>
 
         <div id="mascara_spotlight"></div>
@@ -39,14 +40,19 @@
 			
 
 			<div id="slider-inicial-nav">
-				{% for curso in cursos %}
-				{% if forloop.counter is 1 %}
-							<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight1">VER AHORA</button></a>
-							{% endif %}
-							{% endfor %}
 							{% for capitulo in capitulos %}
 							{% if forloop.counter is 1 %}
 							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
+							{% endif %}
+							{% endfor %}
+							{% for curso in cursos %}
+							{% if forloop.counter is 1 %}
+										<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight1">VER AHORA</button></a>
+										{% endif %}
+										{% endfor %}
+							{% for capitulo in capitulos %}
+							{% if forloop.counter is 2 %}
+							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
 							{% endif %}
 							{% endfor %}
 							{% for curso in cursos %}
@@ -54,25 +60,29 @@
 							<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
 							{% endif %}
 							{% endfor %}
-							{% for capitulo in capitulos %}
-							{% if forloop.counter is 2 %}
-							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
-							{% endif %}
-							{% endfor %}
 			
 			<nav id="slider-inicial-descripciones">
-				{% for curso in cursos %}
-				{% if forloop.counter is 1 %}
-							<dl class="collapsible" id="slider-inicial-descripcion-1">
-								<dd>Curso</dd>
-								<dt>{{ curso.nombre }}</dt>
-								<dd>{{ curso.desc_corta }}</dd>
-							</dl>
-							{% endif %}
-							{% endfor %}
 							{% for capitulo in capitulos %}
 							{% if forloop.counter is 1 %}
 							<dl class="collapsible" id="slider-inicial-descripcion-2">
+								<dd>Capítulo</dd>
+								<dt>{{ capitulo.nombre }}</dt>
+								<dd>{{ capitulo.desc_corta }}</dd>
+							</dl>
+							{% endif %}
+							{% endfor %}
+							{% for curso in cursos %}
+							{% if forloop.counter is 1 %}
+										<dl class="collapsible" id="slider-inicial-descripcion-1">
+											<dd>Curso</dd>
+											<dt>{{ curso.nombre }}</dt>
+											<dd>{{ curso.desc_corta }}</dd>
+										</dl>
+										{% endif %}
+										{% endfor %}
+							{% for capitulo in capitulos %}
+							{% if forloop.counter is 2 %}
+							<dl class="collapsible" id="slider-inicial-descripcion-4">
 								<dd>Capítulo</dd>
 								<dt>{{ capitulo.nombre }}</dt>
 								<dd>{{ capitulo.desc_corta }}</dd>
@@ -88,15 +98,7 @@
 							</dl>
 							{% endif %}
 							{% endfor %}
-							{% for capitulo in capitulos %}
-							{% if forloop.counter is 2 %}
-							<dl class="collapsible" id="slider-inicial-descripcion-4">
-								<dd>Capítulo</dd>
-								<dt>{{ capitulo.nombre }}</dt>
-								<dd>{{ capitulo.desc_corta }}</dd>
-							</dl>
-							{% endif %}
-							{% endfor %}
+
 			</nav>
 		</div>
 </div>
