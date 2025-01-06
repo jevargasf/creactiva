@@ -40,3 +40,8 @@ class PerfilSuscripcion(models.Model):
         verbose_name='Perfil suscripción',
         related_name='perfil_sus'
     )
+
+class SolicitudOrganizacion(models.Model):
+    nombre = models.CharField(max_length=255, null=True, blank=True, verbose_name='Nombre')
+    apellido = models.CharField(max_length=255, null=True, blank=True, verbose_name='Apellido')
+    tipo_organizacion = models.Choices()

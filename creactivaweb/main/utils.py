@@ -16,3 +16,7 @@ def crear_usuario(username: str, first_name: str, last_name: str, email: str, pa
     user.save()
     perfil.save()
     return True
+
+# Form choices
+def get_tipos_organizacion():
+    pass

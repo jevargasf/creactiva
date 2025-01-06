@@ -97,3 +97,16 @@ DEBUG NAVEGACIÓN: RESUELTO
     SOLUCIÓN: manejo de diferentes casos con bloques if elif en snippet
     ✔ hay que ver bien dónde nos va a llevar la pestaña "capítulos" del navbar. Hasta ahora lleva al index.
     ✔ implementar botón "back" sin necesidad de repetir el snippet para cada template
+
+
+Proceso:
+    - Primero, escribir el formulario de solicitud
+    - Luego, revisarlo, aprobarlo y contactar organización
+    - Finalmente, la suscripción organización es válida cuando el administrador la registra en otro formulario, el definitivo. Podría implementar autollenado de algunos datos en base a la info entregada en el primero. Este es el registro que el backend debe almacenar como la suscripción de organización.
+
+
+Mejoras a futuro:
+- El administrador tendrá la necesidad de mejorar el análisis de las organizaciones que se suscriben a su contenido. A futuro puede implementar nuevas categorías como "¿a qué se dedican?", con el fin de capturar la categoría de actividad específica de la organización. Esto permitiría comprender mejor el "público organizaciones" al que se está llegando, con el fin de buscar estrategias para ampliarlo o para elaborar productos dirigidos a ellos.
+
+ACTUALMENTE TRABAJANDO:
+- app suscripciones/formulario solicitud organizaciones/categorías organizaciones
