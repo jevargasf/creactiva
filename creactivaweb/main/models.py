@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 from cursos.models import Capitulo
 
 class Perfil(models.Model):
-    cod_per = models.CharField(max_length=3, null=False, blank=False, default='100', verbose_name='Código perfil')
-    com_per = models.CharField(max_length=255, null=True, blank=True, verbose_name='Comuna')
-    reg_per = models.CharField(max_length=255, null=True, blank=True, verbose_name='Región')
-    tel_per = models.CharField(max_length=12, null=True, blank=True, verbose_name='Teléfono')
+    codigo = models.CharField(max_length=3, null=False, blank=False, default='100', verbose_name='Código perfil')
+    comuna = models.CharField(max_length=255, null=True, blank=True, verbose_name='Comuna')
+    region = models.CharField(max_length=255, null=True, blank=True, verbose_name='Región')
+    telefono = models.CharField(max_length=12, null=True, blank=True, verbose_name='Teléfono')
     user = models.OneToOneField(
         User,
         related_name='perfil_usuario',
@@ -28,5 +28,17 @@ class Perfil(models.Model):
         nombre = self.user.first_name
         apellido = self.user.last_name
         usuario = self.user.email
-        tipo = self.cod_per
+        tipo = self.codigo
         return f'{nombre} {apellido} | Username: {usuario} | Código: {tipo}'
+
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=255, null=True, blank=True, verbose_name='Nombre')
+    apellido = models.CharField(max_length=255, null=True, blank=True, verbose_name='Apellido')
+    email = models.EmailField(max_length=255, null=True, blank=True, verbose_name='Correo')
+    mensaje = models.TextField(null=True, blank=True, verbose_name='Mensaje')
+
+    def __str__(self):
+        nombre = self.nombre
+        apellido = self.apellido
+        usuario = self.email
+        return f'{nombre} {apellido} | Correo: {usuario}'

@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.db.utils import IntegrityError
 from main.utils import crear_usuario
 from cursos.utils import pedir_cursos, capitulos_index
+from main.forms import ContactoModelForm
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -93,5 +94,18 @@ class ContactoView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
-    def get (self, request):
-        return render(request, 'contacto.html')
+    def get (self, request: HttpRequest):
+        form = ContactoModelForm()
+        context = {'form': form}
+        return render(request, 'contacto.html', context)
+    
+    def post(self, request: HttpRequest):
+        form = ContactoModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Hemos recibido tu mensaje con éxito.')
+            return redirect('index')
+        else:
+            context = {'form': form}
+            messages.error(request, 'No se ha podido enviar el mensaje. Por favor, intenta nuevamente.')
+            return render(request, 'contacto.html', context)

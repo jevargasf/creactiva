@@ -40,7 +40,6 @@ App suscripciones:
     ✔ templates básicos: eleccion_plan.html, plan_individual.html, plan_organizacion.html
     - elementos de cada template básico.
     - registrar formularios: plan organización.
-    - crear modelos: ¿Cuáles?
     Prueba planes:
         - ususario: id = 101 no se le muestra nada//  Javier
         - usuario: id = 111 se le muestra el contenido // José

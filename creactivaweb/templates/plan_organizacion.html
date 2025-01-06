@@ -4,7 +4,7 @@
     {% include 'snippets/navbar.html' %}
 
 <h1>SELECCIONA UN PLAN</h1>
-<form action="{% url 'register' %}" method="post">
+<form class="form form-register" action="{% url 'register' %}" method="post">
     {% csrf_token %}
     <div class="form-mid">
         <input id="nombre" type="text" name="nombre" required  placeholder="Nombre">

@@ -9,14 +9,16 @@
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
     <div class="form-mid">
-        <input id="nombre" type="text" name="first_name" required  placeholder="Nombre">
-        <input id="apellido" type="text" name="last_name" required  placeholder="Apellido">
+        {{ form.nombre }}
+        {{ form.apellido }}
+        <!-- <input id="nombre" type="text" name="first_name" required  placeholder="Nombre">
+        <input id="apellido" type="text" name="last_name" required  placeholder="Apellido"> -->
     </div>
-        <div><input id="email" type="email" name="email" required  placeholder="Email"></div>
+        <!-- <div><input id="email" type="email" name="email" required  placeholder="Email"></div> -->
+        <div>{{ form.email }}</div>
 
-
-        <div><input id="mensaje" type="text" name="mensaje" required  placeholder="Cuéntanos más"></div>
-
+        <!-- <div><input id="mensaje" type="text" name="mensaje" required  placeholder="Cuéntanos más"></div> -->
+        <div>{{ form.mensaje }}</div>
 
         <button type="submit">ENVIAR</button>
 
