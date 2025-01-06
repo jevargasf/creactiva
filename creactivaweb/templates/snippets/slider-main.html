@@ -19,8 +19,8 @@
 				{% for curso in cursos %}
 				<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight{{ forloop.counter }}">VER AHORA</button></a>
 				{% endfor %}
-				{% for curso in cursos %}
-				<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight{{ forloop.counter | add:2 }}">VER AHORA</button></a>
+				{% for capitulo in capitulos %}
+				<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight{{ forloop.counter | add:2 }}">VER AHORA</button></a>
 				{% endfor %}
 			
 			<nav id="slider-inicial-descripciones">
@@ -31,14 +31,16 @@
 					<dd>{{ curso.desc_corta }}</dd>
 				</dl>
 				{% endfor %}
-				{% for curso in cursos %}
+				{% for capitulo in capitulos %}
+				{% if forloop.counter < 3 %}
 				<dl class="collapsible" id="slider-inicial-descripcion-{{ forloop.counter |add:2}}">
-					<dd>Curso</dd>
-					<dt>{{ curso.nombre }}</dt>
-					<dd>{{ curso.desc_corta }}</dd>
+					<dd>Capitulo {{ capitulo.numero }}: {{ capitulo.curso }}</dd>
+					<dt>{{ capitulo.nombre }}</dt>
+					<dd>{{ capitulo.desc_corta }}</dd>
 				</dl>
+				{% else %}
+				{% endif %}
 				{% endfor %}
-
 			</nav>
 		</div>
 </div>

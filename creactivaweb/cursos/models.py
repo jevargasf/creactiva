@@ -59,6 +59,7 @@ class Capitulo(models.Model):
     numero = models.IntegerField(null=True, verbose_name='Número capítulo')
     nombre = models.CharField(max_length=255, verbose_name='Nombre capítulo')
     duracion = models.IntegerField(verbose_name='Duración (minutos)')
+    desc_corta= models.CharField(max_length=255, null=True, verbose_name='Descripción Corta')
     descripcion = models.TextField(verbose_name='Descripción')
     num_actividades = models.IntegerField(verbose_name='Número de actividades interactivas')
     link = models.URLField(verbose_name='Link capítulo', max_length=255)
