@@ -454,6 +454,8 @@ i{
     background-size:4000px;
     background-repeat: repeat;
     animation: fondo1 60s infinite linear;
+    top:0px;
+    left:0px;
 }
 
 @keyframes fondo1{
@@ -616,11 +618,28 @@ i{
     margin:0 auto;
     clear:both;
     bottom:-150px;
-    transition: bottom .5s;
+    transition: all .5s;
+    cursor: pointer;
+    opacity:0.8;
+}
+
+#fila:hover{
+    opacity:1;
 }
 
 #fila.collapsed{
     bottom:calc(100vh - 440px);
+    cursor: inherit;
+    opacity:1;
+
+}
+
+#slider-fila{
+    pointer-events: none;
+}
+
+#slider-fila.collapsed{
+    pointer-events: inherit;
 }
 
 
@@ -711,7 +730,10 @@ i{
 
 .fila-slider div img {
     position:absolute;
-    width:100%;
+    height:110%;
+    left:50%;
+    top:50%;
+    translate: -50% -50%;
 }
 
 .fila-slider dl {
@@ -1000,7 +1022,6 @@ float: left;
     position: fixed;
     right: 50px;
     z-index: 3;
-    width:25%;
     top:25px;
     display: inline-block;
 }
@@ -1009,6 +1030,7 @@ float: left;
 .main-nav div{
     z-index: 1;
     text-align: right;
+    float:right;
 }
 
 
@@ -1234,6 +1256,7 @@ float: left;
     overflow: hidden;
     z-index: -1;
     background-color: #000;
+    
 }
 
 .img-curso{
@@ -1269,6 +1292,7 @@ float: left;
     width:100%;
     height:calc(100% - 68px);
     position: absolute;
+    pointer-events: none;
 
 }
 
@@ -1377,7 +1401,7 @@ float: left;
 }
 
 
-#mas-info{
+#mas-info, #mas-info-cap{
     position: absolute;
     bottom:10px;
     left:50%;
@@ -1387,12 +1411,12 @@ float: left;
     
 }
 
-#mas-info.collapsed{
+#mas-info.collapsed, #mas-info-cap.collapsed{
     opacity:0;
     pointer-events: none;
 }
 
-#mas-info img{
+#mas-info img, #mas-info-cap img{
     height:20px;
     position: relative;
 
@@ -1403,14 +1427,14 @@ float: left;
     width:100%;
     height:100%;
     display: inline-block;
-    transition: all 1s;
+    transition: all .75s;
     top:0px;
 }
 
 
 #contenido-curso1.collapsed{
     top: calc(-100vh + 320px);
-
+    cursor: pointer;
 }
 /* ------------- PLAYER --------------- */
 
@@ -1451,10 +1475,18 @@ float: left;
 #tscVideoContent{
     width: 100%;
     height:calc(100% - 145px);
+    transition: all .75s;
     top:75px;
 }
 
-.tsc-smartplayer .play-button-overlay-glyph{
+
+#tscVideoContent.collapsed{
+    top:calc(-100% + 220px);
+    cursor: pointer;
+
+}
+
+#tscVideoContent .play-button-overlay-glyph{
     position: absolute;
     background-color:#fff;
     font-size:14px;
@@ -1475,8 +1507,13 @@ float: left;
     bottom:60px;
     left:100px;
     margin:0px;
+    -webkit-transition: opacity .5s;
+    opacity: 1;
 }
 
+#tscVideoContent.collapsed .play-button-overlay-glyph{
+    opacity:0;
+}
 
 
 .tsc-smartplayer .play-button-overlay-glyph:hover{
@@ -1506,8 +1543,15 @@ float: left;
     bottom:130px;
     left: 280px;
     letter-spacing: .5px;
-    display: none;
+    opacity: 1;
+    -webkit-transition: all .75s;
 }
+
+
+#btn-capitulo-out{
+    opacity:1;
+}
+
 
 .btn-capitulo:hover{
     color:#1787e9;
@@ -1515,20 +1559,21 @@ float: left;
     filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
 }
 
-.btn-capitulo .collapsed{
-    display: none;
+#btn-capitulo-out.collapsed{
+    opacity:0;
+    bottom: calc(100vh - 10px);
 }
-
-
 
 
 #cap-banner-top{
     position: absolute;
     width:100%;
     height:80px;
-    z-index: -1;
+    z-index: 2;
     box-sizing: border-box;
     padding: 32px 0px 0px 250px;
+    top:0px;
+    pointer-events: none;
 }
 
 #cap-banner-top h3{

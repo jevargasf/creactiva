@@ -269,6 +269,17 @@ $("#busqueda").click(function(){
     document.querySelector('#slider-inicial-nav').classList.add('collapsed');
     document.querySelector('#buscador').classList.add('collapsed');
     document.querySelector('#fila').classList.add('collapsed');
+    document.querySelector('#slider-fila').classList.add('collapsed');
+});
+
+
+
+$("#fila").click(function(){
+    document.querySelector('#spotlight').classList.add('collapsed');
+    document.querySelector('#slider-inicial-nav').classList.add('collapsed');
+    document.querySelector('#buscador').classList.add('collapsed');
+    document.querySelector('#fila').classList.add('collapsed');
+    document.querySelector('#slider-fila').classList.add('collapsed');
 });
 
 $("#btn-busqueda").click(function(){
@@ -276,6 +287,7 @@ $("#btn-busqueda").click(function(){
     document.querySelector('#slider-inicial-nav').classList.add('collapsed');
     document.querySelector('#buscador').classList.add('collapsed');
     document.querySelector('#fila').classList.add('collapsed');
+    document.querySelector('#slider-fila').classList.add('collapsed');
 });
 
 
@@ -284,6 +296,7 @@ $("#categorias").click(function(){
     document.querySelector('#slider-inicial-nav').classList.add('collapsed');
     document.querySelector('#buscador').classList.add('collapsed');
     document.querySelector('#fila').classList.add('collapsed');
+    document.querySelector('#slider-fila').classList.add('collapsed');
 });
 
 $("#spotlight").click(function(){
@@ -291,6 +304,8 @@ $("#spotlight").click(function(){
     document.querySelector('#slider-inicial-nav').classList.remove('collapsed');
     document.querySelector('#buscador').classList.remove('collapsed');
     document.querySelector('#fila').classList.remove('collapsed');
+    document.querySelector('#slider-fila').classList.remove('collapsed');
+
 });
 
 $("#logo").click(function(){
@@ -311,6 +326,45 @@ $("#mas-info").click(function(){
     document.querySelector('#curso-info1').classList.add('collapsed');
     document.querySelector('#mas-info').classList.add('collapsed');
 });
+
+
+
+$("#img-curso-cont").click(function(){
+    document.querySelector('#contenido-curso1').classList.remove('collapsed');
+    document.querySelector('#curso-info1').classList.remove('collapsed');
+    document.querySelector('#mas-info').classList.remove('collapsed');
+});
+
+
+
+
+$("#mas-info-cap").click(function(){
+    document.querySelector('#tscVideoContent').classList.add('collapsed');
+    document.querySelector('#mas-info-cap').classList.add('collapsed');
+    document.querySelector('.play-button-overlay-glyph').classList.add('collapsed');
+    document.querySelector('#btn-capitulo-out').classList.add('collapsed');
+});
+
+$("#btn-capitulo-out").click(function(){
+    document.querySelector('#tscVideoContent').classList.add('collapsed');
+    document.querySelector('#mas-info-cap').classList.add('collapsed');
+    document.querySelector('.play-button-overlay-glyph').classList.add('collapsed');
+    document.querySelector('#btn-capitulo-out').classList.add('collapsed');
+});
+
+
+$("#tscVideoContent").click(function(){
+    document.querySelector('#tscVideoContent').classList.remove('collapsed');
+    document.querySelector('#mas-info-cap').classList.remove('collapsed');
+    document.querySelector('#btn-capitulo-out').classList.remove('collapsed');
+
+});
+
+
+$("#tscVideoContent .play-button-overlay-glyph").click(function(){
+    document.querySelector('#btn-capitulo-out').classList.add('collapsed');
+});
+
 
 $("#btn-curso1").click(function(){
     document.querySelector('#contenido-curso1').classList.add('collapsed');
