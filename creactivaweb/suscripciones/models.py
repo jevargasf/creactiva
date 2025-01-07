@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from suscripciones.utils import get_tipo_organizacion
 
 class Suscripcion(models.Model):
     sus = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
