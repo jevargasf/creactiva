@@ -38,8 +38,12 @@ App principal, control de permisos:
 
 App suscripciones:
     ✔ templates básicos: eleccion_plan.html, plan_individual.html, plan_organizacion.html
-    - elementos de cada template básico.
+    ✔ elementos de cada template básico.
     - registrar formularios: plan organización.
+        - variables nuevas:
+            1. Tipo de organización (empresa (org privada con fines de lucro), osc, fiscal)
+            2. A qué se dedica (clasificación por rama de actividad)
+            3. Tipos que se escapan: corporaciones municipales(dependen de la municipalidad, no son enteramente privadas), mutuales(controladas por el Estado), cooperativas(pueden repartir excedentes entre sus socios), asociaciones de propietarios(no son plenamente voluntarias), universidades estatales(pj de derecho público), asociaciones indígenas(pueden realizar actividades productivas), clubes deportivos profesionales(muchos son sociedades anónimas), asociaciones de culto religioso(no hay información exhaustiva para clasificarlas).
     Prueba planes:
         - ususario: id = 101 no se le muestra nada//  Javier
         - usuario: id = 111 se le muestra el contenido // José
