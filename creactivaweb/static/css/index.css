@@ -92,6 +92,7 @@ html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, v
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color:#fff;
     user-select:none;
+    
 }
 
 
@@ -105,7 +106,7 @@ body {
     padding: 0;
     margin: 0;
     height:100%;
-    background-color: #024C8D;
+    background-color: #00224a;
 
 }
 
@@ -202,6 +203,7 @@ button {
     top:25px;
     width:150px;
     cursor: pointer;
+    z-index:3;
 }
 
 #logo_centro{
@@ -209,6 +211,7 @@ button {
     left:50%;
     translate: -50% 0;
     top:25px;
+    z-index:3;
     width:150px;
 }
 
@@ -496,6 +499,36 @@ i{
 @keyframes rotatebg{
     0%{rotate: 0deg;}
     100%{rotate: 360deg;}
+}
+
+
+#transicion{
+    width:200vw;
+    height:200vh;
+    background-color: #00224a;
+    position: fixed;
+    z-index: 2;
+    top:0px;
+    left:0px;
+    opacity: 1;
+    transition:all .75s .15s;
+    pointer-events: none;
+    background-size: 20px 20px;
+    background-image:
+      linear-gradient(to right, #00315c 1px, transparent .1px),
+      linear-gradient(to bottom, #00315c 1px, transparent .1px);
+      background-repeat:  repeat;
+      background-position: center;
+    animation: rotatebg 100s infinite;
+    left:-50%;
+    top:-50%;
+    
+}
+
+
+#transicion.collapsed{
+    transition:all .3s 0s;
+    opacity:1;
 }
 
 
@@ -1439,7 +1472,8 @@ float: left;
 /* ------------- PLAYER --------------- */
 
 .tsc-smartplayer .player-controls {
-    background-color: rgb(19, 44, 97);
+    background: rgb(00,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
  
 .tsc-smartplayer .video-controls-container{
@@ -1481,7 +1515,7 @@ float: left;
 
 
 #tscVideoContent.collapsed{
-    top:calc(-100% + 220px);
+    top:calc(-100% + 260px);
     cursor: pointer;
 
 }
@@ -1507,8 +1541,12 @@ float: left;
     bottom:60px;
     left:100px;
     margin:0px;
-    -webkit-transition: opacity .5s;
+    -webkit-transition: all .3s;
     opacity: 1;
+}
+
+#tscVideoContent .play-button-overlay-glyph::before {
+    content:"COMENZAR";
 }
 
 #tscVideoContent.collapsed .play-button-overlay-glyph{
@@ -1516,10 +1554,16 @@ float: left;
 }
 
 
+
+
 .tsc-smartplayer .play-button-overlay-glyph:hover{
     color:#1787e9;
     -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
     filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+}
+
+
+#tscVideoContent .play-button-overlay-glyph{
 }
 
 
@@ -1539,12 +1583,13 @@ float: left;
     color:#00224a;
     padding:10px 30px 10px 30px;
     border-radius: 5px;
-    z-index: 2;
+    z-index: 1;
     bottom:130px;
     left: 280px;
     letter-spacing: .5px;
     opacity: 1;
-    -webkit-transition: all .75s;
+    -webkit-transition: all .3s, bottom .75s;
+    animation: 
 }
 
 
@@ -1554,7 +1599,6 @@ float: left;
 
 
 .btn-capitulo:hover{
-    color:#1787e9;
     -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
     filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
 }
@@ -1563,13 +1607,15 @@ float: left;
     opacity:0;
     bottom: calc(100vh - 10px);
 }
-
+#btn-capitulo-out.collapsed2{
+    opacity:0;
+}
 
 #cap-banner-top{
     position: absolute;
     width:100%;
     height:80px;
-    z-index: 2;
+    z-index: 1;
     box-sizing: border-box;
     padding: 32px 0px 0px 250px;
     top:0px;
@@ -1662,6 +1708,9 @@ float: left;
     0%{opacity:0;}
     100%{opacity:1;}
 }
+
+
+
 
 /*-----------RESPONSIVIDAD 1280px--------------------------------------------------*/
 @media (max-width: 1400px) {

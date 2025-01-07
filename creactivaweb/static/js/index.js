@@ -1,3 +1,10 @@
+
+$(document).ready(function () {
+    $('#transicion').css('opacity', '0');
+});
+
+
+
 // SLIDER NOTICIAS
 $(document).ready(function(){
     $('#slider-fila').slick({
@@ -361,10 +368,6 @@ $("#tscVideoContent").click(function(){
 });
 
 
-$("#tscVideoContent .play-button-overlay-glyph").click(function(){
-    document.querySelector('#btn-capitulo-out').classList.add('collapsed');
-});
-
 
 $("#btn-curso1").click(function(){
     document.querySelector('#contenido-curso1').classList.add('collapsed');
@@ -373,8 +376,14 @@ $("#btn-curso1").click(function(){
 });
 
 
+$("#btn-curso2").click(function(){
+    document.querySelector('#transicion').classList.add('collapsed');
+});
 
+$(".play-button-overlay-glyph").click(function(){
+    document.querySelector('#btn-capitulo-out').classList.add('collapsed');
 
+})
 
 document.querySelector('#btn-spotlight1').classList.add('collapsed');
 document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
