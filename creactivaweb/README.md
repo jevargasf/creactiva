@@ -67,6 +67,12 @@ Apuntes configuración de un capítulo:
     desde hosting
     - first frame servido desde django
 
+Reemplazo de cap:
+    - en el proyecto: solo copié los xml y xml.js a las carpetas correspondientes
+    - en el hosting: subir mp4 a carpeta static/videos > collecstatic > reiniar app > copiar link en reproductor.html
+    - no hay thumbnails ahora, así que no hay que manipular los archivos
+    - bugs reportados con el reemplazo del cap?
+
 Investigación:
 - Problema: ¿cómo hacer para que el link no sea visible de esta manera?
 ![Alt text](debug/debug-link-video.png)
@@ -103,6 +109,8 @@ DEBUG NAVEGACIÓN: RESUELTO
     ✔ hay que ver bien dónde nos va a llevar la pestaña "capítulos" del navbar. Hasta ahora lleva al index.
     ✔ implementar botón "back" sin necesidad de repetir el snippet para cada template
 
+DEBUG REPRODUCTOR:
+    - 07/01. Se reporta falla en la carga del video servido desde hosting. Ocurrió después de reemplazar el video anterior por una nueva versión. Se reemplazaron los archivos xml y xml.js en el proyecto, se agregaron sin modificaciones.
 
 Proceso:
     - Primero, escribir el formulario de solicitud

@@ -1,4 +1,62 @@
+setTimeout(function () {
+    // MENSAJE A CONSOLA
+    console.log("muestra el tiempo");
 
+    // EL PUTO MALDITO BOTÓN PLAY
+    screenControl = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
+
+    // EVENTO CLICK AGREGADO AL PUTO MALDITO
+    screenControl?.addEventListener("click", () => {
+        // EL BOTÓN MÁS INFO
+        btnMasInfo = document.getElementById("btn-capitulo-out")
+        // MANIPULACIÓN DEL ESTILO DEL BOTÓN MÁS INFO
+        btnMasInfo.style.visibility = "hidden"
+
+    });
+    // CÓDIGO DEL ALERT
+    window.alert("Listo para reproducir")
+    // TIEMPO DE ESPERA = 5 segundos
+}, 5000);
+
+
+// ------ CÓDIGO SIN USAR QUE NO QUIERO BORRAR TODAVÍA ---------
+
+        // if (e.target.value !== "") {
+        //     window.addEventListener("beforeunload", beforeUnloadHandler);
+        //     console.log("Añadido el event listener");
+        // } else {
+        //     window.removeEventListener("beforeunload", beforeUnloadHandler);
+        //     console.log("Quitado el event listener");
+        // }
+// document.onreadystatechange = function() {
+//     if (document.readyState === "complete") {
+//         console.log(document.getElementsByTagName("button"))
+//       console.log("Page is loaded completely!");
+//       screenControl = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
+//       console.log(screenControl);
+//     }
+//   };
+
+// document.addEventListener("DOMContentLoaded", function(e) {
+//     const screenControl = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph")
+//     console.log(screenControl)
+//     screenControl?.addEventListener("click", () => {
+//         console.log("Llega acá")
+//         document.getElementById("btn-capitulo-out").style.visibility = "hidden"
+//         // if (e.target.value !== "") {
+//         //     window.addEventListener("beforeunload", beforeUnloadHandler);
+//         //     console.log("Añadido el event listener");
+//         // } else {
+//         //     window.removeEventListener("beforeunload", beforeUnloadHandler);
+//         //     console.log("Quitado el event listener");
+//         // }
+//     });
+//     console.log("Sí llegó")
+//   });
+
+// $( document ).ready(function() {
+//     console.log("script loaded")
+//   });
 
 // ---------- FUNCIÓN QUE MANEJA DATA RELEVANTE DEL REPRODUCTOR -------------------
 // función que se dispara cuando termina de ver el video:
@@ -10,7 +68,7 @@
 
 
 // atributo del elemento que recoge el segundo de reproducción:
-let segReproduccion = document.getElementsByClassName("progress-scrubbar-track")[0].ariaValueNow;
+// let segReproduccion = document.getElementsByClassName("progress-scrubbar-track")[0].ariaValueNow;
 
 // cómo recupero este dato desde el backend? hasta ahora solo lo tengo aislado en el navegador
 // MÉTODO GET
@@ -18,15 +76,15 @@ let segReproduccion = document.getElementsByClassName("progress-scrubbar-track")
 
 // Estructura función asíncrona que realiza el post, capaz que hasta me sirva para hacer cualquier
 // otra solicitud, como un get
-async function post(req){
-    try{
-        const response = await fetch(req);
-        const result = await response.json();
-        console.log("Success:", result)
-    } catch(err){
-        console.error("Error:", err)
-    }
-}
+// async function post(req){
+//     try{
+//         const response = await fetch(req);
+//         const result = await response.json();
+//         console.log("Success:", result)
+//     } catch(err){
+//         console.error("Error:", err)
+//     }
+// }
 // Lógica: Entonces, debería configurar una URL que sirva el html y otra url que reciba las
 // peticiones ?? 
 // No, la misma URL del capítulo permite:
@@ -38,38 +96,39 @@ async function post(req){
 
 
 // Configuración de la solicitud POST con objeto Request
-const req = new Request(
-    "http://localhost:8000/capitulo", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            min_video: segReproduccion
-        })
-    }
-);
+// const req = new Request(
+//     "http://localhost:8000/capitulo", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             min_video: segReproduccion
+//         })
+//     }
+// );
 
 // Aquí recién hago el llamado a la ejecución de la solicitud POST
 // opciones: botón, apretar cerrar? hay algún evento del navegador que sea salir de la página?
 
 
-const beforeUnloadHandler = (e) => {
-    // Recomendado
-    e.preventDefault();
-    // Esto es para soporte legacy como Chrome < 119
-    e.returnValue = true;
-    // y aquí iría este código??
+// const beforeUnloadHandler = (e) => {
+//     // Recomendado
+//     e.preventDefault();
+//     // Esto es para soporte legacy como Chrome < 119
+//     e.returnValue = true;
+//     // y aquí iría este código??
     
-    post(req);
-};
+//     post(req);
+// };
 
 // la estructura sería:
 // manejador del evento (el código que quiero que se ejecute)
 
 // llamado al elemento del DOM que gatilla el beforeUnload. O sea, si aprieta "ese" elemento, entonces
 // pide confirmación antes de salir. Yo creo que para nosotros será el botón Comenzar.
-const btnReproduccion = document.getElementsByClassName("ui control-button tertiary-button play-control")[0]
+
+// console.log(btnReproduccion, btnMasInfo)
 // el event listener para el evento
     // por ejemplo, la persona reproduce el video (onclick botón play)
     // si cierra la ventana, escribe otra dirección o vuelve a la página anterior, antes de que salga,
@@ -77,24 +136,16 @@ const btnReproduccion = document.getElementsByClassName("ui control-button terti
     // entonces, llama al manejador del beforeUnload, que recupera la data del elemento del dom
     // especificado
 
-btnReproduccion.addEventListener("click", (e) => {
-    if (e.target.value !== "") {
-        window.addEventListener("beforeunload", beforeUnloadHandler);
-        console.log("Añadido el event listener");
-    } else {
-        window.removeEventListener("beforeunload", beforeUnloadHandler);
-        console.log("Quitado el event listener");
-    }
-});
+
 
 // DEBUG: no está agregando el event listener
 // DEBUG: hay problemas serios de carga de la página en google chrome normal
-window.onbeforeunload = function() {
-    console.log("Sí")
-    return "Hay cambios sin guardar. ¿Salir ahora?";
-  };
+// window.onbeforeunload = function() {
+//     console.log("Sí")
+//     return "Hay cambios sin guardar. ¿Salir ahora?";
+//   };
 
-window.addEventListener("beforeunload", (event) => {
-// funciona, lo mismo que si devolviera desde window.onbeforeunload
-event.returnValue = "Hsy cambios sin grabar. ¿Abandonar ahora?";
-});
+// window.addEventListener("beforeunload", (event) => {
+// // funciona, lo mismo que si devolviera desde window.onbeforeunload
+// event.returnValue = "Hsy cambios sin grabar. ¿Abandonar ahora?";
+// });
