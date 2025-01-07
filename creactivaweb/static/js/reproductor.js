@@ -3,20 +3,26 @@ setTimeout(function () {
     console.log("muestra el tiempo");
 
     // EL PUTO MALDITO BOTÓN PLAY
-    screenControl = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
+    btnComenzar = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
 
     // EVENTO CLICK AGREGADO AL PUTO MALDITO
-    screenControl?.addEventListener("click", () => {
+    btnComenzar?.addEventListener("click", () => {
         // EL BOTÓN MÁS INFO
         btnMasInfo = document.getElementById("btn-capitulo-out")
         // MANIPULACIÓN DEL ESTILO DEL BOTÓN MÁS INFO
         btnMasInfo.style.visibility = "hidden"
-
+        // BOTÓN PAUSA
+        btnMasInfoCap = document.querySelector("#mas-info-cap")
+        videoElem = document.getElementsByTagName("video")[0]
+        btnMasInfoCap?.addEventListener("click", () => {
+            videoElem.pause();
+        });
+        console.log("llegó hasta acá")
     });
     // CÓDIGO DEL ALERT
     window.alert("Listo para reproducir")
     // TIEMPO DE ESPERA = 5 segundos
-}, 5000);
+}, 300);
 
 
 // ------ CÓDIGO SIN USAR QUE NO QUIERO BORRAR TODAVÍA ---------
