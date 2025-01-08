@@ -97,12 +97,11 @@ Investigación:
 
 
 DEBUG APP CAPÍTULOS:
+    - terminar la función que recupera el momento de reproducción T_T.
     - botón comenzar: si el curso no está iniciado, entonces partir desde el capítulo 1. Si el curso está
     iniciado, entonces partir desde el último punto (y cambiar el texto a "continuar").
     - botón comenzar: envía al backend la señal de que el curso fue iniciado.
-    - mejorar renderización del script de corrección del estilo del reproductor.
-    - terminar la función que recupera el momento de reproducción T_T.
-    - en admin django: cada capítulo que se imprima con el curso al que corresponde y nro de cap
+    - script reproductor: EL TIEMPO DE CARGA ÓPTIMO ESTÁ ENTRE 500ms y 5000ms en la primera carga.
 
 DEBUG NAVEGACIÓN: RESUELTO
     SOLUCIÓN: manejo de diferentes casos con bloques if elif en snippet
@@ -123,24 +122,3 @@ Mejoras a futuro:
 
 ACTUALMENTE TRABAJANDO:
 - app suscripciones/formulario solicitud organizaciones/categorías organizaciones
-
-
-
-
-
-
-
-// --------- INYECCIÓN DE ESTILOS QUE NO SE PUEDEN MANEJAR CON CSS -----------
-// Ante cualquier cambio, subir este código al hosting
-// básicamente, esto debe ser una función dependiente de DOMContentLoaded
-$.getScript( "https://cdn.cloud.techsmith.com/smartplayer/5/latest/techsmith-smart-player.min.js" )
-  .done(function( script, textStatus ) {
-    console.log( textStatus );
-    boton_play = document.getElementsByClassName("video-click-to-play ui play-button-overlay-glyph")
-    console.log(boton_play[0])
-    boton_play[0].innerHTML = 'COMENZAR'
-  })
-  .fail(function( jqxhr, settings, exception ) {
-    //script fail warning if you want it
-    console.log("Algo falló")
-});

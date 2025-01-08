@@ -16,7 +16,48 @@ setTimeout(function () {
         btnMasInfoCap?.addEventListener("click", () => {
             videoElem.pause();
         });
-        console.log("llegó hasta acá")
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        document.addEventListener("visibilitychange", function logData() {
+            console.log("Preparando la data...")
+
+            if (document.visibilityState === "hidden") {
+                console.log("Enviando data...")
+                videoElem = document.getElementsByTagName("video")[0]
+                videoElem.pause();
+                segReproduccion = document.querySelector("div.progress-scrubbar-track").ariaValueNow
+                url = window.location.href
+                const csrftoken = getCookie('csrftoken');                
+                data = JSON.stringify(segReproduccion)
+                console.log(data)
+                // Configuración de la solicitud POST con objeto Request
+                req = fetch(url, {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                      },
+                    body: data
+                })
+                console.log(req)
+                //navigator.sendBeacon("/log", analyticsData);
+            }
+            });
     });
     // CÓDIGO DEL ALERT
     $(document).ready(function () {
@@ -25,14 +66,21 @@ setTimeout(function () {
     // TIEMPO DE ESPERA = 5 segundos
 },500);
 
-// AGREGAR LISTENER DE EVENTO BEFOREUNLOAD ACá
+// LISTENER DE EVENTO BEFOREUNLOAD ACá
 window.addEventListener("beforeunload", (event) => {
-    // no funciona, así que el manejador de evento no hace nada
     event.preventDefault();
-        // funciona, lo mismo que si devolviera desde window.onbeforeunload
     event.returnValue = "¿Desea abandonar la reproducción del video?";
-    console.log("llegó hasta acá el script")
+    console.log("Recuperando min de reproducción...")
+    minReproduccion = document.querySelector("div.progress-scrubbar-track")
+    console.log(minReproduccion)
     });
+
+// EVITAR UNLOAD O BEFOREUNLOAD
+// window.addEventListener("unload", () => {
+//         console.log("Enviando min de reproducción...")
+//         minReproduccion = document.querySelector("div.progress-scrubbar-track")
+//         print(minReproduccion)
+//         });
         // const beforeUnloadHandler = (e) => {
         //     // Recomendado
         //     console.log(e.target)
@@ -125,18 +173,7 @@ window.addEventListener("beforeunload", (event) => {
 //              de una solicitud POST. El backend la recibe y la almacena.
 
 
-// Configuración de la solicitud POST con objeto Request
-const req = new Request(
-    "TENGO QUE PEDIR LA URL DE FORMA DINÁMICA", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            //min_video: segReproduccion
-        })
-    }
-);
+
 
 // Aquí recién hago el llamado a la ejecución de la solicitud POST
 // opciones: botón, apretar cerrar? hay algún evento del navegador que sea salir de la página?

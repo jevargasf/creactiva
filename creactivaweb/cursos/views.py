@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.templatetags.static import static
 from cursos.models import Curso, Capitulo
 from cursos.utils import *
@@ -47,5 +47,6 @@ class CapituloView(View):
         else:
             return render(request, 'registration/login.html', context)
         
-    def post(self, request: HttpRequest):
-        print(request.POST)
+    def post(self, request: HttpRequest, id):
+        print(request.body)
+        return HttpResponse(status = 200)
