@@ -350,6 +350,11 @@ $("#mas-info-cap").click(function(){
     document.querySelector('#mas-info-cap').classList.add('collapsed');
     document.querySelector('.play-button-overlay-glyph').classList.add('collapsed');
     document.querySelector('#btn-capitulo-out').classList.add('collapsed');
+    document.querySelector('#logo_abajo').classList.add('collapsed');
+    document.querySelector('#cap-banner-top').classList.add('collapsed');
+    document.querySelector('#info-cap-player').classList.add('collapsed');
+    document.querySelector('#logo_capitulo').classList.add('collapsed2');
+    document.querySelector('#info-cap-full').classList.add('collapsed');
 });
 
 $("#btn-capitulo-out").click(function(){
@@ -357,6 +362,11 @@ $("#btn-capitulo-out").click(function(){
     document.querySelector('#mas-info-cap').classList.add('collapsed');
     document.querySelector('.play-button-overlay-glyph').classList.add('collapsed');
     document.querySelector('#btn-capitulo-out').classList.add('collapsed');
+    document.querySelector('#logo_abajo').classList.add('collapsed');
+    document.querySelector('#cap-banner-top').classList.add('collapsed');
+    document.querySelector('#info-cap-player').classList.add('collapsed');
+    document.querySelector('#logo_capitulo').classList.add('collapsed2');
+    document.querySelector('#info-cap-full').classList.add('collapsed');
 });
 
 
@@ -364,6 +374,11 @@ $("#tscVideoContent").click(function(){
     document.querySelector('#tscVideoContent').classList.remove('collapsed');
     document.querySelector('#mas-info-cap').classList.remove('collapsed');
     document.querySelector('#btn-capitulo-out').classList.remove('collapsed');
+    document.querySelector('#logo_abajo').classList.remove('collapsed');
+    document.querySelector('#cap-banner-top').classList.remove('collapsed');
+    document.querySelector('#info-cap-player').classList.remove('collapsed');
+    document.querySelector('#logo_capitulo').classList.remove('collapsed2');
+    document.querySelector('#info-cap-full').classList.remove('collapsed');
 
 });
 

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>CreActiva | Introducción al Mapuzungun - Capítulo 1</title>
+<title>{{ capitulo.nombre }} | {{ capitulo.curso }}</title>
 <link href="{% static '/skins/remix/techsmith-smart-player.min.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
@@ -70,13 +70,57 @@
 
 {% include 'snippets/navbar.html' %}
 {% include 'snippets/header_volver.html' %}
+{% include 'snippets/logo_abajo.html' %}
+{% include 'snippets/logo_capitulo.html' %}
 <div id="fondo_animado">
 </div>
 <span id="cuadricula"></span>
 
 <div id="cap-banner-top">
-    <h3>{{ capitulo.curso }} / <b>{{ capitulo.nombre }}</b></h3>
+    <h3>{{ capitulo.curso }} | <b>{{ capitulo.nombre }}</b></h3>
 </div>
+
+
+<aside id="info-cap-player">
+    <h3>{{ capitulo.curso }} </h3>
+    <h8>{{ capitulo.nombre }}</h8>
+    <h4>{{ capitulo.desc_corta }}</h4>
+</aside>
+
+
+
+
+<article id="info-cap-full">
+    <section>
+        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="{{ capitulo.nombre }}"></aside>
+        <aside id="info-cap-info"> 
+            <h3>{{ capitulo.curso }} / <b>Capítulo {{ capitulo.numero }}</b></h3>
+            <h8>{{ capitulo.nombre }}</h8>
+            <h4>{{ capitulo.desc_corta }}</h4>
+            <p>{{ capitulo.descripcion }}</p>
+            <h6>Duración: {{ capitulo.duracion }} Minutos</h6>
+
+            <ul>
+                <li>Origen del Mapuzungun</li>
+                <li>Grafemarios: ¿Cómo escribimos el Mapuzungun?</li>
+                <li>Sonidos de Letras</li>
+            </ul>
+
+            <ul>
+                <a href=""><li>Texto sobre Mapuzungun</li></a>
+                <a href=""><li>Glosario</li></a>
+                <a href=""><li>Otros documentos</li></a>
+            </ul>
+
+            <nav>
+                <a href=""><button></button></a>
+                <a href=""><button></button></a>
+                <a href=""><button></button></a>
+            </nav>
+
+        </aside>
+    </section>
+</article>
 
 
 <button id="mas-info-cap" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información" data-cy="video-click-to-play"></button>
