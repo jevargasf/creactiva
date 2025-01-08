@@ -216,6 +216,55 @@ button {
 }
 
 
+#logo_abajo{
+    position: fixed;
+    right: 90px;
+    bottom: 80px;
+    width: 270px;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 1;
+    -webkit-transition:all 1s, bottom .75s;
+    pointer-events: none;
+}
+
+#logo_abajo.collapsed{
+    width: 160px;
+    right: calc(50% - 80px);
+    bottom: calc(100vh  - 80px);
+}
+
+#logo_abajo.collapsed2{
+    opacity: 0;
+    
+}
+
+
+#logo_capitulo{
+    position: fixed;
+    width: 160px;
+    right: calc(50% - 80px);
+    bottom: calc(100vh  - 80px);
+    cursor: pointer;
+    z-index: 2;
+    opacity: 1;
+    -webkit-transition:all .5s, right .75s;
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+}
+
+#logo_capitulo.collapsed{
+    display: block;
+}
+
+#logo_capitulo.collapsed2{
+    pointer-events: inherit;
+    opacity: 1;
+}
+
+
+
 h1{
     color:#fff;
     text-align: center;
@@ -240,6 +289,17 @@ h7{
 i{
     font-style: normal;
     color:#57DEFF;
+}
+
+h8{
+    font-size:40px;
+    font-family: latoblack;
+    text-transform: uppercase;
+    line-height: 40px;
+}
+
+p{
+    font-size: 13px;
 }
 
 /*-----------PRINCIPAL--------------------------------------------------*/
@@ -1571,7 +1631,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 .tsc-smartplayer .video-click-to-play-link, .tsc-smartplayer .video-click-to-replay-link {
     background-size: 110%;
     pointer-events: none;
-    box-shadow: inset 0 0 1000px #000000;
+    box-shadow: inset 0 -100px 1000px #000000;
 }
 
 .btn-capitulo{
@@ -1588,7 +1648,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     left: 280px;
     letter-spacing: .5px;
     opacity: 1;
-    -webkit-transition: all .3s, bottom .75s;
+    -webkit-transition: all .2s, bottom .75s;
 }
 
 
@@ -1608,6 +1668,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 #btn-capitulo-out.collapsed2{
     opacity:0;
+    pointer-events: none;
 }
 
 #cap-banner-top{
@@ -1619,7 +1680,14 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     padding: 32px 0px 0px 250px;
     top:0px;
     pointer-events: none;
+    opacity: 1;
+    -webkit-transition: all .3s;
 }
+
+#cap-banner-top.collapsed{
+    opacity: 0;
+
+    }
 
 #cap-banner-top h3{
     position: absolute;
@@ -1634,6 +1702,83 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 
+
+#info-cap-player{
+    position:fixed;
+    text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
+    bottom:200px;
+    left:100px;
+    width:35%;
+    -webkit-transition: all .2s, bottom .75s;
+}
+
+
+#info-cap-player h4{
+    margin-top:10px;
+
+}
+
+
+#info-cap-player.collapsed{
+    opacity:0;
+    bottom: calc(100vh - 10px);
+}
+
+#info-cap-player.collapsed2{
+    opacity:0;
+}
+
+
+#info-cap-full{
+    width: 100%;
+    position: fixed;
+    bottom: -100vh;
+    pointer-events: none;
+    -webkit-transition: all .2s, bottom .75s;
+    left: 0px;
+}
+
+#info-cap-full.collapsed{
+    bottom: 0px;
+
+}
+
+#info-cap-full section{
+    position: relative;
+    margin:0 auto;
+    height: calc(100vh - 150px);
+    display: table;
+    pointer-events: none;
+
+}
+
+
+#info-cap-img{
+    position: relative;
+    width: 300px;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+#info-cap-img img{
+    position: absolute;
+    left:50%;
+    height:100%;
+    top:50%;
+    translate: -40% -50%;
+
+}
+#info-cap-info{
+    position: relative;
+    width: 600px;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+    pointer-events: inherit;
+    padding:50px;
+    box-sizing: border-box;
+}
 
 
 

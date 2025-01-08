@@ -8,9 +8,11 @@ setTimeout(function () {
     // EVENTO CLICK AGREGADO AL PUTO MALDITO
     btnComenzar?.addEventListener("click", () => {
         // EL BOTÓN MÁS INFO
-        btnMasInfo = document.getElementById("btn-capitulo-out")
         // MANIPULACIÓN DEL ESTILO DEL BOTÓN MÁS INFO
-        btnMasInfo.style.visibility = "hidden"
+        document.querySelector('#btn-capitulo-out').classList.add('collapsed2');
+        document.querySelector('#logo_abajo').classList.add('collapsed2');
+        document.querySelector('#info-cap-player').classList.add('collapsed2');
+        document.querySelector('#logo_capitulo').classList.add('collapsed');
         // BOTÓN PAUSA
         btnMasInfoCap = document.querySelector("#mas-info-cap")
         videoElem = document.getElementsByTagName("video")[0]
@@ -20,9 +22,11 @@ setTimeout(function () {
         console.log("llegó hasta acá")
     });
     // CÓDIGO DEL ALERT
-    window.alert("Listo para reproducir")
+    $(document).ready(function () {
+        $('#transicion').css('opacity', '0');
+    });
     // TIEMPO DE ESPERA = 5 segundos
-}, 300);
+},500);
 
 
 // ------ CÓDIGO SIN USAR QUE NO QUIERO BORRAR TODAVÍA ---------
