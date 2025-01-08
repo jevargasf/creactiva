@@ -1,7 +1,4 @@
 setTimeout(function () {
-    // MENSAJE A CONSOLA
-    console.log("muestra el tiempo");
-
     // EL PUTO MALDITO BOTÓN PLAY
     btnComenzar = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
 
@@ -10,7 +7,7 @@ setTimeout(function () {
         // EL BOTÓN MÁS INFO
         btnMasInfo = document.getElementById("btn-capitulo-out")
         // MANIPULACIÓN DEL ESTILO DEL BOTÓN MÁS INFO
-        btnMasInfo.style.visibility = "hidden"
+        document.querySelector('#btn-capitulo-out').classList.add('collapsed2');
         // BOTÓN PAUSA
         btnMasInfoCap = document.querySelector("#mas-info-cap")
         videoElem = document.getElementsByTagName("video")[0]
@@ -20,11 +17,35 @@ setTimeout(function () {
         console.log("llegó hasta acá")
     });
     // CÓDIGO DEL ALERT
-    window.alert("Listo para reproducir")
-    // TIEMPO DE ESPERA = 5 segundos
-}, 300);
+    $(document).ready(function () {
+        $('#transicion').css('opacity', '0');
+    });
+},500);
 
-
+// AGREGAR LISTENER DE EVENTO BEFOREUNLOAD ACá
+window.addEventListener("beforeunload", (event) => {
+    // no funciona, así que el manejador de evento no hace nada
+    event.preventDefault();
+        // funciona, lo mismo que si devolviera desde window.onbeforeunload
+    event.returnValue = "¿Desea abandonar la reproducción del video?";
+    console.log("llegó hasta acá el script")
+    });
+        // const beforeUnloadHandler = (e) => {
+        //     // Recomendado
+        //     console.log(e.target)
+        //     e.preventDefault();
+        //     // Esto es para soporte legacy como Chrome < 119
+        //     e.returnValue = true;
+        //     // y aquí iría este código??
+        //     if (e.target.value !== "") {
+        //         window.addEventListener("beforeunload", beforeUnloadHandler);
+        //         console.log("Añadido el event listener");
+        //     } else {
+        //         window.removeEventListener("beforeunload", beforeUnloadHandler);
+        //         console.log("Quitado el event listener");
+        //     }
+        //     //post(req);
+        // };
 // ------ CÓDIGO SIN USAR QUE NO QUIERO BORRAR TODAVÍA ---------
 
         // if (e.target.value !== "") {
@@ -102,31 +123,23 @@ setTimeout(function () {
 
 
 // Configuración de la solicitud POST con objeto Request
-// const req = new Request(
-//     "http://localhost:8000/capitulo", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             min_video: segReproduccion
-//         })
-//     }
-// );
+const req = new Request(
+    "TENGO QUE PEDIR LA URL DE FORMA DINÁMICA", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            //min_video: segReproduccion
+        })
+    }
+);
 
 // Aquí recién hago el llamado a la ejecución de la solicitud POST
 // opciones: botón, apretar cerrar? hay algún evento del navegador que sea salir de la página?
 
 
-// const beforeUnloadHandler = (e) => {
-//     // Recomendado
-//     e.preventDefault();
-//     // Esto es para soporte legacy como Chrome < 119
-//     e.returnValue = true;
-//     // y aquí iría este código??
-    
-//     post(req);
-// };
+
 
 // la estructura sería:
 // manejador del evento (el código que quiero que se ejecute)
