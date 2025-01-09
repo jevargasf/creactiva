@@ -1,3 +1,24 @@
+async function envioData(url, csrftoken, data){
+    try{
+        const req = await fetch(url, {
+            method: 'POST',
+            mode: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+              },
+            body: data
+        })
+        .then(res => console.log(res.status))
+        console.log(req)
+        //navigator.sendBeacon("/log", analyticsData);
+    } catch(e) {
+        console.log('Ocurrió un error', e)
+    }
+    
+}
+
+
 setTimeout(function () {
     // EL PUTO MALDITO BOTÓN PLAY
     btnComenzar = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
@@ -17,13 +38,14 @@ setTimeout(function () {
             videoElem.pause();
         });
 
+        // A la función se le provee del nombre de la cookie que se necesite
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
                 const cookies = document.cookie.split(';');
                 for (let i = 0; i < cookies.length; i++) {
                     const cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
+                    // Acá comprueba si la cookie tiene el nombre que se requiere
                     if (cookie.substring(0, name.length + 1) === (name + '=')) {
                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                         break;
@@ -45,17 +67,7 @@ setTimeout(function () {
                 data = JSON.stringify(segReproduccion)
                 console.log(data)
                 // Configuración de la solicitud POST con objeto Request
-                req = fetch(url, {
-                    method: 'POST',
-                    mode: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrftoken
-                      },
-                    body: data
-                })
-                console.log(req)
-                //navigator.sendBeacon("/log", analyticsData);
+                envioData(url, csrftoken, data);
             }
             });
     });
@@ -66,75 +78,15 @@ setTimeout(function () {
     // TIEMPO DE ESPERA = 5 segundos
 },500);
 
+
+
 // LISTENER DE EVENTO BEFOREUNLOAD ACá
 window.addEventListener("beforeunload", (event) => {
     event.preventDefault();
     event.returnValue = "¿Desea abandonar la reproducción del video?";
-    console.log("Recuperando min de reproducción...")
-    minReproduccion = document.querySelector("div.progress-scrubbar-track")
-    console.log(minReproduccion)
+
     });
 
-// EVITAR UNLOAD O BEFOREUNLOAD
-// window.addEventListener("unload", () => {
-//         console.log("Enviando min de reproducción...")
-//         minReproduccion = document.querySelector("div.progress-scrubbar-track")
-//         print(minReproduccion)
-//         });
-        // const beforeUnloadHandler = (e) => {
-        //     // Recomendado
-        //     console.log(e.target)
-        //     e.preventDefault();
-        //     // Esto es para soporte legacy como Chrome < 119
-        //     e.returnValue = true;
-        //     // y aquí iría este código??
-        //     if (e.target.value !== "") {
-        //         window.addEventListener("beforeunload", beforeUnloadHandler);
-        //         console.log("Añadido el event listener");
-        //     } else {
-        //         window.removeEventListener("beforeunload", beforeUnloadHandler);
-        //         console.log("Quitado el event listener");
-        //     }
-        //     //post(req);
-        // };
-// ------ CÓDIGO SIN USAR QUE NO QUIERO BORRAR TODAVÍA ---------
-
-        // if (e.target.value !== "") {
-        //     window.addEventListener("beforeunload", beforeUnloadHandler);
-        //     console.log("Añadido el event listener");
-        // } else {
-        //     window.removeEventListener("beforeunload", beforeUnloadHandler);
-        //     console.log("Quitado el event listener");
-        // }
-// document.onreadystatechange = function() {
-//     if (document.readyState === "complete") {
-//         console.log(document.getElementsByTagName("button"))
-//       console.log("Page is loaded completely!");
-//       screenControl = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
-//       console.log(screenControl);
-//     }
-//   };
-
-// document.addEventListener("DOMContentLoaded", function(e) {
-//     const screenControl = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph")
-//     console.log(screenControl)
-//     screenControl?.addEventListener("click", () => {
-//         console.log("Llega acá")
-//         document.getElementById("btn-capitulo-out").style.visibility = "hidden"
-//         // if (e.target.value !== "") {
-//         //     window.addEventListener("beforeunload", beforeUnloadHandler);
-//         //     console.log("Añadido el event listener");
-//         // } else {
-//         //     window.removeEventListener("beforeunload", beforeUnloadHandler);
-//         //     console.log("Quitado el event listener");
-//         // }
-//     });
-//     console.log("Sí llegó")
-//   });
-
-// $( document ).ready(function() {
-//     console.log("script loaded")
-//   });
 
 // ---------- FUNCIÓN QUE MANEJA DATA RELEVANTE DEL REPRODUCTOR -------------------
 // función que se dispara cuando termina de ver el video:
@@ -173,14 +125,6 @@ window.addEventListener("beforeunload", (event) => {
 //              de una solicitud POST. El backend la recibe y la almacena.
 
 
-
-
-// Aquí recién hago el llamado a la ejecución de la solicitud POST
-// opciones: botón, apretar cerrar? hay algún evento del navegador que sea salir de la página?
-
-
-
-
 // la estructura sería:
 // manejador del evento (el código que quiero que se ejecute)
 
@@ -194,17 +138,3 @@ window.addEventListener("beforeunload", (event) => {
     // el navegador pregunta confirmación. 
     // entonces, llama al manejador del beforeUnload, que recupera la data del elemento del dom
     // especificado
-
-
-
-// DEBUG: no está agregando el event listener
-// DEBUG: hay problemas serios de carga de la página en google chrome normal
-// window.onbeforeunload = function() {
-//     console.log("Sí")
-//     return "Hay cambios sin guardar. ¿Salir ahora?";
-//   };
-
-// window.addEventListener("beforeunload", (event) => {
-// // funciona, lo mismo que si devolviera desde window.onbeforeunload
-// event.returnValue = "Hsy cambios sin grabar. ¿Abandonar ahora?";
-// });

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 class Etiqueta(models.Model):
     eti = models.AutoField(primary_key=True, null=False, verbose_name='ID Etiqueta')
@@ -121,8 +121,9 @@ class Visualizacion(models.Model):
         verbose_name='capitulo',
         related_name='capitulo_vis'
     )
-    fecha = models.DateTimeField(null=False, verbose_name='Última visualización')
-    minuto = models.IntegerField(null=False, verbose_name='Minuto última visualización')
+    minuto = models.FloatField(null=False, verbose_name='Minuto última visualización')
+    fecha = models.DateTimeField(auto_now_add=True, verbose_name='Última visualización')
+
 
     def __str__(self):
         return f'{self.perfil.user} {self.fecha}'
