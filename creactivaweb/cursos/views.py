@@ -6,7 +6,6 @@ from cursos.models import Curso, Capitulo, Visualizacion, EstadoCapitulo
 from cursos.utils import *
 from main.models import User, Perfil
 from django.utils import timezone
-from django.db.models import Max
 
 class CursoView(View):
     def dispatch(self, *args, **kwargs):
@@ -43,14 +42,15 @@ class CapituloView(View):
         perfil = Perfil.objects.get(user=request.user)
         
         capitulo = Capitulo.objects.get(pk=id)
-        fecha_ult_visualizacion = Visualizacion.objects.filter(perfil=perfil).aggregate(Max('fecha'))
+        ultima_visualizacion = pedir_ultima_visualizacion(perfil, capitulo)
         
         #ult_visualizacion = Visualizacion.objects.get(fecha=fecha_ult_visualizacion)
         # enviar en el context el último segundo de reproducción al navegador
         # identificarlo a través del usuario, el capítulo y el último segundo
-        print(fecha_ult_visualizacion)
+        
         context = {
-            'capitulo': capitulo
+            'capitulo': capitulo,
+            'minuto': ultima_visualizacion
         }
         if request.user.is_authenticated == True:
             return render(request, 'reproductor.html', context)

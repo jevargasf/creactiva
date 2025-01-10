@@ -1,5 +1,6 @@
-from cursos.models import Capitulo, Curso
+from cursos.models import Capitulo, Curso, Visualizacion
 from random import shuffle
+from django.db.models import Max
 
 def pedir_capitulos(id_curso):
     return Capitulo.objects.filter(curso=id_curso)
@@ -15,3 +16,7 @@ def capitulos_index():
         cap_lista.append(Capitulo.objects.get(pk=num_lista[num]))
     return cap_lista
 
+def pedir_ultima_visualizacion(perfil, cap):
+    visualizacion = Visualizacion.objects.filter(perfil=perfil, capitulo=cap).order_by('-fecha').values()
+    return visualizacion[0]['minuto']
+    
