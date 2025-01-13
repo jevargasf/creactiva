@@ -1,5 +1,7 @@
-
 /*-----------TIPOGRAFIAS----------------------------------------------------------------------*/
+/*-----------TIPOGRAFIAS----------------------------------------------------------------------*/
+/*-----------TIPOGRAFIAS----------------------------------------------------------------------*/
+
 @font-face {
     font-family: latolight;
     src: url(fonts/Lato-Light.ttf);
@@ -82,7 +84,10 @@
 
 
 
-/*-----------LIMPIEZA DE CSS----------------------------------------------------------------------*/
+/*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
+/*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
+/*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
+
 html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, variable, fieldset, blockquote {
     padding: 0;
     margin: 0;
@@ -92,9 +97,7 @@ html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, v
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color:#fff;
     user-select:none;
-    
 }
-
 
 html.collapsed{
     overflow:hidden;
@@ -107,13 +110,10 @@ body {
     margin: 0;
     height:100%;
     background-color: #00224a;
-
 }
-
 
 dl, dt, dd {
     font-size:initial;
-
 }
 
 ::selection {
@@ -123,7 +123,6 @@ dl, dt, dd {
 
 :focus {
     outline: none;
-
 }
 
 input::selection, textarea::selection, b::selection, p::selection, ul::selection, li::selection, dd::selection, dt::selection, dl::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
@@ -194,8 +193,9 @@ button {
 }
 
 
-/*------------HEADER--------------------------------------------------*/
-
+/*-----------------------------------------------------HEADER--------------------------------------------------*/
+/*-----------------------------------------------------HEADER--------------------------------------------------*/
+/*-----------------------------------------------------HEADER--------------------------------------------------*/
 
 #logo{
     position: fixed;
@@ -239,7 +239,6 @@ button {
     
 }
 
-
 #logo_capitulo{
     position: fixed;
     width: 160px;
@@ -264,6 +263,9 @@ button {
 }
 
 
+/*------------------------------------------------------TEXTOS------------------------------------------------------------*/
+/*------------------------------------------------------TEXTOS------------------------------------------------------------*/
+/*------------------------------------------------------TEXTOS------------------------------------------------------------*/
 
 h1{
     color:#fff;
@@ -275,8 +277,6 @@ h6{
     letter-spacing: .5px;
     font-family: latoregular;
 }
-
-
 
 h7{
     font-family: FSJoey;
@@ -302,7 +302,96 @@ p{
     font-size: 13px;
 }
 
-/*-----------PRINCIPAL--------------------------------------------------*/
+
+/*------------------------------------------------------FONDO------------------------------------------------------------*/
+/*------------------------------------------------------FONDO------------------------------------------------------------*/
+/*------------------------------------------------------FONDO------------------------------------------------------------*/
+
+#fondo_animado{
+    width:100%;
+    height: 100%;
+    position: fixed;
+    overflow: none; 
+    background-color: #024C8D;
+    animation-timing-function: ease-in-out;
+    z-index: -1;
+    background-image: url('../img/fondo.png');
+    background-size:4000px;
+    background-repeat: repeat;
+    animation: fondo1 60s infinite linear;
+    top:0px;
+    left:0px;
+}
+
+@keyframes fondo1{
+    0%{background-position:0px 0px; }
+    100%{background-position:-4000px -4000px;}
+}
+
+#fondo_animado div{
+    position: absolute;
+    border-radius: 50%;
+    background-color: #00224a;
+    animation-timing-function: ease-in-out;
+    display: none;
+}
+
+#cuadricula{
+    width:200%;
+    position: fixed;
+    height:200%;
+    left:-50%;
+    top:-50%;
+    opacity: .2;
+    background-size: 20px 20px;
+    background-image:
+      linear-gradient(to right, rgb(20, 28, 70) 1.5px, transparent 1px),
+      linear-gradient(to bottom, rgb(20, 28, 70) 1.5px, transparent 1px);
+    background-repeat:  repeat;
+    background-position: center;
+    animation: rotatebg 100s infinite;
+    animation-timing-function: linear;
+    z-index: -1;
+    overflow: hidden;
+}
+
+@keyframes rotatebg{
+    0%{rotate: 0deg;}
+    100%{rotate: 360deg;}
+}
+
+#transicion{
+    width:200vw;
+    height:200vh;
+    background-color: #00224a;
+    position: fixed;
+    z-index: 2;
+    top:0px;
+    left:0px;
+    opacity: 1;
+    transition:all .75s .15s;
+    pointer-events: none;
+    background-size: 20px 20px;
+    background-image:
+      linear-gradient(to right, #00315c 1px, transparent .1px),
+      linear-gradient(to bottom, #00315c 1px, transparent .1px);
+      background-repeat:  repeat;
+      background-position: center;
+    animation: rotatebg 100s infinite;
+    left:-50%;
+    top:-50%;
+}
+
+
+#transicion.collapsed{
+    transition:all .3s 0s;
+    opacity:1;
+}
+
+/*--------------------------------------------Spotlight Principal--------------------------------------------------*/
+/*--------------------------------------------Spotlight Principal--------------------------------------------------*/
+/*--------------------------------------------Spotlight Principal--------------------------------------------------*/
+
 #spotlight {
     width:100%;
     height:calc(100vh - 200px);
@@ -314,10 +403,8 @@ p{
 #spotlight.collapsed{
     top:calc(-100vh + 280px);
     cursor: pointer;
-
 }
 
-/*-----------SLIDER INICIAL--------------------------------------------------*/
 #mascara_spotlight{
     top:0px;
     background-image:url(../img/mascara_spotlight.png);
@@ -333,7 +420,6 @@ p{
 #slider-inicial {
     width:100%;
     height:calc(100vh - 200px);
-
 }
 
 #slider-inicial div {
@@ -502,100 +588,9 @@ p{
 }
 
 
-
-/*-----------FONDO--------------------------------------------------*/
-
-#fondo_animado{
-    width:100%;
-    height: 100%;
-    position: fixed;
-    overflow: none; 
-    background-color: #024C8D;
-    animation-timing-function: ease-in-out;
-    z-index: -1;
-    background-image: url('../img/fondo.png');
-    background-size:4000px;
-    background-repeat: repeat;
-    animation: fondo1 60s infinite linear;
-    top:0px;
-    left:0px;
-}
-
-@keyframes fondo1{
-    0%{background-position:0px 0px; }
-    100%{background-position:-4000px -4000px;}
-}
-
-
-#fondo_animado div{
-    position: absolute;
-    border-radius: 50%;
-    background-color: #00224a;
-    animation-timing-function: ease-in-out;
-    display: none;
-}
-
-
-#cuadricula{
-    width:200%;
-    position: fixed;
-    height:200%;
-    left:-50%;
-    top:-50%;
-    opacity: .2;
-    background-size: 20px 20px;
-    background-image:
-      linear-gradient(to right, rgb(20, 28, 70) 1.5px, transparent 1px),
-      linear-gradient(to bottom, rgb(20, 28, 70) 1.5px, transparent 1px);
-    background-repeat:  repeat;
-    background-position: center;
-    animation: rotatebg 100s infinite;
-    animation-timing-function: linear;
-    z-index: -1;
-    overflow: hidden;
-}
-
-
-@keyframes rotatebg{
-    0%{rotate: 0deg;}
-    100%{rotate: 360deg;}
-}
-
-
-#transicion{
-    width:200vw;
-    height:200vh;
-    background-color: #00224a;
-    position: fixed;
-    z-index: 2;
-    top:0px;
-    left:0px;
-    opacity: 1;
-    transition:all .75s .15s;
-    pointer-events: none;
-    background-size: 20px 20px;
-    background-image:
-      linear-gradient(to right, #00315c 1px, transparent .1px),
-      linear-gradient(to bottom, #00315c 1px, transparent .1px);
-      background-repeat:  repeat;
-      background-position: center;
-    animation: rotatebg 100s infinite;
-    left:-50%;
-    top:-50%;
-    
-}
-
-
-#transicion.collapsed{
-    transition:all .3s 0s;
-    opacity:1;
-}
-
-
-/*------------BUSQUEDA--------------------------------------------------*/
-
-
-
+/*--------------------------------------------------BUSQUEDA--------------------------------------------------------*/
+/*--------------------------------------------------BUSQUEDA--------------------------------------------------------*/
+/*--------------------------------------------------BUSQUEDA--------------------------------------------------------*/
 
 #buscador{
     position: fixed;
@@ -607,9 +602,7 @@ p{
 
 #buscador.collapsed{
     bottom:calc(100vh - 200px);
-
 }
-
 
 #busqueda{
         position: relative;
@@ -627,8 +620,6 @@ p{
         margin: 0 auto;
         cursor:text;
     }
-
-
 
 #busqueda::placeholder {
         color: rgba(0, 0, 0, 0.75);
@@ -674,19 +665,9 @@ p{
     opacity: 0.8;
 }
 
-
-
-
-
-
-
-
-
-
-/*-----------FILA--------------------------------------------------*/
-
-
-
+/*------------------------------------------------FILA-------------------------------------------------------------------*/
+/*------------------------------------------------FILA-------------------------------------------------------------------*/
+/*------------------------------------------------FILA-------------------------------------------------------------------*/
 
 
 .titulo_fila{
@@ -734,8 +715,6 @@ p{
 #slider-fila.collapsed{
     pointer-events: inherit;
 }
-
-
 
 
 .fila-seccion {
@@ -788,10 +767,6 @@ p{
     background-blend-mode: multiply;
     mix-blend-mode: multiply;
 }
-
-
-
-
 
 
 .fila-slider button {
@@ -918,7 +893,9 @@ p{
     opacity:1;
 }
 
-/* -------------- FORMULARIO LOGIN Y REGISTRO ----------------------------- */
+/* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
+/* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
+/* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
 
 form{
 }
@@ -939,9 +916,6 @@ form{
 
 }
 
-
-
-
 .form-login, .form-register {
     position: absolute;
     width:50%;
@@ -956,7 +930,6 @@ form{
     animation: fondo 60s infinite linear;
     
 }
-
 
 @keyframes fondo{
     0%{background-position:0px 0px; }
@@ -1109,7 +1082,11 @@ float: left;
 */
 
 
-/* -------------- NAVBAR ----------------------------- */
+
+
+/* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
+/* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
+/* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 
 .main-nav{
     position: fixed;
@@ -1169,8 +1146,6 @@ float: left;
 #menudesplegabe.collapsed{
     transform: scale(1);
 }
-
-
 
 .main-nav li{
     list-style: none;
@@ -1334,12 +1309,9 @@ float: left;
 }
 
 
-/* ------------- BLOCK CONTENT - MAIN --------------- */
-
-
-
-
-/* -------------------- _CURSO_ ------------------ */
+/* ---------------------------------------------------CURSO----------------------------------------------------- */
+/* ---------------------------------------------------CURSO----------------------------------------------------- */
+/* ---------------------------------------------------CURSO----------------------------------------------------- */
 
 #img-curso-cont{
     position: absolute;
@@ -1529,7 +1501,9 @@ float: left;
     top: calc(-100vh + 320px);
     cursor: pointer;
 }
-/* ------------- PLAYER --------------- */
+/* -------------------------------------------- PLAYER --------------------------------------------------- */
+/* -------------------------------------------- PLAYER --------------------------------------------------- */
+/* -------------------------------------------- PLAYER --------------------------------------------------- */
 
 .tsc-smartplayer .player-controls {
     background: rgb(00,0,0);
@@ -1613,19 +1587,11 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     opacity:0;
 }
 
-
-
-
 .tsc-smartplayer .play-button-overlay-glyph:hover{
     color:#1787e9;
     -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
     filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
 }
-
-
-#tscVideoContent .play-button-overlay-glyph{
-}
-
 
 
 .tsc-smartplayer .video-click-to-play-link, .tsc-smartplayer .video-click-to-replay-link {
@@ -1700,7 +1666,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     text-transform: uppercase;
     letter-spacing: .5px;
 }
-
 
 
 #info-cap-player{
@@ -1783,7 +1748,10 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 
 
-/* ALERTAs */
+/* ------------------------------------ALERTAS------------------------------------------------------------ */
+/* ------------------------------------ALERTAS------------------------------------------------------------ */
+/* ------------------------------------ALERTAS------------------------------------------------------------ */
+
 .alert{
     position: fixed;
     width:100%;
@@ -1803,9 +1771,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     0%{    opacity: 1;    }
     100%{    opacity: 0; pointer-events: none;}
 }
-
-
-
 
 .alert div{
     position: fixed;
@@ -1834,9 +1799,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     top: 0px;
 }
 
-
-
-
 @keyframes fondoventana{
     0%{background-position:0px 0px; }
     100%{background-position:-2000px -2000px;}
@@ -1852,8 +1814,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     0%{opacity:0;}
     100%{opacity:1;}
 }
-
-
 
 
 /*-----------RESPONSIVIDAD 1280px--------------------------------------------------*/
@@ -1937,6 +1897,20 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
