@@ -1,4 +1,5 @@
 from cursos.models import Capitulo, Curso, Visualizacion
+from main.models import Perfil
 from random import shuffle
 from django.db.models import Max
 
@@ -18,5 +19,11 @@ def capitulos_index():
 
 def pedir_ultima_visualizacion(perfil, cap):
     visualizacion = Visualizacion.objects.filter(perfil=perfil, capitulo=cap).order_by('-fecha').values()
-    return visualizacion[0]['minuto']
     
+    if len(visualizacion) != 0:
+        return visualizacion[0]['minuto']
+    else:
+        return None
+
+def pedir_perfil(username):
+    return Perfil.objects.get(user=username)

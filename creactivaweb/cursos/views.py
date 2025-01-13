@@ -38,23 +38,28 @@ class CapituloView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
-    def get (self, request: HttpRequest, id):
-        perfil = Perfil.objects.get(user=request.user)
-        
+    def get (self, request: HttpRequest, id):        
         capitulo = Capitulo.objects.get(pk=id)
-        #ultima_visualizacion = pedir_ultima_visualizacion(perfil, capitulo)
-        
+        if request.user.is_authenticated == True:
+            perfil = pedir_perfil(request.user)
+            ultima_visualizacion = pedir_ultima_visualizacion(perfil, capitulo)
+            if ultima_visualizacion != None:
+                context = {
+                    'capitulo': capitulo,
+                    'minuto': ultima_visualizacion
+                }
+            else:
+                context = {
+                    'capitulo': capitulo
+                }
         #ult_visualizacion = Visualizacion.objects.get(fecha=fecha_ult_visualizacion)
         # enviar en el context el último segundo de reproducción al navegador
         # identificarlo a través del usuario, el capítulo y el último segundo
-        
-        context = {
-            'capitulo': capitulo,
-            #'minuto': ultima_visualizacion
-        }
-        if request.user.is_authenticated == True:
             return render(request, 'reproductor.html', context)
         else:
+            context = {
+                'capitulo': capitulo
+            }
             return render(request, 'registration/login.html', context)
         
     def post(self, request: HttpRequest, id):

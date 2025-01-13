@@ -1,5 +1,3 @@
-
-
 async function envioData(url, csrftoken, data){
     try{
         const req = await fetch(url, {
@@ -29,7 +27,9 @@ setTimeout(function () {
     btnComenzar?.addEventListener("click", () => {
         // RECUPERAR MIN DE REPRODUCCIÓN ALMACENADO
         minAlmacenado = document.getElementById("minuto")?.textContent
-        console.log(minAlmacenado)
+
+
+
         
         // EL BOTÓN MÁS INFO
         // MANIPULACIÓN DEL ESTILO DEL BOTÓN MÁS INFO
@@ -42,7 +42,9 @@ setTimeout(function () {
         // RECUPERAR ELEMENTO VIDEO
         videoElem = document.getElementsByTagName("video")[0]
         // VOLVER AL MIN DE REPRODUCCIÓN ALMACENADO (HAY QUE AFINAR DETALLES DE LA EJECUCIÓN)
-        videoElem.currentTime = parseFloat(minAlmacenado)
+        if (parseInt(minAlmacenado) !== NaN){
+            videoElem.currentTime = minAlmacenado.replace(/"/g, '')
+        }
         // EVENTO CONTROLADOR BOTÓN PAUSA
         btnMasInfoCap?.addEventListener("click", () => {
             videoElem.pause();
@@ -86,7 +88,7 @@ setTimeout(function () {
         $('#transicion').css('opacity', '0');
     });
     // TIEMPO DE ESPERA = 5 segundos
-},500);
+},1000);
 
 
 
