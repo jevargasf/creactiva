@@ -42,7 +42,7 @@ class CapituloView(View):
         perfil = Perfil.objects.get(user=request.user)
         
         capitulo = Capitulo.objects.get(pk=id)
-        ultima_visualizacion = pedir_ultima_visualizacion(perfil, capitulo)
+        #ultima_visualizacion = pedir_ultima_visualizacion(perfil, capitulo)
         
         #ult_visualizacion = Visualizacion.objects.get(fecha=fecha_ult_visualizacion)
         # enviar en el context el último segundo de reproducción al navegador
@@ -50,7 +50,7 @@ class CapituloView(View):
         
         context = {
             'capitulo': capitulo,
-            'minuto': ultima_visualizacion
+            #'minuto': ultima_visualizacion
         }
         if request.user.is_authenticated == True:
             return render(request, 'reproductor.html', context)
