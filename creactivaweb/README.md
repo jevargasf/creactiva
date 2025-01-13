@@ -110,6 +110,7 @@ DEBUG NAVEGACIÓN: RESUELTO
 
 DEBUG REPRODUCTOR:
     - 07/01. Se reporta falla en la carga del video servido desde hosting. Ocurrió después de reemplazar el video anterior por una nueva versión. Se reemplazaron los archivos xml y xml.js en el proyecto, se agregaron sin modificaciones.
+    - 10/01. Se reporta falla en la carga del video después de implementar recarga en el minuto de visualización almacenado anteriormente. Atento al debug de la renderización del video en el minuto de visualización almacenado.
 
 Proceso:
     - Primero, escribir el formulario de solicitud
@@ -119,6 +120,7 @@ Proceso:
 
 Mejoras a futuro:
 - El administrador tendrá la necesidad de mejorar el análisis de las organizaciones que se suscriben a su contenido. A futuro puede implementar nuevas categorías como "¿a qué se dedican?", con el fin de capturar la categoría de actividad específica de la organización. Esto permitiría comprender mejor el "público organizaciones" al que se está llegando, con el fin de buscar estrategias para ampliarlo o para elaborar productos dirigidos a ellos.
+- El registro de visualizaciones genera muchos datos que pierden su utilidad rápidamente. Esto es un espacio de memoria de la bbdd que en un futuro podría causar un problema. Para solucionarlo, se puede escribir un procedimiento almacenado que limpie la bbdd todos los días a las 5AM y solo deje la última visualización. También, se podría estudiar manejar estas visualizaciones intermedias en memoria y solo escribir la bbdd con "ese" dato que a las 5AM se deja. MMmm. Hay que seguir estudiándolo.
 
 ACTUALMENTE TRABAJANDO:
 - app suscripciones/formulario solicitud organizaciones/categorías organizaciones

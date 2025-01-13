@@ -89,6 +89,8 @@ class Capitulo(models.Model):
     
     
 class EstadoCapitulo(models.Model):
+    ESTADOS_CAPITULOS = ((0, "No visto"), (1, "En progreso"), (2, "Terminado"))
+
     est = models.AutoField(primary_key=True, null=False, verbose_name='ID estado capítulo')
     perfil = models.ForeignKey(
         'main.Perfil',
@@ -102,7 +104,7 @@ class EstadoCapitulo(models.Model):
         verbose_name='capitulos',
         related_name='capitulo_est'
     )
-    estado_capitulo = models.IntegerField(verbose_name='Estado capítulo')
+    estado_capitulo = models.IntegerField(choices=ESTADOS_CAPITULOS, default=0, verbose_name='Estado capítulo')
 
     def __str__(self):
         return f'{self.perfil.user} Estado: {self.estado_capitulo}'

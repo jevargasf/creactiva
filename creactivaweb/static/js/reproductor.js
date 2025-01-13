@@ -27,15 +27,23 @@ setTimeout(function () {
 
     // EVENTO CLICK AGREGADO AL PUTO MALDITO
     btnComenzar?.addEventListener("click", () => {
+        // RECUPERAR MIN DE REPRODUCCIÓN ALMACENADO
+        minAlmacenado = document.getElementById("minuto")?.textContent
+        console.log(minAlmacenado)
+        
         // EL BOTÓN MÁS INFO
         // MANIPULACIÓN DEL ESTILO DEL BOTÓN MÁS INFO
         document.querySelector('#btn-capitulo-out').classList.add('collapsed2');
         document.querySelector('#logo_abajo').classList.add('collapsed2');
         document.querySelector('#info-cap-player').classList.add('collapsed2');
         document.querySelector('#logo_capitulo').classList.add('collapsed');
-        // BOTÓN PAUSA
+        // RECUPERAR BOTÓN PAUSA
         btnMasInfoCap = document.querySelector("#mas-info-cap")
+        // RECUPERAR ELEMENTO VIDEO
         videoElem = document.getElementsByTagName("video")[0]
+        // VOLVER AL MIN DE REPRODUCCIÓN ALMACENADO (HAY QUE AFINAR DETALLES DE LA EJECUCIÓN)
+        videoElem.currentTime = parseFloat(minAlmacenado)
+        // EVENTO CONTROLADOR BOTÓN PAUSA
         btnMasInfoCap?.addEventListener("click", () => {
             videoElem.pause();
         });
