@@ -9,6 +9,13 @@ def pedir_capitulos(id_curso):
 def pedir_cursos():
     return Curso.objects.all()
 
+def pedir_nombres_cursos():
+    lista = list(Curso.objects.all().values('cur', 'nombre'))
+    nombres = []
+    for dic in lista:
+        nombres.append([str(dic['cur']), dic['nombre']])
+    return nombres
+
 def capitulos_index():
     cap_lista = []
     num_lista = [1,2,3,5,6,7,8,9,11,12]

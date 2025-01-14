@@ -1,4 +1,3 @@
-import os
 import json
 
 def get_tipo_organizacion():
@@ -10,4 +9,6 @@ def get_tipo_organizacion():
     for x, cat in enumerate(lista):
         
         #choices.append((x, cat.keys()))
-        print(list(cat.keys()))
+        choices.append((str(x+1), list(cat.keys())[0]))
+    return choices
+
