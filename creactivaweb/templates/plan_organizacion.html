@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% include 'snippets/navbar.html' %}
+{% include 'snippets/header_plan.html' %}
 
-<h1>SELECCIONA UN PLAN</h1>
+    <div id="fondo_animado2">
+    </div>
+    <span id="cuadricula2"></span>
+
 <form class="form form-register" action="{% url 'register' %}" method="post">
-    {% csrf_token %}
+<h1>SELECCIONA UN PLAN</h1>
+{% csrf_token %}
     <div class="form-mid">
         <input id="nombre" type="text" name="nombre" required  placeholder="Nombre">
         <input id="apellido" type="text" name="apellido" required  placeholder="Apellido">

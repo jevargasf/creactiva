@@ -1,23 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% include 'snippets/navbar.html' %}
-<div id="transicion">
+
+<div id="fondo_animado">
 </div>
-<h1>SELECCIONA UN TIPO DE USUARIO</h1>
-<div class="form-register">
-    <div>
-        <a href="{% url 'plan-individual' %}">
-            <h2>INDIVIDUAL</h2>
-            <img src="" alt="icon-individual">
+
+
+
+    {% include 'snippets/navbar.html' %}
+
+<div class="form-user">
+<h2>SELECCIONA UN TIPO DE USUARIO</h2>
+    
+    <ul >
+        <a class="tarjeta" href="{% url 'plan-individual' %}">
+            <h7>INDIVIDUAL</h7>
+            <div class="plan-icon" id="plan-ind-icon"></div>
         </a>
-    </div>
-    <div>
-        <a href="{% url 'plan-organizacion' %}">
-            <h2>ORGANIZACIÓN</h2>
-            <img src="" alt="icon-organizacion">
+
+        <a class="tarjeta" href="{% url 'plan-organizacion' %}">
+            <h7>ORGANIZACIÓN</h7>
+            <div class="plan-icon" id="plan-org-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </a>
-    </div>
+    </ul>
+
 </div>
 
     {% include 'snippets/header_volver.html' %}

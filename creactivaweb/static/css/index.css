@@ -206,6 +206,15 @@ button {
     z-index:3;
 }
 
+#logo_plan{
+    position: fixed;
+    right:50px;
+    top:25px;
+    width:150px;
+    cursor: pointer;
+    z-index:3;
+}
+
 #logo_centro{
     position: fixed;
     left:50%;
@@ -323,6 +332,23 @@ p{
     left:0px;
 }
 
+
+#fondo_animado2{
+    width:100%;
+    height: 100%;
+    position: fixed;
+    overflow: none; 
+    background-color: #024C8D;
+    animation-timing-function: ease-in-out;
+    z-index: -1;
+    background-image: url('../img/fondo2.png');
+    background-size:4000px;
+    background-repeat: repeat;
+    animation: fondo1 60s infinite linear;
+    top:0px;
+    left:0px;
+}
+
 @keyframes fondo1{
     0%{background-position:0px 0px; }
     100%{background-position:-4000px -4000px;}
@@ -347,6 +373,25 @@ p{
     background-image:
       linear-gradient(to right, rgb(20, 28, 70) 1.5px, transparent 1px),
       linear-gradient(to bottom, rgb(20, 28, 70) 1.5px, transparent 1px);
+    background-repeat:  repeat;
+    background-position: center;
+    animation: rotatebg 100s infinite;
+    animation-timing-function: linear;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#cuadricula2{
+    width:200%;
+    position: fixed;
+    height:200%;
+    left:-50%;
+    top:-50%;
+    opacity: .2;
+    background-size: 20px 20px;
+    background-image:
+      linear-gradient(to right, rgb(256, 256, 256) 1.5px, transparent 1px),
+      linear-gradient(to bottom, rgb(256, 256, 256) 1.5px, transparent 1px);
     background-repeat:  repeat;
     background-position: center;
     animation: rotatebg 100s infinite;
@@ -1081,6 +1126,63 @@ float: left;
 }
 */
 
+
+
+/* ----------------------------------------------------- SELECCION USUARIO ------------------------------------------------------- */
+/* ----------------------------------------------------- SELECCION USUARIO  ------------------------------------------------------- */
+/* ----------------------------------------------------- SELECCION USUARIO  ------------------------------------------------------- */
+
+
+
+.form-user {
+    position: absolute;
+    width:50%;
+    top:50%;
+    left:50%;
+    translate: -50% -50%;
+    text-align: center;
+}
+
+.form-user h2{
+    margin-bottom:30px;
+}
+
+
+
+.tarjeta{
+    width:calc(50% - 20px);
+    background-image: url('../img/fondo2.png');
+    background-size:3000px;
+    background-repeat: repeat;
+    animation: fondo 60s infinite linear;
+    animation-direction: reverse;
+    float:left;
+    height:500px;
+    padding:20px;
+    box-sizing: border-box;
+    transition: all .25s 0s;
+    opacity: 0.85;
+    cursor: pointer;
+    color: #00315c;
+    padding: 200px 0px 0px 0px;
+    border-radius: 5px;
+    list-style: none;
+    display: inline-block;
+    margin:0px 10px 0px 10px;
+
+}
+
+
+.tarjeta h7{
+    font-size:35px;
+}
+
+.tarjeta:hover{
+    color: #fff;
+    opacity: 1;
+    scale: 1.075;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+}
 
 
 
