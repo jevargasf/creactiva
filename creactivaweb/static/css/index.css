@@ -1741,6 +1741,13 @@ float: left;
     top: calc(-100vh + 320px);
     cursor: pointer;
 }
+
+
+
+
+
+
+
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
@@ -1960,7 +1967,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-img{
     position: relative;
-    width: 300px;
+    width: 400px;
     height: 100%;
     display: inline-block;
     overflow: hidden;
@@ -1977,14 +1984,98 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-info{
     position: relative;
     width: 600px;
-    height: 100%;
     display: inline-block;
     overflow: hidden;
     pointer-events: inherit;
-    padding:50px;
+    padding:30px 0px 40px 50px;
     box-sizing: border-box;
 }
 
+
+#info-cap-info h4{
+    margin-top:50px;
+}
+
+#info-cap-info p{
+    margin-top:5px;
+    font-family: latolight;
+    letter-spacing: .5px;
+
+}
+
+#info-cap-info h6{
+    margin-top:15px;
+    font-family: latolight;
+}
+
+#info-cap-info h6 b{
+    font-family: latoregular;
+    color:#57DEFF;
+}
+
+
+.cap-lista{
+    list-style: none;
+}
+
+.bloques{
+    padding:5px 0px 0px 5px;
+}
+.bloques li{
+    font-family: latobold;
+    padding:5px;
+
+}
+
+.materiales{
+    padding:5px 0px 5px 5px;
+}
+
+.materiales li{
+    font-family: latobold;
+    display: inline-block;
+    margin-right:0px;
+    color:#57DEFF;
+    -webkit-transition: all .25s;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.materiales li:hover{
+    color:#fff;
+}
+
+.botones-cap{
+    width:100%;
+    margin-top:20px;
+
+}
+.botones-cap a{
+    -webkit-transition: all .25s;
+    pointer-events: all;
+    opacity: 0.8;
+    
+}
+
+.botones-cap button{
+    width:32%;
+}
+.botones-cap img{
+    height:13px;
+    display: inline-block;
+    margin-bottom:5px;
+    
+}
+
+#cap-reproducir h1{
+    color:#99e4ff;
+}
+
+.botones-cap a:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+}
 
 
 

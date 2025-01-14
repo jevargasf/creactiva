@@ -98,24 +98,27 @@
             <h8>{{ capitulo.nombre }}</h8>
             <h4>{{ capitulo.desc_corta }}</h4>
             <p>{{ capitulo.descripcion }}</p>
-            <h6>Duración: {{ capitulo.duracion }} Minutos</h6>
+            <h6>Duración: <b>{{ capitulo.duracion }} Minutos</b></h6>
+            <h6>Contenido:</h6>
+            <ul class="cap-lista bloques">
+                <li>· Origen del Mapuzungun</li>
+                <li>· Grafemarios: ¿Cómo escribimos el Mapuzungun?</li>
+                <li>· Sonidos de Letras</li>
+            </ul>
+            <h6>Recursos adicionales:</h6>
+            <ul class="cap-lista materiales">
+                <a href="" target="_blank"><li>Texto sobre Mapuzungun</li></a>
+                &nbsp; -  &nbsp; 
+                <a href="" target="_blank"><li>Glosario</li></a>
+                &nbsp; -  &nbsp; 
+                <a href="" target="_blank"><li>Otros documentos</li></a>
 
-            <ul>
-                <li>Origen del Mapuzungun</li>
-                <li>Grafemarios: ¿Cómo escribimos el Mapuzungun?</li>
-                <li>Sonidos de Letras</li>
             </ul>
 
-            <ul>
-                <a href=""><li>Texto sobre Mapuzungun</li></a>
-                <a href=""><li>Glosario</li></a>
-                <a href=""><li>Otros documentos</li></a>
-            </ul>
-
-            <nav>
-                <a href=""><button></button></a>
-                <a href=""><button></button></a>
-                <a href=""><button></button></a>
+            <nav class="botones-cap">
+                <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
+                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</button></h1></a>
+                <a href="{% url 'cursos' capitulo.curso.cur %}"><button><img src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
             </nav>
 
         </aside>

@@ -382,7 +382,17 @@ $("#tscVideoContent").click(function(){
 
 });
 
+$("#cap-reproducir").click(function(){
+    document.querySelector('#tscVideoContent').classList.remove('collapsed');
+    document.querySelector('#mas-info-cap').classList.remove('collapsed');
+    document.querySelector('#btn-capitulo-out').classList.remove('collapsed');
+    document.querySelector('#logo_abajo').classList.remove('collapsed');
+    document.querySelector('#cap-banner-top').classList.remove('collapsed');
+    document.querySelector('#info-cap-player').classList.remove('collapsed');
+    document.querySelector('#logo_capitulo').classList.remove('collapsed2');
+    document.querySelector('#info-cap-full').classList.remove('collapsed');
 
+});
 
 $("#btn-curso1").click(function(){
     document.querySelector('#contenido-curso1').classList.add('collapsed');
