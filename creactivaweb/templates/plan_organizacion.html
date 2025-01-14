@@ -7,22 +7,27 @@
     </div>
     <span id="cuadricula2"></span>
 
-
-<form class="form form-register" action="{% url 'register' %}" method="post">
+        <h1>SELECCIONA UN PLAN</h1>
+<form class="form form-register" action="{% url 'solicitud-organizacion' %}" method="post">
     {% csrf_token %}
-    <h7>CreActiv@</h7><br><br>
-    <h3>NOS COMPLACE QUE QUIERAS SER PARTE</h3>
         <div class="form-mid">
-            <input id="nombre" type="text" name="nombre" required  placeholder="Nombre">
-            <input id="apellido" type="text" name="apellido" required  placeholder="Apellido">
+            {{ form.nombre }}
+            {{ form.apellido }}
         </div>
-        <!-- acá el elemento form para el tipo de organización -->
-        <div><input id="email" type="email" name="email" placeholder="sucorreo@sudominio.com" required  placeholder="Email"></div>
+        <div>
+            {{ form.tipo_organizacion.label_tag }}
+            {{ form.tipo_organizacion }}
+        </div>
+        <div>
+            {{ form.cursos.label_tag }}
+            {{ form.cursos }}
+        </div>
+
         <!-- acá el elemento form para la selección de los productos que desea -->
         <!-- comuna -->
         <!-- región -->
         <!-- país  -->
-        <div><input id="mensaje" type="text" name="mensaje" required  placeholder="Cuéntanos más"></div>
+        {{ form.mensaje }}
         <button type="submit">ENVIAR</button>
 </form>
 

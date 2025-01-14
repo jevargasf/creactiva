@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from suscripciones.utils import get_tipo_organizacion
+from main.models import User, Perfil
 
 class Suscripcion(models.Model):
     sus = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
@@ -44,6 +45,17 @@ class PerfilSuscripcion(models.Model):
     )
 
 class SolicitudOrganizacion(models.Model):
+    TIPOS_ORGANIZACIONES = get_tipo_organizacion()
+
     nombre = models.CharField(max_length=255, null=True, blank=True, verbose_name='Nombre')
     apellido = models.CharField(max_length=255, null=True, blank=True, verbose_name='Apellido')
-    #tipo_organizacion = models.Choices()
+    tipo_organizacion = models.CharField(max_length=33, choices=TIPOS_ORGANIZACIONES, default=None, verbose_name='Tipo organización')
+    cursos = models.JSONField(null=False, blank=True, default=None, verbose_name='Cursos')
+    mensaje = models.TextField(null=True, blank=True, verbose_name='Mensaje')
+    usuario = models.ForeignKey(
+        User,
+        default=None,
+        on_delete=models.CASCADE,
+        verbose_name='Solicitud organización',
+        related_name='solicitud_org'
+    )
