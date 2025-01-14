@@ -32,12 +32,12 @@
 
 
 
-<script src="{% static 'scripts/config_xml.js' %}" type="text/javascript"></script>
+<script src="{% static 'scripts/' %}{{ capitulo.js_cap }}" type="text/javascript"></script>
 <script type="text/javascript">
     (function (window) {
         function setup(TSC) {
-             TSC.playerConfiguration.addMediaSrc("https://www.creactivaanimaciones.cl/static/video/c1_1.mp4");
-             TSC.playerConfiguration.setXMPSrc("{% static 'c1_1_config.xml' %}");
+             TSC.playerConfiguration.addMediaSrc("{{ capitulo.link }}");
+             TSC.playerConfiguration.setXMPSrc("{% static 'xml/' %}{{ capitulo.xml_cap }}");
              TSC.playerConfiguration.setAutoHideControls(true);
              TSC.playerConfiguration.setBackgroundColor("#000000");
              TSC.playerConfiguration.setCaptionsEnabled(false);
