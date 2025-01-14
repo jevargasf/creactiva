@@ -342,9 +342,9 @@ p{
     animation-timing-function: ease-in-out;
     z-index: -1;
     background-image: url('../img/fondo2.png');
-    background-size:4000px;
+    background-size:8000px;
     background-repeat: repeat;
-    animation: fondo1 60s infinite linear;
+    animation: fondo3 60s infinite linear;
     top:0px;
     left:0px;
 }
@@ -353,6 +353,12 @@ p{
     0%{background-position:0px 0px; }
     100%{background-position:-4000px -4000px;}
 }
+
+@keyframes fondo3{
+    0%{background-position:0px 0px; }
+    100%{background-position:-8000px -8000px;}
+}
+
 
 #fondo_animado div{
     position: absolute;
@@ -1145,7 +1151,12 @@ float: left;
 
 .form-user h2{
     margin-bottom:30px;
+    font-family: latoblack;
+    color:#fff;
+    letter-spacing:2px;
+    font-size: 22px;
 }
+
 
 
 
@@ -1169,8 +1180,9 @@ float: left;
     list-style: none;
     display: inline-block;
     margin:0px 10px 0px 10px;
-
 }
+
+
 
 
 .tarjeta h7{
@@ -1184,6 +1196,132 @@ float: left;
     box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
 }
 
+
+/* ----------------------------------------------------- SELECCION PLAN -------------------------------------------------------- */
+/* ----------------------------------------------------- SELECCION PLAN  ------------------------------------------------------- */
+/* ----------------------------------------------------- SELECCION PLAN  ------------------------------------------------------- */
+
+.form-plan{
+    position: absolute;
+    width:60%;
+    top:50%;
+    left:50%;
+    translate: -50% -50%;
+    text-align: center;
+}
+
+.form-plan h2{
+    margin-bottom:30px;
+    font-family: latoblack;
+    color:#024C8D;
+    font-size: 22px;
+    letter-spacing:2px;
+}
+
+.form-plan ul{
+    list-style: none;
+
+}
+
+
+.plan{
+    width:calc(33.333% - 20px);
+    background-image: url('../img/fondo.png');
+    background-size:3000px;
+    background-repeat: repeat;
+    animation: fondo 60s infinite linear;
+    float:left;
+    padding:20px;
+    box-sizing: border-box;
+    transition: all .25s 0s;
+    opacity: 0.90;
+    cursor: pointer;
+    color: #57DEFF;
+    border-radius: 10px;
+    list-style: none;
+    display: inline-block;
+    margin:0px 10px 0px 10px;
+}
+
+
+.plan h1{
+    font-family: latoblack;
+    font-size:25px;
+    letter-spacing: 1px;
+    color:#57DEFF;
+}
+.plan h3{
+    font-family: latoblack;
+    font-size:25px;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.plan h7{
+    font-size:35px;
+}
+
+.plan:hover{
+    color: inherit;
+    color: #fff;
+    opacity: 1;
+    scale: 1.075;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.plan ul{
+    border-top:1px solid #fff;
+    width:90%;
+    margin:25px auto 20px auto;
+}
+
+.plan ul li{
+    padding:20px 0px 0px 0px;
+    font-family: latolight;
+}
+
+
+
+.plan-icon{
+    margin:20px auto 0px auto;
+}
+
+#plan-ind-icon{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    transition: all .25s 0s;
+    border:1px solid #fff;
+}
+
+.tarjeta:hover > #plan-ind-icon{
+    background-color: #fff;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    }
+
+    #plan-org-icon{
+        width:60px;
+        height:50px;
+        transition: all .25s 0s;
+    }
+
+
+    #plan-org-icon div{
+        width: 25px;
+        height:25px;
+        border-radius:50%;
+        display:inline-block;
+    transition: all .25s 0s;
+    border:1px solid #fff;
+    }
+
+    .tarjeta:hover > #plan-org-icon div{
+        background-color: #fff;
+        -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+        filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+        }
+    
 
 
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
