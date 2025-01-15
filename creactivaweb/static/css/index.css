@@ -1637,8 +1637,6 @@ float: left;
 #curso-info1 ul{
     list-style: none;
     font-size:13px;
-    
-
 }
 
 #curso-info1 ul li{
@@ -1743,9 +1741,91 @@ float: left;
 }
 
 
+#info-cur-info{
+    position: relative;
+    width: 600px;
+    display: inline-block;
+    overflow: hidden;
+    pointer-events: inherit;
+    padding:0px 0px 40px 50px;
+    box-sizing: border-box;
+}
 
 
+#info-cur-info h4{
+    margin-top:50px;
+}
 
+#info-cur-info p{
+    margin-top:5px;
+    font-family: latolight;
+    letter-spacing: .5px;
+
+}
+
+#info-cur-info h6{
+    margin-top:15px;
+    font-family: latolight;
+}
+
+#info-cur-info h6 b{
+    font-family: latoregular;
+    color:#57DEFF;
+}
+
+#listado-curso{
+    list-style: none;
+    font-size:13px;
+    margin-top:10px;
+}
+#listado-curso li{
+    display: inline-block;
+    margin-bottom:5px;
+
+}
+#listado-curso li img{
+    display: inline-block;
+    float:left;
+    height:18px;
+    margin:0px 7px 5px 0px;
+
+}
+
+#listado-curso li h4{
+    display: inline-block;
+    margin-right:10px;
+    float:left;
+    line-height: 20px;
+    margin-top:0px;
+}
+
+
+.botones-cur{
+    width:100%;
+    margin-top:15px;
+
+}
+.botones-cur a{
+    -webkit-transition: all .25s;
+    pointer-events: all;
+    opacity: 0.8;
+    
+}
+
+.botones-cur button{
+    width:45%;
+}
+.botones-cur img{
+    height:13px;
+    display: inline-block;
+    margin:5px;
+    
+}
+.botones-cur a:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+}
 
 
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
@@ -2047,7 +2127,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 .botones-cap{
     width:100%;
-    margin-top:20px;
+    margin-top:25px;
 
 }
 .botones-cap a{
@@ -2077,6 +2157,9 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
+h4#cur-desc-corta {
+    margin-top:10px;
+}
 
 
 /* ------------------------------------ALERTAS------------------------------------------------------------ */

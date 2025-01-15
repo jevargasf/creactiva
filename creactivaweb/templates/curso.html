@@ -53,7 +53,38 @@
 
 <button id="mas-info" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información"></button>
 
+<article id="info-cap-full" class="info-cur">
+    <section>
+        <aside id="info-cur-info"> 
+            <h1>{{ curso.etiqueta }}</h1>
+            <h8>{{ curso.nombre }}</h8>
+            <ul id="listado-curso">
+                <!-- número capítulos y duración total -->
+                <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>{{ capitulos.count }} Capítulos <i>({{ duracion }}hrs)</i></h4></li>
+                <!-- número de recursos adicionales -->
+                {% if num_materiales == 0 %}
+                {% else %}
+                <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recursos adicionales</h4></li>
+                {% endif %}
+                <!-- número de actividades interactivas -->
+                <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
+                <li><img src="{% static 'icon/parlante.svg' %}" alt=""><h4>Español, Mapuzungun</h4></li>
+                <li><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
+            </ul>
+            <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
+            <p>{{ curso.desc_larga }}</p>
 
+
+            <nav class="botones-cur">
+                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</button></h1></a>
+                <a ><button><img src="{% static 'icon/fav-off.svg' %}" alt="Compartir"><h1>AÑADIR A FAVORITOS</button></h1></a>
+            </nav>
+
+        </aside>
+        <aside id="info-cap-img"></aside>
+
+    </section>
+</article>
 
 
     {% include 'snippets/navbar.html' %}

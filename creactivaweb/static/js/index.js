@@ -332,6 +332,8 @@ $("#mas-info").click(function(){
     document.querySelector('#contenido-curso1').classList.add('collapsed');
     document.querySelector('#curso-info1').classList.add('collapsed');
     document.querySelector('#mas-info').classList.add('collapsed');
+    document.querySelector('#info-cap-full').classList.add('collapsed');
+
 });
 
 
@@ -339,8 +341,11 @@ $("#mas-info").click(function(){
 $("#img-curso-cont").click(function(){
     document.querySelector('#contenido-curso1').classList.remove('collapsed');
     document.querySelector('#curso-info1').classList.remove('collapsed');
+    document.querySelector('#info-cap-full').classList.remove('collapsed');
     document.querySelector('#mas-info').classList.remove('collapsed');
 });
+
+
 
 
 
@@ -379,7 +384,6 @@ $("#tscVideoContent").click(function(){
     document.querySelector('#info-cap-player').classList.remove('collapsed');
     document.querySelector('#logo_capitulo').classList.remove('collapsed2');
     document.querySelector('#info-cap-full').classList.remove('collapsed');
-
 });
 
 $("#cap-reproducir").click(function(){
@@ -398,6 +402,7 @@ $("#btn-curso1").click(function(){
     document.querySelector('#contenido-curso1').classList.add('collapsed');
     document.querySelector('#curso-info1').classList.add('collapsed');
     document.querySelector('#mas-info').classList.add('collapsed');
+    document.querySelector('#info-cap-full').classList.add('collapsed');
 });
 
 
