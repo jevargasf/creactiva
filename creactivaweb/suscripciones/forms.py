@@ -1,8 +1,10 @@
 from django import forms
 from django.forms import ModelForm
 from suscripciones.models import SolicitudOrganizacion
-from suscripciones.utils import get_tipo_organizacion
+from suscripciones.utils import get_tipo_organizacion, SelectCustom
 from cursos.utils import pedir_nombres_cursos
+
+
 class SolicitudOrganizacionForm(ModelForm):
     class Meta:
         model = SolicitudOrganizacion
@@ -27,7 +29,7 @@ class SolicitudOrganizacionForm(ModelForm):
                     'id': 'apellido'
                 }
             ),
-            'tipo_organizacion': forms.Select(
+            'tipo_organizacion': SelectCustom(
                 choices=get_tipo_organizacion(),
                 attrs={
                     'placeholder': 'Selecciona el tipo de organización',
