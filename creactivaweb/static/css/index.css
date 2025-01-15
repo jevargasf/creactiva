@@ -1747,7 +1747,7 @@ float: left;
     display: inline-block;
     overflow: hidden;
     pointer-events: inherit;
-    padding:0px 0px 40px 50px;
+    padding:0px 0px 40px 0px;
     box-sizing: border-box;
 }
 
@@ -1827,6 +1827,11 @@ float: left;
     filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
+
+#info-cur-menu{
+    width: 400px;
+    display: inline-block;
+}
 
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
@@ -2161,6 +2166,131 @@ h4#cur-desc-corta {
     margin-top:10px;
 }
 
+
+/*-----------GLOSARIO--------------------------------------------------*/
+section#info-curso{
+    height:initial;
+}
+
+aside#cur-cap {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px 0px 40px 0px;
+    transition: all 0.8s ease-in-out;
+    display: inline-block;
+    pointer-events: all;
+    height: initial;
+    top: 50%;
+    translate: 0 -50%;
+}
+
+#cur-cap div {
+    padding:0px 10px 0px 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#cur-cap b {
+    color:#333;
+}
+
+
+.boton-desplegable {
+    width:39.5%;
+    box-sizing: border-box;
+}
+
+.boton-desplegable h4 {
+    width:100%;
+    background-color:rgba(0, 0, 0, 0.15);
+    padding: 15px 30px 15px 25px;
+    box-sizing: border-box;
+    font-family: latoregular;
+    font-size:13px;
+    color:#fff;
+    margin:0px;
+    cursor: pointer;
+    -webkit-animation: all .5s;
+    pointer-events: all;
+}
+
+.boton-desplegable h4:hover{
+    background-color:rgba(0, 0, 0, 0.3);
+}
+
+.boton-desplegable h4.collapsed{
+    background-color:rgba(0, 0, 0, 0.3);
+}
+
+
+.boton-desplegable h4 span {
+    float:right;
+    width:12px;
+    height:15px;
+    position:relative;
+    margin-top:2px;
+}
+
+.boton-desplegable h4 span button {
+    width:100%;
+    position:absolute;
+    top:50%;
+    transform: translate(0%, -50%);
+    border:none;
+    cursor:initial;
+    height:1px;
+    outline: none;
+    background-color:#fff;
+}
+
+.boton-desplegable h4 span button:selection {
+    outline: none;
+}
+
+.boton-desplegable h4 span button.mas {
+    transform: rotate(90deg);
+    margin-top:-1px;
+    transition: all 0.3s ease-in-out;
+}
+
+.boton-desplegable h4.collapsed button.mas{
+    transform: rotate(0deg);
+    margin-top:-1px;
+    background-color:#fff;
+}
+
+.boton-desplegable aside {
+    background-color:rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    height:0px;
+    padding:0px 10px 0px 10px;
+    overflow: hidden;
+    -webkit-animation: all .5s;
+}
+
+.boton-desplegable aside.collapsed {
+    height:initial;
+
+}
+
+.boton-desplegable dl {
+    padding:10px 10px 10px 10px;
+    box-sizing: border-box;
+    color:#fff;
+    font-size:12px;
+}
+
+.boton-desplegable dt {
+    padding:0px 0px 5px 0px;
+    font-size:12px;
+    font-family:latobold;
+}
+
+.boton-desplegable dd {
+    font-size:12px;
+    margin:0px 0px 5px 0px;
+}
 
 /* ------------------------------------ALERTAS------------------------------------------------------------ */
 /* ------------------------------------ALERTAS------------------------------------------------------------ */

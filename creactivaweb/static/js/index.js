@@ -415,7 +415,74 @@ $(".play-button-overlay-glyph").click(function(){
 
 })
 
+    document.querySelector('.boton-ra1').addEventListener('click', function() {
+        document.querySelector('.boton-ra1').classList.toggle('collapsed');
+        document.querySelector('.boton-ra2').classList.remove('collapsed');
+        document.querySelector('.boton-ra3').classList.remove('collapsed');
+        document.querySelector('.boton-ra4').classList.remove('collapsed');
+        document.querySelector('.boton-ra5').classList.remove('collapsed');
+        document.querySelector('.lista-ra1').classList.toggle('collapsed');
+        document.querySelector('.lista-ra2').classList.remove('collapsed');
+        document.querySelector('.lista-ra3').classList.remove('collapsed');
+        document.querySelector('.lista-ra4').classList.remove('collapsed');
+        document.querySelector('.lista-ra5').classList.remove('collapsed');
+    });
+    
+    document.querySelector('.boton-ra2').addEventListener('click', function() {
+        document.querySelector('.boton-ra1').classList.remove('collapsed');
+        document.querySelector('.boton-ra2').classList.toggle('collapsed');
+        document.querySelector('.boton-ra3').classList.remove('collapsed');
+        document.querySelector('.boton-ra4').classList.remove('collapsed');
+        document.querySelector('.boton-ra5').classList.remove('collapsed');
+        document.querySelector('.lista-ra1').classList.remove('collapsed');
+        document.querySelector('.lista-ra2').classList.toggle('collapsed');
+        document.querySelector('.lista-ra3').classList.remove('collapsed');
+        document.querySelector('.lista-ra4').classList.remove('collapsed');
+        document.querySelector('.lista-ra5').classList.remove('collapsed');
+    });
+            
+        
+    document.querySelector('.boton-ra3').addEventListener('click', function() {
+        document.querySelector('.boton-ra1').classList.remove('collapsed');
+        document.querySelector('.boton-ra2').classList.remove('collapsed');
+        document.querySelector('.boton-ra3').classList.toggle('collapsed');
+        document.querySelector('.boton-ra4').classList.remove('collapsed');
+        document.querySelector('.boton-ra5').classList.remove('collapsed');
+        document.querySelector('.lista-ra1').classList.remove('collapsed');
+        document.querySelector('.lista-ra2').classList.remove('collapsed');
+        document.querySelector('.lista-ra3').classList.toggle('collapsed');
+        document.querySelector('.lista-ra4').classList.remove('collapsed');
+        document.querySelector('.lista-ra5').classList.remove('collapsed');
+    });
 
+    
+    document.querySelector('.boton-ra4').addEventListener('click', function() {
+        document.querySelector('.boton-ra1').classList.remove('collapsed');
+        document.querySelector('.boton-ra2').classList.remove('collapsed');
+        document.querySelector('.boton-ra3').classList.remove('collapsed');
+        document.querySelector('.boton-ra4').classList.toggle('collapsed');
+        document.querySelector('.boton-ra5').classList.remove('collapsed');
+        document.querySelector('.lista-ra1').classList.remove('collapsed');
+        document.querySelector('.lista-ra2').classList.remove('collapsed');
+        document.querySelector('.lista-ra3').classList.remove('collapsed');
+        document.querySelector('.lista-ra4').classList.toggle('collapsed');
+        document.querySelector('.lista-ra5').classList.remove('collapsed');
+    });
+
+
+    
+    document.querySelector('.boton-ra5').addEventListener('click', function() {
+        document.querySelector('.boton-ra1').classList.remove('collapsed');
+        document.querySelector('.boton-ra2').classList.remove('collapsed');
+        document.querySelector('.boton-ra3').classList.remove('collapsed');
+        document.querySelector('.boton-ra4').classList.remove('collapsed');
+        document.querySelector('.boton-ra5').classList.toggle('collapsed');
+        document.querySelector('.lista-ra1').classList.remove('collapsed');
+        document.querySelector('.lista-ra2').classList.remove('collapsed');
+        document.querySelector('.lista-ra3').classList.remove('collapsed');
+        document.querySelector('.lista-ra4').classList.remove('collapsed');
+        document.querySelector('.lista-ra5').classList.toggle('collapsed');
+    });
 
 $(document).ready(function () {
     document.querySelector('#btn-spotlight1').classList.add('collapsed');

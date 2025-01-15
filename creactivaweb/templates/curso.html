@@ -54,7 +54,7 @@
 <button id="mas-info" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información"></button>
 
 <article id="info-cap-full" class="info-cur">
-    <section>
+    <section id="info-curso">
         <aside id="info-cur-info"> 
             <h1>{{ curso.etiqueta }}</h1>
             <h8>{{ curso.nombre }}</h8>
@@ -81,11 +81,72 @@
             </nav>
 
         </aside>
-        <aside id="info-cap-img"></aside>
+        <aside id="info-cur-menu">
+
+            <aside id="cur-cap">
+                <div>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra1">Capítulo 1: El Mapuzungun<span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra1">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra2">Capítulo 2: Pronombres <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra2">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra3">Capítulo 3: Acciones y números. <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra3">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra4">Capítulo 4: Saludos y presentación. <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra4">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra5">Capítulo 5: Conversación <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra5">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                </div>
+            </aside>
+
+        </aside>
 
     </section>
 </article>
-
 
     {% include 'snippets/navbar.html' %}
     {% include 'snippets/header_centro.html' %}
