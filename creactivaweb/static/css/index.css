@@ -420,7 +420,7 @@ p{
     top:0px;
     left:0px;
     opacity: 1;
-    transition:all .75s .15s;
+    transition:all .75s;
     pointer-events: none;
     background-size: 20px 20px;
     background-image:
@@ -431,13 +431,9 @@ p{
     animation: rotatebg 100s infinite;
     left:-50%;
     top:-50%;
+    overflow: hidden;
 }
 
-
-#transicion.collapsed{
-    transition:all .3s 0s;
-    opacity:1;
-}
 
 /*--------------------------------------------Spotlight Principal--------------------------------------------------*/
 /*--------------------------------------------Spotlight Principal--------------------------------------------------*/
@@ -1609,6 +1605,7 @@ float: left;
     bottom: 270px;
     text-align: left;
     opacity: 1;
+    text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
     transition: all .5s;
 }
 
@@ -1626,8 +1623,8 @@ float: left;
 }
 
 #curso-info1 p{
-    width:60%;
-    font-size:13px;
+    width:50%;
+    font-size:16px;
     border-top:1px solid #fff;
     padding-top:10px;
     margin-top:10px;
@@ -1737,9 +1734,11 @@ float: left;
 
 #contenido-curso1.collapsed{
     top: calc(-100vh + 320px);
-    cursor: pointer;
 }
 
+#contenido-curso1.collapsed img{
+    cursor: pointer;
+}
 
 #info-cur-info{
     position: relative;
@@ -1749,6 +1748,7 @@ float: left;
     pointer-events: inherit;
     padding:0px 0px 40px 0px;
     box-sizing: border-box;
+    
 }
 
 
@@ -1761,6 +1761,10 @@ float: left;
     font-family: latolight;
     letter-spacing: .5px;
 
+}
+
+#info-cur-info h5{
+    margin:0px 0px 5px 2px;
 }
 
 #info-cur-info h6{
@@ -1780,9 +1784,10 @@ float: left;
 }
 #listado-curso li{
     display: inline-block;
-    margin-bottom:5px;
-
 }
+
+
+
 #listado-curso li img{
     display: inline-block;
     float:left;
@@ -1802,7 +1807,7 @@ float: left;
 
 .botones-cur{
     width:100%;
-    margin-top:15px;
+    margin-top:20px;
 
 }
 .botones-cur a{
@@ -2009,12 +2014,9 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     -webkit-transition: all .2s, bottom .75s;
 }
 
-
 #info-cap-player h4{
     margin-top:10px;
-
 }
-
 
 #info-cap-player.collapsed{
     opacity:0;
@@ -2024,7 +2026,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-player.collapsed2{
     opacity:0;
 }
-
 
 #info-cap-full{
     width: 100%;
@@ -2037,7 +2038,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-full.collapsed{
     bottom: 0px;
-
 }
 
 #info-cap-full section{
@@ -2046,9 +2046,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     height: calc(100vh - 150px);
     display: table;
     pointer-events: none;
-
 }
-
 
 #info-cap-img{
     position: relative;
@@ -2064,8 +2062,8 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     height:100%;
     top:50%;
     translate: -40% -50%;
-
 }
+
 #info-cap-info{
     position: relative;
     width: 600px;
@@ -2076,6 +2074,11 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     box-sizing: border-box;
 }
 
+#info-cap-info h4{
+    margin-bottom:3px;
+    
+
+}
 
 #info-cap-info h4{
     margin-top:50px;
@@ -2085,7 +2088,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     margin-top:5px;
     font-family: latolight;
     letter-spacing: .5px;
-
 }
 
 #info-cap-info h6{
@@ -2098,7 +2100,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     color:#57DEFF;
 }
 
-
 .cap-lista{
     list-style: none;
 }
@@ -2109,7 +2110,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 .bloques li{
     font-family: latobold;
     padding:5px;
-
 }
 
 .materiales{
@@ -2133,23 +2133,22 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 .botones-cap{
     width:100%;
     margin-top:25px;
-
 }
+
 .botones-cap a{
     -webkit-transition: all .25s;
     pointer-events: all;
     opacity: 0.8;
-    
 }
 
 .botones-cap button{
     width:32%;
 }
+
 .botones-cap img{
     height:13px;
     display: inline-block;
     margin-bottom:5px;
-    
 }
 
 #cap-reproducir h1{
@@ -2166,10 +2165,16 @@ h4#cur-desc-corta {
     margin-top:10px;
 }
 
+img.img-x2{
+    height:17px;
+}
 
-/*-----------GLOSARIO--------------------------------------------------*/
+/*------------------------------INFO CURSO--------------------------------------------------*/
+/*------------------------------INFO CURSO--------------------------------------------------*/
+/*------------------------------INFO CURSO--------------------------------------------------*/
+
 section#info-curso{
-    height:initial;
+    height:calc(100vh - 320px);
 }
 
 aside#cur-cap {
@@ -2194,7 +2199,6 @@ aside#cur-cap {
 #cur-cap b {
     color:#333;
 }
-
 
 .boton-desplegable {
     width:39.5%;
@@ -2222,7 +2226,6 @@ aside#cur-cap {
 .boton-desplegable h4.collapsed{
     background-color:rgba(0, 0, 0, 0.3);
 }
-
 
 .boton-desplegable h4 span {
     float:right;
@@ -2261,16 +2264,16 @@ aside#cur-cap {
 }
 
 .boton-desplegable aside {
+    transition: max-height 0.3s ease-out;
     background-color:rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
-    height:0px;
+    max-height:0px;
     padding:0px 10px 0px 10px;
     overflow: hidden;
-    -webkit-animation: all .5s;
 }
 
 .boton-desplegable aside.collapsed {
-    height:initial;
+    max-height:200px;
 
 }
 
@@ -2291,6 +2294,9 @@ aside#cur-cap {
     font-size:12px;
     margin:0px 0px 5px 0px;
 }
+
+
+
 
 /* ------------------------------------ALERTAS------------------------------------------------------------ */
 /* ------------------------------------ALERTAS------------------------------------------------------------ */

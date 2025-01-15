@@ -94,7 +94,7 @@
     <section>
         <aside id="info-cap-img"><img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="{{ capitulo.nombre }}"></aside>
         <aside id="info-cap-info"> 
-            <h3>{{ capitulo.curso }} / <b>Capítulo {{ capitulo.numero }}</b></h3>
+            <h6>{{ capitulo.curso }} | Capítulo {{ capitulo.numero }}</h6>
             <h8>{{ capitulo.nombre }}</h8>
             <h4>{{ capitulo.desc_corta }}</h4>
             <p>{{ capitulo.descripcion }}</p>
@@ -117,8 +117,8 @@
 
             <nav class="botones-cap">
                 <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
-                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</button></h1></a>
-                <a href="{% url 'cursos' capitulo.curso.cur %}"><button><img src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
+                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
+                <a href="{% url 'cursos' capitulo.curso.cur %}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
             </nav>
 
         </aside>

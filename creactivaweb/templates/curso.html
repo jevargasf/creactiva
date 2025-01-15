@@ -56,7 +56,7 @@
 <article id="info-cap-full" class="info-cur">
     <section id="info-curso">
         <aside id="info-cur-info"> 
-            <h1>{{ curso.etiqueta }}</h1>
+            <h5>Cultura | Idiomas</h5>
             <h8>{{ curso.nombre }}</h8>
             <ul id="listado-curso">
                 <!-- número capítulos y duración total -->
@@ -76,8 +76,8 @@
 
 
             <nav class="botones-cur">
-                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</button></h1></a>
-                <a ><button><img src="{% static 'icon/fav-off.svg' %}" alt="Compartir"><h1>AÑADIR A FAVORITOS</button></h1></a>
+                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
+                <a id="add-favoritos"><button><img class="img-x2" src="{% static 'icon/fav-off.svg' %}" alt="Compartir"><h1>AÑADIR A FAVORITOS</h1></button></a>
             </nav>
 
         </aside>
