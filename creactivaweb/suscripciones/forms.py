@@ -11,7 +11,7 @@ class SolicitudOrganizacionForm(ModelForm):
             'nombre': 'Nombre',
             'apellido': 'Apellido',
             'mensaje': 'Mensaje',
-            'cursos': 'Selecciona los cursos que desees',
+            'cursos': 'Selecciona el contenido que te interesa',
             'tipo_organizacion': 'Tipo de organización'
         }
         widgets = {

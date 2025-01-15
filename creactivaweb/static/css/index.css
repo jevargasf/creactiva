@@ -1077,6 +1077,8 @@ input:-webkit-autofill:active{
     filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
 }
 
+
+
 .form-register form button{
     margin:40px 0px 0px 0px;
     
@@ -1086,9 +1088,22 @@ input:-webkit-autofill:active{
 }
 
 .form button{
-    background-color: #c5dbe9;
+    background-color:#fff;
+    font-size:15px;
+    border:none;
+    font-family: latoblack;
+    color:#00224a;
+    margin-bottom:30px;
+    padding:10px 30px 10px 30px;
+    display: inline-block;
+    border-radius: 5px;
 }
-
+.form button:hover{
+    color:#1787e9;
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+    filter: drop-shadow( 0px 0px 6px rgb(255, 255, 255));
+}
 
 #flecha_izquierda{
     height: 14px;
@@ -1129,6 +1144,12 @@ float: left;
 */
 
 
+
+
+#tipo_organizacion{
+    background-color:red;
+
+}
 
 /* ----------------------------------------------------- SELECCION USUARIO ------------------------------------------------------- */
 /* ----------------------------------------------------- SELECCION USUARIO  ------------------------------------------------------- */
