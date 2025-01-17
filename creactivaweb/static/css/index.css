@@ -1142,14 +1142,148 @@ float: left;
     100%{    opacity: 1;}
 }
 */
-
-
-
-
-#tipo_organizacion{
-    background-color:red;
+#form-organizacion .form-mid{
+    margin-top: 40px;
 
 }
+
+#form-organizacion .form-mid input{
+    width:185px;
+
+}
+
+#tipo_organizacion{
+    background-color: initial;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-family: latolight;
+    padding: 5px 5px 10px 5px;
+    border-bottom: 1px solid #fff;
+    width: 400px;
+    margin-bottom: 20px;
+    letter-spacing: .5px;
+    cursor: pointer;
+    border-radius: 0px;
+
+}
+
+
+#tipo_organizacion option{
+    background-color: #005c99;
+    color: #fff;
+    letter-spacing: .5px;
+    border-radius: 0px;
+    padding:5px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+}
+
+#tipo_organizacion option:first-child{
+    color: rgba(256, 256, 256, .5);
+    display: none;
+}
+
+
+
+#tipo_organizacion option:hover{
+    background-color: #1787e9;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+#form-check{
+    text-align: left;
+    width: 400px;
+    font-family: latolight;
+    margin: 0 auto 20px auto;
+    font-size:15px;
+}
+
+#form-check input{
+    float: right;
+    width: auto;
+    margin:0;
+    background-color: rgba(0, 0, 0, .0);
+    cursor:pointer;
+    
+}
+
+#form-check div{
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    margin-top:10px;
+}
+
+
+#cursos_checkbox div{
+    font-style:italic;
+    cursor: pointer;
+}
+
+#cursos_checkbox label{
+    cursor: pointer;
+}
+
+#cursos_checkbox div:before{
+    content: "-";
+    
+}
+
+.form textarea{
+    background-color: rgba(0, 0, 0, .0);
+    border: 0;
+    border-bottom:1px solid #fff;
+    border-top:1px solid #fff;
+    color:#fff;
+    width:400px;
+    padding:5px;
+    margin: 5px auto 20px auto;
+    resize: none;
+}
+
+#form-organizacion{
+    padding: 40px 0px 40px 0px;
+}
+
+
+
+
+#form-organizacion h4{
+    float:left;
+    padding-top:5px;
+    margin-right:10px;
+}
+
+#form-organizacion img{
+    margin-right:10px;
+    padding-top:8px;
+    float:left;
+    cursor: pointer;
+    width:16px;
+    -webkit-transition: all .3s;
+}
+
+#form-organizacion img:hover{
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
+}
+
+#form-org-footer{
+    width:400px;
+    margin:0 auto;
+}
+
+
+#form-org-footer button{
+    float:right;
+}
+
+
 
 /* ----------------------------------------------------- SELECCION USUARIO ------------------------------------------------------- */
 /* ----------------------------------------------------- SELECCION USUARIO  ------------------------------------------------------- */
@@ -1271,11 +1405,16 @@ float: left;
     font-family: latoblack;
     font-size:25px;
     letter-spacing: 1px;
+    -webkit-transition: all .25s;
     color: rgba(0, 0, 0, 0.25);
 }
 
 .plan h7{
     font-size:35px;
+    -webkit-filter: none;
+    filter: none;
+    -webkit-transition: all .25s;
+    color:#1787e9;
 }
 
 .plan:hover{
@@ -1284,6 +1423,20 @@ float: left;
     opacity: 1;
     scale: 1.075;
     box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.plan:hover > h7{
+    opacity: 1;
+    color:#fff;
+    -webkit-filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
+}
+
+.plan:hover > h3{
+    color:#fff;
+    opacity: 1;
+    -webkit-filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
+    filter: drop-shadow( 0px 0px 3px rgba(123, 255, 248, 1));
 }
 
 .plan ul{

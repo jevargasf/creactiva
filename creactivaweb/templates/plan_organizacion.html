@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 {% include 'snippets/header_plan.html' %}
 
@@ -8,8 +8,8 @@
     <span id="cuadricula2"></span>
 
 
-<form class="form form-register" action="{% url 'solicitud-organizacion' %}" method="post">
-    <h7>CreActiv@</h7><br><br><br>
+<form id="form-organizacion" class="form form-register" action="{% url 'solicitud-organizacion' %}" method="post">
+    <h7>CreActiv@</h7><br><br>
     <h3>NOS COMPLACE QUE QUIERAS SER PARTE:</h3>
     {% csrf_token %}
         <div class="form-mid">
@@ -19,7 +19,7 @@
         <div>
             {{ form.tipo_organizacion }}
         </div>
-        <div>
+        <div id="form-check">
             {{ form.cursos.label_tag }}
             {{ form.cursos }}
         </div>
@@ -29,7 +29,12 @@
         <!-- región -->
         <!-- país  -->
         {{ form.mensaje }}
-        <button type="submit">ENVIAR</button>
+        <div id="form-org-footer">
+            <h4>O contáctanos directamente: </h4>
+            <img src="{% static 'icon/phone.svg' %}" alt="">
+            <img src="{% static 'icon/wsp.svg' %}" alt="">
+            <button type="submit">ENVIAR</button>
+        </div>
 </form>
 
     {% include 'snippets/header_volver.html' %}

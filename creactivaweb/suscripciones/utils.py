@@ -7,7 +7,7 @@ def get_tipo_organizacion():
     f.close()
     lista = json.loads(text)
     choices = [
-        ('','--- Seleccione una opción ---')
+        ('','Tipo de organización:')
     ]
     for x, cat in enumerate(lista):
         

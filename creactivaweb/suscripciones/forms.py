@@ -46,7 +46,7 @@ class SolicitudOrganizacionForm(ModelForm):
                 attrs={
                     'placeholder': 'Cuéntanos más',
                     'id': 'mensaje',
-                    'rows': 4
+                    'rows': 6
                 }
             )
         }
