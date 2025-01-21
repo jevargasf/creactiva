@@ -13,11 +13,16 @@
     <h3>NOS COMPLACE QUE QUIERAS SER PARTE:</h3>
     {% csrf_token %}
         <div class="form-mid">
-            {{ form.nombre }}
-            {{ form.apellido }}
+            {{ form.nombre_organizacion }}
         </div>
         <div>
             {{ form.tipo_organizacion }}
+        </div>
+        <div>
+            {{ form.pais }}
+        </div>
+        <div>
+            {{ form.comuna }}
         </div>
         <div id="form-check">
             {{ form.cursos.label_tag }}

@@ -40,6 +40,7 @@ class CapituloView(View):
     
     def get (self, request: HttpRequest, id):        
         capitulo = Capitulo.objects.get(pk=id)
+        print(request.user)
         if request.user.is_authenticated == True:
             perfil = pedir_perfil(request.user)
             ultima_visualizacion = pedir_ultima_visualizacion(perfil, capitulo)
@@ -60,6 +61,7 @@ class CapituloView(View):
             context = {
                 'capitulo': capitulo
             }
+
             return render(request, 'registration/login.html', context)
         
     def post(self, request: HttpRequest, id):
