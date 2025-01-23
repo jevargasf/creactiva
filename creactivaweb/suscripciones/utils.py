@@ -3,7 +3,7 @@ import ast
 from django.forms import Select
 
 def get_tipo_organizacion():
-    f = open("./static/json/organizaciones.json", "r")
+    f = open("./static/json/organizaciones.json", "rb")
     text = f.read()
     f.close()
     lista = json.loads(text)
