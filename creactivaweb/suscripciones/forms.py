@@ -7,6 +7,21 @@ from cursos.utils import pedir_nombres_cursos
 
 class SolicitudOrganizacionForm(ModelForm):
     class Meta:
+
+        def __init__(self, *args, **kwargs):
+                    super(SolicitudOrganizacionForm, self).__init__(*args, **kwargs)
+                    self.fields['cursos'] = forms.CheckboxSelectMultiple(
+                        choices=pedir_nombres_cursos(),
+                        attrs={
+                            'id': 'cursos_checkbox'
+                        }
+                    )
+                    self.fields['titular'] = SelectCustom(
+                        choices=('1','b'),
+                        attrs={
+                            'id': 'titulares_checkbox'
+                        }
+                    )
         model = SolicitudOrganizacion
         fields = ['nombre_organizacion', 'tipo_organizacion', 'pais', 'comuna', 'cursos', 'mensaje']
         labels = {
@@ -58,43 +73,49 @@ class SolicitudOrganizacionForm(ModelForm):
             )
         }
 
-# class SuscripcionOrganizacionForm(ModelForm):
-#     class Meta:
-#         model = Suscripcion
-#         fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios', 'cursos', 'titular']
-#         labels = {
-#             'fecha_inicio': 'Fecha inicio',
-#             'fecha_termino': 'Fecha término',
-#             'monto': 'Monto',
-#             'numero_usuarios': 'Número usuarios',
-#             'cursos': 'Cursos',
-#             'titular': 'Usuario titular'
-#         }
-#         widgets = {
-#             'fecha_inicio': forms.DateField(
-#                 attrs={
-#                     'id': 'fecha_inicio'
-#                 }
-#             ),
-#             'fecha_termino': forms.DateField(
-#                 attrs={
-#                     'id': 'fecha_termino'
-#                 }
-#             ),
-#             'monto': forms.NumberInput(
-#                 attrs={
-#                     'id': 'monto'
-#                 }
-#             ),
-#             'numero_usuarios': forms.NumberInput(
-#                 attrs={
-#                     'id': 'numero_usuarios'
-#                 }
-#             ),
-#             'cursos': forms.CheckboxSelectMultiple(
-#                 choices=pedir_nombres_cursos(),
-#                 attrs={
-#                     'id': 'cursos_checkbox'
-#                 }
-#             ),
-#         }
+class SuscripcionOrganizacionForm(ModelForm):
+    cursos = forms.CheckboxSelectMultiple(
+                choices=pedir_nombres_cursos(),
+                attrs={
+                    'id': 'cursos_checkbox'
+                }
+            )
+    titular = SelectCustom(
+                choices=('1','a'),
+                attrs={
+                    'id': 'titular'
+                }
+            )
+    class Meta:
+        model = Suscripcion
+        fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios']
+        labels = {
+            'fecha_inicio': 'Fecha inicio',
+            'fecha_termino': 'Fecha término',
+            'monto': 'Monto',
+            'numero_usuarios': 'Número usuarios',
+            'cursos': 'Cursos',
+            'titular': 'Usuario titular'
+        }
+        widgets = {
+            'fecha_inicio': forms.DateInput(format='%d/%m/%Y',
+                attrs={
+                    'id': 'fecha_inicio'
+                }
+            ),
+            'fecha_termino': forms.DateInput(format='%d/%m/%Y',
+                attrs={
+                    'id': 'fecha_termino'
+                }
+            ),
+            'monto': forms.NumberInput(
+                attrs={
+                    'id': 'monto'
+                }
+            ),
+            'numero_usuarios': forms.NumberInput(
+                attrs={
+                    'id': 'numero_usuarios'
+                }
+            )
+        }

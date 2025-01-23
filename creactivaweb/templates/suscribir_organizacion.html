@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'snippets/header_plan.html' %}
+
+<div id="fondo_animado2">
+</div>
+<span id="cuadricula2"></span>
+
+
+<form id="form-organizacion" class="form form-register" action="{% url 'suscribir-organizacion' %}" method="post">
+<h7>ADMINISTRADOR</h7><br><br>
+<h3>INGRESA LOS DATOS PARA REGISTRAR UNA SUSCRIPCIÓN DE ORGANIZACIÓN:</h3>
+{% csrf_token %}
+    <div class="form-mid">
+        {{ form.fecha_inicio.label_tag }}
+        {{ form.fecha_inicio }}
+        {{ form.fecha_termino.label_tag }}
+        {{ form.fecha_termino }}
+    </div>
+    <div>
+        {{ form.numero_usuarios.label_tag }}
+        {{ form.numero_usuarios }}
+    </div>
+    <div>
+        {{ form.monto.label_tag }}
+        {{ form.monto }}
+    </div>
+    <div id="form-check">
+        {{ form.cursos }}
+    </div>
+
+    {{ form.titular }}
+    <div id="form-org-footer">
+        <button type="submit">ENVIAR</button>
+    </div>
+</form>
+
+{% include 'snippets/header_volver.html' %}
+{% endblock %}

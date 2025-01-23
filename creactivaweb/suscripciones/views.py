@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpRequest
-from suscripciones.forms import SolicitudOrganizacionForm
+from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm
 from django.contrib import messages
 from cursos.utils import pedir_nombres_cursos
 
@@ -55,3 +55,22 @@ class SolicitudOrganizacionView(View):
             messages.error(request, 'No se ha podido enviar tu solicitud. Por favor, intenta nuevamente.')
             return render(request, 'plan_organizacion.html', context)
             
+class SuscripcionOrganizacionView(View):
+    def dispatch(self, *args, **kwargs):
+            return super().dispatch(*args, **kwargs)
+
+    def get(self, request: HttpRequest):
+        form = SuscripcionOrganizacionForm()
+        context = {'form': form}
+        return render(request, 'suscribir_organizacion.html', context)
+    
+    def post(self, request: HttpRequest):
+        form = SuscripcionOrganizacionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'La suscripción se ha registrado con éxito.')
+            return redirect('index')
+        else:
+            context = {'form': form}
+            messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
+            return render(request, 'suscribir_organizacion.html', context)

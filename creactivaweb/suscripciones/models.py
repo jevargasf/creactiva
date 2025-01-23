@@ -7,7 +7,7 @@ class Suscripcion(models.Model):
     sus = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
     # No siempre será la fecha de ahora, solo para los usuarios individuales
     fecha_inicio = models.DateTimeField(null=False, default=now, verbose_name='Fecha inicio')
-    fecha_termino = models.DateTimeField(null=True, verbose_name='Fecha término')
+    fecha_termino = models.DateTimeField(null=True, default=now, verbose_name='Fecha término')
     monto = models.IntegerField(null=True, verbose_name='Monto')
     numero_usuarios = models.IntegerField(null=False, default=1, verbose_name='Número usuarios')
     codigo_validacion = models.CharField(max_length=255, null=True, verbose_name='Código validación')
