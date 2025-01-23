@@ -1,0 +1,1 @@
+from creactivaweb.wsgi import application
