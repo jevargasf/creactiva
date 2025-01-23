@@ -1,0 +1,3 @@
+HTTP_REFERER > elemento del contexto de una solicitud http que muestra la página anterior
+onclick="history.go(-1)" atributo que indica que el botón redirecciona a la página inmediatamente anterior (según el historial del navegador)
+request.path > ruta relativa (sin el dominio) de la página

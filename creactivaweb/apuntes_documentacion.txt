@@ -1,0 +1,3 @@
+# Cómo subir un capítulo:
+- Colocar cada archivo en su carpeta según su tipo. Por ejemplo, las imágenes van en static/img. En el
+administrador de la página, agregar solo el nombre de la imagen.png.

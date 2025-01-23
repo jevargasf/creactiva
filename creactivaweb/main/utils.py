@@ -9,10 +9,14 @@ def crear_usuario(username: str, first_name: str, last_name: str, email: str, pa
         first_name=first_name,
         last_name=last_name
     )
+    user.save()
     perfil = Perfil.objects.create(
-        codigo_perfil='100',
+        codigo='100',
         user=user
     )
-    user.save()
     perfil.save()
     return True
+
+# Form choices
+def get_tipos_organizacion():
+    pass

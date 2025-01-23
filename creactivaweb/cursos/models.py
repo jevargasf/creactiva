@@ -1,34 +1,34 @@
 from django.db import models
-
+from django.utils import timezone
 
 class Etiqueta(models.Model):
     eti = models.AutoField(primary_key=True, null=False, verbose_name='ID Etiqueta')
-    nom_eti = models.CharField(max_length=50, verbose_name='Nombre etiqueta')
+    nombre = models.CharField(max_length=50, verbose_name='Nombre etiqueta')
 
     def __str__(self):
-        return self.nom_eti
+        return self.nombre
 
 class Idioma(models.Model):
     idi = models.AutoField(primary_key=True, null=False, verbose_name='ID idioma')
-    nom_idi = models.CharField(max_length=255, verbose_name='Nombre idioma')
+    nombre = models.CharField(max_length=255, verbose_name='Nombre idioma')
 
     def __str__(self):
-        return self.nom_idi
+        return self.nombre
 
 class Autor(models.Model):
     aut = models.AutoField(primary_key=True, null=False, verbose_name='ID autor')
-    nom_aut = models.CharField(max_length=255, verbose_name='Nombre autor')
+    nombre_autor = models.CharField(max_length=255, verbose_name='Nombre autor')
 
     def __str__(self):
-        return self.nom_aut
+        return self.nombre_autor
 
 class MaterialesComplementario(models.Model):
     mat = models.AutoField(primary_key=True, null=False, verbose_name='ID material')
-    nom_mat = models.CharField(max_length=255, verbose_name='Nombre material')
-    lin_mat = models.URLField(verbose_name='Link material')
+    nombre_material = models.CharField(max_length=255, verbose_name='Nombre material')
+    link_material = models.CharField(max_length=255, null=True, verbose_name='Link material')
 
     def __str__(self):
-        return f'{self.nom_mat}'
+        return f'{self.nombre_material}'
 
 class Curso(models.Model):
     cur = models.AutoField(primary_key=True, null=False, verbose_name='ID curso')
@@ -49,23 +49,25 @@ class Curso(models.Model):
         verbose_name='Idioma',
         default=1
     )
-    aut = models.ManyToManyField(Autor, verbose_name='Autores', related_name='autores')
+    autores = models.ManyToManyField(Autor, verbose_name='Autores', related_name='autores')
 
     def __str__(self):
         return self.nombre
 
 class Capitulo(models.Model):
     cap = models.AutoField(primary_key=True, null=False, verbose_name='ID capítulo')
-    nom_cap = models.CharField(max_length=255, verbose_name='Nombre capítulo')
-    dur_cap = models.IntegerField(verbose_name='Duración (minutos)')
-    des_cap = models.TextField(verbose_name='Descripción')
-    nin_cap = models.IntegerField(verbose_name='Número de actividades interactivas')
-    lin_cap = models.URLField(verbose_name='Link capítulo', max_length=255)
+    numero = models.IntegerField(null=True, verbose_name='Número capítulo')
+    nombre = models.CharField(max_length=255, verbose_name='Nombre capítulo')
+    duracion = models.IntegerField(verbose_name='Duración (minutos)')
+    desc_corta= models.CharField(max_length=255, null=True, verbose_name='Descripción Corta')
+    descripcion = models.TextField(verbose_name='Descripción')
+    num_actividades = models.IntegerField(verbose_name='Número de actividades interactivas')
+    link = models.URLField(verbose_name='Link capítulo', max_length=255)
     xml_cap = models.CharField(verbose_name='Link xml', null=True, max_length=255)
     js_cap = models.CharField(verbose_name='Link xml.js', null=True, max_length=255)
-    thu_cap = models.CharField(verbose_name='Link thumbnail', null=True, max_length=255)
-    fir_cap = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
-    mat = models.ForeignKey(
+    thumbnail = models.CharField(verbose_name='Link thumbnail', null=True, max_length=255)
+    first_frame = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
+    material = models.ForeignKey(
         MaterialesComplementario,
         blank=True, 
         null=True,
@@ -82,12 +84,14 @@ class Capitulo(models.Model):
     )
 
     def __str__(self):
-        return self.nom_cap
+        return f'Curso: {self.curso} | Capítulo {self.numero}: {self.nombre}'
 
     
     
 class EstadoCapitulo(models.Model):
-    est_cap = models.AutoField(primary_key=True, null=False, verbose_name='ID estado capítulo')
+    ESTADOS_CAPITULOS = ((0, "No visto"), (1, "En progreso"), (2, "Terminado"))
+
+    est = models.AutoField(primary_key=True, null=False, verbose_name='ID estado capítulo')
     perfil = models.ForeignKey(
         'main.Perfil',
         on_delete=models.CASCADE,
@@ -100,7 +104,7 @@ class EstadoCapitulo(models.Model):
         verbose_name='capitulos',
         related_name='capitulo_est'
     )
-    estado_capitulo = models.IntegerField(verbose_name='Estado capítulo')
+    estado_capitulo = models.IntegerField(choices=ESTADOS_CAPITULOS, default=0, verbose_name='Estado capítulo')
 
     def __str__(self):
         return f'{self.perfil.user} Estado: {self.estado_capitulo}'
@@ -119,8 +123,9 @@ class Visualizacion(models.Model):
         verbose_name='capitulo',
         related_name='capitulo_vis'
     )
-    fec_vis = models.DateTimeField(null=False, verbose_name='Última visualización')
-    min_vis = models.IntegerField(null=False, verbose_name='Minuto última visualización')
+    minuto = models.FloatField(null=False, verbose_name='Minuto última visualización')
+    fecha = models.DateTimeField(auto_now_add=True, verbose_name='Última visualización')
+
 
     def __str__(self):
-        return f'{self.perfil.user} {self.fec_vis}'
+        return f'{self.perfil.user} {self.fecha}'

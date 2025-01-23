@@ -1,5 +1,13 @@
 {% load static %}
 
 <header>
-    <a id="sigue_explorando" href="{% url 'index' %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>SIGUE EXPLORANDO</h6></a>
+    {% if "capitulo" in request.path %}
+    <a id="sigue_explorando" href="{% url 'cursos' capitulo.curso.cur %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER AL CURSO</h6></a>
+    {% elif "/planes/individual" in request.path or  "/planes/organizacion" in request.path %}
+    <a id="sigue_explorando" href="{% url 'planes' %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER A PLANES</h6></a>
+    {% elif "/accounts/registro" in request.path %}
+    <a id="sigue_explorando" href="{% url 'login' %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER A INCIAR SESIÓN</h6></a>
+    {% else %}
+    <a id="sigue_explorando" href="{% url 'index' %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER A INICIO</h6></a>
+    {% endif %}
 </header>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="fondo_animado">
+</div>
+
+
+
+    {% include 'snippets/navbar.html' %}
+
+<div class="form-user">
+<h2>SELECCIONA UN TIPO DE USUARIO</h2>
+    
+        <a class="tarjeta" href="{% url 'plan-individual' %}">
+            <h7>INDIVIDUAL</h7>
+            <div class="plan-icon" id="plan-ind-icon"></div>
+        </a>
+
+        <a class="tarjeta" href="{% url 'solicitud-organizacion' %}">
+            <h7>ORGANIZACIÓN</h7>
+            <div class="plan-icon" id="plan-org-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </a>
+
+</div>
+
+    {% include 'snippets/header_volver.html' %}
+{% endblock %}

@@ -3,7 +3,11 @@
 {% block content %}
 
 
-<div>
+
+<div id="transicion">
+</div>
+
+<div id="contenido-curso1">
     <div id="img-curso-cont">
         <img class="img-curso" src="{% static 'img/' %}{{ curso.imagen_portada }}" alt="fondo-curso">
     </div>
@@ -14,30 +18,135 @@
     
     <h1>{{ curso.nombre }}</h1>
     <ul>
-        <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>5 Capítulos <i>(6hrs)</i></h4></li>
-        <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>2 Recursos adicionales</h4></li>
-        <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>8 Actividades interactivas</h4></li>
+        <!-- número capítulos y duración total -->
+        <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>{{ capitulos.count }} Capítulos <i>({{ duracion }}hrs)</i></h4></li>
+        <!-- número de recursos adicionales -->
+        {% if num_materiales == 0 %}
+        {% else %}
+        <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recursos adicionales</h4></li>
+        {% endif %}
+        <!-- número de actividades interactivas -->
+        <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
     </ul>
-    <p>{{ curso.desc_larga }}</p>
+    <p>{{ curso.desc_corta }}</p>
 
 
 
-    <button class="btn-curso" id="btn-curso1"><a href="#">CONOCE MÁS</a></button>
+    <button class="btn-curso" id="btn-curso1"><a href="#">MÁS INFORMACIÓN</a></button>
 
 
     {% if user.is_authenticated %}
-    <a href="{% url 'capitulo' %}"><button class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+    {% for capitulo in capitulos %}
+    {% if forloop.first %}
+    <a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+    {% else %}
+    {% endif %}
+    {% endfor %}
     {% else %}
     <a href="{% url 'login' %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
     {% endif %}
 
     </div>
+    <!-- aquí renderizo cada cap, pero en el snippet -->
     {% include 'snippets/fila_curso.html' %}
 </div>
 
+<button id="mas-info" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información"></button>
+
+<article id="info-cap-full" class="info-cur">
+    <section id="info-curso">
+        <aside id="info-cur-info"> 
+            <h5>Cultura | Idiomas</h5>
+            <h8>{{ curso.nombre }}</h8>
+            <ul id="listado-curso">
+                <!-- número capítulos y duración total -->
+                <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>{{ capitulos.count }} Capítulos <i>({{ duracion }}hrs)</i></h4></li>
+                <!-- número de recursos adicionales -->
+                {% if num_materiales == 0 %}
+                {% else %}
+                <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recursos adicionales</h4></li>
+                {% endif %}
+                <!-- número de actividades interactivas -->
+                <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
+                <li><img src="{% static 'icon/parlante.svg' %}" alt=""><h4>Español, Mapuzungun</h4></li>
+                <li><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
+            </ul>
+            <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
+            <p>{{ curso.desc_larga }}</p>
 
 
+            <nav class="botones-cur">
+                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
+                <a id="add-favoritos"><button><img class="img-x2" src="{% static 'icon/fav-off.svg' %}" alt="Compartir"><h1>AÑADIR A FAVORITOS</h1></button></a>
+            </nav>
 
+        </aside>
+        <aside id="info-cur-menu">
+
+            <aside id="cur-cap">
+                <div>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra1">Capítulo 1: El Mapuzungun<span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra1">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra2">Capítulo 2: Pronombres <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra2">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra3">Capítulo 3: Acciones y números. <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra3">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra4">Capítulo 4: Saludos y presentación. <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra4">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+                    <article class="boton-desplegable">
+                        <h4 class="boton-ra5">Capítulo 5: Conversación <span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra5">
+                            <dl>
+                                <dd>· Origen del Mapuzungun.</dd>
+                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
+                                <dd>· Sonidos de Letras.</dd>
+                            </dl>
+                        </aside>
+                    </article>
+
+                </div>
+            </aside>
+
+        </aside>
+
+    </section>
+</article>
 
     {% include 'snippets/navbar.html' %}
     {% include 'snippets/header_centro.html' %}

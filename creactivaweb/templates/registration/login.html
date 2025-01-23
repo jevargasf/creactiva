@@ -8,6 +8,7 @@
     <h3>HOLA</h3>
     <h7>CreActiv@</h7>
 
+
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         <div>
@@ -16,7 +17,13 @@
         <div>
             <input type="password" name="{{ form.password.name }}" id="password" required placeholder="Contraseña">
         </div>
-        <p>¿Hás olvidado tu contraseña?</p>
+        {% if form.errors %}
+        <div class="alerta_registro" role="alert">
+            <strong>Usuario y contraseña no coinciden</strong>
+        </div>
+    
+        {% endif %}
+        <p>¿Has olvidado tu contraseña?</p>
 
         <button type="submit">ENTRAR</button>
     </form>

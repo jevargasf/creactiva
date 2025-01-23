@@ -7,7 +7,7 @@
 
         <div id="btn-perfil">
 
-                <h6>Hola JAVIER</h6>
+                <h6>&nbsp&nbsp Hola <b>{{ user.first_name }}</b></h6>
                 
         <form class="form-logout" action="{% url 'logout' %}" method="post">
             {% csrf_token %}
@@ -29,7 +29,7 @@
     <button id="btn-menu">
         <ul id="menudesplegabe">
             <li><a class="link-nav" href="{% url 'index' %}">Cursos</a></li>
-            <li><a class="link-nav barracolor" href="{% url 'index' %}">Planes</a> </li>
+            <li><a class="link-nav barracolor" href="{% url 'planes' %}">Planes</a> </li>
             <li><a class="link-nav" href="{% url 'contacto' %}">Contacto</a></li>
             <li><a class="link-nav barracolor" href="{% url 'index' %}">Preguntas frecuentes</a></li>
             <li><a class="link-nav" href="{% url 'index' %}">Sobre nosotros</a></li>

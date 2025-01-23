@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'snippets/header_plan.html' %}
+
+    <div id="fondo_animado2">
+    </div>
+    <span id="cuadricula2"></span>
+
+<div class="form-plan">
+<h2>SELECCIONA UN PLAN</h2>
+        <a class="plan" href="">
+            <h7>MENSUAL</h7>
+            <h1>15.000 CLP</h1>
+            <h5>por mes : 30 días</h5>
+            <ul> 
+                <li>Acceso a todo el <br>contenido educativo.</li>
+                <li>Acceso a todo el material complementario.</li>
+                <li>Soporte 24/7</li>
+            </ul>
+            <h3>Contratar</h3>
+        </a>
+        <a  class="plan" href="">
+            <h7>SEMESTRAL</h7>
+            <h1>12.000 CLP</h1>
+            <h5>por mes : 180 días</h5>
+            <ul> 
+                <li>Acceso anticipado a nuevos cursos.</li>
+                <li>Acceso a todo el <br>contenido educativo.</li>
+                <li>Acceso a todo el material complementario.</li>
+                <li>Soporte 24/7</li>
+            </ul>
+            <h3>Contratar</h3>
+        </a>
+        <a class="plan"  href="">
+            <h7>ANUAL</h7>
+            <h1>9.000 CLP</h1>
+            <h5>por mes : 365 días</h5>
+            <ul> 
+                <li>Acceso anticipado a nuevos cursos.</li>
+                <li>Acceso a todo el <br>contenido educativo.</li>
+                <li>Acceso a todo el material complementario.</li>
+                <li>Soporte 24/7</li>
+                <li>Acceso al Foro</li>
+            </ul>
+            <h3>Contratar</h3>
+        </a>
+</div>
+
+    {% include 'snippets/header_volver.html' %}
+{% endblock %}

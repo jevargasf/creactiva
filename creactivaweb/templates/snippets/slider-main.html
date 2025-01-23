@@ -1,54 +1,104 @@
 {% load static %}
 <!--------------------------------------SLIDER PRINCIPAL-------------------------------------------------------->
 <div id="spotlight">
-    <div id="slider-inicial">
-        <div>
-            <img src="{% static 'img/1.png' %}" alt="imagen-1">
-        </div>
+	<div id="slider-inicial">
+					{% for capitulo in capitulos %}
+					{% if forloop.counter is 1 %}
+					<div>
+						<img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="imagen-1">
+					</div>
+					{% endif %}
+					{% endfor %}
+					{% for curso in cursos %}
+					{% if forloop.counter is 1 %}
+					<div>
+						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-2">
+					</div>
+					{% endif %}
+					{% endfor %}
+					{% for capitulo in capitulos %}
+					{% if forloop.counter is 2 %}
+					<div>
+						<img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="imagen-3">
+					</div>
+					{% endif %}
+					{% endfor %}
+					{% for curso in cursos %}
+					{% if forloop.counter is 2 %}
+					<div>
+						<img src="{% static 'img/' %}{{ curso.imagen_portada}}" alt="imagen-4">
+					</div>
+					{% endif %}
+					{% endfor %}
 
-        <div>
-            <img src="{% static 'img/2.png' %}" alt="imagen-2">
-        </div>
-
-        <div>
-            <img src="{% static 'img/3.png' %}" alt="imagen-3">
-        </div>
-
-        <div>
-            <img src="{% static 'img/4.png' %}" alt="imagen-4">
-        </div>
-    </div>
+	</div>
 
         <div id="mascara_spotlight"></div>
 			<!--DESCRIPCIONES SLIDER INICIAL-->
             <button id="flecha-izquierda-slider-inicial"></button>
     		<button id="flecha-derecha-slider-inicial"></button>
 			
+
+			<div id="slider-inicial-nav">
+							{% for capitulo in capitulos %}
+							{% if forloop.counter is 1 %}
+							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight1">VER AHORA</button></a>
+							{% endif %}
+							{% endfor %}
+							{% for curso in cursos %}
+							{% if forloop.counter is 1 %}
+										<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
+										{% endif %}
+										{% endfor %}
+							{% for capitulo in capitulos %}
+							{% if forloop.counter is 2 %}
+							<a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
+							{% endif %}
+							{% endfor %}
+							{% for curso in cursos %}
+							{% if forloop.counter is 2 %}
+							<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
+							{% endif %}
+							{% endfor %}
+			
 			<nav id="slider-inicial-descripciones">
-				<dl class="collapsible collapsed" id="slider-inicial-descripcion-1">
-					<dd>Capítulo</dd>
-					<dt>Pronombres</dt>
-					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
-				</dl>
-				<dl class="collapsible" id="slider-inicial-descripcion-2">
-					<dd>Curso</dd>
-					<dt>Introducción al Mapuznugun</dt>
-					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
-				</dl>
-				<dl class="collapsible" id="slider-inicial-descripcion-3">
-					<dd>Capítulo</dd>
-					<dt>Números</dt>
-					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
-				</dl>
-				<dl class="collapsible" id="slider-inicial-descripcion-4">
-					<dd>Curso</dd>
-					<dt>Cultura Mapuche</dt>
-					<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </dd>
-				</dl>
+							{% for capitulo in capitulos %}
+							{% if forloop.counter is 1 %}
+							<dl class="collapsible" id="slider-inicial-descripcion-1">
+								<dd>Capítulo</dd>
+								<dt>{{ capitulo.nombre }}</dt>
+								<dd>{{ capitulo.desc_corta }}</dd>
+							</dl>
+							{% endif %}
+							{% endfor %}
+							{% for curso in cursos %}
+							{% if forloop.counter is 1 %}
+										<dl class="collapsible" id="slider-inicial-descripcion-2">
+											<dd>Curso</dd>
+											<dt>{{ curso.nombre }}</dt>
+											<dd>{{ curso.desc_corta }}</dd>
+										</dl>
+										{% endif %}
+										{% endfor %}
+							{% for capitulo in capitulos %}
+							{% if forloop.counter is 2 %}
+							<dl class="collapsible" id="slider-inicial-descripcion-3">
+								<dd>Capítulo</dd>
+								<dt>{{ capitulo.nombre }}</dt>
+								<dd>{{ capitulo.desc_corta }}</dd>
+							</dl>
+							{% endif %}
+							{% endfor %}
+							{% for curso in cursos %}
+							{% if forloop.counter is 2 %}
+							<dl class="collapsible" id="slider-inicial-descripcion-4">
+								<dd>Curso</dd>
+								<dt>{{ curso.nombre }}</dt>
+								<dd>{{ curso.desc_corta }}</dd>
+							</dl>
+							{% endif %}
+							{% endfor %}
+
 			</nav>
-			<a href="{% url 'capitulo' %}"><button class="btn-spotlight collapsed" id="btn-spotlight1">VER AHORA</button></a>
-			<a href="{% url 'cursos' %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
-			<a href="{% url 'capitulo' %}"><button class="btn-spotlight" id="btn-spotlight3">VER AHORA</button></a>
-			<a href="{% url 'cursos' %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
-            
+		</div>
 </div>
