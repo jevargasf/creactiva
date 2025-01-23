@@ -124,3 +124,45 @@ Mejoras a futuro:
 
 ACTUALMENTE TRABAJANDO:
 - app suscripciones/formulario solicitud organizaciones/categorías organizaciones
+
+PRÓXIMOS PASOS:
+- HTML cursos
+- Agregar contenidos curso a backend
+- Agregar curso a favoritos
+- Bloquear barra de avance en primera reproducción
+- Nuevos botones: play grande, reiniciar capítulo
+- Comportamiento reproductor: al finalizar el capítulo, mostrar el índice
+- Redireccionamiento registrar está roto
+- Crear usuario debe incluir registro de perfil básico
+- Si no hay materiales, que no se muestre recursos adicionales
+- Debug primera carga reproductor
+- Tarjeta estudiarntes y proceso de validación estudiante
+- Corregir tilde en desplegable del form organizaciones
+- Tarjetas planes editables desde backend
+
+APP SUSCRIPCIONES:
+1) INDIVIDUAL
+- crear modelo bbdd planes
+- registrar planes en bbdd y servirlos al front
+- HTML detalle
+- Integrar webpay
+- Que la compra (envío del formulario detalle) active una suscripción bajo un cierto periodo de tiempo
+
+2) ORGANIZACIÓN
+- registrar formulario Fabián
+- que el registro del formulario active una suscripción (acceso al contenido bajo un cierto
+periodo de tiempo)
+
+PRÓXIMOS PASOS DE ESTO:
+- diseñar formularios
+
+        # Falta: linkear con cursos a los que se dará acceso, linkear con rep organización
+        # Rep org: se recupera de una lista renderizada?? o se solicita en un input y se hace la
+        # búsqueda en la bbdd. Nah, de una lista nomás de los rep org.
+        # Luego: los cursos se recuperan tb de una lista renderizada
+        # Bueno, creo que debo usar multi-forms
+
+
+        # Quizás no es necesario porque voy a pedir los cursos y el titular a través de una lista
+        # Y cuando mande el formulario, escribo los modelos en el view
+        # Y los campos de suscripción están listos

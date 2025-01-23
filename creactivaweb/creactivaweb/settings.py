@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'suscripciones',
     'dashboards',
     'whitenoise.runserver_nostatic',
+    'formset'
 ]
 
 MIDDLEWARE = [
