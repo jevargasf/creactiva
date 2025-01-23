@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion
-from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises
+from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises, get_representantes
 from cursos.utils import pedir_nombres_cursos
 
 
@@ -74,18 +74,18 @@ class SolicitudOrganizacionForm(ModelForm):
         }
 
 class SuscripcionOrganizacionForm(ModelForm):
-    cursos = forms.CheckboxSelectMultiple(
+    cursos = forms.CharField(widget=forms.CheckboxSelectMultiple(
                 choices=pedir_nombres_cursos(),
                 attrs={
                     'id': 'cursos_checkbox'
                 }
-            )
-    titular = SelectCustom(
-                choices=('1','a'),
+            ))
+    titular = forms.CharField(widget=SelectCustom(
+                choices=[('1','a'),('2','b')],
                 attrs={
                     'id': 'titular'
                 }
-            )
+            ))
     class Meta:
         model = Suscripcion
         fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios']

@@ -4,7 +4,7 @@ from django.http import HttpRequest
 from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm
 from django.contrib import messages
 from cursos.utils import pedir_nombres_cursos
-
+from suscripciones.utils import get_representantes
 
 # Create your views here.
 class PlanesView(View):
@@ -45,6 +45,7 @@ class SolicitudOrganizacionView(View):
         return render(request, 'plan_organizacion.html', context)
     
     def post(self, request: HttpRequest):
+        # Cuando se reciba una solicitud de organización, la persona queda registrada como representante
         form = SolicitudOrganizacionForm(request.POST)
         if form.is_valid():
             form.save()
@@ -60,6 +61,7 @@ class SuscripcionOrganizacionView(View):
             return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
+        get_representantes()
         form = SuscripcionOrganizacionForm()
         context = {'form': form}
         return render(request, 'suscribir_organizacion.html', context)

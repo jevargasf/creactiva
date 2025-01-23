@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from cursos.models import Capitulo
 
 class Perfil(models.Model):
-    codigo = models.CharField(max_length=3, null=False, blank=False, default='100', verbose_name='Código perfil')
+    codigo = models.CharField(max_length=3, null=False, blank=False, default='000', verbose_name='Código perfil')
     comuna = models.CharField(max_length=255, null=True, blank=True, verbose_name='Comuna')
     region = models.CharField(max_length=255, null=True, blank=True, verbose_name='Región')
     telefono = models.CharField(max_length=12, null=True, blank=True, verbose_name='Teléfono')

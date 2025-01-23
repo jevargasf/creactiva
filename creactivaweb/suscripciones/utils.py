@@ -1,6 +1,7 @@
 import json
 import ast
 from django.forms import Select
+from main.models import Perfil
 
 def get_tipo_organizacion():
     f = open("./static/json/organizaciones.json", "rb")
@@ -48,3 +49,13 @@ class SelectCustom(Select):
         if not option.get('value'):
             option['attrs']['disabled'] = True
         return option
+
+def get_representantes():
+    data = Perfil.objects.filter(codigo='010')
+    if len(data) != 0:
+        for rep in data:
+            # Enviar esta data al formulario para que el administrador pueda elegir el representante
+            # Tal vez, se debería registrar el nombre de la organización en Perfil, sería útil
+            print(rep.user, rep.user.first_name, rep.user.last_name)
+    else:
+        return None
