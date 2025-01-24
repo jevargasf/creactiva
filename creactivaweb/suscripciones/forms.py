@@ -81,7 +81,7 @@ class SuscripcionOrganizacionForm(ModelForm):
                 }
             ))
     titular = forms.CharField(widget=SelectCustom(
-                choices=[('1','a'),('2','b')],
+                choices=get_representantes(),
                 attrs={
                     'id': 'titular'
                 }

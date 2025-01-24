@@ -53,9 +53,9 @@ class SelectCustom(Select):
 def get_representantes():
     data = Perfil.objects.filter(codigo='010')
     if len(data) != 0:
+        lista_rep = [['0', 'Seleccione al representante de la organización']]
         for rep in data:
-            # Enviar esta data al formulario para que el administrador pueda elegir el representante
-            # Tal vez, se debería registrar el nombre de la organización en Perfil, sería útil
-            print(rep.user, rep.user.first_name, rep.user.last_name)
+            lista_rep.append([str(rep.id), f'{rep.user} | {rep.user.first_name} {rep.user.last_name}'])
+        return lista_rep
     else:
         return None
