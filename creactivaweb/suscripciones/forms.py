@@ -1,7 +1,8 @@
 from django import forms
 from django.forms import ModelForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion
-from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises, get_representantes
+from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises
+from suscripciones.services import get_solicitudes
 from cursos.utils import pedir_nombres_cursos
 
 
@@ -73,6 +74,17 @@ class SolicitudOrganizacionForm(ModelForm):
             )
         }
 
+class ElegirOrganizacionForm(forms.Form):
+      organizacion = forms.CharField(widget=SelectCustom(
+                choices=get_solicitudes(),
+                attrs={
+                    'id': 'titular'
+                }
+            ))
+# Crear el formulario para elegir la organización. El formulario tiene que mandar al menos
+# Datos básicos de la solicitud como nombre de la organización y nombre del usuario que lo subió
+# También, crear la url para realizar la solicitud
+
 class SuscripcionOrganizacionForm(ModelForm):
     cursos = forms.CharField(widget=forms.CheckboxSelectMultiple(
                 choices=pedir_nombres_cursos(),
@@ -80,12 +92,7 @@ class SuscripcionOrganizacionForm(ModelForm):
                     'id': 'cursos_checkbox'
                 }
             ))
-    titular = forms.CharField(widget=SelectCustom(
-                choices=get_representantes(),
-                attrs={
-                    'id': 'titular'
-                }
-            ))
+    titular = forms.CharField(widget=forms.TextInput())
     class Meta:
         model = Suscripcion
         fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios']
