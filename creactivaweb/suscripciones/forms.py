@@ -92,7 +92,10 @@ class SuscripcionOrganizacionForm(ModelForm):
                     'id': 'cursos_checkbox'
                 }
             ))
-    titular = forms.CharField(widget=forms.TextInput())
+    titular = forms.CharField(widget=SelectCustom(
+          choices=get_solicitudes(),
+          attrs={'disabled':True})
+          )
     class Meta:
         model = Suscripcion
         fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios']

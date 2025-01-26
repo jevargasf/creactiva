@@ -7,5 +7,5 @@ urlpatterns = [
     path('planes/organizacion', SolicitudOrganizacionView.as_view(), name='solicitud-organizacion'),
     path('pagar/', PagarView.as_view(), name='pantalla-compra'),
     path('suscripciones/organizacion/elegir', ElegirOrganizacionView.as_view(), name='elegir-organizacion'),
-    path('suscripciones/organizacion/registrar', SuscripcionOrganizacionView.as_view(), name='suscribir-organizacion')
+    path('suscripciones/organizacion/registrar/<id_org>', SuscripcionOrganizacionView.as_view(), name='suscribir-organizacion')
 ]

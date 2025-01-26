@@ -8,7 +8,7 @@
 <span id="cuadricula2"></span>
 
 
-<form id="form-organizacion" class="form form-register" action="{% url 'suscribir-organizacion' %}" method="post">
+<form id="form-organizacion" class="form form-register" action="{% url 'suscribir-organizacion' id_org %}" method="post">
 <h7>ADMINISTRADOR</h7><br><br>
 <h3>INGRESA LOS DATOS PARA REGISTRAR UNA SUSCRIPCIÓN DE ORGANIZACIÓN:</h3>
 {% csrf_token %}

@@ -154,15 +154,14 @@ APP SUSCRIPCIONES:
 periodo de tiempo)
 
 PRÓXIMOS PASOS DE ESTO:
-- diseñar formularios
+- registrar formulario de suscripción organización
+REVISAR POR QUÉ NO SE GUARDA EXITSAMENTE EL FORMULARIO. DEBE TENER QUE VER CON EL TIPO O CANTIDAD DE DATOS QUE DEBE RECIBIR EL FORMULARIO
 
-        # Falta: linkear con cursos a los que se dará acceso, linkear con rep organización
-        # Rep org: se recupera de una lista renderizada?? o se solicita en un input y se hace la
-        # búsqueda en la bbdd. Nah, de una lista nomás de los rep org.
-        # Luego: los cursos se recuperan tb de una lista renderizada
-        # Bueno, creo que debo usar multi-forms
+SIGUIENTE:
+- crear plantilla detalle suscripción individual
 
+SIGUIENTE:
+- crear tarea diaria que compruebe vigencia de todas las suscripciones
 
-        # Quizás no es necesario porque voy a pedir los cursos y el titular a través de una lista
-        # Y cuando mande el formulario, escribo los modelos en el view
-        # Y los campos de suscripción están listos
+SIGUIENTE:
+- comenzar integración pasarela de pagos(con eso termina app suscripciones)

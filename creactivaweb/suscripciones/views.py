@@ -78,16 +78,9 @@ class ElegirOrganizacionView(View):
     def post(self, request: HttpRequest):
         form = ElegirOrganizacionForm(request.POST)
         if form.is_valid():
-            messages.success(request, 'Por favor, registre la suscripción.')
-
-        # EL TRABAJO ACÁ ES ENVIAR EL FORMULARIO PRELLENADO
             id_solicitud = form.cleaned_data['organizacion']
-            datos_organizacion = SolicitudOrganizacion.objects.get(id=id_solicitud)
-            new_form = SuscripcionOrganizacionForm()
-            new_form.titular = datos_organizacion.usuario
-            new_form.cursos = datos_organizacion.cursos
-            context = {'form': new_form}
-            return render(request, 'suscribir_organizacion.html', context)
+            messages.success(request, 'Por favor, registre la suscripción.')
+            return redirect('suscribir-organizacion', id_org=id_solicitud)
         else:
             context = {'form': form}
             messages.error(request, 'No se pudo recuperar los datos de la organización. Por favor, intenta nuevamente.')
@@ -97,19 +90,30 @@ class SuscripcionOrganizacionView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get(self, request: HttpRequest):
-        form = SuscripcionOrganizacionForm()
-        context = {'form': form}
+    def get(self, request: HttpRequest, id_org):
+        datos_organizacion = SolicitudOrganizacion.objects.get(id=id_org)
+        initial_data = {
+            'titular': datos_organizacion.usuario,
+            'cursos': datos_organizacion.cursos
+        }
+        form = SuscripcionOrganizacionForm(initial=initial_data)
+        context = {
+            'id_org': id_org,
+            'form': form
+        }
         return render(request, 'suscribir_organizacion.html', context)
     
-    def post(self, request: HttpRequest):
+    def post(self, request: HttpRequest, id_org):
         form = SuscripcionOrganizacionForm(request.POST)
         print(form)
         if form.is_valid():
             form.save()
             messages.success(request, 'La suscripción se ha registrado con éxito.')
-            return redirect('index')
+            return redirect('index', id_org=id_org)
         else:
-            context = {'form': form}
+            context = {
+                'id_org': id_org,
+                'form': form
+                }
             messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
             return render(request, 'suscribir_organizacion.html', context)
