@@ -4,18 +4,18 @@ from suscripciones.utils import get_tipo_organizacion
 from main.models import User, Perfil
 
 class Suscripcion(models.Model):
-    sus = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
+    id = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
     # No siempre será la fecha de ahora, solo para los usuarios individuales
     fecha_inicio = models.DateTimeField(null=False, default=now, verbose_name='Fecha inicio')
     fecha_termino = models.DateTimeField(null=True, default=now, verbose_name='Fecha término')
     monto = models.IntegerField(null=True, verbose_name='Monto')
     numero_usuarios = models.IntegerField(null=False, default=1, verbose_name='Número usuarios')
     codigo_validacion = models.CharField(max_length=255, null=True, verbose_name='Código validación')
-    estado_suscripcion = models.IntegerField(null=False, default=0, verbose_name='Estado suscripción')
+    estado_suscripcion = models.CharField(max_length=1, null=False, default=0, verbose_name='Estado suscripción')
 
 
 class CursosSuscripcion(models.Model):
-    cur_sus = models.AutoField(primary_key=True, null=False,verbose_name='ID cursos suscripciones')
+    id = models.AutoField(primary_key=True, null=False,verbose_name='ID cursos suscripciones')
     suscripcion = models.ForeignKey(
         'Suscripcion',
         on_delete=models.CASCADE,
@@ -30,7 +30,7 @@ class CursosSuscripcion(models.Model):
     )
 
 class PerfilSuscripcion(models.Model):
-    usu_sus = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripciones perfiles')
+    id = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripciones perfiles')
     suscripcion = models.ForeignKey(
         'Suscripcion',
         on_delete=models.CASCADE,

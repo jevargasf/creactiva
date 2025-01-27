@@ -17,10 +17,10 @@ class SolicitudOrganizacionForm(ModelForm):
                             'id': 'cursos_checkbox'
                         }
                     )
-                    self.fields['titular'] = SelectCustom(
+                    self.fields['representante'] = SelectCustom(
                         choices=('1','b'),
                         attrs={
-                            'id': 'titulares_checkbox'
+                            'id': 'representantes_checkbox'
                         }
                     )
         model = SolicitudOrganizacion
@@ -78,7 +78,7 @@ class ElegirOrganizacionForm(forms.Form):
       organizacion = forms.CharField(widget=SelectCustom(
                 choices=get_solicitudes(),
                 attrs={
-                    'id': 'titular'
+                    'id': 'representante'
                 }
             ))
 # Crear el formulario para elegir la organización. El formulario tiene que mandar al menos
@@ -92,9 +92,8 @@ class SuscripcionOrganizacionForm(ModelForm):
                     'id': 'cursos_checkbox'
                 }
             ))
-    titular = forms.CharField(widget=SelectCustom(
-          choices=get_solicitudes(),
-          attrs={'disabled':True})
+    representante = forms.CharField(label='Representante', widget=SelectCustom(
+          choices=get_solicitudes())
           )
     class Meta:
         model = Suscripcion
@@ -103,9 +102,7 @@ class SuscripcionOrganizacionForm(ModelForm):
             'fecha_inicio': 'Fecha inicio',
             'fecha_termino': 'Fecha término',
             'monto': 'Monto',
-            'numero_usuarios': 'Número usuarios',
-            'cursos': 'Cursos',
-            'titular': 'Usuario titular'
+            'numero_usuarios': 'Número usuarios'
         }
         widgets = {
             'fecha_inicio': forms.DateInput(format='%d/%m/%Y',

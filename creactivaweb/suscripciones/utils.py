@@ -49,3 +49,12 @@ class SelectCustom(Select):
             option['attrs']['disabled'] = True
         return option
 
+def str_to_list(string: str):
+    lista = []
+    print("Inició")
+    for a in string:
+        if a.isdigit():
+            lista.append(a)
+        else:
+            continue
+    return lista
