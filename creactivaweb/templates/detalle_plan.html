@@ -8,9 +8,8 @@
     <span id="cuadricula2"></span>
 
 <div class="form-plan">
-<h2>SELECCIONA UN PLAN</h2>
-    {% for plan in planes %}
-    <a class="plan" href="{% url 'detalle-plan' plan.id %}">
+<h2>DETALLE</h2>
+    <a class="plan" href="">
         <h7>{{ plan.nombre }}</h7>
         <h1>{{ plan.monto }} CLP</h1>
         <h5>por mes : {{ plan.duracion }}</h5>
@@ -19,9 +18,9 @@
             <li>Acceso a todo el material complementario.</li>
             <li>Soporte 24/7</li>
         </ul>
-        <h3>Contratar</h3>
+        <h3>Pagar</h3>
     </a>
-    {% endfor %}
+
 
 
 </div>

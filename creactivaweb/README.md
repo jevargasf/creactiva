@@ -149,16 +149,16 @@ APP SUSCRIPCIONES:
 - Que la compra (envío del formulario detalle) active una suscripción bajo un cierto periodo de tiempo
 
 2) ORGANIZACIÓN
-- registrar formulario Fabián
+✔ registrar formulario Fabián
 - que el registro del formulario active una suscripción (acceso al contenido bajo un cierto
 periodo de tiempo)
 
 PRÓXIMOS PASOS DE ESTO:
-- registrar formulario de suscripción organización
-HAY ERRORES EN EL ENVÍO DEL FORMULARIO, RESOLVER POR QUÉ OCURRE
+✔ registrar formulario de suscripción organización
 
 SIGUIENTE:
-- crear plantilla detalle suscripción individual
+✔ crear plantilla detalle suscripción individual
+- crear la solicitud post con el detalle de la suscripción y almacenarlo en la bbdd
 
 SIGUIENTE:
 - crear tarea diaria que compruebe vigencia de todas las suscripciones

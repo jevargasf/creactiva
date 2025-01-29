@@ -3,6 +3,11 @@ from django.utils.timezone import now
 from suscripciones.utils import get_tipo_organizacion
 from main.models import User, Perfil
 
+class Planes(models.Model):
+    nombre = models.CharField(max_length=50, null=True, verbose_name='Nombre plan')
+    monto = models.IntegerField(null=True, verbose_name='Monto')
+    duracion = models.IntegerField(null=True, verbose_name='Duración')
+
 class Suscripcion(models.Model):
     id = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
     # No siempre será la fecha de ahora, solo para los usuarios individuales

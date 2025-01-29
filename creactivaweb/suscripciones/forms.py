@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion
 from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises
-from suscripciones.services import get_solicitudes
+from suscripciones.services import get_solicitudes, get_planes
 from cursos.utils import pedir_nombres_cursos
 
 
@@ -92,7 +92,7 @@ class SuscripcionOrganizacionForm(ModelForm):
                     'id': 'cursos_checkbox'
                 }
             ))
-    representante = forms.CharField(label='Representante', widget=SelectCustom(
+    representante = forms.CharField(label='representante', widget=SelectCustom(
           choices=get_solicitudes())
           )
     class Meta:
@@ -126,3 +126,12 @@ class SuscripcionOrganizacionForm(ModelForm):
                 }
             )
         }
+
+class SuscripcionIndividualForm(ModelForm):
+    planes = forms.CharField(label='plan', widget=forms.RadioSelect(
+          choices=get_planes())
+          )
+# Continuar escribiendo este formulario
+# Escribir template
+# Escribir view
+# Escribir url

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from suscripciones.models import Suscripcion, CursosSuscripcion, PerfilSuscripcion, SolicitudOrganizacion
+from suscripciones.models import Suscripcion, CursosSuscripcion, PerfilSuscripcion, SolicitudOrganizacion, Planes
 
 # Register your models here.
 class SuscripcionAdmin(admin.ModelAdmin):
@@ -14,7 +14,11 @@ class PerfilSuscripcionAdmin(admin.ModelAdmin):
 class SolicitudOrganizacionAdmin(admin.ModelAdmin):
     pass
 
+class PlanesAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Suscripcion, SuscripcionAdmin)
 admin.site.register(CursosSuscripcion, CursosSuscripcionAdmin)
 admin.site.register(PerfilSuscripcion, PerfilSuscripcionAdmin)
 admin.site.register(SolicitudOrganizacion, SolicitudOrganizacionAdmin)
+admin.site.register(Planes, PlanesAdmin)

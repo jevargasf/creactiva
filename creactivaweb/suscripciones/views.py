@@ -2,11 +2,10 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpRequest
 from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm, ElegirOrganizacionForm
-from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion
+from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion, Planes
 from suscripciones.utils import str_to_list
 from django.contrib import messages
 from main.models import User, Perfil
-from django.db.models.signals import post_save
 from cursos.models import Curso
 
 # Create your views here.
@@ -22,8 +21,23 @@ class PlanIndividual(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        return render(request, 'plan_individual.html')
+        planes = Planes.objects.all()
+        context = {
+            'planes': planes
+        }
+        return render(request, 'plan_individual.html', context)
 
+class DetallePlan(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request: HttpRequest, id_plan):
+        plan = Planes.objects.get(pk=id_plan)
+        context = {
+            'plan': plan
+        }
+        return render(request, 'detalle_plan.html', context)
+    
 class PlanOrganizacion(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
