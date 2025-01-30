@@ -127,7 +127,7 @@ class SuscripcionOrganizacionForm(ModelForm):
             )
         }
 
-class SuscripcionIndividualForm(ModelForm):
+class SuscripcionIndividualForm(forms.Form):
     planes = forms.CharField(label='plan', widget=forms.RadioSelect(
           choices=get_planes())
           )

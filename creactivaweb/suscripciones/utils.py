@@ -1,6 +1,8 @@
 import json
 import ast
 from django.forms import Select
+from django.utils.timezone import now
+from datetime import timedelta
 
 def get_tipo_organizacion():
     f = open("./static/json/organizaciones.json", "rb")
@@ -58,3 +60,8 @@ def str_to_list(string: str):
         else:
             continue
     return lista
+
+def sumar_fecha(meses):
+    dias = meses*30
+    nueva_fecha = now() + timedelta(days=dias)
+    return nueva_fecha

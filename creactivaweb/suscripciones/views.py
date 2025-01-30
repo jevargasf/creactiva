@@ -3,10 +3,11 @@ from django.views import View
 from django.http import HttpRequest
 from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm, ElegirOrganizacionForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion, Planes
-from suscripciones.utils import str_to_list
+from suscripciones.utils import str_to_list, sumar_fecha
 from django.contrib import messages
 from main.models import User, Perfil
 from cursos.models import Curso
+from django.utils.timezone import now
 
 # Create your views here.
 class PlanesView(View):
@@ -38,6 +39,47 @@ class DetallePlan(View):
         }
         return render(request, 'detalle_plan.html', context)
     
+    def post(self, request: HttpRequest, id_plan):
+        try:
+            plan = Planes.objects.get(pk=id_plan)
+            fecha_termino = sumar_fecha(plan.duracion)
+            print(now(),fecha_termino, plan.monto)
+            suscripcion = Suscripcion(
+                fecha_inicio=now(),
+                # fecha término es now + duración de la suscripción
+                fecha_termino=fecha_termino,
+                monto=plan.monto,
+                numero_usuarios=1,
+                codigo_validacion='0',
+                estado_suscripcion='1'
+            )
+            suscripcion.save()
+            #ultima_suscripcion = Suscripcion.objects.all().order_by('-id')[0]
+
+            cursos = Curso.objects.all()
+            for curso in cursos:
+                print(curso)
+                curso_suscripcion = CursosSuscripcion(
+                    suscripcion=suscripcion,
+                    curso=curso
+                )
+                curso_suscripcion.save()
+            user_object = User.objects.get(username=request.user)
+            perfil_object = Perfil.objects.get(user_id=user_object.id)
+            perfil_suscripcion = PerfilSuscripcion(
+                perfil=perfil_object,
+                suscripcion=suscripcion
+            )
+            curso_suscripcion.save()
+            perfil_suscripcion.save()
+            messages.success(request, 'Tu suscripción se ha procesado con éxito.')
+            return redirect('index')
+        except:
+            messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
+            return redirect('plan-individual')
+
+
+
 class PlanOrganizacion(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -140,7 +182,6 @@ class SuscripcionOrganizacionView(View):
                 # id_ultima_suscripcion = ultima_suscripcion.id
                 # ciclo for para registrar ambos cursos en la suscripción
                 cursos = str_to_list(form.cleaned_data['cursos'])
-                print(type(cursos))
                 for curso in cursos:
                     curso_object = Curso.objects.get(pk=curso)
                     curso_suscripcion = CursosSuscripcion(
@@ -154,7 +195,6 @@ class SuscripcionOrganizacionView(View):
                     suscripcion=ultima_suscripcion,
                     perfil=perfil_object
                 )
-                print(perfil_suscripcion)
 
                 curso_suscripcion.save()
                 perfil_suscripcion.save()

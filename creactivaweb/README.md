@@ -155,10 +155,11 @@ periodo de tiempo)
 
 PRÓXIMOS PASOS DE ESTO:
 ✔ registrar formulario de suscripción organización
+* corregir acá, en vez de guardar la última suscirpción a partir de una consulta, utilizar el mismo objeto que ya fue guardado
 
 SIGUIENTE:
 ✔ crear plantilla detalle suscripción individual
-- crear la solicitud post con el detalle de la suscripción y almacenarlo en la bbdd
+✔ crear la solicitud post con el detalle de la suscripción y almacenarlo en la bbdd
 
 SIGUIENTE:
 - crear tarea diaria que compruebe vigencia de todas las suscripciones
