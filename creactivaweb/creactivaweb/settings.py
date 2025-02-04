@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 import os
 import mimetypes
 
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -164,3 +165,11 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # MIME types
 #mimetypes.add_type("text/html", ".js", True)
+
+# django setting.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}

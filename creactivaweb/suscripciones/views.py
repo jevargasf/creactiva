@@ -15,6 +15,7 @@ class PlanesView(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
+        
         return render(request, 'elegir_tipo.html')
     
 class PlanIndividual(View):

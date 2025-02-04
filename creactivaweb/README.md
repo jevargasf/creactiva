@@ -162,7 +162,9 @@ SIGUIENTE:
 ✔ crear la solicitud post con el detalle de la suscripción y almacenarlo en la bbdd
 
 SIGUIENTE:
-- crear tarea diaria que compruebe vigencia de todas las suscripciones
+✔ crear tarea diaria que compruebe vigencia de todas las suscripciones
+- lógica cuando el usuario ya tiene una suscripción (pedir suscripciones con esstado = 1 donde el usuario asociado sea el usuario logueado), si tiene una suscripción vigente, enviar mensaje de error y cerrar el proceso. Si no, crear la suscripción.
+- lógica para cambiar el estado del perfil del usuario según el tipo de suscripción que compre. Lo mismo cuando caduque la suscripción. Lo mismo cuando el usuario esté inhabilitado ??
 
 SIGUIENTE:
 - comenzar integración pasarela de pagos(con eso termina app suscripciones)
