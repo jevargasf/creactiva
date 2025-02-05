@@ -173,3 +173,14 @@ CACHES = {
         'LOCATION': 'my_cache_table',
     }
 }
+
+# MAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.creactivaanimaciones.cl'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'no-reply@creactivaanimaciones.cl'
+EMAIL_HOST_PASSWORD = 'GA,B%L7p8JB)#vN^'
+EMAIL_TIMEOUT = 20
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

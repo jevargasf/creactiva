@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cursos.models import Capitulo
 from suscripciones.utils import get_tipo_organizacion, get_paises, get_comunas
 
+
 class Perfil(models.Model):
     TIPOS_ORGANIZACION = get_tipo_organizacion()
     PAISES = get_paises()
@@ -13,6 +14,7 @@ class Perfil(models.Model):
     comuna = models.CharField(max_length=5, null=True, blank=True, choices=COMUNAS, verbose_name='Comuna')
     nombre_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Ninguno', verbose_name='Nombre organización')
     tipo_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Cuenta individual', choices=TIPOS_ORGANIZACION, verbose_name='Tipo organización')
+    verificado = models.BooleanField(default=False, verbose_name='Verificado')
     user = models.OneToOneField(
         User,
         related_name='perfil_usuario',
