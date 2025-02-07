@@ -168,3 +168,47 @@ SIGUIENTE:
 
 SIGUIENTE:
 - comenzar integración pasarela de pagos(con eso termina app suscripciones)
+
+SIGUIENTE:
+- CURSOS: cursos se pueden ver, si tiene suscripción vigente, enviar capítulo, si no tiene, enviar trailer
+- SUSCRIPCIONES: si ya tiene una suscripción vigente, no dejar que se vuelva a suscribir
+- PERFIL: crear vista que recoja todos los datos del perfil del usuario
+- PERFILES CLAVE: el 000, el 100 y el 010/110. El perfil de miembro no es prioritario todavía (hasta que se produzca la primera suscripción organización
+- NOTIFICACIÓN REGISTRO: crear proceso de validación del correo del usuario
+- NOTIFICACIÓN SUSCRIPCIÓN: enviar detalles del plan suscrito
+- NOTIFICACIÓN SOLICITUD DE SUSCRIPCIÓN ORGANIZACIÓN: enviar detalles de la solicitud de suscripción organización
+- FORMULARIO SOLICITUD DE CONTENIDO + NOTIFICACIÓN DE SOLICITUD: crear formulario y notificación por correo
+
+
+INTEGRACIÓN WEBPAY PLUS
+- REGISTRO EMPRESA (CONSEGUIR ID EMPRESA)
+- INTEGRACIÓN (MEDIANTE API)
+*** FLUJO EXITOSO ***
+    - CREAR TRANSACCIÓN (internamente requiere crear una orden de compra)
+        - se envía la transacción
+        - se recibe un token y la url de redireccionamiento
+        - se realiza una petición post a la url, token se envía en la variable 'token_ws'
+    *** redirecciona cliente a pasarela de pagos ***
+        - el tiempo máximo en el que permanece el formulario de es de 4 minutos
+    - CONFIRMAR TRANSACCIÓN
+        - si se cumple el tiempo máximo, se reciben las variables 'TBK_ID_SESSION' y 'TBK_ORDEN_COMPRA'
+        - si se procesa de forma exitosa, WP retorna al comercio hacia la página de transición, enviando el token de la transacción en la variable 'token_ws'. Se debe implementar la recepción de esta variable mediante el método GET y el redireccionamiento ?? del cliente
+        - el sitio del comercio recibe la variable 'token_ws' e invoca el segundo método web ¿? para confirmar y obtener el resultado de la transacción. Este resultado se puee consultr con la variable 'token_ws'.
+    - DESPLIEGUE DETALLE VOUCHER
+        - transacción exitosa
+        - transacción fallida
+*** FLUJO SI USUARIO ABORTA ***
+    - CREACIÓN DE TRANSACCIÓN
+    *** mismo proceso ***
+    *** redirecciona a pasarela ***
+    - CLIENTE HACE CLIC EN ANULAR
+    - WEBPAY RETORNA AL COMERCIO
+        - envía pot GET el token 'TBK_TOKEN' y las variables 'TBK_ORDEN_COMPRA' y 'TBK_ID_SESION' (en integración, el redireccionamiento es por POST)
+        - el comercio consulta la transacción para validar el estado usando la variable 'TBK_TOKEN' (no es necesario confirmar)
+    - DESPLIEGUE PANTALLA QUE EL PAGO NO SE COMPLETÓ
+- PROCESO VALIDACIÓN (RELLENAR FORMULARIO DE EVIDENCIAS, RESPUESTA TARDA 24 HORAS HÁBILES)
+
+AMBIENTE DE INTEGRACIÓN
+webpay_url: "https://webpay3gint.transbank.cl"
+webpay_id: "597055555532"
+webpay_secret: "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
