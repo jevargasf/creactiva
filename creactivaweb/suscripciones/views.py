@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpRequest
+from django.http import HttpRequest, Http404
 from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm, ElegirOrganizacionForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion, Planes
 from suscripciones.utils import str_to_list, sumar_fecha
@@ -8,6 +8,8 @@ from django.contrib import messages
 from main.models import User, Perfil
 from cursos.models import Curso
 from django.utils.timezone import now
+from suscripciones.webpay import crear_transaccion, confirmar_transaccion
+from suscripciones.services import suscripcion_usuario
 
 # Create your views here.
 class PlanesView(View):
@@ -40,11 +42,22 @@ class DetallePlan(View):
         }
         return render(request, 'detalle_plan.html', context)
     
+
+    # ACÁ SE INICIA LA TRANSACCIÓN: CREAR TRANSACCIÓN
+    def post(self, request: HttpRequest, id_plan):
+        pass
+class PagarView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request: HttpRequest):
+        return render(request, 'pantalla_compra.html')
+    
     def post(self, request: HttpRequest, id_plan):
         try:
             plan = Planes.objects.get(pk=id_plan)
             fecha_termino = sumar_fecha(plan.duracion)
-            print(now(),fecha_termino, plan.monto)
+
             suscripcion = Suscripcion(
                 fecha_inicio=now(),
                 # fecha término es now + duración de la suscripción
@@ -52,35 +65,79 @@ class DetallePlan(View):
                 monto=plan.monto,
                 numero_usuarios=1,
                 codigo_validacion='0',
-                estado_suscripcion='1'
+                estado_suscripcion='2'
             )
             suscripcion.save()
-            #ultima_suscripcion = Suscripcion.objects.all().order_by('-id')[0]
-
             cursos = Curso.objects.all()
             for curso in cursos:
-                print(curso)
                 curso_suscripcion = CursosSuscripcion(
                     suscripcion=suscripcion,
                     curso=curso
                 )
                 curso_suscripcion.save()
+
             user_object = User.objects.get(username=request.user)
             perfil_object = Perfil.objects.get(user_id=user_object.id)
             perfil_suscripcion = PerfilSuscripcion(
                 perfil=perfil_object,
                 suscripcion=suscripcion
             )
-            curso_suscripcion.save()
+
+            # ESTO SE GUARDA EN LA TABLA, PERO SOLO CUANDO LA TRANSACCIÓN ESTÁ CONFIRMADA SE HACE EFECTIVA
+            # VOY A HACERLA EFECTIVA PASANDO EL ESTADO A 1
+            # INICIALMENTE, SERÁ 0
             perfil_suscripcion.save()
-            messages.success(request, 'Tu suscripción se ha procesado con éxito.')
-            return redirect('index')
-        except:
+
+            # CREAR TRANSACCIÓN 
+            respuesta = crear_transaccion(suscripcion.id, plan.monto)
+            #messages.success(request, 'Tu suscripción se ha procesado con éxito.')
+            #return redirect('index')
+            context = {
+                'url': respuesta['url'],
+                'token': respuesta['token']
+            }
+            print(context)
+            return render(request, 'webpay.html', context)
+        except User.DoesNotExist as e:
+            print(f"Error: {e}")
+            messages.error(request, 'Por favor, ingresa antes de continuar.')
+            return redirect('login')
+        except Exception as e:
+            print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
             messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
             return redirect('plan-individual')
 
+    
+class RespuestaWebpayView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
-
+    def get(self, request: HttpRequest):
+        if not request.GET.get('token_ws'):
+            raise Http404
+        token = request.GET.get('token_ws')
+        result = confirmar_transaccion(token)
+        if result[0] == 'vacio':
+            raise Http404
+        elif result[0] == 'AUTHORIZED':
+            try:
+                # reescribir la suscripción con la data
+                suscripcion = suscripcion_usuario(request.user)
+                print(suscripcion)
+                messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
+                return render(request, 'index.html')
+            except Exception as e:
+                print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                raise Http404
+            # crear el html de la respuesta o armar el context
+            # enviar correos de confirmación
+            
+            # retornar
+        
+    
+    def post(self, request: HttpRequest):
+        #return render(request, 'webpay.html')
+        pass
 class PlanOrganizacion(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -88,12 +145,6 @@ class PlanOrganizacion(View):
     def get(self, request: HttpRequest):
         return render(request, 'plan_organizacion.html')
 
-class PagarView(View):
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-    def get(self, request: HttpRequest):
-        return render(request, 'pantalla_compra.html')
     
 class SolicitudOrganizacionView(View):
     def dispatch(self, *args, **kwargs):

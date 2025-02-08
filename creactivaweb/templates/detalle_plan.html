@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 {% include 'snippets/header_plan.html' %}
@@ -6,7 +7,7 @@
     <div id="fondo_animado2">
     </div>
     <span id="cuadricula2"></span>
-<form id="form-organizacion" class="form form-register" action="{% url 'detalle-plan' plan.id %}" method="post">
+<form id="form-organizacion" class="form form-register" action="{% url 'pantalla-pagar' plan.id %}" method="post">
     {% csrf_token %}
     <div class="form-plan">
         <h2>DETALLE</h2>

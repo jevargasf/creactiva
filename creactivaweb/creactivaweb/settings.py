@@ -20,7 +20,7 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_URL = 'http://127.0.0.1:8000/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -184,3 +184,8 @@ EMAIL_HOST_USER = 'no-reply@creactivaanimaciones.cl'
 EMAIL_HOST_PASSWORD = 'GA,B%L7p8JB)#vN^'
 EMAIL_TIMEOUT = 20
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# WEBPAY
+WEBPAY_URL = 'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions'
+WEBPAY_ID = '597055555532'
+WEBPAY_SECRET = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'

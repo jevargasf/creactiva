@@ -212,3 +212,83 @@ AMBIENTE DE INTEGRACIÓN
 webpay_url: "https://webpay3gint.transbank.cl"
 webpay_id: "597055555532"
 webpay_secret: "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
+
+- HEADERS (VAN EN TODAS LAS PETICIONES)
+    - Tbk-Api-Key-Id: Código de comercio
+        - "597055555532"
+    - Tbk-Api-Key-Secret: Llave secreta
+        - "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
+    - Content-Type: application/json
+
+PARA CREAR TRANSACCIÓN
+- PAYLOAD: POST
+    - buy_order: str(26). Número único para cada transacción. ID suscripción.
+    - session_id: str(61). Identificador de sesión, uso interno comercio. Este valor es devuelto al final de la transacción
+    - amount: dec(17). Monto de la transacción, máximo 2 decimales
+    - return_url: str(256). URL del comercio a la cual WP redireccionará posterior al proceso de autorización
+
+- RESPUESTA A CREAR TRANSACCIÓN
+    - token: str(64). Token de la transacción
+    - url: str(255). URL del formulario de pago WP
+
+- PAYLOAD COMMIT TRANSACCIÓN
+    - MÉTODO PUT
+    - token: el mismo recibido anteriormente. Se envía en la URL no en el body
+
+- RESPUESTA A COMMIT TRANSACCIÓN
+    - vci: string. Resultado de la autenticación del dueño de la tarjeta.
+    - amount: decimal. Mismo tamaño que el anterior.
+    - status: str(64). Estado de la transacción: INITIALIZED, AUTHORIZED, REVERSED, FAILED, NULLIFIED, PARTIALLY_NULLYFIED, CAPTURED.
+     - buy_order: str(26). Orden de compra de la tienda, indicado en la creación de la transacción
+     - session_id: str(61). Mismo que el anterior.
+     - card_detail: Objeto que representa los datos de la tarjeta.
+        - card_detail.card_number: 4 últimos números de la tarjeta.
+    - accounting_date: fecha de autorización. Largo: 4. Formato MMDD.
+    - transaction_date: str(24). Formato ISO 8601, yyyy-mmddTHH:mm:ss.xxx.Z
+    - authorization_code: str(6). Código de autorización de la transacción
+    - payment_type_code: str. Tipo de pago de la transacción
+        - VD = Venta Débito
+        - VN = Venta Normal
+        - VC = Venta Cuotas
+        - SI = 3 cuotas sin interés
+        - S2 = 2 cuotas sin interés
+        - NC = N Cuotas sin interés
+        - VP = Venta Prepago
+    response_code: number. Código de respuesta de la autorización. Valores posibles:
+        - 0 = Transacción aprobada
+        - **Códigos de rechazo
+    - installments_amount: number(17). Monto de las cuotas
+    - installments_number: number(2). Cantidad de cuotas
+    - balance: number(17). Monto restante para un detalle anulado
+
+ESTADO DE LA TRANSACCIÓN: permite recuperar el estado de la transacción y tomar las acciones correspondientes ante un error inesperado. Normalmente, no se aplica.
+
+REVERSAR O ANULAR UN PAGO.
+
+CAPTURAR UNA TRANSACCIÓN. Permite solicitar a WP la captura diferida de una transacción con autorización y sin captura simultánea
+
+
+PROCESO:
+- DETALLE.HTML BOTÓN PAGAR > CREAR TRANSACCIÓN
+- WEBPAY.HTML RECIBE URL, PEQUEñO FORMULARIO QUE RECIBE EL TOKEN, SCRIPT JS QUE ENVÍA EL FORMULARIO CON LA ACCIÓN ON_LOAD
+- CLIENTE EN LA PLATAFORMA WEBPAY
+    - HACER LAS COMPRAS CORRESPONDIENTES CON TODAS LAS TARJETAS
+- CONFIRMACION.HTML > CONFIRMAR TRANSACCIÓN
+
+
+qué son los planes? son precios que nosotros te ofrecemos para que puedas acceder a nuestro contenido.
+qué pasa si no puedo pagar el precio de los planes? tenemos descuentos para estudiantes y personas pertenecientes al pueblo mapuche
+qué otras opciones tengo para acceder al contenido? si perteneces a una organización, puedes contactarnos para establecer un trato directo con nosotros
+
+
+APUNTES INTEGRACIÓN WEBPAY:
+        # esta persona tiene estados de orden de compra: activo, no activo, ingresado, finalizado, cancelado, en curso
+        # En mi caso, me va a servir hacer la validación acá
+        # ¿tiene suscripción activa?
+        # estados suscripción: activa: 1, finalizada: 2, 
+
+
+ESTADOS SUSCRIPCIÓN
+- 0: CADUCA
+- 1: ACTIVA
+- 2: EN CURSO
