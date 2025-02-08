@@ -123,9 +123,23 @@ class RespuestaWebpayView(View):
             try:
                 # reescribir la suscripción con la data
                 suscripcion = suscripcion_usuario(request.user)
-                print(suscripcion)
+                # fecha_inicio = now()
+                # fecha_termino = sumar_fecha(fecha_inicio)
+                suscripcion.estado_transbank=result[0]
+                suscripcion.fecha_transbank=result[1]
+                suscripcion.tarjeta=result[2]
+                suscripcion.token_ws=token
+                suscripcion.estado_suscripcion='1'
+                suscripcion.save()
                 messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
-                return render(request, 'index.html')
+                context = {
+                    'orden_compra': suscripcion.id,
+                    'fecha_inicio': suscripcion.fecha_inicio,
+                    'fecha_termino': suscripcion.fecha_termino,
+                    'tarjeta': result[1],
+                    'monto': suscripcion.monto
+                }
+                return render(request, 'voucher_webpay.html', context)
             except Exception as e:
                 print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
                 raise Http404

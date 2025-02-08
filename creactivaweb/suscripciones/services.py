@@ -19,17 +19,13 @@ def get_planes():
 # SI LA PERSONA YA TIENE UNA SUSCRIPCIÓN INDIVIDUAL, ENTONCES NO LE VA A DEJAR ENTRAR A LA PANTALLA DE PAGO
 # EN UNA SEGUNDA INSTANCIA, LE DEBERÍA PREGUNTAR SI QUIERE EXTENDER SU SUSCRIPCIÓN, COSA QUE NO HEMOS DISEñADO TODAVÍA
 
-def suscripcion_usuario(username):    
+def suscripcion_usuario(user):    
     # validar si tiene una suscripción vigente
     try:
-        # en realidad, tendría que preguntar primero por los usuario_suscripcion
-        # 1. suscripciones relacionadas con el usuario donde la suscripcion asociada tenga estado = 1
-        user_object = User.objects.get(username=username)
+        user_object = User.objects.get(username=user)
         perfil_object = Perfil.objects.get(user_id=user_object.id)
-        registro = PerfilSuscripcion.objects.filter(perfil=perfil_object, estado_suscripcion='2').order_by('-id')[0] 
-        print(registro)
-        return registro
-    except PerfilSuscripcion.DoesNotExist:
-        print("Usted no tiene una suscripción vigente")
+        registro_object = PerfilSuscripcion.objects.filter(perfil=perfil_object).order_by('-id')[0] 
+        suscripcion_object = Suscripcion.objects.get(pk=registro_object.suscripcion_id, estado_suscripcion='2')
+        return suscripcion_object
     except Exception as e:
         print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
