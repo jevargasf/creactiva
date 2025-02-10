@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpRequest, Http404
+from django.http import HttpRequest, Http404, HttpResponseRedirect
 from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm, ElegirOrganizacionForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion, Planes
 from suscripciones.utils import str_to_list, sumar_fecha
@@ -55,38 +55,43 @@ class PagarView(View):
     
     def post(self, request: HttpRequest, id_plan):
         try:
-            plan = Planes.objects.get(pk=id_plan)
-            fecha_termino = sumar_fecha(plan.duracion)
-
-            suscripcion = Suscripcion(
-                fecha_inicio=now(),
-                # fecha término es now + duración de la suscripción
-                fecha_termino=fecha_termino,
-                monto=plan.monto,
-                numero_usuarios=1,
-                codigo_validacion='0',
-                estado_suscripcion='2'
-            )
-            suscripcion.save()
-            cursos = Curso.objects.all()
-            for curso in cursos:
-                curso_suscripcion = CursosSuscripcion(
-                    suscripcion=suscripcion,
-                    curso=curso
+            # AHORA SÍ ME SIRVE LA LÓGICA IF SUSCRIPCIÓN EXISTE, ENTONCES RECUPERAR, SI NO, CREAR
+            suscripcion = suscripcion_usuario(request.user)
+            if suscripcion is None:
+                plan = Planes.objects.get(pk=id_plan)
+                fecha_termino = sumar_fecha(plan.duracion)
+                suscripcion = Suscripcion(
+                    fecha_inicio=now(),
+                    # fecha término es now + duración de la suscripción
+                    fecha_termino=fecha_termino,
+                    monto=plan.monto,
+                    numero_usuarios=1,
+                    codigo_validacion='0',
+                    estado_suscripcion='2'
                 )
-                curso_suscripcion.save()
+                suscripcion.save()
+                cursos = Curso.objects.all()
+                for curso in cursos:
+                    curso_suscripcion = CursosSuscripcion(
+                        suscripcion=suscripcion,
+                        curso=curso
+                    )
+                    curso_suscripcion.save()
 
-            user_object = User.objects.get(username=request.user)
-            perfil_object = Perfil.objects.get(user_id=user_object.id)
-            perfil_suscripcion = PerfilSuscripcion(
-                perfil=perfil_object,
-                suscripcion=suscripcion
-            )
+                user_object = User.objects.get(username=request.user)
+                perfil_object = Perfil.objects.get(user_id=user_object.id)
+                perfil_suscripcion = PerfilSuscripcion(
+                    perfil=perfil_object,
+                    suscripcion=suscripcion
+                )
+                perfil_suscripcion.save()
+                
+
 
             # ESTO SE GUARDA EN LA TABLA, PERO SOLO CUANDO LA TRANSACCIÓN ESTÁ CONFIRMADA SE HACE EFECTIVA
             # VOY A HACERLA EFECTIVA PASANDO EL ESTADO A 1
             # INICIALMENTE, SERÁ 0
-            perfil_suscripcion.save()
+            
 
             # CREAR TRANSACCIÓN 
             respuesta = crear_transaccion(suscripcion.id, plan.monto)
@@ -126,8 +131,8 @@ class RespuestaWebpayView(View):
                 # fecha_inicio = now()
                 # fecha_termino = sumar_fecha(fecha_inicio)
                 suscripcion.estado_transbank=result[0]
-                suscripcion.fecha_transbank=result[1]
-                suscripcion.tarjeta=result[2]
+                suscripcion.tarjeta=result[1]
+                suscripcion.fecha_transbank=result[2]
                 suscripcion.token_ws=token
                 suscripcion.estado_suscripcion='1'
                 suscripcion.save()
@@ -147,7 +152,31 @@ class RespuestaWebpayView(View):
             # enviar correos de confirmación
             
             # retornar
-        
+        elif result[0] == 'FAILED':
+            try:
+                # reescribir la suscripción con la data
+                suscripcion = suscripcion_usuario(request.user)
+                # fecha_inicio = now()
+                # fecha_termino = sumar_fecha(fecha_inicio)
+                suscripcion.estado_transbank=result[0]
+                suscripcion.tarjeta=result[1]
+                suscripcion.fecha_transbank=result[2]
+                suscripcion.token_ws=token
+                suscripcion.estado_suscripcion='2'
+                suscripcion.save()
+                messages.error(request, 'Lo sentimos, ocurrió un error. Por favor, intenta nuevamente.')
+                context = {
+                    'orden_compra': suscripcion.id,
+                    'fecha_inicio': suscripcion.fecha_inicio,
+                    'fecha_termino': suscripcion.fecha_termino,
+                    'tarjeta': result[1],
+                    'monto': suscripcion.monto
+                }
+                return render(request, 'pantalla_compra.html', context)
+            except Exception as e:
+                print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                raise Http404
+
     
     def post(self, request: HttpRequest):
         #return render(request, 'webpay.html')

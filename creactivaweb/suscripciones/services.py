@@ -27,5 +27,8 @@ def suscripcion_usuario(user):
         registro_object = PerfilSuscripcion.objects.filter(perfil=perfil_object).order_by('-id')[0] 
         suscripcion_object = Suscripcion.objects.get(pk=registro_object.suscripcion_id, estado_suscripcion='2')
         return suscripcion_object
+    except Suscripcion.DoesNotExist as e:
+        print(f"Error: {e}")
+        return None
     except Exception as e:
         print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
