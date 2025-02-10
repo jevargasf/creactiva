@@ -21,6 +21,15 @@ class Suscripcion(models.Model):
     tarjeta = models.CharField(max_length=10, null=True, verbose_name='Tarjeta Pago')
     fecha_transbank = models.CharField(max_length=100, null=True, verbose_name='Fecha Transbank')
     estado_transbank = models.CharField(max_length=100, null=True, verbose_name='Estado Transbank')
+    session_id_transbank = models.CharField(max_length=61, null=True, blank=True, verbose_name='Session ID Transbank')
+    plan = models.ForeignKey(
+        Planes,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='Plan',
+        related_name='plan'
+    )
 
 class CursosSuscripcion(models.Model):
     id = models.AutoField(primary_key=True, null=False,verbose_name='ID cursos suscripciones')

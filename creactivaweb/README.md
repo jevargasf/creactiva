@@ -292,3 +292,22 @@ ESTADOS SUSCRIPCIÓN
 - 0: CADUCA
 - 1: ACTIVA
 - 2: EN CURSO
+
+
+ESTADOS TRANSBANK:
+*** PEGAR ***
+
+PARA CONTINUAR:
+- revisar cómo funciona la view con la validación de la suscripción existente.
+- revisar en qué rutas será necesario manejar el id del plan desde los parámetros
+- terminar proceso pago FAILED
+- realizar pruebas y ver qué otros estados hay que manejar
+
+MEJORA:
+- BOTÓN "QUIERO CAMBIAR MI SUSCRIPCIÓN" en PANTALLA_COMPRA, en caso de que la persona quiera cambiar el plan que va a pagar (habiendo elegido otro anteriormente)
+
+ESTA SEMANA
+- integrar descuento estudiante/comunero
+
+DEBUG SUSCRIPCIONES:
+- QUÉ ES MEJOR? crear un nuevo registro de suscripción (nueva orden de compra) cada vez? o crear 1 registro y actualizar sus datos. Lo primero me va a dejar también registro de las transacciones fallidas. Lo segundo es más limpio el términos de datos. Solo voy a quedarme en la bbdd con las suscripciones caducas. Las suscripciones fallidas también son importantes para tener un respaldo de todas las transacciones que se llevan a cabo. El estado '2' reflejaría una suscripción fallida. El estado_transbank mostrará la razón de por qué falló. La categoría la voy a llamar "en curso", pero si el estado transbank dice "FAILED", entonces significa que la suscripción quedó en curso para nosotros, pero falló para transbank. En consecuencia, el proceso deberá comenzar de nuevo creando un nuevo registro

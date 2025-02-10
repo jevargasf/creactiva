@@ -15,10 +15,12 @@ def crear_transaccion(suscripcion_id, monto):
             "Tbk-Api-Key-Secret": settings.WEBPAY_SECRET,
             "Content-Type": "application/json"
         }
-
+        
+        session_id = str(random.randrange(1000000,9999999))
+        
         payload = {
             "buy_order": f"orden{str(suscripcion_id)}",
-            "session_id": str(random.randrange(1000000,9999999)),
+            "session_id": session_id,
             "amount": float(monto),
             "return_url": f"{settings.BASE_URL}suscripciones/webpay-respuesta"
         }
@@ -26,11 +28,11 @@ def crear_transaccion(suscripcion_id, monto):
         res = requests.post(url, json=payload, headers=headers)
         print(res.text)
         respuesta = json.loads(res.text)
-        Suscripcion.objects.filter(id=suscripcion_id).update(token_ws=respuesta['token'])
+        Suscripcion.objects.filter(id=suscripcion_id).update(token_ws=respuesta['token'], session_id_transbank=session_id)
 
         return respuesta
     except Exception as e:
-        print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+        print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
 
 def confirmar_transaccion(token):
     try:
@@ -46,9 +48,9 @@ def confirmar_transaccion(token):
         respuesta = json.loads(res.text)
 
         if res.status_code == 200:
-            return [respuesta['status'], respuesta['card_detail']['card_number'], respuesta['transaction_date']]
+            return [respuesta['status'], respuesta['card_detail']['card_number'], respuesta['transaction_date'], respuesta['session_id']]
         else:
             return ['vacio']
     except Exception as e:
-        print(f"Error: {e}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+        print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
         raise Http404
