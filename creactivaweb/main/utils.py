@@ -11,7 +11,7 @@ def crear_usuario(username: str, first_name: str, last_name: str, email: str, pa
     )
     user.save()
     perfil = Perfil.objects.create(
-        codigo='100',
+        codigo='000',
         user=user
     )
     perfil.save()

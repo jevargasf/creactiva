@@ -9,11 +9,10 @@ from main.models import User, Perfil
 from cursos.models import Curso
 from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
-from suscripciones.services import suscripcion_usuario, suscripcion_session
-from django.contrib.sessions.models import Session
-from django.urls import reverse
+from suscripciones.services import suscripcion_activa, suscripcion_session
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-# Create your views here.
+
 class PlanesView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -21,7 +20,8 @@ class PlanesView(View):
     def get(self, request: HttpRequest):
         
         return render(request, 'elegir_tipo.html')
-    
+
+####### MANEJO DE SUSCRIPCIONES INDIVIDUALES #######
 class PlanIndividual(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -44,11 +44,10 @@ class DetallePlan(View):
         }
         return render(request, 'detalle_plan.html', context)
     
-
-    # ACÁ SE INICIA LA TRANSACCIÓN: CREAR TRANSACCIÓN
     def post(self, request: HttpRequest, id_plan):
         pass
-class PagarView(View):
+
+class PagarView(LoginRequiredMixin, View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -57,10 +56,16 @@ class PagarView(View):
     
     def post(self, request: HttpRequest, id_plan):
         try:
-            # AHORA SÍ ME SIRVE LA LÓGICA IF SUSCRIPCIÓN EXISTE, ENTONCES RECUPERAR, SI NO, CREAR
-            suscripcion = suscripcion_usuario(request.user)
-            print(suscripcion)
-            if suscripcion is None:
+            check_suscripcion = suscripcion_activa(request.user)
+            
+            if check_suscripcion:
+                context = {
+                    'fecha_inicio': check_suscripcion.fecha_inicio,
+                    'fecha_termino': check_suscripcion.fecha_termino,
+                    'tipo': check_suscripcion.plan.nombre
+                }
+                return render(request, 'suscripcion_activa.html', context)
+            elif check_suscripcion == None:
                 plan = Planes.objects.get(pk=id_plan)
                 fecha_termino = sumar_fecha(plan.duracion)
                 suscripcion = Suscripcion(
@@ -89,12 +94,6 @@ class PagarView(View):
                     suscripcion=suscripcion
                 )
                 perfil_suscripcion.save()
-                
-
-
-            # ESTO SE GUARDA EN LA TABLA, PERO SOLO CUANDO LA TRANSACCIÓN ESTÁ CONFIRMADA SE HACE EFECTIVA
-            # VOY A HACERLA EFECTIVA PASANDO EL ESTADO A 1
-            # INICIALMENTE, SERÁ 0
             
 
             # CREAR TRANSACCIÓN 
@@ -116,35 +115,34 @@ class PagarView(View):
             return redirect('plan-individual')
 
     
-class RespuestaWebpayView(View):
+class RespuestaWebpayView(LoginRequiredMixin, View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        print(request.user)
+        try:
+            # RECIBIR EL RESULTADO DEL REDIRECCIONAMIENTO WEBPAY
+            # CUANDO ANULO UNA TRANSACCIÓN, EL TOKEN NO VUELVE COMO TOKEN_WS, VUELVE COMO TBK_TOKEN
+            if request.GET.get('TBK_TOKEN'):
+                token = request.GET.get('TBK_TOKEN')
+            elif request.GET.get('token_ws'):
+                token = request.GET.get('token_ws')
+            else:
+                raise Http404
+            
+            # PROCESO WEBPAY
+            result = confirmar_transaccion(token)
 
-        # CUANDO ANULO UNA TRANSACCIÓN, EL TOKEN NO VUELVE COMO TOKEN_WS, VUELVE COMO TBK_TOKEN
-        if request.GET.get('TBK_TOKEN'):
-            token = request.GET.get('TBK_TOKEN')
-        elif request.GET.get('token_ws'):
-            token = request.GET.get('token_ws')
-        else:
-            raise Http404
-        
-        result = confirmar_transaccion(token)
-        
-        if result[0] == 'vacio':
-            print('vacio')
-            raise Http404
-        elif result[0] == 'AUTHORIZED':
-            try:
-                # reescribir la suscripción con la data
+            # PROCESAR LA RESPUESTA WEBPAY
+            if result[0] == 'vacio':
+                raise Http404
+            elif result[0] == 'AUTHORIZED':
                 session_id = result[3]
-
+                nueva_fecha_inicio = now()
                 suscripcion = suscripcion_session(session_id)
-                # fecha_inicio = now()
-                # fecha_termino = sumar_fecha(fecha_inicio)
-                # FALTA ACTUALIZAR LA FECHA DE INICIO A LA FECHA 
+                suscripcion.fecha_inicio = nueva_fecha_inicio
+                suscripcion.fecha_termino = sumar_fecha(nueva_fecha_inicio)
+                # FALTA ACTUALIZAR CÓDIGO PERFIL ACá
                 suscripcion.estado_transbank=result[0]
                 suscripcion.tarjeta=result[1]
                 suscripcion.fecha_transbank=result[2]
@@ -152,6 +150,10 @@ class RespuestaWebpayView(View):
                 suscripcion.estado_suscripcion='1'
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
+                user_object = User.objects.get(username=request.user)
+                perfil_object = Perfil.objects.get(user_id=user_object.id)
+                perfil_object.codigo = '100'
+                perfil_object.save()
                 messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                 context = {
                     'orden_compra': suscripcion.id,
@@ -161,20 +163,9 @@ class RespuestaWebpayView(View):
                     'monto': suscripcion.monto
                 }
                 return render(request, 'voucher_webpay.html', context)
-            except Exception as e:
-                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
-                raise Http404
-            # crear el html de la respuesta o armar el context
-            # enviar correos de confirmación
-            
-            # retornar
-        elif result[0] == 'FAILED':
-            try:
-                # reescribir la suscripción con la data
+            elif result[0] == 'FAILED':
                 session_id = result[3]
                 suscripcion = suscripcion_session(session_id)
-                # fecha_inicio = now()
-                # fecha_termino = sumar_fecha(fecha_inicio)
                 suscripcion.estado_transbank=result[0]
                 suscripcion.tarjeta=result[1]
                 suscripcion.fecha_transbank=result[2]
@@ -183,18 +174,10 @@ class RespuestaWebpayView(View):
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 messages.error(request, 'Lo sentimos, ocurrió un error. Por favor, intenta nuevamente.')
-
                 return redirect(f'planes/individual/{suscripcion.plan.id}')
-            except Exception as e:
-                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
-                raise Http404
-        elif result[0] == 'ABORTED':
-            try:
-                # reescribir la suscripción con la data
+            elif result[0] == 'ABORTED':
                 session_id = request.GET.get('TBK_ID_SESION')
                 suscripcion = suscripcion_session(session_id)
-                # fecha_inicio = now()
-                # fecha_termino = sumar_fecha(fecha_inicio)
                 suscripcion.estado_transbank=result[0]
                 suscripcion.tarjeta='XXXX'
                 suscripcion.fecha_transbank=now()
@@ -203,16 +186,15 @@ class RespuestaWebpayView(View):
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 messages.error(request, 'La operación fue anulada por el usuario.')
-
                 return redirect(f'planes/individual/{suscripcion.plan.id}')
-            except Exception as e:
-                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
-                raise Http404
-
+        except Exception as e:
+            print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+            raise Http404
     
     def post(self, request: HttpRequest):
-        #return render(request, 'webpay.html')
         pass
+
+####### MANEJO DE SUSCRIPCIONES ORGANIZACIÓN ########
 class PlanOrganizacion(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -251,6 +233,7 @@ class SolicitudOrganizacionView(View):
             context = {'form': form}
             messages.error(request, 'No se ha podido enviar tu solicitud. Por favor, intenta nuevamente.')
             return render(request, 'plan_organizacion.html', context)
+
 
 class ElegirOrganizacionView(View):
     def dispatch(self, *args, **kwargs):

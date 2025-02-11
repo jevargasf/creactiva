@@ -154,6 +154,7 @@ WHITENOISE_INDEX_FILE = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Variables para almacenar redireccionamientos al hacer login o logout
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
