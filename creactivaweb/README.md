@@ -304,8 +304,9 @@ PARA CONTINUAR:
 ✔ no poder pagar otra suscripción cuando ya tengo una vigente
 ✔ que el usuario no se desloguee cuando vuelva a la página
 ✔ ver qué otros estados hay que manejar: USUARIO ANULA EL PAGO
-- realizar pruebas documentación TB
 - actualizar código perfil
+- realizar pruebas documentación TB
+- enviar correos electrónicos por suscripción exitosa
 
 ESTA SEMANA
 - integrar descuento estudiante/comunero

@@ -25,7 +25,7 @@ def suscripcion_activa(user):
         user_object = User.objects.get(username=user)
         perfil_object = Perfil.objects.get(user_id=user_object.id)
         registro_object = PerfilSuscripcion.objects.filter(perfil=perfil_object).order_by('-id')[0] 
-        suscripcion_object = Suscripcion.objects.get(pk=registro_object.suscripcion_id, estado_suscripcion=1, numero_usuarios=1)
+        suscripcion_object = Suscripcion.objects.get(pk=registro_object.suscripcion_id, estado_suscripcion='1', numero_usuarios=1)
         if suscripcion_object:
             return suscripcion_object
         elif suscripcion_object == None:
