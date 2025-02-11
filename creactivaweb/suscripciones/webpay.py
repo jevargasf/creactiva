@@ -29,7 +29,7 @@ def crear_transaccion(suscripcion_id, monto):
         print(res.text)
         respuesta = json.loads(res.text)
         Suscripcion.objects.filter(id=suscripcion_id).update(token_ws=respuesta['token'], session_id_transbank=session_id)
-
+        
         return respuesta
     except Exception as e:
         print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
@@ -46,9 +46,12 @@ def confirmar_transaccion(token):
         res = requests.put(url, headers=headers)
 
         respuesta = json.loads(res.text)
-
         if res.status_code == 200:
+            # REVISAR STATUS QUE IMPRIME Y MEJORAR EL CÓDIGO EN VIEWS
+            print(respuesta['status'])
             return [respuesta['status'], respuesta['card_detail']['card_number'], respuesta['transaction_date'], respuesta['session_id']]
+        elif res.status_code == 422:
+            return ['ABORTED']
         else:
             return ['vacio']
     except Exception as e:

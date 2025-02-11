@@ -19,20 +19,27 @@ def get_planes():
 # SI LA PERSONA YA TIENE UNA SUSCRIPCIÓN INDIVIDUAL, ENTONCES NO LE VA A DEJAR ENTRAR A LA PANTALLA DE PAGO
 # EN UNA SEGUNDA INSTANCIA, LE DEBERÍA PREGUNTAR SI QUIERE EXTENDER SU SUSCRIPCIÓN, COSA QUE NO HEMOS DISEñADO TODAVÍA
 
-def suscripcion_usuario(session_id):    
+def suscripcion_usuario(user):    
     # validar si tiene una suscripción vigente
     try:
-        # user_object = User.objects.get(username=user)
-        # perfil_object = Perfil.objects.get(user_id=user_object.id)
-        # registro_object = PerfilSuscripcion.objects.filter(perfil=perfil_object).order_by('-id')[0] 
-        # print(registro_object)
-        suscripcion_object = Suscripcion.objects.get(session_id_transbank=session_id, estado_suscripcion='2')
+        user_object = User.objects.get(username=user)
+        perfil_object = Perfil.objects.get(user_id=user_object.id)
+        registro_object = PerfilSuscripcion.objects.filter(perfil=perfil_object).order_by('-id')[0] 
+        suscripcion_object = Suscripcion.objects.get(pk=registro_object.suscripcion_id)
         print(suscripcion_object)
-        return suscripcion_object
-    except User.DoesNotExist as e:
-        print(f"Error en obtener el usuario: {e}")
-    except Suscripcion.DoesNotExist as e:
-        print(f"Error en obtener la suscripción: {e}")
-        #return Suscripcion()
+        if suscripcion_object:
+            return suscripcion_object
+        else:
+            return None
+    # except User.DoesNotExist as e:
+    #     print(f"Error en obtener el usuario: {e}")
     except Exception as e:
         print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+
+def suscripcion_session(session_id):
+    suscripcion_object = Suscripcion.objects.get(session_id_transbank=session_id, estado_suscripcion='2')
+    print(suscripcion_object)
+    if suscripcion_object:
+        return suscripcion_object
+    else:
+        return None

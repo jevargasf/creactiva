@@ -298,10 +298,13 @@ ESTADOS TRANSBANK:
 *** PEGAR ***
 
 PARA CONTINUAR:
-- revisar cómo funciona la view con la validación de la suscripción existente.
-- revisar en qué rutas será necesario manejar el id del plan desde los parámetros
-- terminar proceso pago FAILED
-- realizar pruebas y ver qué otros estados hay que manejar
+✔ revisar cómo funciona la view con la validación de la suscripción existente.
+✔ revisar en qué rutas será necesario manejar el id del plan desde los parámetros
+✔ terminar proceso pago FAILED
+- no poder pagar otra suscripción cuando ya tengo una vigente
+- que el usuario no se desloguee cuando vuelva a la página
+- ver qué otros estados hay que manejar: USUARIO ANULA EL PAGO
+- realizar pruebas documentación TB
 
 MEJORA:
 - BOTÓN "QUIERO CAMBIAR MI SUSCRIPCIÓN" en PANTALLA_COMPRA, en caso de que la persona quiera cambiar el plan que va a pagar (habiendo elegido otro anteriormente)
@@ -311,3 +314,6 @@ ESTA SEMANA
 
 DEBUG SUSCRIPCIONES:
 - QUÉ ES MEJOR? crear un nuevo registro de suscripción (nueva orden de compra) cada vez? o crear 1 registro y actualizar sus datos. Lo primero me va a dejar también registro de las transacciones fallidas. Lo segundo es más limpio el términos de datos. Solo voy a quedarme en la bbdd con las suscripciones caducas. Las suscripciones fallidas también son importantes para tener un respaldo de todas las transacciones que se llevan a cabo. El estado '2' reflejaría una suscripción fallida. El estado_transbank mostrará la razón de por qué falló. La categoría la voy a llamar "en curso", pero si el estado transbank dice "FAILED", entonces significa que la suscripción quedó en curso para nosotros, pero falló para transbank. En consecuencia, el proceso deberá comenzar de nuevo creando un nuevo registro
+✔ EL SESSION_ID DEBE SER DESTRUIDO UNA VEZ QUE SE TERMINE DE UTILIZAR PARA NO GENERAR CONFLICTOS: no se destruye, se reemplaza por la palabra "destruido"
+- MANEJAR EL CASO DONDE SE ANULA LA TRANSACCIÓN (CASO 'VACIO')
+- CUANDO INTENTA LOGUEAR Y EL USUARIO NO EXISTE, IGUAL CREA LA ORDERN DE COM¿¿PRA DE LA SUSCRIPCIÓN

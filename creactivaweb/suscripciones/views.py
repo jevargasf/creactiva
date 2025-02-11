@@ -9,7 +9,7 @@ from main.models import User, Perfil
 from cursos.models import Curso
 from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
-from suscripciones.services import suscripcion_usuario
+from suscripciones.services import suscripcion_usuario, suscripcion_session
 from django.contrib.sessions.models import Session
 from django.urls import reverse
 
@@ -59,6 +59,7 @@ class PagarView(View):
         try:
             # AHORA SÍ ME SIRVE LA LÓGICA IF SUSCRIPCIÓN EXISTE, ENTONCES RECUPERAR, SI NO, CREAR
             suscripcion = suscripcion_usuario(request.user)
+            print(suscripcion)
             if suscripcion is None:
                 plan = Planes.objects.get(pk=id_plan)
                 fecha_termino = sumar_fecha(plan.duracion)
@@ -122,12 +123,16 @@ class RespuestaWebpayView(View):
     def get(self, request: HttpRequest):
         print(request.user)
 
-        # como el request viene desde transbank, viene sin usuario, así que debo hacer el match a través de session_id
-        # además, el session_id cambia cada vez, así que dependerá siempre de la transacción, lo debo renovar en cada transacción!!
-        if not request.GET.get('token_ws'):
+        # CUANDO ANULO UNA TRANSACCIÓN, EL TOKEN NO VUELVE COMO TOKEN_WS, VUELVE COMO TBK_TOKEN
+        if request.GET.get('TBK_TOKEN'):
+            token = request.GET.get('TBK_TOKEN')
+        elif request.GET.get('token_ws'):
+            token = request.GET.get('token_ws')
+        else:
             raise Http404
-        token = request.GET.get('token_ws')
+        
         result = confirmar_transaccion(token)
+        
         if result[0] == 'vacio':
             print('vacio')
             raise Http404
@@ -136,14 +141,16 @@ class RespuestaWebpayView(View):
                 # reescribir la suscripción con la data
                 session_id = result[3]
 
-                suscripcion = suscripcion_usuario(session_id)
+                suscripcion = suscripcion_session(session_id)
                 # fecha_inicio = now()
                 # fecha_termino = sumar_fecha(fecha_inicio)
+                # FALTA ACTUALIZAR LA FECHA DE INICIO A LA FECHA 
                 suscripcion.estado_transbank=result[0]
                 suscripcion.tarjeta=result[1]
                 suscripcion.fecha_transbank=result[2]
                 suscripcion.token_ws=token
                 suscripcion.estado_suscripcion='1'
+                suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                 context = {
@@ -165,7 +172,7 @@ class RespuestaWebpayView(View):
             try:
                 # reescribir la suscripción con la data
                 session_id = result[3]
-                suscripcion = suscripcion_usuario(session_id)
+                suscripcion = suscripcion_session(session_id)
                 # fecha_inicio = now()
                 # fecha_termino = sumar_fecha(fecha_inicio)
                 suscripcion.estado_transbank=result[0]
@@ -173,8 +180,29 @@ class RespuestaWebpayView(View):
                 suscripcion.fecha_transbank=result[2]
                 suscripcion.token_ws=token
                 suscripcion.estado_suscripcion='2'
+                suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 messages.error(request, 'Lo sentimos, ocurrió un error. Por favor, intenta nuevamente.')
+
+                return redirect(f'planes/individual/{suscripcion.plan.id}')
+            except Exception as e:
+                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                raise Http404
+        elif result[0] == 'ABORTED':
+            try:
+                # reescribir la suscripción con la data
+                session_id = request.GET.get('TBK_ID_SESION')
+                suscripcion = suscripcion_session(session_id)
+                # fecha_inicio = now()
+                # fecha_termino = sumar_fecha(fecha_inicio)
+                suscripcion.estado_transbank=result[0]
+                suscripcion.tarjeta='XXXX'
+                suscripcion.fecha_transbank=now()
+                suscripcion.token_ws=token
+                suscripcion.estado_suscripcion='2'
+                suscripcion.session_id_transbank = 'DESTROYED'
+                suscripcion.save()
+                messages.error(request, 'La operación fue anulada por el usuario.')
 
                 return redirect(f'planes/individual/{suscripcion.plan.id}')
             except Exception as e:
