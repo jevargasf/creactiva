@@ -99,8 +99,10 @@ html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, v
     user-select:none;
 }
 
+main{
+}
+
 html.collapsed{
-    overflow:hidden;
     -webkit-overflow-scrolling: auto;
     height:100%;
 }
@@ -109,6 +111,7 @@ body {
     padding: 0;
     margin: 0;
     height:100%;
+    overflow-x: hidden;
     background-color: #00224a;
 }
 
@@ -222,6 +225,7 @@ button {
     top:25px;
     z-index:3;
     width:150px;
+    -webkit-transition:all 1s, bottom .75s;
 }
 
 
@@ -435,6 +439,7 @@ p{
 }
 
 
+
 /*--------------------------------------------Spotlight Principal--------------------------------------------------*/
 /*--------------------------------------------Spotlight Principal--------------------------------------------------*/
 /*--------------------------------------------Spotlight Principal--------------------------------------------------*/
@@ -442,7 +447,6 @@ p{
 #spotlight {
     width:100%;
     height:calc(100vh - 200px);
-    position:fixed;
     top:0%;
     transition: top .5s;
 }
@@ -539,18 +543,12 @@ p{
     width:80%;
     margin:0px auto;
     position: absolute;
-    left:50%;
-    translate:-50%;
-    bottom:25px;
+    translate: -50% -120%;
+    left: 50%;
     opacity: 1;
     transition: opacity .2s;
 }
 
-#slider-inicial-nav.collapsed{
-    opacity:0;
-    pointer-events: none;
-
-}
 
 #slider-inicial-descripciones {
     left:50%;
@@ -595,7 +593,7 @@ p{
 #slider-inicial-descripciones dl.collapsed {
     transition:all 0.3s ease-in-out;
     color:#fff;
-    text-shadow: 0px 0px 5px #fff;
+    text-shadow: 0px 0px 3px #000;
 }
 
 
@@ -640,16 +638,12 @@ p{
 /*--------------------------------------------------BUSQUEDA--------------------------------------------------------*/
 
 #buscador{
-    position: fixed;
     width:100%;
-    padding:20px 0px 0px 0px;
-    bottom:80px;
+    padding:20px 20px 5px 20px;
     transition: bottom .5s;
+    box-sizing: border-box;
 }
 
-#buscador.collapsed{
-    bottom:calc(100vh - 200px);
-}
 
 #busqueda{
         position: relative;
@@ -679,6 +673,8 @@ p{
     margin: 0 auto;
     width: fit-content;
     padding:15px 0px 0px 0px;
+    pointer-events: none;
+    text-align: center;
 
 }
 
@@ -688,7 +684,7 @@ p{
     color:#57DEFF;
     display: inline-block;
     border-radius: 50px;
-    margin: 0px 2px 0px 2px;
+    margin: 0px 2px 8px 2px;
     border: 1px solid #57DEFF;
     cursor: pointer;
     opacity: 0.8;
@@ -734,7 +730,6 @@ p{
     width:100%;
     box-sizing: border-box;
     padding:0px 0% 50px 0%;
-    position:fixed;
     overflow:show;
     margin:0 auto;
     clear:both;
@@ -746,21 +741,6 @@ p{
 
 #fila:hover{
     opacity:1;
-}
-
-#fila.collapsed{
-    bottom:calc(100vh - 440px);
-    cursor: inherit;
-    opacity:1;
-
-}
-
-#slider-fila{
-    pointer-events: none;
-}
-
-#slider-fila.collapsed{
-    pointer-events: inherit;
 }
 
 
@@ -1653,6 +1633,7 @@ float: left;
     transition: all 0.3s ease-in-out;
     opacity: .8;
     background-image: url(../icon/lupa.svg);
+    display: none;
 }
 
 
@@ -1724,13 +1705,13 @@ float: left;
 /* ---------------------------------------------------CURSO----------------------------------------------------- */
 
 #img-curso-cont{
-    position: absolute;
-    margin-top: 0px;
     width: 100%;
-    height:calc(100% - 70px);
-    overflow: hidden;
+    height: calc(100% - 70px);
     z-index: -1;
+    top:0;
     background-color: #000;
+    overflow: hidden;
+    position: absolute;
     
 }
 
@@ -1739,7 +1720,7 @@ float: left;
     width: 120%;
     left: 50%;
     top:50%;
-    translate: -50% -40%;
+    translate: -50% -50%;
 }
 
 
@@ -1748,13 +1729,10 @@ float: left;
 }
 
 #curso-fila #fila{
-    position: absolute;
     width:1080px;
     height:auto;
     padding:0px;
     bottom:100px;
-    left: 50%;
-    translate: -50% 0%;
 }
 
 #mascara_curso{
@@ -1776,7 +1754,7 @@ float: left;
     left:50%;
     translate:-50% 0;
     position: absolute;
-    bottom: 270px;
+    bottom: 90px;
     text-align: left;
     opacity: 1;
     text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
@@ -1803,6 +1781,7 @@ float: left;
     padding-top:10px;
     margin-top:10px;
     user-select: text;
+    box-sizing: border-box;
 }
 
 #curso-info1 ul{
@@ -1833,7 +1812,6 @@ float: left;
 
 
 .btn-curso{
-    position: absolute;
     background-color:#fff;
     font-size:14px;
     border:none;
@@ -1842,9 +1820,10 @@ float: left;
     padding:10px 30px 10px 30px;
     border-radius: 5px;
     z-index: 2;
-    bottom:0px;
-    right:0px;
     letter-spacing: .5px;
+    float:right;
+    translate: 0px -35px;
+    margin-left:15px;
 }
 
 .btn-curso:hover{
@@ -1897,7 +1876,6 @@ float: left;
 }
 
 #contenido-curso1{
-    position: fixed;
     width:100%;
     height:100%;
     display: inline-block;
@@ -1916,7 +1894,7 @@ float: left;
 
 #info-cur-info{
     position: relative;
-    width: 600px;
+    width: 60%;
     display: inline-block;
     overflow: hidden;
     pointer-events: inherit;
@@ -2008,13 +1986,14 @@ float: left;
 
 
 #info-cur-menu{
-    width: 400px;
+    width: 40%;
     display: inline-block;
 }
 
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
+
 
 .tsc-smartplayer .player-controls {
     background: rgb(00,0,0);
@@ -2025,7 +2004,15 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     overflow: visible;
     opacity: 1;
 }
+ .tsc-smartplayer .progress-bar-control{
+    position: absolute;
+    bottom: 0;
+}
  
+.tsc-smartplayer .toc-media-title {
+    opacity: 0;
+}
+
 .tsc-smartplayer .progress-bar-control .progress-scrubbar-track .progress-bar-chapter .scrubbar-played-track{
     background-color: rgb(0, 225, 255);
 }
@@ -2050,6 +2037,80 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 .tsc-smartplayer .media-wrapper {
  pointer-events: none;
 }
+
+
+.tsc-smartplayer .review-confirmation-container, .tsc-smartplayer .start-question-set-confirmation-container {
+    max-width: 300px;
+    border-radius: 0px;
+    background-color: #024C8D;
+}
+
+.appplayer .button-primary, .tsc-smartplayer .button-primary {
+    background: #024C8D;
+    color: #f5f6f8;
+    border: 1px solid #fff;
+    font-family: latolight;
+    text-transform: uppercase;
+
+}
+
+.appplayer .button-secondary, .tsc-smartplayer .button-secondary {
+    background: #024C8D;
+    text-transform: uppercase;
+    border: 1px solid #fff;
+    font-family: latolight;
+    color: #fff;
+}
+
+.appplayer .button-primary, .tsc-smartplayer .button-primary:hover:enabled {
+    background: #1787e9;
+}
+
+
+.appplayer .button-secondary, .tsc-smartplayer .button-secondary:hover:enabled {
+    background: #1787e9;
+}
+
+.tsc-smartplayer .question-header {
+    font-family: latolight;
+    background-color: #024C8D;
+}
+
+.tsc-smartplayer .question-answers {
+    background-color: #003c71;
+}
+
+.tsc-smartplayer .question-set-controls {
+        background-color: #024C8D;
+}
+
+.tsc-smartplayer fieldset, .tsc-smartplayer p, .tsc-smartplayer pre, .tsc-smartplayer table {
+    font-size: 16px;
+}
+
+.tsc-smartplayer .question-set-container .hide-quiz-button {
+    display: none;
+}
+
+.tsc-smartplayer .active-question-item:active, .tsc-smartplayer .active-question-item:hover, .tsc-smartplayer .highlight-background, .tsc-smartplayer .picked-quiz-item {
+    background-color: rgba(256, 256, 256, .1);
+}
+
+
+.small-desktop-width.small-desktop-height.video-view.tsc-smartplayer .multiple-choice {
+    font-family: 'latolight';
+}
+
+.tsc-smartplayer .question-count p{
+    font-family: 'latolight';
+
+}
+
+.tsc-smartplayer .question-text p{
+    font-family: 'latoregular';
+
+}
+
 
 #tscVideoContent{
     width: 100%;
@@ -2109,6 +2170,15 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     background-size: 110%;
     pointer-events: none;
     box-shadow: inset 0 -100px 1000px #000000;
+}
+
+.player-settings-wrapper{
+    display: none;
+}
+
+.pip-wrapper{
+    display: none;
+    
 }
 
 .btn-capitulo{
@@ -2180,7 +2250,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 
 #info-cap-player{
-    position:fixed;
     text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
     bottom:200px;
     left:100px;
@@ -2203,11 +2272,11 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-full{
     width: 100%;
-    position: fixed;
     bottom: -100vh;
     pointer-events: none;
     -webkit-transition: all .2s, bottom .75s;
     left: 0px;
+    position:relative;
 }
 
 #info-cap-full.collapsed{
@@ -2349,6 +2418,8 @@ img.img-x2{
 
 section#info-curso{
     height:calc(100vh - 320px);
+    overflow: hidden;
+    width:1000px;
 }
 
 aside#cur-cap {
@@ -2540,46 +2611,184 @@ aside#cur-cap {
 }
 
 
-/*-----------RESPONSIVIDAD 1280px--------------------------------------------------*/
 @media (max-width: 1400px) {
-    /*-----------SLIDER INICIAL------------------------------------------------------------*/
 
 }
 
-/*-----------RESPONSIVIDAD 1280px--------------------------------------------------*/
-@media (max-width: 1280px) {
-}
+@media (max-width: 1150px) {
 
-/*-----------RESPONSIVIDAD 1100px------------------------------------------------*/
-@media (max-width: 1110px) {
-}
-
-/*-----------RESPONSIVIDAD 900px------------------------------------------------*/
-
-@media (max-width: 900px) {
-    /*-----------SLIDER INICIAL-------------------------------------------------*/
-    #slider-inicial div img {
-        margin-top:0%;
+    #curso-fila #fila{
+        width:100%;
+        left: auto;
+        padding:0px 20px 0px 20px;
+        translate: 0 0;
+    }
+    #curso-info1{
+        width:100%;
+        box-sizing: border-box;
     }
 
+    #curso-info1 h1{
+        padding:0px 20px 0px 25px;
+        margin-bottom: 5px;
+    }
+
+    #curso-info1 ul{
+        padding:0px 20px 0px 25px;
+    }
+
+
+    #curso-info1 p{
+        padding:10px 20px 0px 00px;
+        margin-left:25px;
+    }
+
+    #btn-curso2 {
+        float: right;
+        right: 25px;
+    }
+    
+    #btn-curso1 {
+        float: right;
+        margin-right: 25px;
+    }
+    section#info-curso {
+        padding:0px 25px 0px 25px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
 }
 
-/*-----------RESPONSIVIDAD 760px------------------------------------------------*/
+@media (max-width: 1080px) {
+    #slider-inicial div img {
+        margin-top:0%;
+        height: 150%;
+        translate: -50% -45%;
+        width: auto;
+        left:50%;
+    }
+
+    .img-curso{
+        width: auto;
+        height: 100%;
+        translate: -50% -50%;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 900px) {
+    #slider-inicial div img {
+        margin-top:0%;
+        height: 100%;
+        translate: -50% -50%;
+        width: auto;
+        animation: spotlight 15s infinite ease;
+        left:50%;
+    }
+
+@keyframes spotlight{
+    0%{translate: -40% -50%; }
+    50%{translate: -60% -50%; }
+    100%{translate: -40% -50%;}
+}
+
+#logo {
+
+    left: 25px;
+    top: 15px;
+
+}
+    
+.main-nav {
+    right: 25px;
+    top: 20px;
+}
+
+
+.img-curso {
+    margin-top:0%;
+    height: 100%;
+    translate: -50% -50%;
+    width: auto;
+    animation: portada 55s infinite linear;
+    left:50%;
+}
+
+@keyframes portada{
+0%{translate: -40% -50%; }
+50%{translate: -60% -50%; }
+100%{translate: -40% -50%;}
+}
+
+
+
+
+#curso-fila #fila{
+    padding:0px 00px 0px 00px;
+}
+
+
+.btn-curso{
+    translate: 0px 0px;
+    margin-left:0px;   
+    margin-bottom:15px;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 760px) {
 
 
 
-    /*-----------SLIDER INICIAL-----------------------------------------------*/
+
     #slider-inicial div {
-        height:75%;
+        height:100%;
     }
 
+    #slider-inicial-nav {
+        width: 70%;
+    }
     #slider-inicial-descripciones {
-        padding:5px 20px 40px 20px;
     }
 
     #slider-inicial-descripciones dd {
-        display:none;
+        font-size: 18px;
+        letter-spacing: .5px;
+        font-family: latolight;
+        text-align: center;
     }
 
     #slider-inicial-descripciones dl {
@@ -2587,12 +2796,13 @@ aside#cur-cap {
         width:100%;
         border-bottom:1px solid #999;
         border-right:0px;
-        padding:7px 15px 10px 15px;
+        padding:7px 0px 7px 0px;
         margin-bottom:4px;
         position:absolute;
         border:0px;
         color:#005c99;
         opacity:0;
+        bottom:60px;
     }
 
 
@@ -2608,18 +2818,139 @@ aside#cur-cap {
     }
 
     #slider-inicial-descripciones dt {
-        font-size:15px;
-
+        font-size: 26px;
+        text-align: center;
+        font-family: latobold;
     }  
+    .btn-spotlight {
+        top:auto;
+        bottom:20px;
+        right:auto;
+        left:50%;
+        translate: -50% 0%;
+    }
+
+    #buscador{
+    }
+
+    #curso-info1{
+        text-align: center;
+
+    }
+    #curso-info1 p {
+        width: calc(100% - 50px);
+        font-size: 16px;
+        text-align: center;
+        margin:5px auto 0px auto;
+        padding:10px 0px 15px 0px;
+
+    }
+
+    #curso-info1 ul {
+        text-align: center;
+    }
+
+    .btn-curso {
+        position: relative;
+        float: right;
+    
+    }
+
+    .btn-curso {
+        text-align: center;
+        clear: both;
+        margin-bottom:15px;
+    }
+
+    #btn-curso1{
+        float: none;
+        margin:0px;
+        right: auto;
+        margin-right:10px;
+        margin-bottom:15px;
+
+    }
+
+    #btn-curso2{
+        right: auto;
+        float: none;
+        margin:0px;
+        margin-bottom:15px;
+        
+    }
+
+    
+#botonera{
+    text-align: center;
+}
+
+
+#info-cap-full {
+    bottom: -95vh;
+
+}
+
+#info-cur-info {
+    width: 100%;
+    padding: 0px 0px 0px 0px;
+}
+
+aside#cur-cap{
+    position: relative;
+    translate: 0 0;
+}
+
+
+#info-cur-menu {
+    width: 100%;
+}
+
+
+.boton-desplegable{
+    width:100%;
+}
+#cur-cap div {
+    padding: 0px 10px 0px 10px;
+}
+
+.botones-cur button {
+    width: 47%;
+}
+
+#sigue_explorando {
+    top: 32px;
+    left: 30px;
+}
+
+
+
+
 
 
 
 }
 
-/*-----------RESPONSIVIDAD 465px------------------------------------------------*/
-@media (max-width: 480px) {
 
 
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 550px) {
+    .fila-slider div {
+        padding-bottom: 70%;
+
+    }
+    #logo_centro {
+        opacity:0;
+    }
 }
 
 
