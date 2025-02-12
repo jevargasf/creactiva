@@ -61,7 +61,7 @@ def str_to_list(string: str):
             continue
     return lista
 
-def sumar_fecha(meses):
+def sumar_fecha(fecha, meses):
     dias = meses*30
-    nueva_fecha = now() + timedelta(days=dias)
+    nueva_fecha = fecha + timedelta(days=dias)
     return nueva_fecha

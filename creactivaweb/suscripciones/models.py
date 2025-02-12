@@ -16,7 +16,6 @@ class Suscripcion(models.Model):
     monto = models.IntegerField(null=True, blank=True, verbose_name='Monto')
     numero_usuarios = models.IntegerField(null=False, default=1, verbose_name='Número usuarios')
     codigo_validacion = models.CharField(max_length=255, null=True, verbose_name='Código validación')
-    estado_suscripcion = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado suscripción')
     token_ws = models.CharField(max_length=255, null=True, verbose_name='Token Webpay Service')
     tarjeta = models.CharField(max_length=10, null=True, verbose_name='Tarjeta Pago')
     fecha_transbank = models.CharField(max_length=100, null=True, verbose_name='Fecha Transbank')
@@ -60,6 +59,8 @@ class PerfilSuscripcion(models.Model):
         verbose_name='Perfil suscripción',
         related_name='perfil_sus'
     )
+    estado_suscripcion = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado suscripción')
+
 
 class SolicitudOrganizacion(models.Model):
     TIPOS_ORGANIZACIONES = get_tipo_organizacion()

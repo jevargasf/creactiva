@@ -57,8 +57,8 @@ class PagarView(LoginRequiredMixin, View):
     def post(self, request: HttpRequest, id_plan):
         try:
             check_suscripcion = suscripcion_activa(request.user)
-            
-            if check_suscripcion:
+            print(check_suscripcion)
+            if check_suscripcion != None:
                 context = {
                     'fecha_inicio': check_suscripcion.fecha_inicio,
                     'fecha_termino': check_suscripcion.fecha_termino,
@@ -67,15 +67,15 @@ class PagarView(LoginRequiredMixin, View):
                 return render(request, 'suscripcion_activa.html', context)
             elif check_suscripcion == None:
                 plan = Planes.objects.get(pk=id_plan)
-                fecha_termino = sumar_fecha(plan.duracion)
+                fecha_inicio = now()
+                fecha_termino = sumar_fecha(fecha_inicio, plan.duracion)
                 suscripcion = Suscripcion(
-                    fecha_inicio=now(),
+                    fecha_inicio=fecha_inicio,
                     # fecha término es now + duración de la suscripción
                     fecha_termino=fecha_termino,
                     monto=plan.monto,
                     numero_usuarios=1,
                     codigo_validacion='0',
-                    estado_suscripcion='2',
                     plan=plan
                 )
                 suscripcion.save()
@@ -91,7 +91,8 @@ class PagarView(LoginRequiredMixin, View):
                 perfil_object = Perfil.objects.get(user_id=user_object.id)
                 perfil_suscripcion = PerfilSuscripcion(
                     perfil=perfil_object,
-                    suscripcion=suscripcion
+                    suscripcion=suscripcion,
+                    estado_suscripcion='2'
                 )
                 perfil_suscripcion.save()
             
@@ -141,19 +142,20 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
                 nueva_fecha_inicio = now()
                 suscripcion = suscripcion_session(session_id)
                 suscripcion.fecha_inicio = nueva_fecha_inicio
-                suscripcion.fecha_termino = sumar_fecha(nueva_fecha_inicio)
-                # FALTA ACTUALIZAR CÓDIGO PERFIL ACá
+                suscripcion.fecha_termino = sumar_fecha(nueva_fecha_inicio, suscripcion.plan.duracion)
                 suscripcion.estado_transbank=result[0]
                 suscripcion.tarjeta=result[1]
                 suscripcion.fecha_transbank=result[2]
                 suscripcion.token_ws=token
-                suscripcion.estado_suscripcion='1'
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 user_object = User.objects.get(username=request.user)
                 perfil_object = Perfil.objects.get(user_id=user_object.id)
                 perfil_object.codigo = '100'
                 perfil_object.save()
+                perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
+                perfil_suscripcion_object.estado_suscripcion = '1'
+                perfil_suscripcion_object.save()
                 messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                 context = {
                     'orden_compra': suscripcion.id,
@@ -170,7 +172,6 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
                 suscripcion.tarjeta=result[1]
                 suscripcion.fecha_transbank=result[2]
                 suscripcion.token_ws=token
-                suscripcion.estado_suscripcion='2'
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 messages.error(request, 'Lo sentimos, ocurrió un error. Por favor, intenta nuevamente.')
@@ -182,7 +183,6 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
                 suscripcion.tarjeta='XXXX'
                 suscripcion.fecha_transbank=now()
                 suscripcion.token_ws=token
-                suscripcion.estado_suscripcion='2'
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 messages.error(request, 'La operación fue anulada por el usuario.')
