@@ -31,8 +31,8 @@
     <p>{{ curso.desc_corta }}</p>
 
 
-
-    <button class="btn-curso" id="btn-curso1"><a href="#">MÁS INFORMACIÓN</a></button>
+    <div id="botonera">
+    <a href="#"><button class="btn-curso" id="btn-curso1">MÁS INFORMACIÓN</button></a>
 
 
     {% if user.is_authenticated %}
@@ -45,10 +45,11 @@
     {% else %}
     <a href="{% url 'login' %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
     {% endif %}
-
     </div>
-    <!-- aquí renderizo cada cap, pero en el snippet -->
-    {% include 'snippets/fila_curso.html' %}
+        <!-- aquí renderizo cada cap, pero en el snippet -->
+        {% include 'snippets/fila_curso.html' %}
+    </div>
+
 </div>
 
 <button id="mas-info" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información"></button>

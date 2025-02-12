@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>{{ capitulo.nombre }} | {{ capitulo.curso }}</title>
+<title>{{ info.capitulo_nombre }} | {{ info.curso_nombre }}</title>
 <link href="{% static '/skins/remix/techsmith-smart-player.min.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
@@ -32,12 +32,12 @@
 
 
 
-<script src="{% static 'scripts/' %}{{ capitulo.js_cap }}" type="text/javascript"></script>
+<script src="{% static 'scripts/' %}{{ recurso.js_cap }}" type="text/javascript"></script>
 <script type="text/javascript">
     (function (window) {
         function setup(TSC) {
-             TSC.playerConfiguration.addMediaSrc("{{ capitulo.link }}");
-             TSC.playerConfiguration.setXMPSrc("{% static 'xml/' %}{{ capitulo.xml_cap }}");
+             TSC.playerConfiguration.addMediaSrc("{{ recurso.link }}");
+             TSC.playerConfiguration.setXMPSrc("{% static 'xml/' %}{{ recurso.xml_cap }}");
              TSC.playerConfiguration.setAutoHideControls(true);
              TSC.playerConfiguration.setBackgroundColor("#000000");
              TSC.playerConfiguration.setCaptionsEnabled(false);
@@ -48,7 +48,7 @@
              TSC.playerConfiguration.skipVideoDuration = 10;
              
              TSC.playerConfiguration.setAutoPlayMedia(false);
-             TSC.playerConfiguration.setPosterImageSrc("{% static '/img/' %}{{ capitulo.first_frame }}");
+             TSC.playerConfiguration.setPosterImageSrc("{% static '/img/' %}{{ info.first_frame }}");
              TSC.playerConfiguration.setIsSearchable(true);
              TSC.playerConfiguration.setEndActionType("stop");
              TSC.playerConfiguration.setEndActionParam("true");
@@ -77,14 +77,14 @@
 <span id="cuadricula"></span>
 
 <div id="cap-banner-top">
-    <h3>{{ capitulo.curso }} | <b>{{ capitulo.nombre }}</b></h3>
+    <h3>{{ info.curso_nombre }} | <b>{{ info.capitulo_nombre }}</b></h3>
 </div>
 
 
 <aside id="info-cap-player">
-    <h3>{{ capitulo.curso }} </h3>
-    <h8>{{ capitulo.nombre }}</h8>
-    <h4>{{ capitulo.desc_corta }}</h4>
+    <h3>{{ info.curso_nombre }} </h3>
+    <h8>{{ info.capitulo_nombre }}</h8>
+    <h4>{{ info.desc_corta }}</h4>
 </aside>
 
 
@@ -92,13 +92,13 @@
 
 <article id="info-cap-full">
     <section>
-        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ capitulo.first_frame}}" alt="{{ capitulo.nombre }}"></aside>
+        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ info.first_frame}}" alt="{{ info.capitulo_nombre }}"></aside>
         <aside id="info-cap-info"> 
-            <h6>{{ capitulo.curso }} | Capítulo {{ capitulo.numero }}</h6>
-            <h8>{{ capitulo.nombre }}</h8>
-            <h4>{{ capitulo.desc_corta }}</h4>
-            <p>{{ capitulo.descripcion }}</p>
-            <h6>Duración: <b>{{ capitulo.duracion }} Minutos</b></h6>
+            <h6>{{ info.curso_nombre }} | Capítulo {{ info.numero }}</h6>
+            <h8>{{ info.capitulo_nombre }}</h8>
+            <h4>{{ info.desc_corta }}</h4>
+            <p>{{ info.descripcion }}</p>
+            <h6>Duración: <b>{{ info.duracion }} Minutos</b></h6>
             <h6>Contenido:</h6>
             <ul class="cap-lista bloques">
                 <li>· Origen del Mapuzungun</li>
@@ -118,7 +118,7 @@
             <nav class="botones-cap">
                 <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
                 <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
-                <a href="{% url 'cursos' capitulo.curso.cur %}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
+                <a href="{% url 'cursos' info.curso_id %}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
             </nav>
 
         </aside>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/header_plan.html' %}
+{% include 'snippets/navbar.html' %}
+
+<div id="fondo_animado2">
+</div>
+<span id="cuadricula2"></span>
+
+<div class="form form-register">
+    <h7>MUCHAS GRACIAS POR PREFERIRNOS</h7><br><br>
+    <h3>ESTOS SON LOS DETALLES DE SU SUSCRIPCIÓN:</h3>
+    <p>Orden de compra N° {{ orden_compra }}</p>
+    <p>Tu suscripción comienza {{ fecha_inicio }}</p>
+    <p>Finaliza el día {{ fecha_termino }}</p>
+    <p>Pagado con XXXXXXXX{{ tarjeta }}</p>
+    <p>$ {{ monto }}</p>
+    <div id="form-org-footer">
+        <a href="{% url 'index' %}">COMENZAR A EXPLORAR</a>
+    </div>
+</div>
+
+{% endblock %}

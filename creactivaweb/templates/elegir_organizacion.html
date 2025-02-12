@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'snippets/header_plan.html' %}
+
+<div id="fondo_animado2">
+</div>
+<span id="cuadricula2"></span>
+
+<form id="form-organizacion" class="form form-register" action="{% url 'elegir-organizacion' %}" method="post">
+    <h7>ADMINISTRADOR DE SUSCRIPCIONES</h7><br><br>
+    <h3>ELIGE LA ORGANIZACIÓN QUE DESEAS REGISTRAR:</h3>
+    {% csrf_token %}
+        <div class="form-mid">
+            {{ form.organizacion }}
+        </div>
+        <div id="form-org-footer">
+            <button type="submit">ENVIAR</button>
+        </div>
+    </form>
+    
+    {% include 'snippets/header_volver.html' %}
+    {% endblock %}

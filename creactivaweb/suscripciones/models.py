@@ -3,19 +3,35 @@ from django.utils.timezone import now
 from suscripciones.utils import get_tipo_organizacion
 from main.models import User, Perfil
 
+class Planes(models.Model):
+    nombre = models.CharField(max_length=50, null=True, verbose_name='Nombre plan')
+    monto = models.IntegerField(null=True, verbose_name='Monto')
+    duracion = models.IntegerField(null=True, verbose_name='Duración')
+
 class Suscripcion(models.Model):
-    sus = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
+    id = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
     # No siempre será la fecha de ahora, solo para los usuarios individuales
     fecha_inicio = models.DateTimeField(null=False, default=now, verbose_name='Fecha inicio')
-    fecha_termino = models.DateTimeField(null=True, verbose_name='Fecha término')
-    monto = models.IntegerField(null=True, verbose_name='Monto')
+    fecha_termino = models.DateTimeField(null=True, default=now, verbose_name='Fecha término')
+    monto = models.IntegerField(null=True, blank=True, verbose_name='Monto')
     numero_usuarios = models.IntegerField(null=False, default=1, verbose_name='Número usuarios')
     codigo_validacion = models.CharField(max_length=255, null=True, verbose_name='Código validación')
-    estado_suscripcion = models.IntegerField(null=False, default=0, verbose_name='Estado suscripción')
-
+    token_ws = models.CharField(max_length=255, null=True, verbose_name='Token Webpay Service')
+    tarjeta = models.CharField(max_length=10, null=True, verbose_name='Tarjeta Pago')
+    fecha_transbank = models.CharField(max_length=100, null=True, verbose_name='Fecha Transbank')
+    estado_transbank = models.CharField(max_length=100, null=True, verbose_name='Estado Transbank')
+    session_id_transbank = models.CharField(max_length=61, null=True, blank=True, verbose_name='Session ID Transbank')
+    plan = models.ForeignKey(
+        Planes,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='Plan',
+        related_name='plan'
+    )
 
 class CursosSuscripcion(models.Model):
-    cur_sus = models.AutoField(primary_key=True, null=False,verbose_name='ID cursos suscripciones')
+    id = models.AutoField(primary_key=True, null=False,verbose_name='ID cursos suscripciones')
     suscripcion = models.ForeignKey(
         'Suscripcion',
         on_delete=models.CASCADE,
@@ -30,7 +46,7 @@ class CursosSuscripcion(models.Model):
     )
 
 class PerfilSuscripcion(models.Model):
-    usu_sus = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripciones perfiles')
+    id = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripciones perfiles')
     suscripcion = models.ForeignKey(
         'Suscripcion',
         on_delete=models.CASCADE,
@@ -43,6 +59,8 @@ class PerfilSuscripcion(models.Model):
         verbose_name='Perfil suscripción',
         related_name='perfil_sus'
     )
+    estado_suscripcion = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado suscripción')
+
 
 class SolicitudOrganizacion(models.Model):
     TIPOS_ORGANIZACIONES = get_tipo_organizacion()

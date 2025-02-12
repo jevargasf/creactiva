@@ -2,11 +2,27 @@ from django import forms
 from django.forms import ModelForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion
 from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises
+from suscripciones.services import get_solicitudes, get_planes
 from cursos.utils import pedir_nombres_cursos
 
 
 class SolicitudOrganizacionForm(ModelForm):
     class Meta:
+
+        def __init__(self, *args, **kwargs):
+                    super(SolicitudOrganizacionForm, self).__init__(*args, **kwargs)
+                    self.fields['cursos'] = forms.CheckboxSelectMultiple(
+                        choices=pedir_nombres_cursos(),
+                        attrs={
+                            'id': 'cursos_checkbox'
+                        }
+                    )
+                    self.fields['representante'] = SelectCustom(
+                        choices=('1','b'),
+                        attrs={
+                            'id': 'representantes_checkbox'
+                        }
+                    )
         model = SolicitudOrganizacion
         fields = ['nombre_organizacion', 'tipo_organizacion', 'pais', 'comuna', 'cursos', 'mensaje']
         labels = {
@@ -58,43 +74,64 @@ class SolicitudOrganizacionForm(ModelForm):
             )
         }
 
-# class SuscripcionOrganizacionForm(ModelForm):
-#     class Meta:
-#         model = Suscripcion
-#         fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios', 'cursos', 'titular']
-#         labels = {
-#             'fecha_inicio': 'Fecha inicio',
-#             'fecha_termino': 'Fecha término',
-#             'monto': 'Monto',
-#             'numero_usuarios': 'Número usuarios',
-#             'cursos': 'Cursos',
-#             'titular': 'Usuario titular'
-#         }
-#         widgets = {
-#             'fecha_inicio': forms.DateField(
-#                 attrs={
-#                     'id': 'fecha_inicio'
-#                 }
-#             ),
-#             'fecha_termino': forms.DateField(
-#                 attrs={
-#                     'id': 'fecha_termino'
-#                 }
-#             ),
-#             'monto': forms.NumberInput(
-#                 attrs={
-#                     'id': 'monto'
-#                 }
-#             ),
-#             'numero_usuarios': forms.NumberInput(
-#                 attrs={
-#                     'id': 'numero_usuarios'
-#                 }
-#             ),
-#             'cursos': forms.CheckboxSelectMultiple(
-#                 choices=pedir_nombres_cursos(),
-#                 attrs={
-#                     'id': 'cursos_checkbox'
-#                 }
-#             ),
-#         }
+class ElegirOrganizacionForm(forms.Form):
+      organizacion = forms.CharField(widget=SelectCustom(
+                choices=get_solicitudes(),
+                attrs={
+                    'id': 'representante'
+                }
+            ))
+# Crear el formulario para elegir la organización. El formulario tiene que mandar al menos
+# Datos básicos de la solicitud como nombre de la organización y nombre del usuario que lo subió
+# También, crear la url para realizar la solicitud
+
+class SuscripcionOrganizacionForm(ModelForm):
+    cursos = forms.CharField(widget=forms.CheckboxSelectMultiple(
+                choices=pedir_nombres_cursos(),
+                attrs={
+                    'id': 'cursos_checkbox'
+                }
+            ))
+    representante = forms.CharField(label='representante', widget=SelectCustom(
+          choices=get_solicitudes())
+          )
+    class Meta:
+        model = Suscripcion
+        fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios']
+        labels = {
+            'fecha_inicio': 'Fecha inicio',
+            'fecha_termino': 'Fecha término',
+            'monto': 'Monto',
+            'numero_usuarios': 'Número usuarios'
+        }
+        widgets = {
+            'fecha_inicio': forms.DateInput(format='%d/%m/%Y',
+                attrs={
+                    'id': 'fecha_inicio'
+                }
+            ),
+            'fecha_termino': forms.DateInput(format='%d/%m/%Y',
+                attrs={
+                    'id': 'fecha_termino'
+                }
+            ),
+            'monto': forms.NumberInput(
+                attrs={
+                    'id': 'monto'
+                }
+            ),
+            'numero_usuarios': forms.NumberInput(
+                attrs={
+                    'id': 'numero_usuarios'
+                }
+            )
+        }
+
+class SuscripcionIndividualForm(forms.Form):
+    planes = forms.CharField(label='plan', widget=forms.RadioSelect(
+          choices=get_planes())
+          )
+# Continuar escribiendo este formulario
+# Escribir template
+# Escribir view
+# Escribir url

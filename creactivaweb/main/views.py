@@ -12,6 +12,10 @@ from django.db.utils import IntegrityError
 from main.utils import crear_usuario
 from cursos.utils import pedir_cursos, capitulos_index
 from main.forms import ContactoModelForm
+from django.core.mail import send_mail
+from smtplib import SMTPException
+from django.conf import settings
+
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -59,6 +63,16 @@ class RegisterView(View):
             # user = authenticate(username=username, password=password)
             # if user is not None:
             #     login(request, user)
+            try:
+                send_mail(
+                    "Bienvenido a Creactiva Animaciones",
+                    "Por favor, ingresa a esta dirección para confirmar tu dirección de correo electrónico.",
+                    "no-reply@creactivaanimaciones.cl",
+                    [request.POST['email']],
+                    fail_silently=False,
+                )
+            except SMTPException as e:
+                print("NO SE PUDO ENVIAR EL CORREO.", e)
             return redirect('login')
             # else:
             #     messages.error(request, 'Login inválido')

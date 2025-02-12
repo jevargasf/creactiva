@@ -9,42 +9,21 @@
 
 <div class="form-plan">
 <h2>SELECCIONA UN PLAN</h2>
-        <a class="plan" href="">
-            <h7>MENSUAL</h7>
-            <h1>15.000 CLP</h1>
-            <h5>por mes : 30 días</h5>
-            <ul> 
-                <li>Acceso a todo el <br>contenido educativo.</li>
-                <li>Acceso a todo el material complementario.</li>
-                <li>Soporte 24/7</li>
-            </ul>
-            <h3>Contratar</h3>
-        </a>
-        <a  class="plan" href="">
-            <h7>SEMESTRAL</h7>
-            <h1>12.000 CLP</h1>
-            <h5>por mes : 180 días</h5>
-            <ul> 
-                <li>Acceso anticipado a nuevos cursos.</li>
-                <li>Acceso a todo el <br>contenido educativo.</li>
-                <li>Acceso a todo el material complementario.</li>
-                <li>Soporte 24/7</li>
-            </ul>
-            <h3>Contratar</h3>
-        </a>
-        <a class="plan"  href="">
-            <h7>ANUAL</h7>
-            <h1>9.000 CLP</h1>
-            <h5>por mes : 365 días</h5>
-            <ul> 
-                <li>Acceso anticipado a nuevos cursos.</li>
-                <li>Acceso a todo el <br>contenido educativo.</li>
-                <li>Acceso a todo el material complementario.</li>
-                <li>Soporte 24/7</li>
-                <li>Acceso al Foro</li>
-            </ul>
-            <h3>Contratar</h3>
-        </a>
+    {% for plan in planes %}
+    <a class="plan" href="{% url 'detalle-plan' plan.id %}">
+        <h7>{{ plan.nombre }}</h7>
+        <h1>{{ plan.monto }} CLP</h1>
+        <h5>por mes : {{ plan.duracion }}</h5>
+        <ul> 
+            <li>Acceso a todo el <br>contenido educativo.</li>
+            <li>Acceso a todo el material complementario.</li>
+            <li>Soporte 24/7</li>
+        </ul>
+        <h3>Contratar</h3>
+    </a>
+    {% endfor %}
+
+
 </div>
 
     {% include 'snippets/header_volver.html' %}

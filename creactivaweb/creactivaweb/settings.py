@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 import os
 import mimetypes
 
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -165,6 +166,7 @@ WHITENOISE_INDEX_FILE = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Variables para almacenar redireccionamientos al hacer login o logout
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -176,3 +178,27 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # MIME types
 #mimetypes.add_type("text/html", ".js", True)
+
+# django setting.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
+
+# MAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.creactivaanimaciones.cl'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '_mainaccount@creactivaanimaciones.cl'
+EMAIL_HOST_PASSWORD = 'GA,B%L7p8JB)#vN^'
+EMAIL_TIMEOUT = 20
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# WEBPAY
+WEBPAY_URL = 'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions'
+WEBPAY_ID = '597055555532'
+WEBPAY_SECRET = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'

@@ -1,6 +1,8 @@
 import json
 import ast
 from django.forms import Select
+from django.utils.timezone import now
+from datetime import timedelta
 
 def get_tipo_organizacion():
     f = open("./static/json/organizaciones.json", "rb")
@@ -48,3 +50,18 @@ class SelectCustom(Select):
         if not option.get('value'):
             option['attrs']['disabled'] = True
         return option
+
+def str_to_list(string: str):
+    lista = []
+    print("Inició")
+    for a in string:
+        if a.isdigit():
+            lista.append(a)
+        else:
+            continue
+    return lista
+
+def sumar_fecha(fecha, meses):
+    dias = meses*30
+    nueva_fecha = fecha + timedelta(days=dias)
+    return nueva_fecha

@@ -149,20 +149,186 @@ APP SUSCRIPCIONES:
 - Que la compra (envío del formulario detalle) active una suscripción bajo un cierto periodo de tiempo
 
 2) ORGANIZACIÓN
-- registrar formulario Fabián
+✔ registrar formulario Fabián
 - que el registro del formulario active una suscripción (acceso al contenido bajo un cierto
 periodo de tiempo)
 
 PRÓXIMOS PASOS DE ESTO:
-- diseñar formularios
+✔ registrar formulario de suscripción organización
+* corregir acá, en vez de guardar la última suscirpción a partir de una consulta, utilizar el mismo objeto que ya fue guardado
 
-        # Falta: linkear con cursos a los que se dará acceso, linkear con rep organización
-        # Rep org: se recupera de una lista renderizada?? o se solicita en un input y se hace la
-        # búsqueda en la bbdd. Nah, de una lista nomás de los rep org.
-        # Luego: los cursos se recuperan tb de una lista renderizada
-        # Bueno, creo que debo usar multi-forms
+SIGUIENTE:
+✔ crear plantilla detalle suscripción individual
+✔ crear la solicitud post con el detalle de la suscripción y almacenarlo en la bbdd
+
+SIGUIENTE:
+✔ crear tarea diaria que compruebe vigencia de todas las suscripciones
+- lógica cuando el usuario ya tiene una suscripción (pedir suscripciones con esstado = 1 donde el usuario asociado sea el usuario logueado), si tiene una suscripción vigente, enviar mensaje de error y cerrar el proceso. Si no, crear la suscripción.
+- lógica para cambiar el estado del perfil del usuario según el tipo de suscripción que compre. Lo mismo cuando caduque la suscripción. Lo mismo cuando el usuario esté inhabilitado ??
+
+SIGUIENTE:
+- comenzar integración pasarela de pagos(con eso termina app suscripciones)
+
+SIGUIENTE:
+- CURSOS: cursos se pueden ver, si tiene suscripción vigente, enviar capítulo, si no tiene, enviar trailer
+- SUSCRIPCIONES: si ya tiene una suscripción vigente, no dejar que se vuelva a suscribir
+- PERFIL: crear vista que recoja todos los datos del perfil del usuario
+- PERFILES CLAVE: el 000, el 100 y el 010/110. El perfil de miembro no es prioritario todavía (hasta que se produzca la primera suscripción organización
+- NOTIFICACIÓN REGISTRO: crear proceso de validación del correo del usuario
+- NOTIFICACIÓN SUSCRIPCIÓN: enviar detalles del plan suscrito
+- NOTIFICACIÓN SOLICITUD DE SUSCRIPCIÓN ORGANIZACIÓN: enviar detalles de la solicitud de suscripción organización
+- FORMULARIO SOLICITUD DE CONTENIDO + NOTIFICACIÓN DE SOLICITUD: crear formulario y notificación por correo
 
 
-        # Quizás no es necesario porque voy a pedir los cursos y el titular a través de una lista
-        # Y cuando mande el formulario, escribo los modelos en el view
-        # Y los campos de suscripción están listos
+INTEGRACIÓN WEBPAY PLUS
+- REGISTRO EMPRESA (CONSEGUIR ID EMPRESA)
+- INTEGRACIÓN (MEDIANTE API)
+*** FLUJO EXITOSO ***
+    - CREAR TRANSACCIÓN (internamente requiere crear una orden de compra)
+        - se envía la transacción
+        - se recibe un token y la url de redireccionamiento
+        - se realiza una petición post a la url, token se envía en la variable 'token_ws'
+    *** redirecciona cliente a pasarela de pagos ***
+        - el tiempo máximo en el que permanece el formulario de es de 4 minutos
+    - CONFIRMAR TRANSACCIÓN
+        - si se cumple el tiempo máximo, se reciben las variables 'TBK_ID_SESSION' y 'TBK_ORDEN_COMPRA'
+        - si se procesa de forma exitosa, WP retorna al comercio hacia la página de transición, enviando el token de la transacción en la variable 'token_ws'. Se debe implementar la recepción de esta variable mediante el método GET y el redireccionamiento ?? del cliente
+        - el sitio del comercio recibe la variable 'token_ws' e invoca el segundo método web ¿? para confirmar y obtener el resultado de la transacción. Este resultado se puee consultr con la variable 'token_ws'.
+    - DESPLIEGUE DETALLE VOUCHER
+        - transacción exitosa
+        - transacción fallida
+*** FLUJO SI USUARIO ABORTA ***
+    - CREACIÓN DE TRANSACCIÓN
+    *** mismo proceso ***
+    *** redirecciona a pasarela ***
+    - CLIENTE HACE CLIC EN ANULAR
+    - WEBPAY RETORNA AL COMERCIO
+        - envía pot GET el token 'TBK_TOKEN' y las variables 'TBK_ORDEN_COMPRA' y 'TBK_ID_SESION' (en integración, el redireccionamiento es por POST)
+        - el comercio consulta la transacción para validar el estado usando la variable 'TBK_TOKEN' (no es necesario confirmar)
+    - DESPLIEGUE PANTALLA QUE EL PAGO NO SE COMPLETÓ
+- PROCESO VALIDACIÓN (RELLENAR FORMULARIO DE EVIDENCIAS, RESPUESTA TARDA 24 HORAS HÁBILES)
+
+AMBIENTE DE INTEGRACIÓN
+webpay_url: "https://webpay3gint.transbank.cl"
+webpay_id: "597055555532"
+webpay_secret: "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
+
+- HEADERS (VAN EN TODAS LAS PETICIONES)
+    - Tbk-Api-Key-Id: Código de comercio
+        - "597055555532"
+    - Tbk-Api-Key-Secret: Llave secreta
+        - "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"
+    - Content-Type: application/json
+
+PARA CREAR TRANSACCIÓN
+- PAYLOAD: POST
+    - buy_order: str(26). Número único para cada transacción. ID suscripción.
+    - session_id: str(61). Identificador de sesión, uso interno comercio. Este valor es devuelto al final de la transacción
+    - amount: dec(17). Monto de la transacción, máximo 2 decimales
+    - return_url: str(256). URL del comercio a la cual WP redireccionará posterior al proceso de autorización
+
+- RESPUESTA A CREAR TRANSACCIÓN
+    - token: str(64). Token de la transacción
+    - url: str(255). URL del formulario de pago WP
+
+- PAYLOAD COMMIT TRANSACCIÓN
+    - MÉTODO PUT
+    - token: el mismo recibido anteriormente. Se envía en la URL no en el body
+
+- RESPUESTA A COMMIT TRANSACCIÓN
+    - vci: string. Resultado de la autenticación del dueño de la tarjeta.
+    - amount: decimal. Mismo tamaño que el anterior.
+    - status: str(64). Estado de la transacción: INITIALIZED, AUTHORIZED, REVERSED, FAILED, NULLIFIED, PARTIALLY_NULLYFIED, CAPTURED.
+     - buy_order: str(26). Orden de compra de la tienda, indicado en la creación de la transacción
+     - session_id: str(61). Mismo que el anterior.
+     - card_detail: Objeto que representa los datos de la tarjeta.
+        - card_detail.card_number: 4 últimos números de la tarjeta.
+    - accounting_date: fecha de autorización. Largo: 4. Formato MMDD.
+    - transaction_date: str(24). Formato ISO 8601, yyyy-mmddTHH:mm:ss.xxx.Z
+    - authorization_code: str(6). Código de autorización de la transacción
+    - payment_type_code: str. Tipo de pago de la transacción
+        - VD = Venta Débito
+        - VN = Venta Normal
+        - VC = Venta Cuotas
+        - SI = 3 cuotas sin interés
+        - S2 = 2 cuotas sin interés
+        - NC = N Cuotas sin interés
+        - VP = Venta Prepago
+    response_code: number. Código de respuesta de la autorización. Valores posibles:
+        - 0 = Transacción aprobada
+        - **Códigos de rechazo
+    - installments_amount: number(17). Monto de las cuotas
+    - installments_number: number(2). Cantidad de cuotas
+    - balance: number(17). Monto restante para un detalle anulado
+
+ESTADO DE LA TRANSACCIÓN: permite recuperar el estado de la transacción y tomar las acciones correspondientes ante un error inesperado. Normalmente, no se aplica.
+
+REVERSAR O ANULAR UN PAGO.
+
+CAPTURAR UNA TRANSACCIÓN. Permite solicitar a WP la captura diferida de una transacción con autorización y sin captura simultánea
+
+
+PROCESO:
+- DETALLE.HTML BOTÓN PAGAR > CREAR TRANSACCIÓN
+- WEBPAY.HTML RECIBE URL, PEQUEñO FORMULARIO QUE RECIBE EL TOKEN, SCRIPT JS QUE ENVÍA EL FORMULARIO CON LA ACCIÓN ON_LOAD
+- CLIENTE EN LA PLATAFORMA WEBPAY
+    - HACER LAS COMPRAS CORRESPONDIENTES CON TODAS LAS TARJETAS
+- CONFIRMACION.HTML > CONFIRMAR TRANSACCIÓN
+
+
+qué son los planes? son precios que nosotros te ofrecemos para que puedas acceder a nuestro contenido.
+qué pasa si no puedo pagar el precio de los planes? tenemos descuentos para estudiantes y personas pertenecientes al pueblo mapuche
+qué otras opciones tengo para acceder al contenido? si perteneces a una organización, puedes contactarnos para establecer un trato directo con nosotros
+
+
+APUNTES INTEGRACIÓN WEBPAY:
+        # esta persona tiene estados de orden de compra: activo, no activo, ingresado, finalizado, cancelado, en curso
+        # En mi caso, me va a servir hacer la validación acá
+        # ¿tiene suscripción activa?
+        # estados suscripción: activa: 1, finalizada: 2, 
+
+
+ESTADOS SUSCRIPCIÓN
+- 0: CADUCA
+- 1: ACTIVA
+- 2: EN CURSO
+- 2 + session_id = DESTROYED: INTENTO DE PAGO FALLIDO, PERO PROCESO FINALIZADO CORRECTAMENTE
+
+
+ESTADOS TRANSBANK:
+*** PEGAR ***
+
+PARA CONTINUAR:
+✔ revisar cómo funciona la view con la validación de la suscripción existente.
+✔ revisar en qué rutas será necesario manejar el id del plan desde los parámetros
+✔ terminar proceso pago FAILED
+✔ no poder pagar otra suscripción cuando ya tengo una vigente
+✔ que el usuario no se desloguee cuando vuelva a la página
+✔ ver qué otros estados hay que manejar: USUARIO ANULA EL PAGO
+✔ actualizar código perfil
+✔ realizar pruebas documentación TB (HASTA AHORA, ESTÁN PASANDO)
+✔ enviar correos electrónicos por suscripción exitosa
+✔ REALIZAR PRUEBAS CON USUARIOS NUEVOS, CON NAVEGADOR INCÓGNITO, CON CHROME
+- CORRECCIONES última reu FABIÁN
+- DESPLEGAR VERSIÓN CON WEBPAY
+- RELLENAR FORMULARIO TB
+- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer
+o lo pause
+- integrar descuento estudiante/comunero
+
+DEBUG SUSCRIPCIONES:
+- QUÉ ES MEJOR? crear un nuevo registro de suscripción (nueva orden de compra) cada vez? o crear 1 registro y actualizar sus datos. Lo primero me va a dejar también registro de las transacciones fallidas. Lo segundo es más limpio el términos de datos. Solo voy a quedarme en la bbdd con las suscripciones caducas. Las suscripciones fallidas también son importantes para tener un respaldo de todas las transacciones que se llevan a cabo. El estado '2' reflejaría una suscripción fallida. El estado_transbank mostrará la razón de por qué falló. La categoría la voy a llamar "en curso", pero si el estado transbank dice "FAILED", entonces significa que la suscripción quedó en curso para nosotros, pero falló para transbank. En consecuencia, el proceso deberá comenzar de nuevo creando un nuevo registro
+✔ EL SESSION_ID DEBE SER DESTRUIDO UNA VEZ QUE SE TERMINE DE UTILIZAR PARA NO GENERAR CONFLICTOS: no se destruye, se reemplaza por la palabra "destruido"
+✔ MANEJAR EL CASO DONDE SE ANULA LA TRANSACCIÓN (CASO 'VACIO')
+✔ CUANDO INTENTA LOGUEAR Y EL USUARIO NO EXISTE, IGUAL CREA LA ORDERN DE COM¿¿PRA DE LA SUSCRIPCIÓN
+- MEJORAR EL FORMATO DE LA FECHA, QUITARLE LA HROA Y EL UTC
+✔ CORREGIDO, PERO HACER LA PRUEBA: A JOSÉ SE LE DESLOGUEA CUANDO SE CONFIRMA LA TRANSACCIÓN
+✔ CORREGIDO, PERO HACER LA PRUEBA: A JOSÉ NO LE RECONOCE LA SUSCRIPCIÓN UNA VEZ QUE ESTÁ HECHA
+- HAY UN ERROR RELACIONADO CON EL PERFIL
+- LA TAREA DE REVISAR LAS SUSCRIPCIONES ACTIVAS ES UNA TAREA AUTOMATIZADA Y TIENE COMO RESULTADO LA ACTUALIZACIÓN DEL CÓDIGO PERFIL. ENTONCES, DEBO ASUMIR QUE SI EL CÓDIGO PERFIL ESTÁ BIEN, ENTONCES TODAS LAS SUSCRIPCIONES SON ACTIVAS. SI LA PERSONA YA TIENE UNA SUSCRIPCIÓN INDIVIDUAL, ENTONCES NO LE VA A DEJAR ENTRAR A LA PANTALLA DE PAGO. EN UNA SEGUNDA INSTANCIA, LE DEBERÍA PREGUNTAR SI QUIERE EXTENDER SU SUSCRIPCIÓN, COSA QUE NO HEMOS DISEñADO TODAVÍA
+
+
+DESARROLLOS FUTUROS
+APP SUSCRIPCIONES:
+- views.py > PagarView > post(): FALTARÍA MANEJAR EL CASO CUANDO suscripcion_activa() devuelve una suscripción de organización (numero_usuarios > 1)
+- BOTÓN "QUIERO CAMBIAR MI SUSCRIPCIÓN" en PANTALLA_COMPRA, en caso de que la persona quiera cambiar el plan que va a pagar (habiendo elegido otro anteriormente)
