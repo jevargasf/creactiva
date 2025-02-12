@@ -305,8 +305,10 @@ PARA CONTINUAR:
 ✔ que el usuario no se desloguee cuando vuelva a la página
 ✔ ver qué otros estados hay que manejar: USUARIO ANULA EL PAGO
 ✔ actualizar código perfil
-- realizar pruebas documentación TB
-- enviar correos electrónicos por suscripción exitosa
+✔ realizar pruebas documentación TB (HASTA AHORA, ESTÁN PASANDO)
+✔ enviar correos electrónicos por suscripción exitosa
+- REALIZAR PRUEBAS CON USUARIOS NUEVOS, CON NAVEGADOR INCÓGNITO, CON CHROME
+- RELLENAR FORMULARIO TB
 
 ESTA SEMANA
 - integrar descuento estudiante/comunero
@@ -317,6 +319,9 @@ DEBUG SUSCRIPCIONES:
 ✔ MANEJAR EL CASO DONDE SE ANULA LA TRANSACCIÓN (CASO 'VACIO')
 ✔ CUANDO INTENTA LOGUEAR Y EL USUARIO NO EXISTE, IGUAL CREA LA ORDERN DE COM¿¿PRA DE LA SUSCRIPCIÓN
 - MEJORAR EL FORMATO DE LA FECHA, QUITARLE LA HROA Y EL UTC
+- A JOSÉ SE LE DESLOGUEA CUANDO SE CONFIRMA LA TRANSACCIÓN
+- A JOSÉ NO LE RECONOCE LA SUSCRIPCIÓN UNA VEZ QUE ESTÁ HECHA
+- HAY UN ERROR RELACIONADO CON EL PERFIL
 
 DESARROLLOS FUTUROS
 APP SUSCRIPCIONES:

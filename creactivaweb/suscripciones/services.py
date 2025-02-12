@@ -47,3 +47,7 @@ def suscripcion_session(session_id):
         return suscripcion_object
     else:
         return None
+
+def suscripcion_perfil(suscripcion) -> Perfil:
+    registro_object = PerfilSuscripcion.objects.get(suscripcion=suscripcion)
+    return Perfil.objects.get(pk=registro_object.perfil.id)

@@ -9,10 +9,11 @@ from main.models import User, Perfil
 from cursos.models import Curso
 from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
-from suscripciones.services import suscripcion_activa, suscripcion_session
+from suscripciones.services import suscripcion_activa, suscripcion_session, suscripcion_perfil
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from smtplib import SMTPException
+from django.contrib.auth import login
 
 class PlanesView(View):
     def dispatch(self, *args, **kwargs):
@@ -117,7 +118,7 @@ class PagarView(LoginRequiredMixin, View):
             return redirect('plan-individual')
 
     
-class RespuestaWebpayView(LoginRequiredMixin, View):
+class RespuestaWebpayView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -125,6 +126,7 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
         try:
             # RECIBIR EL RESULTADO DEL REDIRECCIONAMIENTO WEBPAY
             # CUANDO ANULO UNA TRANSACCIÓN, EL TOKEN NO VUELVE COMO TOKEN_WS, VUELVE COMO TBK_TOKEN
+            print("VOLVIENDO DE WP: ", request.user)
             if request.GET.get('TBK_TOKEN'):
                 token = request.GET.get('TBK_TOKEN')
             elif request.GET.get('token_ws'):
@@ -140,8 +142,11 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
                 raise Http404
             elif result[0] == 'AUTHORIZED':
                 session_id = result[3]
-                nueva_fecha_inicio = now()
                 suscripcion = suscripcion_session(session_id)
+                perfil_object = suscripcion_perfil(suscripcion)
+                user_object = perfil_object.user
+                login(request, user_object)
+                nueva_fecha_inicio = now()
                 suscripcion.fecha_inicio = nueva_fecha_inicio
                 suscripcion.fecha_termino = sumar_fecha(nueva_fecha_inicio, suscripcion.plan.duracion)
                 suscripcion.estado_transbank=result[0]
@@ -150,8 +155,6 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
                 suscripcion.token_ws=token
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
-                user_object = User.objects.get(username=request.user)
-                perfil_object = Perfil.objects.get(user_id=user_object.id)
                 perfil_object.codigo = '100'
                 perfil_object.save()
                 perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
@@ -179,6 +182,9 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
             elif result[0] == 'FAILED':
                 session_id = result[3]
                 suscripcion = suscripcion_session(session_id)
+                perfil_object = suscripcion_perfil(suscripcion)
+                user_object = perfil_object.user
+                login(request, user_object)
                 suscripcion.estado_transbank=result[0]
                 suscripcion.tarjeta=result[1]
                 suscripcion.fecha_transbank=result[2]
@@ -190,6 +196,9 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
             elif result[0] == 'ABORTED':
                 session_id = request.GET.get('TBK_ID_SESION')
                 suscripcion = suscripcion_session(session_id)
+                perfil_object = suscripcion_perfil(suscripcion)
+                user_object = perfil_object.user
+                login(request, user_object)
                 suscripcion.estado_transbank=result[0]
                 suscripcion.tarjeta='XXXX'
                 suscripcion.fecha_transbank=now()
