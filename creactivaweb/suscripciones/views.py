@@ -11,7 +11,8 @@ from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
 from suscripciones.services import suscripcion_activa, suscripcion_session
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.core.mail import send_mail
+from smtplib import SMTPException
 
 class PlanesView(View):
     def dispatch(self, *args, **kwargs):
@@ -156,6 +157,16 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
                 perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
                 perfil_suscripcion_object.estado_suscripcion = '1'
                 perfil_suscripcion_object.save()
+                send_mail(
+                    f"Nueva Suscripción Creactiva Animaciones",
+                    f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
+                    Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
+                    Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
+                    Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
+                    "no-reply@creactivaanimaciones.cl",
+                    ["contacto@creactivaanimaciones.cl"],
+                    fail_silently=False,
+                )
                 messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                 context = {
                     'orden_compra': suscripcion.id,
@@ -187,6 +198,8 @@ class RespuestaWebpayView(LoginRequiredMixin, View):
                 suscripcion.save()
                 messages.error(request, 'La operación fue anulada por el usuario.')
                 return redirect(f'planes/individual/{suscripcion.plan.id}')
+        except SMTPException as e:
+            print("NO SE PUDO ENVIAR EL CORREO.", e)
         except Exception as e:
             print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
             raise Http404

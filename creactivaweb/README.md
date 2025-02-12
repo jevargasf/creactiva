@@ -304,7 +304,7 @@ PARA CONTINUAR:
 ✔ no poder pagar otra suscripción cuando ya tengo una vigente
 ✔ que el usuario no se desloguee cuando vuelva a la página
 ✔ ver qué otros estados hay que manejar: USUARIO ANULA EL PAGO
-- actualizar código perfil
+✔ actualizar código perfil
 - realizar pruebas documentación TB
 - enviar correos electrónicos por suscripción exitosa
 
@@ -316,7 +316,7 @@ DEBUG SUSCRIPCIONES:
 ✔ EL SESSION_ID DEBE SER DESTRUIDO UNA VEZ QUE SE TERMINE DE UTILIZAR PARA NO GENERAR CONFLICTOS: no se destruye, se reemplaza por la palabra "destruido"
 ✔ MANEJAR EL CASO DONDE SE ANULA LA TRANSACCIÓN (CASO 'VACIO')
 ✔ CUANDO INTENTA LOGUEAR Y EL USUARIO NO EXISTE, IGUAL CREA LA ORDERN DE COM¿¿PRA DE LA SUSCRIPCIÓN
-
+- MEJORAR EL FORMATO DE LA FECHA, QUITARLE LA HROA Y EL UTC
 
 DESARROLLOS FUTUROS
 APP SUSCRIPCIONES:
