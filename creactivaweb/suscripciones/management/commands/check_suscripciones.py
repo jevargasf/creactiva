@@ -3,22 +3,21 @@
 # <cron_timer> source <ruta archivo activate del venv> && cd <ruta manage.py> && python manage.py <nombre archivo del script .py> >> <ruta archivo log> 2>&1
 
 from django.core.management.base import BaseCommand, CommandError
-from suscripciones.models import Suscripcion
+from suscripciones.models import PerfilSuscripcion
 from django.utils.timezone import now
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
-            data = Suscripcion.objects.filter(estado_suscripcion='1')
+            data = PerfilSuscripcion.objects.filter(estado_suscripcion='1')
             for suscripcion in data:
                 if now() <= suscripcion.fecha_termino:
-                    print(now(), "Vigente.", suscripcion.estado_suscripcion)
+                    self.stdout.write(now(), "Vigente.", suscripcion.estado_suscripcion)
                 else:
                     suscripcion.estado_suscripcion = '0'
                     suscripcion.save()
-                    print(f'{now()} SUSCRIPCIÓN CADUCA:{suscripcion.id} ESTADO: {suscripcion.estado_suscripcion}')
-        
-            self.stdout.write(self.style.SUCCESS('OPERACIÓN REALIZADA CON ÉXITO.'))
-        except:
-            print("LA OPERACIÓN FALLÓ.")
-            self.stderr.write(self.style.ERROR_OUTPUT('LA OPERACIÓN FALLÓ.'))
+                    self.stdout.write(f'{now()} SUSCRIPCIÓN CADUCA:{suscripcion.suscripcion.id} ESTADO: {suscripcion.estado_suscripcion}')
+
+            self.stdout.write(self.style.SUCCESS('TAREA COMPLETADA CON ÉXITO.'))
+        except Exception as e:
+            self.stderr.write(self.style.ERROR_OUTPUT(f"LA OPERACIÓN FALLÓ. Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}"))
