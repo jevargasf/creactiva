@@ -135,7 +135,7 @@ STATIC_URL = 'static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    '/home/creacti3/creactivaweb/static'
 ]
 
 STATIC_ROOT = '/home/creacti3/public_html/static/'
