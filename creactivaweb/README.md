@@ -309,12 +309,9 @@ PARA CONTINUAR:
 ✔ realizar pruebas documentación TB (HASTA AHORA, ESTÁN PASANDO)
 ✔ enviar correos electrónicos por suscripción exitosa
 ✔ REALIZAR PRUEBAS CON USUARIOS NUEVOS, CON NAVEGADOR INCÓGNITO, CON CHROME
-- CORRECCIONES última reu FABIÁN
-- DESPLEGAR VERSIÓN CON WEBPAY
-- RELLENAR FORMULARIO TB
-- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer
-o lo pause
-- integrar descuento estudiante/comunero
+✔ DESPLEGAR VERSIÓN CON WEBPAY
+✔ RELLENAR FORMULARIO TB
+
 
 DEBUG SUSCRIPCIONES:
 - QUÉ ES MEJOR? crear un nuevo registro de suscripción (nueva orden de compra) cada vez? o crear 1 registro y actualizar sus datos. Lo primero me va a dejar también registro de las transacciones fallidas. Lo segundo es más limpio el términos de datos. Solo voy a quedarme en la bbdd con las suscripciones caducas. Las suscripciones fallidas también son importantes para tener un respaldo de todas las transacciones que se llevan a cabo. El estado '2' reflejaría una suscripción fallida. El estado_transbank mostrará la razón de por qué falló. La categoría la voy a llamar "en curso", pero si el estado transbank dice "FAILED", entonces significa que la suscripción quedó en curso para nosotros, pero falló para transbank. En consecuencia, el proceso deberá comenzar de nuevo creando un nuevo registro
@@ -335,4 +332,20 @@ APP SUSCRIPCIONES:
 
 
 DEBUG EN PRODUCCIÓN:
-- suscripciones/services.py: comenté líneas 30-32. Al parecer, la excepción interrumpe el flujo del programa cuando no encuentra el perfil (el usuario todavía no tiene código '100').
+- suscripciones/services.py: comenté líneas 30-32. Al parecer, la excepción interrumpe el flujo del programa cuando no encuentra el perfil (el usuario todavía no tiene código '100'). Actualización: Así funciona bien.
+
+
+ETAPA FINAL DE DETALLES:
+- CORRECCIONES última reu FABIÁN
+-	Debug: Que el form de elegir organización recupere todas las solicitudes
+-   Subir trailer que envió josé
+-	Cambiar nombre curso “Introducción a la cultura mapuche”
+-	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
+-	Descripción detalle:
+    o	Tu suscripción termina el día fecha_termino
+    o	Acceso a todo el contenido educativo
+    o	Valor
+✔	Página principal: agregar slider para cada curso (ESPERAR A JOSÉ)
+✔	Corrección: Quitar las etiquetas de búsqueda y barra de búsqueda/JOSE
+- integrar descuento estudiante/comunero
+- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer o lo pause (ESPERAR A JOSÉ QUE RECUPERE LA FUNCIONALIDAD DEL REPRODUCTOR)

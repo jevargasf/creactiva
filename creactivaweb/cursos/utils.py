@@ -17,12 +17,23 @@ def pedir_nombres_cursos():
     return nombres
 
 def capitulos_index():
+    caps = Capitulo.objects.all()
     cap_lista = []
     num_lista = [1,2,3,5,6,7,8,9,11,12]
     shuffle(num_lista)
     for num in range(7):
-        cap_lista.append(Capitulo.objects.get(pk=num_lista[num]))
-    return cap_lista
+        for cap in caps:
+            if cap.cap == num_lista[num]:
+                cap_lista.append(cap)
+
+    caps_lengua = []
+    caps_cultura = []
+    for cap in caps:
+        if cap.curso.cur == 1:
+            caps_lengua.append(cap)
+        else:
+            caps_cultura.append(cap)
+    return [cap_lista, caps_lengua, caps_cultura]
 
 def pedir_ultima_visualizacion(perfil, cap):
     visualizacion = Visualizacion.objects.filter(perfil=perfil, capitulo=cap).order_by('-fecha').values()

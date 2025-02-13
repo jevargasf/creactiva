@@ -22,11 +22,16 @@ class IndexView(View):
     
     def get (self, request: HttpRequest):
         cursos = pedir_cursos()
-        capitulos = capitulos_index()
+        result = capitulos_index()
+        capitulos = result[0]
+        capitulos_lengua = result[1]
+        capitulos_cultura = result[2]
         current_user = request.user
         context = {
             'cursos': cursos,
             'capitulos': capitulos,
+            'capitulos_lengua': capitulos_lengua,
+            'capitulos_cultura': capitulos_cultura,
             'user': current_user
         }
         return render(request, 'index.html', context)
