@@ -7,6 +7,7 @@ window.addEventListener('load', function () {
         $(this).hide(); 
         next(); 
       });
+      $('body').css('overflow-y', 'auto');
 
   })
   
@@ -46,12 +47,21 @@ $(document).ready(function(){
             }
         },
         {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                centerMode: true,
+                centerPadding: '15px',
+            }
+        },
+        {
             breakpoint: 480,
             settings: {
                 centerMode: true,
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                centerPadding: '10px',
+                centerPadding: '15px',
             }
         }
         ]
@@ -102,12 +112,21 @@ $(document).ready(function(){
             }
         },
         {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                centerMode: true,
+                centerPadding: '15px',
+            }
+        },
+        {
             breakpoint: 480,
             settings: {
                 centerMode: true,
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                centerPadding: '20px',
+                centerPadding: '15px',
             }
         }
         ]

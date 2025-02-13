@@ -113,6 +113,10 @@ body {
     height:100%;
     overflow-x: hidden;
     background-color: #00224a;
+    overflow-y: scroll;
+}
+
+#body-cap{
 }
 
 dl, dt, dd {
@@ -230,9 +234,9 @@ button {
 
 
 #logo_abajo{
-    position: fixed;
+    position: absolute;
     right: 90px;
-    bottom: 80px;
+    translate: 0px -161px;
     width: 270px;
     cursor: pointer;
     z-index: 1;
@@ -1854,15 +1858,29 @@ float: left;
 }
 
 
-#mas-info, #mas-info-cap{
+#mas-info{
     position: absolute;
-    bottom:10px;
+    left:50%;
+    translate: 0% -50%;
+    opacity: 0.8;
+    transition: all .5s;
+    bottom: 10px;
+    
+}
+
+
+
+
+#mas-info-cap{
+    position: absolute;
     left:50%;
     translate: 0% -50%;
     opacity: 0.8;
     transition: all .5s;
     
 }
+
+
 
 #mas-info.collapsed, #mas-info-cap.collapsed{
     opacity:0;
@@ -1900,6 +1918,7 @@ float: left;
     pointer-events: inherit;
     padding:0px 0px 40px 0px;
     box-sizing: border-box;
+    height: fit-content;
     
 }
 
@@ -1994,6 +2013,10 @@ float: left;
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 
+
+#tsc-smartplayer{
+
+}
 
 .tsc-smartplayer .player-controls {
     background: rgb(00,0,0);
@@ -2115,8 +2138,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #tscVideoContent{
     width: 100%;
     height:calc(100% - 145px);
-    transition: all .75s;
-    top:75px;
+    margin-top:75px;    
 }
 
 
@@ -2182,17 +2204,17 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 .btn-capitulo{
-    position: absolute;
-    background-color:#fff;
-    font-size:14px;
-    border:none;
+    position: relative;
+    background-color: #fff;
+    font-size: 14px;
+    border: none;
     font-family: latoblack;
-    color:#00224a;
-    padding:10px 30px 10px 30px;
+    color: #00224a;
+    padding: 10px 30px 10px 30px;
     border-radius: 5px;
+    left: 260px;
     z-index: 1;
-    bottom:130px;
-    left: 280px;
+    bottom: 97px;
     letter-spacing: .5px;
     opacity: 1;
     -webkit-transition: all .2s, bottom .75s;
@@ -2233,7 +2255,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #cap-banner-top.collapsed{
     opacity: 0;
-
     }
 
 #cap-banner-top h3{
@@ -2251,14 +2272,15 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-player{
     text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
-    bottom:200px;
+    translate: 0px -240px;
     left:100px;
-    width:35%;
+    width:50%;
     -webkit-transition: all .2s, bottom .75s;
+    position: absolute;
 }
 
 #info-cap-player h4{
-    margin-top:10px;
+    margin: 10px 0px 14px 0px;
 }
 
 #info-cap-player.collapsed{
@@ -2271,13 +2293,20 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 #info-cap-full{
-    width: 100%;
-    bottom: -100vh;
+    width:1000px;
+    margin: 0 auto;
     pointer-events: none;
     -webkit-transition: all .2s, bottom .75s;
     left: 0px;
     position:relative;
+    height: 90%;
+    margin-top: 75px;
 }
+
+.info-cur{
+    bottom:-100vh;
+}
+
 
 #info-cap-full.collapsed{
     bottom: 0px;
@@ -2286,14 +2315,14 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-full section{
     position: relative;
     margin:0 auto;
-    height: calc(100vh - 150px);
+    height: 100%;
     display: table;
     pointer-events: none;
 }
 
 #info-cap-img{
     position: relative;
-    width: 400px;
+    width: 40%;
     height: 100%;
     display: inline-block;
     overflow: hidden;
@@ -2309,11 +2338,11 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-info{
     position: relative;
-    width: 600px;
+    width: 60%;
     display: inline-block;
     overflow: hidden;
     pointer-events: inherit;
-    padding:0px 0px 40px 50px;
+    padding:0px 20px 35px 20px;
     box-sizing: border-box;
 }
 
@@ -2417,7 +2446,6 @@ img.img-x2{
 /*------------------------------INFO CURSO--------------------------------------------------*/
 
 section#info-curso{
-    height:calc(100vh - 320px);
     overflow: hidden;
     width:1000px;
 }
@@ -2594,6 +2622,7 @@ aside#cur-cap {
     top: 0px;
 }
 
+
 @keyframes fondoventana{
     0%{background-position:0px 0px; }
     100%{background-position:-2000px -2000px;}
@@ -2611,11 +2640,22 @@ aside#cur-cap {
 }
 
 
-@media (max-width: 1400px) {
+
+
+
+
+@media (max-width: 1250px) {
+    #tscVideoContent{
+        height: 55.6vw;
+        max-height: 100vh;
+    }
+
+
 
 }
 
 @media (max-width: 1150px) {
+
 
     #curso-fila #fila{
         width:100%;
@@ -2658,6 +2698,11 @@ aside#cur-cap {
         box-sizing: border-box;
     }
 
+    #info-cap-full{
+        width:100%;
+        box-sizing: border-box;
+
+    }
 
 }
 
@@ -2675,7 +2720,12 @@ aside#cur-cap {
         height: 100%;
         translate: -50% -50%;
     }
-    
+
+    #cap-banner-top {
+        opacity: 0;
+        pointer-events: none;
+    }
+
 }
 
 
@@ -2695,6 +2745,24 @@ aside#cur-cap {
 
 
 @media (max-width: 900px) {
+
+
+
+    
+    #logo_abajo {
+        opacity: 0;
+    }
+
+
+    #info-cap-player {
+        width: 100%;
+        box-sizing: border-box;
+        left:0px;
+        padding:0px 20px 0px 20px;
+        opacity: 0;
+    }
+
+
     #slider-inicial div img {
         margin-top:0%;
         height: 100%;
@@ -2752,6 +2820,40 @@ aside#cur-cap {
     margin-bottom:15px;
 }
 
+#sigue_explorando {
+    top: 32px;
+    left: 30px;
+}
+
+#info-cap-img{
+    width:100%;
+
+}
+#info-cap-info{
+    width:100%;
+    
+}
+#mas-info-cap{
+    display: none;
+}
+#info-cap-full {
+
+    margin-top: 0px;
+}
+
+
+#tscVideoContent .play-button-overlay-glyph 
+{
+    bottom:20px;
+    left:50%;
+    position: absolute;
+    translate: -50% 0;
+}
+#btn-capitulo-out {
+    opacity: 0;
+    pointer-events: none;
+}
+    
 }
 
 
@@ -2886,7 +2988,7 @@ aside#cur-cap {
 
 
 #info-cap-full {
-    bottom: -95vh;
+    width: 100%;
 
 }
 
@@ -2899,7 +3001,14 @@ aside#cur-cap{
     position: relative;
     translate: 0 0;
 }
+#info-cap-img {
+    height:60%;
+}
 
+#info-cap-img img {
+
+    translate: -50% -50%;
+}
 
 #info-cur-menu {
     width: 100%;
@@ -2916,14 +3025,6 @@ aside#cur-cap{
 .botones-cur button {
     width: 47%;
 }
-
-#sigue_explorando {
-    top: 32px;
-    left: 30px;
-}
-
-
-
 
 
 
@@ -2950,6 +3051,10 @@ aside#cur-cap{
     }
     #logo_centro {
         opacity:0;
+    }
+
+    #info-cap-img {
+        height:40%;
     }
 }
 
