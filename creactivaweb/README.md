@@ -332,3 +332,7 @@ DESARROLLOS FUTUROS
 APP SUSCRIPCIONES:
 - views.py > PagarView > post(): FALTARÍA MANEJAR EL CASO CUANDO suscripcion_activa() devuelve una suscripción de organización (numero_usuarios > 1)
 - BOTÓN "QUIERO CAMBIAR MI SUSCRIPCIÓN" en PANTALLA_COMPRA, en caso de que la persona quiera cambiar el plan que va a pagar (habiendo elegido otro anteriormente)
+
+
+DEBUG EN PRODUCCIÓN:
+- suscripciones/services.py: comenté líneas 30-32. Al parecer, la excepción interrumpe el flujo del programa cuando no encuentra el perfil (el usuario todavía no tiene código '100').
