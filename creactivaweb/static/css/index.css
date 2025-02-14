@@ -88,6 +88,16 @@
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
 
+#bannerback{
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    position: fixed;
+    top:0px;
+    width:100vw;
+    height:150px;
+    z-index: 2;
+}
+
 html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, variable, fieldset, blockquote {
     padding: 0;
     margin: 0;
@@ -111,8 +121,11 @@ body {
     padding: 0;
     margin: 0;
     height:100%;
-    overflow-x: hidden;
     background-color: #00224a;
+    overflow-y: scroll;
+}
+
+#body-cap{
 }
 
 dl, dt, dd {
@@ -230,9 +243,9 @@ button {
 
 
 #logo_abajo{
-    position: fixed;
+    position: absolute;
     right: 90px;
-    bottom: 80px;
+    translate: 0px -161px;
     width: 270px;
     cursor: pointer;
     z-index: 1;
@@ -729,7 +742,7 @@ p{
 #fila {
     width:100%;
     box-sizing: border-box;
-    padding:0px 0% 50px 0%;
+    padding:25px 0% 50px 0%;
     overflow:show;
     margin:0 auto;
     clear:both;
@@ -749,7 +762,7 @@ p{
 }
 
 #fila article {
-    margin:0 auto;
+    margin: 0 auto 10px auto;
     width:100%;
     position: relative;
 }
@@ -869,7 +882,7 @@ p{
     text-shadow: 1px 1px 3px #000;
 }
 
-#flecha-izquierda-slider-fila {
+#flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-2 {
     transition: all 0.1s ease-in-out;
     cursor:pointer;
     height: calc(100% - 2px);
@@ -885,7 +898,7 @@ p{
     opacity:0.0;
 }
 
-#flecha-derecha-slider-fila {
+#flecha-derecha-slider-fila, #flecha-derecha-slider-fila-2 {
     transition: all 0.1s ease-in-out;
     cursor:pointer;
     height: calc(100% - 2px);
@@ -912,11 +925,31 @@ p{
 
 }
 
+
+#slider-fila-2:hover ~ #flecha-derecha-slider-fila-2{
+    opacity:0.5;
+
+}
+
+#slider-fila-2:hover ~ #flecha-izquierda-slider-fila-2{
+    opacity:0.5;
+
+}
+
 #flecha-derecha-slider-fila:hover {
     opacity:1;
 }
 
 #flecha-izquierda-slider-fila:hover {
+    opacity:1;
+}
+
+
+#flecha-derecha-slider-fila-2:hover {
+    opacity:1;
+}
+
+#flecha-izquierda-slider-fila-2:hover {
     opacity:1;
 }
 
@@ -1095,6 +1128,7 @@ input:-webkit-autofill:active{
     position: fixed;
     top:35px;
     left:45px;
+    z-index:3;
     opacity: 0.8;
     transition: all 0.1s ease-in-out;
 }
@@ -1570,11 +1604,13 @@ float: left;
 .main-nav ul a.botonvideo{
     float: right;
     width: 100%;
-    background-color: #08CD97;
+    background-color: #777;
     box-sizing: border-box;
     transition: background-color 0.1s ease-in-out;
-    color: #024C8D;
+    color: #fff;
     text-align: right;
+    pointer-events: none;
+    cursor: no-drop;
 }
 
 .main-nav ul a:hover{
@@ -1854,15 +1890,29 @@ float: left;
 }
 
 
-#mas-info, #mas-info-cap{
+#mas-info{
     position: absolute;
-    bottom:10px;
+    left:50%;
+    translate: 0% -50%;
+    opacity: 0.8;
+    transition: all .5s;
+    bottom: 10px;
+    
+}
+
+
+
+
+#mas-info-cap{
+    position: absolute;
     left:50%;
     translate: 0% -50%;
     opacity: 0.8;
     transition: all .5s;
     
 }
+
+
 
 #mas-info.collapsed, #mas-info-cap.collapsed{
     opacity:0;
@@ -1900,6 +1950,7 @@ float: left;
     pointer-events: inherit;
     padding:0px 0px 40px 0px;
     box-sizing: border-box;
+    height: fit-content;
     
 }
 
@@ -1986,7 +2037,7 @@ float: left;
 
 
 #info-cur-menu{
-    width: 40%;
+    width: 39%;
     display: inline-block;
 }
 
@@ -1994,6 +2045,10 @@ float: left;
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 /* -------------------------------------------- PLAYER --------------------------------------------------- */
 
+
+#tsc-smartplayer{
+
+}
 
 .tsc-smartplayer .player-controls {
     background: rgb(00,0,0);
@@ -2115,8 +2170,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #tscVideoContent{
     width: 100%;
     height:calc(100% - 145px);
-    transition: all .75s;
-    top:75px;
+    margin-top:75px;    
 }
 
 
@@ -2182,17 +2236,17 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 .btn-capitulo{
-    position: absolute;
-    background-color:#fff;
-    font-size:14px;
-    border:none;
+    position: relative;
+    background-color: #fff;
+    font-size: 14px;
+    border: none;
     font-family: latoblack;
-    color:#00224a;
-    padding:10px 30px 10px 30px;
+    color: #00224a;
+    padding: 10px 30px 10px 30px;
     border-radius: 5px;
+    left: 260px;
     z-index: 1;
-    bottom:130px;
-    left: 280px;
+    bottom: 97px;
     letter-spacing: .5px;
     opacity: 1;
     -webkit-transition: all .2s, bottom .75s;
@@ -2233,7 +2287,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #cap-banner-top.collapsed{
     opacity: 0;
-
     }
 
 #cap-banner-top h3{
@@ -2251,14 +2304,15 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-player{
     text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
-    bottom:200px;
+    translate: 0px -240px;
     left:100px;
-    width:35%;
+    width:50%;
     -webkit-transition: all .2s, bottom .75s;
+    position: absolute;
 }
 
 #info-cap-player h4{
-    margin-top:10px;
+    margin: 10px 0px 14px 0px;
 }
 
 #info-cap-player.collapsed{
@@ -2271,13 +2325,19 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 #info-cap-full{
-    width: 100%;
-    bottom: -100vh;
+    width:1000px;
+    margin: 0 auto;
     pointer-events: none;
     -webkit-transition: all .2s, bottom .75s;
     left: 0px;
     position:relative;
+    height: 90%;
 }
+
+.info-cur{
+    bottom:-100vh;
+}
+
 
 #info-cap-full.collapsed{
     bottom: 0px;
@@ -2286,17 +2346,18 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-full section{
     position: relative;
     margin:0 auto;
-    height: calc(100vh - 150px);
+    height: 100%;
     display: table;
     pointer-events: none;
 }
 
 #info-cap-img{
     position: relative;
-    width: 400px;
+    width: 40%;
     height: 100%;
     display: inline-block;
     overflow: hidden;
+    margin-top: 40px;
 }
 
 #info-cap-img img{
@@ -2309,11 +2370,11 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-info{
     position: relative;
-    width: 600px;
+    width: 60%;
     display: inline-block;
     overflow: hidden;
     pointer-events: inherit;
-    padding:0px 0px 40px 50px;
+    padding:0px 20px 35px 20px;
     box-sizing: border-box;
 }
 
@@ -2336,6 +2397,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-info h6{
     margin-top:15px;
     font-family: latolight;
+    margin-bottom:10px;
 }
 
 #info-cap-info h6 b{
@@ -2417,7 +2479,6 @@ img.img-x2{
 /*------------------------------INFO CURSO--------------------------------------------------*/
 
 section#info-curso{
-    height:calc(100vh - 320px);
     overflow: hidden;
     width:1000px;
 }
@@ -2594,6 +2655,7 @@ aside#cur-cap {
     top: 0px;
 }
 
+
 @keyframes fondoventana{
     0%{background-position:0px 0px; }
     100%{background-position:-2000px -2000px;}
@@ -2611,11 +2673,22 @@ aside#cur-cap {
 }
 
 
-@media (max-width: 1400px) {
+
+
+
+
+@media (max-width: 1250px) {
+    #tscVideoContent{
+        height: 55.6vw;
+        max-height: 100vh;
+    }
+
+
 
 }
 
 @media (max-width: 1150px) {
+
 
     #curso-fila #fila{
         width:100%;
@@ -2653,12 +2726,19 @@ aside#cur-cap {
         margin-right: 25px;
     }
     section#info-curso {
-        padding:0px 25px 0px 25px;
+        padding:0px 0px 0px 0px;
         width: 100%;
         box-sizing: border-box;
     }
 
+    #info-cap-full{
+        width:100%;
+        box-sizing: border-box;
 
+    }
+    #info-cur-info {
+        padding: 0px 20px 20px 20px;
+    }
 }
 
 @media (max-width: 1080px) {
@@ -2675,7 +2755,13 @@ aside#cur-cap {
         height: 100%;
         translate: -50% -50%;
     }
-    
+
+    #cap-banner-top {
+        opacity: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
 }
 
 
@@ -2695,6 +2781,24 @@ aside#cur-cap {
 
 
 @media (max-width: 900px) {
+
+
+
+    
+    #logo_abajo {
+        opacity: 0;
+    }
+
+
+    #info-cap-player {
+        width: 100%;
+        box-sizing: border-box;
+        left:0px;
+        padding:0px 20px 0px 20px;
+        opacity: 0;
+    }
+
+
     #slider-inicial div img {
         margin-top:0%;
         height: 100%;
@@ -2752,6 +2856,45 @@ aside#cur-cap {
     margin-bottom:15px;
 }
 
+#sigue_explorando {
+    top: 32px;
+    left: 30px;
+}
+
+#info-cap-img{
+    width:100%;
+
+}
+#info-cap-info{
+    width:100%;
+    
+}
+#mas-info-cap{
+    display: none;
+}
+#info-cap-full {
+
+    margin-top: 0px;
+}
+#info-cap-full section {
+    display: inline-block;
+}
+
+
+#tscVideoContent .play-button-overlay-glyph 
+{
+    bottom:20px;
+    left:50%;
+    position: absolute;
+    translate: -50% 0;
+}
+#btn-capitulo-out {
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+    display: none;
+}
+    
 }
 
 
@@ -2771,8 +2914,9 @@ aside#cur-cap {
 
 @media (max-width: 760px) {
 
-
-
+    #info-cur-info {
+        width: 100%;
+    }
 
     #slider-inicial div {
         height:100%;
@@ -2886,20 +3030,24 @@ aside#cur-cap {
 
 
 #info-cap-full {
-    bottom: -95vh;
-
-}
-
-#info-cur-info {
     width: 100%;
-    padding: 0px 0px 0px 0px;
+
 }
+
+
 
 aside#cur-cap{
     position: relative;
     translate: 0 0;
 }
+#info-cap-img {
+    height:60%;
+}
 
+#info-cap-img img {
+
+    translate: -50% -50%;
+}
 
 #info-cur-menu {
     width: 100%;
@@ -2910,23 +3058,21 @@ aside#cur-cap{
     width:100%;
 }
 #cur-cap div {
-    padding: 0px 10px 0px 10px;
+    padding: 0px 0px 0px 0px;
 }
 
 .botones-cur button {
     width: 47%;
 }
 
-#sigue_explorando {
-    top: 32px;
-    left: 30px;
+#info-cap-info{
+
+    padding:5px 20px 0px 20px;
 }
 
-
-
-
-
-
+#info-cap-info h4 {
+    margin-top: 20px;
+}
 
 }
 
@@ -2950,6 +3096,10 @@ aside#cur-cap{
     }
     #logo_centro {
         opacity:0;
+    }
+
+    #info-cap-img {
+        height:40%;
     }
 }
 

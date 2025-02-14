@@ -1,4 +1,5 @@
 [
+  "{'numerico': '152', 'alfa-3': 'CHL', 'alfa-2': 'CL', 'nombre': 'Chile'}",
   "{'numerico': '004', 'alfa-3': 'AFG', 'alfa-2': 'AF', 'nombre': 'Afganist\u00e1n'}",
   "{'numerico': '248', 'alfa-3': 'ALA', 'alfa-2': 'AX', 'nombre': '\u00c5land'}",
   "{'numerico': '008', 'alfa-3': 'ALB', 'alfa-2': 'AL', 'nombre': 'Albania'}",
@@ -44,7 +45,6 @@
   "{'numerico': '140', 'alfa-3': 'CAF', 'alfa-2': 'CF', 'nombre': 'Rep\u00fablica Centroafricana'}",
   "{'numerico': '148', 'alfa-3': 'TCD', 'alfa-2': 'TD', 'nombre': 'Chad'}",
   "{'numerico': '203', 'alfa-3': 'CZE', 'alfa-2': 'CZ', 'nombre': 'Rep\u00fablica Checa'}",
-  "{'numerico': '152', 'alfa-3': 'CHL', 'alfa-2': 'CL', 'nombre': 'Chile'}",
   "{'numerico': '156', 'alfa-3': 'CHN', 'alfa-2': 'CN', 'nombre': 'China'}",
   "{'numerico': '196', 'alfa-3': 'CYP', 'alfa-2': 'CY', 'nombre': 'Chipre'}",
   "{'numerico': '166', 'alfa-3': 'CCK', 'alfa-2': 'CC', 'nombre': 'Islas Cocos'}",

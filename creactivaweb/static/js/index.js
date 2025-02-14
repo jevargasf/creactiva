@@ -7,6 +7,7 @@ window.addEventListener('load', function () {
         $(this).hide(); 
         next(); 
       });
+      $('body').css('overflow-y', 'auto');
 
   })
   
@@ -46,12 +47,21 @@ $(document).ready(function(){
             }
         },
         {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                centerMode: true,
+                centerPadding: '15px',
+            }
+        },
+        {
             breakpoint: 480,
             settings: {
                 centerMode: true,
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                centerPadding: '10px',
+                centerPadding: '15px',
             }
         }
         ]
@@ -65,6 +75,73 @@ $("#flecha-izquierda-slider-fila").click(function(){
 $("#flecha-derecha-slider-fila").click(function(){
     $('#slider-fila').slick('slickNext');
 });
+
+
+// SLIDER FILA 2
+$(document).ready(function(){
+    $('#slider-fila-2').slick({
+        arrows: false,
+        easing: true,
+        pauseOnHover:true,
+        infinte: true,
+        autoplay: false,
+        speed: 500,
+        slidesToShow: 7,
+        slidesToScroll: 3,
+        responsive: [
+        {
+            breakpoint: 1460,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+            }
+        },
+        {
+            breakpoint: 900,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4,
+            }
+        },
+        {
+            breakpoint: 760,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                centerMode: true,
+                centerPadding: '60px',
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                centerMode: true,
+                centerPadding: '15px',
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                centerMode: true,
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                centerPadding: '15px',
+            }
+        }
+        ]
+    });
+});
+
+$("#flecha-izquierda-slider-fila-2").click(function(){
+    $('#slider-fila-2').slick('slickPrev');
+});
+
+$("#flecha-derecha-slider-fila-2").click(function(){
+    $('#slider-fila-2').slick('slickNext');
+});
+
 
 // SLIDER FILA CURSOS
 $(document).ready(function(){
@@ -102,12 +179,21 @@ $(document).ready(function(){
             }
         },
         {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                centerMode: true,
+                centerPadding: '15px',
+            }
+        },
+        {
             breakpoint: 480,
             settings: {
                 centerMode: true,
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                centerPadding: '20px',
+                centerPadding: '15px',
             }
         }
         ]

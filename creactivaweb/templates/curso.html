@@ -34,7 +34,7 @@
     <div id="botonera">
     <a href="#"><button class="btn-curso" id="btn-curso1">MÁS INFORMACIÓN</button></a>
 
-
+<!-- AQUÍ HACER EL FILTRO IF USER.PERFIL.CODIGO[0] == '1' -->
     {% if user.is_authenticated %}
     {% for capitulo in capitulos %}
     {% if forloop.first %}
@@ -43,7 +43,7 @@
     {% endif %}
     {% endfor %}
     {% else %}
-    <a href="{% url 'login' %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+    <a href="{% url 'trailer' curso.cur %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
     {% endif %}
     </div>
         <!-- aquí renderizo cada cap, pero en el snippet -->
@@ -86,60 +86,18 @@
 
             <aside id="cur-cap">
                 <div>
-
+                    {% for capitulo in capitulos %}
                     <article class="boton-desplegable">
-                        <h4 class="boton-ra1">Capítulo 1: El Mapuzungun<span><button></button><button class="mas"></button></span></h4>
+                        <h4 class="boton-ra1">Capítulo {{ capitulo.numero }}: {{ capitulo.nombre }}<span><button></button><button class="mas"></button></span></h4>
                         <aside class="lista-ra1">
                             <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
+                                {% for contenido in capitulo.contenidos %}
+                                <dd>· {{ contenido }}.</dd>
+                                {% endfor %}
                             </dl>
                         </aside>
                     </article>
-
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra2">Capítulo 2: Pronombres <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra2">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
-
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra3">Capítulo 3: Acciones y números. <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra3">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
-
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra4">Capítulo 4: Saludos y presentación. <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra4">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra5">Capítulo 5: Conversación <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra5">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
+                    {% endfor %}
 
                 </div>
             </aside>
@@ -149,6 +107,7 @@
     </section>
 </article>
 
+    {% include 'snippets/bannerback.html' %}
     {% include 'snippets/navbar.html' %}
     {% include 'snippets/header_centro.html' %}
     {% include 'snippets/header_volver.html' %}

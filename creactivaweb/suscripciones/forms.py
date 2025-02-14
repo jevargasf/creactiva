@@ -97,11 +97,10 @@ class SuscripcionOrganizacionForm(ModelForm):
           )
     class Meta:
         model = Suscripcion
-        fields = ['fecha_inicio', 'fecha_termino', 'monto', 'numero_usuarios']
+        fields = ['fecha_inicio', 'fecha_termino', 'numero_usuarios']
         labels = {
             'fecha_inicio': 'Fecha inicio',
             'fecha_termino': 'Fecha término',
-            'monto': 'Monto',
             'numero_usuarios': 'Número usuarios'
         }
         widgets = {
@@ -115,11 +114,6 @@ class SuscripcionOrganizacionForm(ModelForm):
                     'id': 'fecha_termino'
                 }
             ),
-            'monto': forms.NumberInput(
-                attrs={
-                    'id': 'monto'
-                }
-            ),
             'numero_usuarios': forms.NumberInput(
                 attrs={
                     'id': 'numero_usuarios'
@@ -131,7 +125,3 @@ class SuscripcionIndividualForm(forms.Form):
     planes = forms.CharField(label='plan', widget=forms.RadioSelect(
           choices=get_planes())
           )
-# Continuar escribiendo este formulario
-# Escribir template
-# Escribir view
-# Escribir url

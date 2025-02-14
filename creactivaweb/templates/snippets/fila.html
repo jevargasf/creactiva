@@ -3,12 +3,27 @@
 
 <!-----------------------------------------------FILA--------------------------------------------------------->
 <section id="fila">
-    <h1 class="titulo_fila">Podría Interesarte</h1>
+    {% for curso in cursos %}
+    {% if forloop.first %}
+    <h1 class="titulo_fila">{{ curso.nombre }}</h1>
     <article>
+    {% endif %}
+    {% endfor %}
             {% block capitulo_fila %}
                 {% include 'snippets/capitulo_fila.html' %}
             {% endblock %}
-            
+        </article>
+        {% for curso in cursos %}
+        {% if forloop.last %}
+        <h1 class="titulo_fila">{{ curso.nombre }}</h1>
+        <article>
+        {% endif %}
+        {% endfor %}
+
+        <article> 
+            {% block capitulo_fila_2 %}
+            {% include 'snippets/capitulo_fila_2.html' %}
+        {% endblock %}
     </article>
 </section>
         <div style="display: none;"> {% include 'snippets/slider-main.html' %}</div>

@@ -309,12 +309,9 @@ PARA CONTINUAR:
 ✔ realizar pruebas documentación TB (HASTA AHORA, ESTÁN PASANDO)
 ✔ enviar correos electrónicos por suscripción exitosa
 ✔ REALIZAR PRUEBAS CON USUARIOS NUEVOS, CON NAVEGADOR INCÓGNITO, CON CHROME
-- CORRECCIONES última reu FABIÁN
-- DESPLEGAR VERSIÓN CON WEBPAY
-- RELLENAR FORMULARIO TB
-- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer
-o lo pause
-- integrar descuento estudiante/comunero
+✔ DESPLEGAR VERSIÓN CON WEBPAY
+✔ RELLENAR FORMULARIO TB
+
 
 DEBUG SUSCRIPCIONES:
 - QUÉ ES MEJOR? crear un nuevo registro de suscripción (nueva orden de compra) cada vez? o crear 1 registro y actualizar sus datos. Lo primero me va a dejar también registro de las transacciones fallidas. Lo segundo es más limpio el términos de datos. Solo voy a quedarme en la bbdd con las suscripciones caducas. Las suscripciones fallidas también son importantes para tener un respaldo de todas las transacciones que se llevan a cabo. El estado '2' reflejaría una suscripción fallida. El estado_transbank mostrará la razón de por qué falló. La categoría la voy a llamar "en curso", pero si el estado transbank dice "FAILED", entonces significa que la suscripción quedó en curso para nosotros, pero falló para transbank. En consecuencia, el proceso deberá comenzar de nuevo creando un nuevo registro
@@ -324,11 +321,34 @@ DEBUG SUSCRIPCIONES:
 - MEJORAR EL FORMATO DE LA FECHA, QUITARLE LA HROA Y EL UTC
 ✔ CORREGIDO, PERO HACER LA PRUEBA: A JOSÉ SE LE DESLOGUEA CUANDO SE CONFIRMA LA TRANSACCIÓN
 ✔ CORREGIDO, PERO HACER LA PRUEBA: A JOSÉ NO LE RECONOCE LA SUSCRIPCIÓN UNA VEZ QUE ESTÁ HECHA
-- HAY UN ERROR RELACIONADO CON EL PERFIL
-- LA TAREA DE REVISAR LAS SUSCRIPCIONES ACTIVAS ES UNA TAREA AUTOMATIZADA Y TIENE COMO RESULTADO LA ACTUALIZACIÓN DEL CÓDIGO PERFIL. ENTONCES, DEBO ASUMIR QUE SI EL CÓDIGO PERFIL ESTÁ BIEN, ENTONCES TODAS LAS SUSCRIPCIONES SON ACTIVAS. SI LA PERSONA YA TIENE UNA SUSCRIPCIÓN INDIVIDUAL, ENTONCES NO LE VA A DEJAR ENTRAR A LA PANTALLA DE PAGO. EN UNA SEGUNDA INSTANCIA, LE DEBERÍA PREGUNTAR SI QUIERE EXTENDER SU SUSCRIPCIÓN, COSA QUE NO HEMOS DISEñADO TODAVÍA
+✔ LA TAREA DE REVISAR LAS SUSCRIPCIONES ACTIVAS ES UNA TAREA AUTOMATIZADA Y TIENE COMO RESULTADO LA ACTUALIZACIÓN DEL CÓDIGO PERFIL. ENTONCES, DEBO ASUMIR QUE SI EL CÓDIGO PERFIL ESTÁ BIEN, ENTONCES TODAS LAS SUSCRIPCIONES SON ACTIVAS. SI LA PERSONA YA TIENE UNA SUSCRIPCIÓN INDIVIDUAL, ENTONCES NO LE VA A DEJAR ENTRAR A LA PANTALLA DE PAGO. EN UNA SEGUNDA INSTANCIA, LE DEBERÍA PREGUNTAR SI QUIERE EXTENDER SU SUSCRIPCIÓN, COSA QUE NO HEMOS DISEñADO TODAVÍA
 
 
 DESARROLLOS FUTUROS
 APP SUSCRIPCIONES:
 - views.py > PagarView > post(): FALTARÍA MANEJAR EL CASO CUANDO suscripcion_activa() devuelve una suscripción de organización (numero_usuarios > 1)
 - BOTÓN "QUIERO CAMBIAR MI SUSCRIPCIÓN" en PANTALLA_COMPRA, en caso de que la persona quiera cambiar el plan que va a pagar (habiendo elegido otro anteriormente)
+
+
+DEBUG EN PRODUCCIÓN:
+- suscripciones/services.py: comenté líneas 30-32. Al parecer, la excepción interrumpe el flujo del programa cuando no encuentra el perfil (el usuario todavía no tiene código '100'). Actualización: Así funciona bien.
+- cambiar a bbdd postgresql. En postgresql existe el arrayField que almacena listas. Por ahora, en sqlite, lo haré con json
+- botón más de los contenidos perdió funcionalidad
+- subir tareas cron
+
+ETAPA FINAL DE DETALLES:
+- Debug: Que el form de elegir organización recupere todas las solicitudes
+- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer o lo pause (ESPERAR A JOSÉ QUE RECUPERE LA FUNCIONALIDAD DEL REPRODUCTOR)
+-	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
+-	Descripción detalle:
+    o	Tu suscripción termina el día fecha_termino
+    o	Acceso a todo el contenido educativo
+    o	Valor
+- integrar descuento estudiante/comunero
+- recopilar contenidos de capítulos y agregarlos a videos lengua mapuche
+- botones para compartir curso y capítulo no están funcionales
+- botón favoritos necesita lógica
+- app perfiles debe editar datos
+
+APP PERFILES
+- permite mostrar datos, pero todavía no permite editarlos

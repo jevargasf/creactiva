@@ -36,6 +36,9 @@ class Curso(models.Model):
     desc_corta= models.CharField(max_length=255, verbose_name='Descripción Corta')
     desc_larga = models.TextField(verbose_name='Descripción Larga')
     imagen_portada = models.CharField(max_length=255, verbose_name='Imagen portada', null=True)
+    link_trailer = models.URLField(verbose_name='Link trailer', null=True, max_length=255)
+    xml_trailer = models.CharField(verbose_name='Xml trailer', null=True, max_length=255)
+    js_trailer = models.CharField(verbose_name='Xml.js trailer', null=True, max_length=255)
     etiquetas = models.ForeignKey(
         Etiqueta,
         on_delete=models.CASCADE,
@@ -67,6 +70,7 @@ class Capitulo(models.Model):
     js_cap = models.CharField(verbose_name='Link xml.js', null=True, max_length=255)
     thumbnail = models.CharField(verbose_name='Link thumbnail', null=True, max_length=255)
     first_frame = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
+    contenidos = models.JSONField(default=list, blank=True)
     material = models.ForeignKey(
         MaterialesComplementario,
         blank=True, 

@@ -301,7 +301,7 @@ class SuscripcionOrganizacionView(View):
             suscripcion = Suscripcion(
                 fecha_inicio=form.cleaned_data['fecha_inicio'],
                 fecha_termino=form.cleaned_data['fecha_termino'],
-                monto=form.cleaned_data['monto'],
+                monto=0,
                 numero_usuarios=form.cleaned_data['numero_usuarios'],
                 codigo_validacion='0',
                 estado_suscripcion='1'

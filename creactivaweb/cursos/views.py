@@ -9,42 +9,22 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
+
 class CursoView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request, id):
-        curso = Curso.objects.get(pk=id)
-        capitulos = pedir_capitulos(id)
-        duracion_curso = 0
-        actividades = 0
-        num_materiales = 0
-        for capitulo in capitulos:
-            duracion_curso += capitulo.duracion
-            actividades += capitulo.num_actividades
-            if capitulo.material == None:
-                continue
-            else:
-                num_materiales += 1
-        context = {
-            'curso': curso,
-            'duracion': round(duracion_curso/60),
-            'actividades': actividades,
-            'num_materiales': num_materiales,
-            'capitulos': capitulos
-        }
+        context = data_curso(id)
         return render(request, 'curso.html', context)
     
 class TrailerView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
-    def get (self, request: HttpRequest, id):        
-        capitulo = Capitulo.objects.get(pk=id)
-        context = {
-            'capitulo': capitulo
-        }
-        return render(request, 'reproductor.html', context)
+    def get (self, request: HttpRequest, id): 
+        context = data_curso(id)
+        return render(request, 'trailer.html', context)
 
 class CapituloView(View):
     # TIENE QUE LLEGAR DESDE UN BOTÓN EN EL TEMPLATE TRAILER
@@ -52,24 +32,23 @@ class CapituloView(View):
         return super().dispatch(*args, **kwargs)
     def get (self, request: HttpRequest, id):
         capitulo = Capitulo.objects.get(pk=id)
-        context = {
-            'info': {
-                'capitulo_nombre': capitulo.nombre,
-                'curso_nombre': capitulo.curso.nombre,
-                'curso_id': capitulo.curso.cur,
-                'desc_corta': capitulo.desc_corta,
-                'numero': capitulo.numero,
-                'descripcion': capitulo.descripcion,
-                'duracion': capitulo.duracion,
-                'first_frame': capitulo.first_frame
-            },
-            'recurso': {}
-        }
-        print(request.user.is_authenticated)
-        if request.user.is_authenticated == True:  
-            # TIENE CUENTA      
+        if request.user.is_authenticated:
+            context = {
+                'info': {
+                    'capitulo_nombre': capitulo.nombre,
+                    'curso_nombre': capitulo.curso.nombre,
+                    'curso_id': capitulo.curso.cur,
+                    'desc_corta': capitulo.desc_corta,
+                    'numero': capitulo.numero,
+                    'descripcion': capitulo.descripcion,
+                    'duracion': capitulo.duracion,
+                    'first_frame': capitulo.first_frame,
+                    'contenidos': capitulo.contenidos
+                },
+                'recurso': {}
+            }
+                # TIENE CUENTA      
             perfil_object = pedir_perfil(request.user)
-            print(type(perfil_object.codigo[0]))
             # TIENE SUSCRIPCIÓN INDIVIDUAL
             if perfil_object.codigo[0] == '1':
                 context['recurso']['js_cap'] = capitulo.js_cap
@@ -81,21 +60,13 @@ class CapituloView(View):
                     context['minuto'] = ultima_visualizacion
                 
                 return render(request, 'reproductor.html', context)
-            # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER
+            # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
             else:
-                context['recurso']['js_cap'] = capitulo.js_cap
-                context['recurso']['link'] = capitulo.link
-                context['recurso']['xml_cap'] = capitulo.xml_cap
-                context['recurso']['first_frame'] = capitulo.first_frame
-                return render(request, 'trailer.html', context)
+                context = data_curso(capitulo.curso.cur)
+                return redirect('trailer', capitulo.curso.cur)
         else:
-            # NO ESTÁ AUTENTICADO
-            context['recurso']['js_cap'] = capitulo.js_cap
-            context['recurso']['link'] = capitulo.link
-            context['recurso']['xml_cap'] = capitulo.xml_cap
-            context['recurso']['first_frame'] = capitulo.first_frame
-            return render(request, 'trailer.html', context)
-
+            context = data_curso(capitulo.curso.cur)
+            return redirect('trailer', capitulo.curso.cur)
         
     def post(self, request: HttpRequest, id):
         # código para almacenar el segundo de reproducción
