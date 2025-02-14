@@ -63,7 +63,7 @@ class CapituloView(View):
             # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
             else:
                 context = data_curso(capitulo.curso.cur)
-                return render(request, 'trailer.html', context)
+                return redirect('trailer', capitulo.curso.cur)
         else:
             context = data_curso(capitulo.curso.cur)
             return redirect('trailer', capitulo.curso.cur)
