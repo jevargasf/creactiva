@@ -337,7 +337,7 @@ DEBUG EN PRODUCCIÓN:
 - subir tareas cron
 
 ETAPA FINAL DE DETALLES:
--	Debug: Que el form de elegir organización recupere todas las solicitudes
+- Debug: Que el form de elegir organización recupere todas las solicitudes
 - javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer o lo pause (ESPERAR A JOSÉ QUE RECUPERE LA FUNCIONALIDAD DEL REPRODUCTOR)
 -	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
 -	Descripción detalle:
@@ -348,5 +348,7 @@ ETAPA FINAL DE DETALLES:
 - recopilar contenidos de capítulos y agregarlos a videos lengua mapuche
 - botones para compartir curso y capítulo no están funcionales
 - botón favoritos necesita lógica
+- app perfiles debe editar datos
 
 APP PERFILES
+- permite mostrar datos, pero todavía no permite editarlos
