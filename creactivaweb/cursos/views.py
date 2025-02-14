@@ -24,50 +24,49 @@ class TrailerView(View):
     
     def get (self, request: HttpRequest, id): 
         context = data_curso(id)
-        print(context['curso'].link_trailer, context['curso'].xml_trailer, context['curso'].js_trailer)
         return render(request, 'trailer.html', context)
 
-class CapituloView(LoginRequiredMixin, View):
+class CapituloView(View):
     # TIENE QUE LLEGAR DESDE UN BOTÓN EN EL TEMPLATE TRAILER
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     def get (self, request: HttpRequest, id):
         capitulo = Capitulo.objects.get(pk=id)
-        context = {
-            'info': {
-                'capitulo_nombre': capitulo.nombre,
-                'curso_nombre': capitulo.curso.nombre,
-                'curso_id': capitulo.curso.cur,
-                'desc_corta': capitulo.desc_corta,
-                'numero': capitulo.numero,
-                'descripcion': capitulo.descripcion,
-                'duracion': capitulo.duracion,
-                'first_frame': capitulo.first_frame,
-                'contenidos': capitulo.contenidos
-            },
-            'recurso': {}
-        }
-            # TIENE CUENTA      
-        perfil_object = pedir_perfil(request.user)
-        # TIENE SUSCRIPCIÓN INDIVIDUAL
-        if perfil_object.codigo[0] == '1':
-            context['recurso']['js_cap'] = capitulo.js_cap
-            context['recurso']['link'] = capitulo.link
-            context['recurso']['xml_cap'] = capitulo.xml_cap
-            context['recurso']['first_frame'] = capitulo.first_frame
-            ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
-            if ultima_visualizacion != None:
-                context['minuto'] = ultima_visualizacion
-            
-            return render(request, 'reproductor.html', context)
-        # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
+        if request.user.is_authenticated:
+            context = {
+                'info': {
+                    'capitulo_nombre': capitulo.nombre,
+                    'curso_nombre': capitulo.curso.nombre,
+                    'curso_id': capitulo.curso.cur,
+                    'desc_corta': capitulo.desc_corta,
+                    'numero': capitulo.numero,
+                    'descripcion': capitulo.descripcion,
+                    'duracion': capitulo.duracion,
+                    'first_frame': capitulo.first_frame,
+                    'contenidos': capitulo.contenidos
+                },
+                'recurso': {}
+            }
+                # TIENE CUENTA      
+            perfil_object = pedir_perfil(request.user)
+            # TIENE SUSCRIPCIÓN INDIVIDUAL
+            if perfil_object.codigo[0] == '1':
+                context['recurso']['js_cap'] = capitulo.js_cap
+                context['recurso']['link'] = capitulo.link
+                context['recurso']['xml_cap'] = capitulo.xml_cap
+                context['recurso']['first_frame'] = capitulo.first_frame
+                ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
+                if ultima_visualizacion != None:
+                    context['minuto'] = ultima_visualizacion
+                
+                return render(request, 'reproductor.html', context)
+            # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
+            else:
+                context = data_curso(capitulo.curso.cur)
+                return render(request, 'trailer.html', context)
         else:
-            context['recurso']['js_cap'] = capitulo.js_cap
-            context['recurso']['link'] = capitulo.link
-            context['recurso']['xml_cap'] = capitulo.xml_cap
-            context['recurso']['first_frame'] = capitulo.first_frame
-            return render(request, 'trailer.html', context)
-
+            context = data_curso(capitulo.curso.cur)
+            return redirect('trailer', capitulo.curso.cur)
         
     def post(self, request: HttpRequest, id):
         # código para almacenar el segundo de reproducción
