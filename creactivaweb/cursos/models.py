@@ -70,6 +70,7 @@ class Capitulo(models.Model):
     js_cap = models.CharField(verbose_name='Link xml.js', null=True, max_length=255)
     thumbnail = models.CharField(verbose_name='Link thumbnail', null=True, max_length=255)
     first_frame = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
+    contenidos = models.JSONField(default=list, blank=True)
     material = models.ForeignKey(
         MaterialesComplementario,
         blank=True, 

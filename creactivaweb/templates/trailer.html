@@ -101,18 +101,9 @@
             <h6>Duración curso: <b>{{ curso.duracion}} Minutos</b></h6>
             <h6>Contenido:</h6>
             <ul class="cap-lista bloques">
-                <li>· Origen del Mapuzungun</li>
-                <li>· Grafemarios: ¿Cómo escribimos el Mapuzungun?</li>
-                <li>· Sonidos de Letras</li>
-            </ul>
-            <h6>Recursos adicionales:</h6>
-            <ul class="cap-lista materiales">
-                <a href="" target="_blank"><li>Texto sobre Mapuzungun</li></a>
-                &nbsp; -  &nbsp; 
-                <a href="" target="_blank"><li>Glosario</li></a>
-                &nbsp; -  &nbsp; 
-                <a href="" target="_blank"><li>Otros documentos</li></a>
-
+                    {% for contenido in list %}
+                    <li>· </li>
+                    {% endfor %}
             </ul>
 
             <nav class="botones-cap">

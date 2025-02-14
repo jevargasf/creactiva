@@ -27,7 +27,7 @@ class TrailerView(View):
         print(context['curso'].link_trailer, context['curso'].xml_trailer, context['curso'].js_trailer)
         return render(request, 'trailer.html', context)
 
-class CapituloView(View):
+class CapituloView(LoginRequiredMixin, View):
     # TIENE QUE LLEGAR DESDE UN BOTÓN EN EL TEMPLATE TRAILER
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -42,34 +42,26 @@ class CapituloView(View):
                 'numero': capitulo.numero,
                 'descripcion': capitulo.descripcion,
                 'duracion': capitulo.duracion,
-                'first_frame': capitulo.first_frame
+                'first_frame': capitulo.first_frame,
+                'contenidos': capitulo.contenidos
             },
             'recurso': {}
         }
-        if request.user.is_authenticated == True:  
             # TIENE CUENTA      
-            perfil_object = pedir_perfil(request.user)
-            print(type(perfil_object.codigo[0]))
-            # TIENE SUSCRIPCIÓN INDIVIDUAL
-            if perfil_object.codigo[0] == '1':
-                context['recurso']['js_cap'] = capitulo.js_cap
-                context['recurso']['link'] = capitulo.link
-                context['recurso']['xml_cap'] = capitulo.xml_cap
-                context['recurso']['first_frame'] = capitulo.first_frame
-                ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
-                if ultima_visualizacion != None:
-                    context['minuto'] = ultima_visualizacion
-                
-                return render(request, 'reproductor.html', context)
-            # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
-            else:
-                context['recurso']['js_cap'] = capitulo.js_cap
-                context['recurso']['link'] = capitulo.link
-                context['recurso']['xml_cap'] = capitulo.xml_cap
-                context['recurso']['first_frame'] = capitulo.first_frame
-                return render(request, 'trailer.html', context)
+        perfil_object = pedir_perfil(request.user)
+        # TIENE SUSCRIPCIÓN INDIVIDUAL
+        if perfil_object.codigo[0] == '1':
+            context['recurso']['js_cap'] = capitulo.js_cap
+            context['recurso']['link'] = capitulo.link
+            context['recurso']['xml_cap'] = capitulo.xml_cap
+            context['recurso']['first_frame'] = capitulo.first_frame
+            ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
+            if ultima_visualizacion != None:
+                context['minuto'] = ultima_visualizacion
+            
+            return render(request, 'reproductor.html', context)
+        # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
         else:
-            # NO ESTÁ AUTENTICADO // EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
             context['recurso']['js_cap'] = capitulo.js_cap
             context['recurso']['link'] = capitulo.link
             context['recurso']['xml_cap'] = capitulo.xml_cap

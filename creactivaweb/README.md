@@ -332,7 +332,7 @@ APP SUSCRIPCIONES:
 
 DEBUG EN PRODUCCIÓN:
 - suscripciones/services.py: comenté líneas 30-32. Al parecer, la excepción interrumpe el flujo del programa cuando no encuentra el perfil (el usuario todavía no tiene código '100'). Actualización: Así funciona bien.
-
+- cambiar a bbdd postgresql. En postgresql existe el arrayField que almacena listas. Por ahora, en sqlite, lo haré con 
 
 ETAPA FINAL DE DETALLES:
 - CORRECCIONES última reu FABIÁN
@@ -349,3 +349,4 @@ ETAPA FINAL DE DETALLES:
 ✔	Página principal: agregar slider para cada curso (ESPERAR A JOSÉ)
 ✔	Corrección: Quitar las etiquetas de búsqueda y barra de búsqueda/JOSE
 - integrar descuento estudiante/comunero
+- recopilar contenidos de capítulos y agregarlos a videos lengua mapuche

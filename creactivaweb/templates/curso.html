@@ -86,60 +86,18 @@
 
             <aside id="cur-cap">
                 <div>
-
+                    {% for capitulo in capitulos %}
                     <article class="boton-desplegable">
-                        <h4 class="boton-ra1">Capítulo 1: El Mapuzungun<span><button></button><button class="mas"></button></span></h4>
+                        <h4 class="boton-ra1">Capítulo {{ capitulo.numero }}: {{ capitulo.nombre }}<span><button></button><button class="mas"></button></span></h4>
                         <aside class="lista-ra1">
                             <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
+                                {% for contenido in capitulo.contenidos %}
+                                <dd>· {{ contenido }}.</dd>
+                                {% endfor %}
                             </dl>
                         </aside>
                     </article>
-
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra2">Capítulo 2: Pronombres <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra2">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
-
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra3">Capítulo 3: Acciones y números. <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra3">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
-
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra4">Capítulo 4: Saludos y presentación. <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra4">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
-                    <article class="boton-desplegable">
-                        <h4 class="boton-ra5">Capítulo 5: Conversación <span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra5">
-                            <dl>
-                                <dd>· Origen del Mapuzungun.</dd>
-                                <dd>· Grafemarios: ¿Cómo escribimos el Mapuzungun?.</dd>
-                                <dd>· Sonidos de Letras.</dd>
-                            </dl>
-                        </aside>
-                    </article>
+                    {% endfor %}
 
                 </div>
             </aside>
