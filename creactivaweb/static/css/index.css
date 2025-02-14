@@ -88,6 +88,16 @@
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
 
+#bannerback{
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    position: fixed;
+    top:0px;
+    width:100vw;
+    height:150px;
+    z-index: 2;
+}
+
 html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, variable, fieldset, blockquote {
     padding: 0;
     margin: 0;
@@ -111,7 +121,6 @@ body {
     padding: 0;
     margin: 0;
     height:100%;
-    overflow-x: hidden;
     background-color: #00224a;
     overflow-y: scroll;
 }
@@ -733,7 +742,7 @@ p{
 #fila {
     width:100%;
     box-sizing: border-box;
-    padding:0px 0% 50px 0%;
+    padding:25px 0% 50px 0%;
     overflow:show;
     margin:0 auto;
     clear:both;
@@ -753,7 +762,7 @@ p{
 }
 
 #fila article {
-    margin:0 auto;
+    margin: 0 auto 10px auto;
     width:100%;
     position: relative;
 }
@@ -873,7 +882,7 @@ p{
     text-shadow: 1px 1px 3px #000;
 }
 
-#flecha-izquierda-slider-fila {
+#flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-2 {
     transition: all 0.1s ease-in-out;
     cursor:pointer;
     height: calc(100% - 2px);
@@ -889,7 +898,7 @@ p{
     opacity:0.0;
 }
 
-#flecha-derecha-slider-fila {
+#flecha-derecha-slider-fila, #flecha-derecha-slider-fila-2 {
     transition: all 0.1s ease-in-out;
     cursor:pointer;
     height: calc(100% - 2px);
@@ -916,11 +925,31 @@ p{
 
 }
 
+
+#slider-fila-2:hover ~ #flecha-derecha-slider-fila-2{
+    opacity:0.5;
+
+}
+
+#slider-fila-2:hover ~ #flecha-izquierda-slider-fila-2{
+    opacity:0.5;
+
+}
+
 #flecha-derecha-slider-fila:hover {
     opacity:1;
 }
 
 #flecha-izquierda-slider-fila:hover {
+    opacity:1;
+}
+
+
+#flecha-derecha-slider-fila-2:hover {
+    opacity:1;
+}
+
+#flecha-izquierda-slider-fila-2:hover {
     opacity:1;
 }
 
@@ -1099,6 +1128,7 @@ input:-webkit-autofill:active{
     position: fixed;
     top:35px;
     left:45px;
+    z-index:3;
     opacity: 0.8;
     transition: all 0.1s ease-in-out;
 }
@@ -1574,11 +1604,13 @@ float: left;
 .main-nav ul a.botonvideo{
     float: right;
     width: 100%;
-    background-color: #08CD97;
+    background-color: #777;
     box-sizing: border-box;
     transition: background-color 0.1s ease-in-out;
-    color: #024C8D;
+    color: #fff;
     text-align: right;
+    pointer-events: none;
+    cursor: no-drop;
 }
 
 .main-nav ul a:hover{
@@ -2005,7 +2037,7 @@ float: left;
 
 
 #info-cur-menu{
-    width: 40%;
+    width: 39%;
     display: inline-block;
 }
 
@@ -2300,7 +2332,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     left: 0px;
     position:relative;
     height: 90%;
-    margin-top: 75px;
 }
 
 .info-cur{
@@ -2326,6 +2357,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     height: 100%;
     display: inline-block;
     overflow: hidden;
+    margin-top: 40px;
 }
 
 #info-cap-img img{
@@ -2365,6 +2397,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-info h6{
     margin-top:15px;
     font-family: latolight;
+    margin-bottom:10px;
 }
 
 #info-cap-info h6 b{
@@ -2693,7 +2726,7 @@ aside#cur-cap {
         margin-right: 25px;
     }
     section#info-curso {
-        padding:0px 25px 0px 25px;
+        padding:0px 0px 0px 0px;
         width: 100%;
         box-sizing: border-box;
     }
@@ -2703,7 +2736,9 @@ aside#cur-cap {
         box-sizing: border-box;
 
     }
-
+    #info-cur-info {
+        padding: 0px 20px 20px 20px;
+    }
 }
 
 @media (max-width: 1080px) {
@@ -2724,6 +2759,7 @@ aside#cur-cap {
     #cap-banner-top {
         opacity: 0;
         pointer-events: none;
+        overflow: hidden;
     }
 
 }
@@ -2840,6 +2876,9 @@ aside#cur-cap {
 
     margin-top: 0px;
 }
+#info-cap-full section {
+    display: inline-block;
+}
 
 
 #tscVideoContent .play-button-overlay-glyph 
@@ -2852,6 +2891,8 @@ aside#cur-cap {
 #btn-capitulo-out {
     opacity: 0;
     pointer-events: none;
+    overflow: hidden;
+    display: none;
 }
     
 }
@@ -2873,8 +2914,9 @@ aside#cur-cap {
 
 @media (max-width: 760px) {
 
-
-
+    #info-cur-info {
+        width: 100%;
+    }
 
     #slider-inicial div {
         height:100%;
@@ -2992,10 +3034,7 @@ aside#cur-cap {
 
 }
 
-#info-cur-info {
-    width: 100%;
-    padding: 0px 0px 0px 0px;
-}
+
 
 aside#cur-cap{
     position: relative;
@@ -3019,15 +3058,21 @@ aside#cur-cap{
     width:100%;
 }
 #cur-cap div {
-    padding: 0px 10px 0px 10px;
+    padding: 0px 0px 0px 0px;
 }
 
 .botones-cur button {
     width: 47%;
 }
 
+#info-cap-info{
 
+    padding:5px 20px 0px 20px;
+}
 
+#info-cap-info h4 {
+    margin-top: 20px;
+}
 
 }
 

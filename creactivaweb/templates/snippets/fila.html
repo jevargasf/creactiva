@@ -3,12 +3,16 @@
 
 <!-----------------------------------------------FILA--------------------------------------------------------->
 <section id="fila">
-    <h1 class="titulo_fila">Podría Interesarte</h1>
+    <h1 class="titulo_fila">Introducción a la lengua Mapuche</h1>
     <article>
             {% block capitulo_fila %}
                 {% include 'snippets/capitulo_fila.html' %}
             {% endblock %}
             
+        </article>
+        <h1 class="titulo_fila">Cultura Mapuche</h1>
+
+        <article> 
             {% block capitulo_fila_2 %}
             {% include 'snippets/capitulo_fila_2.html' %}
         {% endblock %}
