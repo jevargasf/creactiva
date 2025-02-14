@@ -34,7 +34,7 @@
     <div id="botonera">
     <a href="#"><button class="btn-curso" id="btn-curso1">MÁS INFORMACIÓN</button></a>
 
-
+<!-- AQUÍ HACER EL FILTRO IF USER.PERFIL.CODIGO[0] == '1' -->
     {% if user.is_authenticated %}
     {% for capitulo in capitulos %}
     {% if forloop.first %}
@@ -43,7 +43,7 @@
     {% endif %}
     {% endfor %}
     {% else %}
-    <a href="{% url 'login' %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+    <a href="{% url 'trailer' curso.cur %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
     {% endif %}
     </div>
         <!-- aquí renderizo cada cap, pero en el snippet -->

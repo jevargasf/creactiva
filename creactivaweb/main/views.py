@@ -34,6 +34,7 @@ class IndexView(View):
             'capitulos_cultura': capitulos_cultura,
             'user': current_user
         }
+        print(context)
         return render(request, 'index.html', context)
     
 class RegisterView(View):

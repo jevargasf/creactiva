@@ -16,6 +16,28 @@ def pedir_nombres_cursos():
         nombres.append([str(dic['cur']), dic['nombre']])
     return nombres
 
+def data_curso(id_curso):
+    curso = Curso.objects.get(pk=id_curso)
+    capitulos = pedir_capitulos(id_curso)
+    duracion_curso = 0
+    actividades = 0
+    num_materiales = 0
+    for capitulo in capitulos:
+        duracion_curso += capitulo.duracion
+        actividades += capitulo.num_actividades
+        if capitulo.material == None:
+            continue
+        else:
+            num_materiales += 1
+    context = {
+        'curso': curso,
+        'duracion': round(duracion_curso/60),
+        'actividades': actividades,
+        'num_materiales': num_materiales,
+        'capitulos': capitulos
+    }
+    return context
+
 def capitulos_index():
     caps = Capitulo.objects.all()
     cap_lista = []
