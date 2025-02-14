@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+        {% include 'snippets/navbar.html' %}
+
+        
+        {% include 'snippets/header_index.html' %}
+        <div id="transicion">
+        </div>
+        {% if perfil.codigo == '100' %}
+        <div class="form-register">
+            <p>Nombre: {{ perfil.user.first_name }} {{ perfil.user.last_name}}</p>
+            <p>Correo: {{ perfil.user.email }}</p>
+            <p>Suscripción: {{ suscripcion.plan.nombre }}</p>
+            <p>Fecha término: {{ suscripcion.fecha_termino }}</p>
+        </div>
+        {% else %}
+        <div class="form-register">
+            <p>Nombre: {{ perfil.user.first_name }} {{ perfil.user.last_name}}</p>
+            <p>Correo: {{ perfil.user.email }}</p>
+            <p>Aún no estás suscrito a nuestro contenido</p>
+            <p><a href="{% url 'planes' %}">Haz click aquí para conocer nuestros planes</a></p>
+        </div>
+        {% endif %}
+    {% endblock %}
