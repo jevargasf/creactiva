@@ -321,7 +321,6 @@ DEBUG SUSCRIPCIONES:
 - MEJORAR EL FORMATO DE LA FECHA, QUITARLE LA HROA Y EL UTC
 ✔ CORREGIDO, PERO HACER LA PRUEBA: A JOSÉ SE LE DESLOGUEA CUANDO SE CONFIRMA LA TRANSACCIÓN
 ✔ CORREGIDO, PERO HACER LA PRUEBA: A JOSÉ NO LE RECONOCE LA SUSCRIPCIÓN UNA VEZ QUE ESTÁ HECHA
-- HAY UN ERROR RELACIONADO CON EL PERFIL
 - LA TAREA DE REVISAR LAS SUSCRIPCIONES ACTIVAS ES UNA TAREA AUTOMATIZADA Y TIENE COMO RESULTADO LA ACTUALIZACIÓN DEL CÓDIGO PERFIL. ENTONCES, DEBO ASUMIR QUE SI EL CÓDIGO PERFIL ESTÁ BIEN, ENTONCES TODAS LAS SUSCRIPCIONES SON ACTIVAS. SI LA PERSONA YA TIENE UNA SUSCRIPCIÓN INDIVIDUAL, ENTONCES NO LE VA A DEJAR ENTRAR A LA PANTALLA DE PAGO. EN UNA SEGUNDA INSTANCIA, LE DEBERÍA PREGUNTAR SI QUIERE EXTENDER SU SUSCRIPCIÓN, COSA QUE NO HEMOS DISEñADO TODAVÍA
 
 
@@ -337,8 +336,10 @@ DEBUG EN PRODUCCIÓN:
 
 ETAPA FINAL DE DETALLES:
 - CORRECCIONES última reu FABIÁN
--	Debug: Que el form de elegir organización recupere todas las solicitudes
 -   Subir trailer que envió josé
+    - crear registro de trailer en modelo
+-	Debug: Que el form de elegir organización recupere todas las solicitudes
+- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer o lo pause (ESPERAR A JOSÉ QUE RECUPERE LA FUNCIONALIDAD DEL REPRODUCTOR)
 -	Cambiar nombre curso “Introducción a la cultura mapuche”
 -	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
 -	Descripción detalle:
@@ -348,4 +349,3 @@ ETAPA FINAL DE DETALLES:
 ✔	Página principal: agregar slider para cada curso (ESPERAR A JOSÉ)
 ✔	Corrección: Quitar las etiquetas de búsqueda y barra de búsqueda/JOSE
 - integrar descuento estudiante/comunero
-- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer o lo pause (ESPERAR A JOSÉ QUE RECUPERE LA FUNCIONALIDAD DEL REPRODUCTOR)

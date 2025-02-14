@@ -36,6 +36,9 @@ class Curso(models.Model):
     desc_corta= models.CharField(max_length=255, verbose_name='Descripción Corta')
     desc_larga = models.TextField(verbose_name='Descripción Larga')
     imagen_portada = models.CharField(max_length=255, verbose_name='Imagen portada', null=True)
+    link_trailer = models.URLField(verbose_name='Link trailer', null=True, max_length=255)
+    xml_trailer = models.CharField(verbose_name='Link xml trailer', null=True, max_length=255)
+    js_trailer = models.CharField(verbose_name='Link xml.js trailer', null=True, max_length=255)
     etiquetas = models.ForeignKey(
         Etiqueta,
         on_delete=models.CASCADE,

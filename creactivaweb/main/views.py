@@ -60,7 +60,6 @@ class RegisterView(View):
             return render(request, 'registration/register.html')
         except Exception as e:
             messages.error(request, 'No se ha podido registrar el usuario')
-            print(e)
             return render(request, 'registration/register.html')
         # método authenticate(request, **credentials)
         else:
