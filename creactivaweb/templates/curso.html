@@ -88,8 +88,9 @@
                 <div>
                     {% for capitulo in capitulos %}
                     <article class="boton-desplegable">
-                        <h4 class="boton-ra1">Capítulo {{ capitulo.numero }}: {{ capitulo.nombre }}<span><button></button><button class="mas"></button></span></h4>
-                        <aside class="lista-ra1">
+                        <h4 class="boton-ra{{ capitulo.numero }}">Capítulo {{ capitulo.numero }}: {{ capitulo.nombre }}<span><button></button><button class="mas"></button></span></h4>
+                        <aside class="lista-ra{{ capitulo.numero }}">
+
                             <dl>
                                 {% for contenido in capitulo.contenidos %}
                                 <dd>· {{ contenido }}.</dd>

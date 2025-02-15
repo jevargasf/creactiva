@@ -352,3 +352,6 @@ ETAPA FINAL DE DETALLES:
 
 APP PERFILES
 - permite mostrar datos, pero todavía no permite editarlos
+- falta mostrar historial de pagos
+- falta mostrar cursos suscritos ??
+- falta conteo de días
