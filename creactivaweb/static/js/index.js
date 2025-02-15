@@ -496,6 +496,8 @@ $("#cerrarAlerta").click(function(){
 //});
 //
 // BOTONES DE LA LISTA DESPLEGABLE EN CURSOS
+
+
     $(".boton-ra1").click(function(){
         document.querySelector('.boton-ra1').classList.toggle('collapsed');
         document.querySelector('.boton-ra2').classList.remove('collapsed');
@@ -578,9 +580,58 @@ $(document).ready(function(){
     });
 });
 
+// Funciones Iniciales
 
 $(document).ready(function () {
     document.querySelector('#btn-spotlight1').classList.add('collapsed');
     document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
     document.querySelector('#add-favoritos').classList.add('collapsed');
 });
+
+// Botones scroll
+
+$("#mas-info").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#info-cap-full").offset().top},
+        'slow');
+});
+
+
+$("#btn-curso1").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#info-cap-full").offset().top},
+        'slow');
+});
+
+
+$("#mas-info-cap").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#info-cap-full").offset().top},
+        'slow');
+});
+
+$("#btn-capitulo-out").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#info-cap-full").offset().top},
+        'slow');
+});
+
+
+// Animación Título Principal con scroll
+
+
+
+   window.onscroll = function() {
+    if (scrollY > 100) {
+        $('#bannerback').css('opacity', '1');
+    } else if (scrollY <= 100) {
+        $('#bannerback').css('opacity', '0');
+    }     if (scrollY > 150) {
+        $('#mas-info').css('opacity', '0');
+        $('#mas-info-cap').css('opacity', '0');
+    } else if (scrollY <= 150) {
+        $('#mas-info').css('opacity', '1');
+        $('#mas-info-cap').css('opacity', '1');
+    }
+};
+
