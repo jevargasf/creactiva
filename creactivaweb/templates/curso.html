@@ -32,16 +32,8 @@
     <a href="#"><button class="btn-curso" id="btn-curso1">MÁS INFORMACIÓN</button></a>
 
 <!-- AQUÍ HACER EL FILTRO IF USER.PERFIL.CODIGO[0] == '1' -->
-    {% if user.is_authenticated %}
-    {% for capitulo in capitulos %}
-    {% if forloop.first %}
-    <a href="{% url 'capitulo' capitulo.cap %}"><button class="btn-curso" id="btn-curso2">COMENZAR</button></a>
-    {% else %}
-    {% endif %}
-    {% endfor %}
-    {% else %}
-    <a href="{% url 'trailer' curso.cur %}"><button  class="btn-curso" id="btn-curso2">COMENZAR</button></a>
-    {% endif %}
+    <a href="{% url 'capitulo' 1 %}"><button class="btn-curso" id="btn-curso2">COMENZAR</button></a>
+
     </div>
         <!-- aquí renderizo cada cap, pero en el snippet -->
         {% include 'snippets/fila_curso.html' %}

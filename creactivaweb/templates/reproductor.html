@@ -137,5 +137,6 @@
 
 <script src="{% static 'js/reproductor.js' %}" type="text/javascript" defer></script>
 {{ minuto | json_script:"minuto" }}
+{{ request.user.username | json_script:"user" }}
 </body>
 </html>
