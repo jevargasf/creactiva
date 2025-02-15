@@ -70,7 +70,7 @@
                 <li><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
             </ul>
             <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
-            <p>{{ curso.desc_larga }}</p>
+            <p>{{ curso.desc_larga | linebreaksbr }}</p>
 
 
             <nav class="botones-cur">
