@@ -7,23 +7,30 @@
     </div>
     <span id="cuadricula2"></span>
 
+
 <div class="form-plan">
 <h2>SELECCIONA UN PLAN</h2>
+<div class="planes-info">
+    <p>Hazte usuario. Si no tienes una cuenta, regístrate. Luego, escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento.</p>
+    <button class="btn-plan" id="btn-estandar">Estándar</button>
+    <button class="btn-plan" id="btn-descuento">Descuento Creactiva</button>
+</div>
+
     {% for plan in planes %}
-    <a class="plan" href="{% url 'detalle-plan' plan.id %}">
+    {% if plan.plan_descuento == True %}
+    <a class="plan plan-descuento" style="display: none;" href="{% url 'detalle-plan' plan.id %}">
+    {% else %}
+    <a class="plan plan-estandar" href="{% url 'detalle-plan' plan.id %}">
+    {% endif%}
         <h7>{{ plan.nombre }}</h7>
         <h1>{{ plan.monto }} CLP</h1>
         <h5>por mes : {{ plan.duracion }}</h5>
         <ul> 
-            <li>Acceso a todo el <br>contenido educativo.</li>
-            <li>Acceso a todo el material complementario.</li>
-            <li>Soporte 24/7</li>
+            <li>{{ plan.descripcion }}</li>
         </ul>
         <h3>Contratar</h3>
     </a>
     {% endfor %}
-
-
 </div>
 
     {% include 'snippets/header_volver.html' %}

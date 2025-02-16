@@ -9,6 +9,7 @@ class Planes(models.Model):
     monto = models.IntegerField(null=True, verbose_name='Monto')
     duracion = models.IntegerField(null=True, verbose_name='Duración')
     plan_descuento = models.BooleanField(default=False, verbose_name='Es plan descuento')
+    descripcion = models.CharField(max_length=255, null=True, blank=True, verbose_name='Descripción plan')
 
     def __str__(self):
         return f'{self.nombre} | Descuento Creactiva {self.plan_descuento}'

@@ -635,3 +635,15 @@ $("#btn-capitulo-out").click(function() {
     }
 };
 
+
+// BOTONES PLANES
+
+$('#btn-estandar').click(function(){
+    $('.plan-estandar').css('display', 'inline-block');
+    $('.plan-descuento').css('display', 'none');
+});
+
+$('#btn-descuento').click(function(){
+    $('.plan-estandar').css('display', 'none');
+    $('.plan-descuento').css('display', 'inline-block');
+});

@@ -351,27 +351,28 @@ MAIN
 ✔ URL sobre nosotros
 
 SUSCRIPCIONES
-***   integrar descuento estudiante/comunero ***
-- LÓGICA: Si alguien quiere pagar con descuento estudiante.
-1. Si no tiene descuento estudiante, que le despliegue una alerta con la información (básicamente, hazte usuario, si no tienes una cuenta, regístrate, luego, escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento)
-2. Administrador valida el documento, checkea campo "descuento creactiva" en bbdd y responde por mail.
-3. Si el usuario tiene check "descuento creactiva" == True, entonces aplicación suscripciones le permite pagar utilizando plan descuento creactiva
--   Banner o bloque explicando descuento creactiva
--	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
-***	Descripción detalle: ***
+✔ integrar descuento estudiante/comunero
+    - LÓGICA: Si alguien quiere pagar con descuento estudiante.
+    1. Si no tiene descuento estudiante, que le despliegue una alerta con la información (básicamente, hazte usuario, si no tienes una cuenta, regístrate, luego, escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento)
+    2. Administrador valida el documento, checkea campo "descuento creactiva" en bbdd y responde por mail.
+    3. Si el usuario tiene check "descuento creactiva" == True, entonces aplicación suscripciones le permite pagar utilizando plan descuento creactiva
+    - Banner o bloque explicando descuento creactiva
+    - Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
+    ***	Descripción detalle: ***
     o	Tu suscripción termina el día fecha_termino
     o	Acceso a todo el contenido educativo
     o	Valor
-*** formatear fechas sin hora ***
-- falta conteo de días
-*** Agregar campo boolean para boletas entregadas en perfilsuscripcion ***
+    *** formatear fechas sin hora ***
+    - falta conteo de días
+    *** Pestañas para ver planes estándar y dcto creactiva ***
+    - Planes: valor mensual + cantidad de mensual
+    - Número de tarjeta quitar, solo monto y tipo plan
+✔ Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
+✔ Agregar campo boolean para boletas entregadas en perfilsuscripcion
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
 - Mensaje de fallo o éxito transacción debe durar más
-- Número de tarjeta quitar, solo monto y tipo plan
-- Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
+
 - Códigos promocionales: ver lógica
-*** Pestañas para ver planes estándar y dcto creactiva ***
-- Planes: valor mensual + cantidad de mensual
 - Debug: Que el form de elegir organización recupere todas las solicitudes
 - Formulario solicitudes falta ver tema países, comunas
 
@@ -396,3 +397,8 @@ LUNES:
 - Subir versión de producción
 - Migrar a bbdd postgresql
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
+
+
+ACTUALMENTE TRABAJANDO:
+- mostrar los precios como se supone que deberían mostrarse
+- armar el js toggle para que muestre los planes según el botón estándar y descuento creactiva
