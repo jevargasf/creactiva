@@ -47,7 +47,7 @@
 							{% endfor %}
 							{% for curso in cursos %}
 							{% if forloop.counter is 1 %}
-										<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
+										<a href="{% url 'curso' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight2">VER AHORA</button></a>
 										{% endif %}
 										{% endfor %}
 							{% for capitulo in capitulos %}
@@ -57,7 +57,7 @@
 							{% endfor %}
 							{% for curso in cursos %}
 							{% if forloop.counter is 2 %}
-							<a href="{% url 'cursos' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
+							<a href="{% url 'curso' curso.cur %}"><button class="btn-spotlight" id="btn-spotlight4">VER AHORA</button></a>
 							{% endif %}
 							{% endfor %}
 			

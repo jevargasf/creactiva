@@ -8,8 +8,26 @@ from main.models import User, Perfil
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-import pyjson5, json
+import json
 
+
+class CursosPrincipalView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get (self, request):
+        cursos = pedir_cursos()
+        result = capitulos_index()
+        capitulos = result[0]
+        capitulos_lengua = result[1]
+        capitulos_cultura = result[2]
+        context = {
+            'cursos': cursos,
+            'capitulos': capitulos,
+            'capitulos_lengua': capitulos_lengua,
+            'capitulos_cultura': capitulos_cultura
+        }
+        return render(request, 'cursos/cursos_principal.html', context)
 
 class CursoView(View):
     def dispatch(self, *args, **kwargs):
@@ -19,7 +37,7 @@ class CursoView(View):
         print("PIDO ESTA DATA")
         context = data_curso(id)
         print(context['capitulos'][0].cap)
-        return render(request, 'curso.html', context)
+        return render(request, 'cursos/curso.html', context)
     
 class TrailerView(View):
     def dispatch(self, *args, **kwargs):
@@ -27,7 +45,7 @@ class TrailerView(View):
     
     def get (self, request: HttpRequest, id): 
         context = data_curso(id)
-        return render(request, 'trailer.html', context)
+        return render(request, 'cursos/trailer.html', context)
 
 class CapituloView(View):
     # TIENE QUE LLEGAR DESDE UN BOTÓN EN EL TEMPLATE TRAILER
@@ -62,20 +80,20 @@ class CapituloView(View):
                 if ultima_visualizacion != None:
                     context['minuto'] = ultima_visualizacion
                 
-                return render(request, 'reproductor.html', context)
+                return render(request, 'cursos/reproductor.html', context)
             # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
             else:
                 context['recurso']['js_trailer'] = capitulo.curso.js_trailer
                 context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
                 context['recurso']['link'] = capitulo.curso.link_trailer
                 # DATA CAP + TRAILER
-                return render(request, 'trailer.html', context)
+                return render(request, 'cursos/trailer.html', context)
         else:
             context['recurso']['js_cap'] = capitulo.curso.js_trailer
             context['recurso']['xml_cap'] = capitulo.curso.xml_trailer
             context['recurso']['link'] = capitulo.curso.link_trailer
             # DATA CAP + TRAILER
-            return render(request, 'trailer.html', context)
+            return render(request, 'cursos/trailer.html', context)
         
     def post(self, request: HttpRequest, id):
         # código para almacenar el segundo de reproducción

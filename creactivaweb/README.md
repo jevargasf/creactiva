@@ -330,6 +330,10 @@ APP SUSCRIPCIONES:
 - BOTÓN "QUIERO CAMBIAR MI SUSCRIPCIÓN" en PANTALLA_COMPRA, en caso de que la persona quiera cambiar el plan que va a pagar (habiendo elegido otro anteriormente)
 
 
+APP PERFILES
+- botón favoritos necesita lógica
+
+
 DEBUG EN PRODUCCIÓN:
 - suscripciones/services.py: comenté líneas 30-32. Al parecer, la excepción interrumpe el flujo del programa cuando no encuentra el perfil (el usuario todavía no tiene código '100'). Actualización: Así funciona bien.
 - cambiar a bbdd postgresql. En postgresql existe el arrayField que almacena listas. Por ahora, en sqlite, lo haré con json
@@ -337,21 +341,52 @@ DEBUG EN PRODUCCIÓN:
 - subir tareas cron
 
 ETAPA FINAL DE DETALLES:
-- Debug: Que el form de elegir organización recupere todas las solicitudes
-- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer o lo pause (ESPERAR A JOSÉ QUE RECUPERE LA FUNCIONALIDAD DEL REPRODUCTOR)
+✔ recopilar contenidos de capítulos y agregarlos a videos lengua mapuche (lo hará Fabián)
+
+
+MAñANA:
+MAIN
+- Quitar botón cuenta institución en el login
+- Correo registro: mejorar wording
+- URL sobre nosotros
+
+SUSCRIPCIONES
+-   integrar descuento estudiante/comunero
 -	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
 -	Descripción detalle:
     o	Tu suscripción termina el día fecha_termino
     o	Acceso a todo el contenido educativo
     o	Valor
-- integrar descuento estudiante/comunero
-- recopilar contenidos de capítulos y agregarlos a videos lengua mapuche
-- botones para compartir curso y capítulo no están funcionales
-- botón favoritos necesita lógica
-- app perfiles debe editar datos
+- formatear fechas sin hora
+- falta conteo de días
+- Agregar campo boolean para boletas entregadas en perfilsuscripcioN
+- Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+- Mensaje de fallo o éxito transacción debe durar más
+- Número de tarjeta quitar, solo monto y tipo plan
+- Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
+- Códigos promocionales: ver lógica
+- Pestañas para ver planes estándar y dcto creactiva
+- Planes: valor mensual + cantidad de mensual
+- Debug: Que el form de elegir organización recupere todas las solicitudes
+- Formulario solicitudes falta ver tema países, comunas
 
-APP PERFILES
+CURSOS
+- botones para compartir curso y capítulo no están funcionales
+- Revisar los headers para volver atrás. Trailer debe volver al curso
+- Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente.
+- Botón replay quiebra el reproductor
+- Dar funcionalidad de play al botón reproducir de abajo
+- Botón compartir link
+- ESTADOS CURSOS ??
+
+PERFILES
 - permite mostrar datos, pero todavía no permite editarlos
 - falta mostrar historial de pagos
 - falta mostrar cursos suscritos ??
+- formatear fechas sin hora
 - falta conteo de días
+
+LUNES:
+- Subir versión de producción
+- Migrar a bbdd postgresql
+- Conectar a github repo para realizar cambios desde local y automatizar despliegue

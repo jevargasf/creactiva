@@ -21,7 +21,7 @@ class PlanesView(View):
 
     def get(self, request: HttpRequest):
         
-        return render(request, 'elegir_tipo.html')
+        return render(request, 'suscripciones/elegir_tipo.html')
 
 ####### MANEJO DE SUSCRIPCIONES INDIVIDUALES #######
 class PlanIndividual(View):
@@ -33,7 +33,7 @@ class PlanIndividual(View):
         context = {
             'planes': planes
         }
-        return render(request, 'plan_individual.html', context)
+        return render(request, 'suscripciones/plan_individual.html', context)
 
 class DetallePlan(View):
     def dispatch(self, *args, **kwargs):
@@ -44,7 +44,7 @@ class DetallePlan(View):
         context = {
             'plan': plan
         }
-        return render(request, 'detalle_plan.html', context)
+        return render(request, 'suscripciones/detalle_plan.html', context)
     
     def post(self, request: HttpRequest, id_plan):
         pass
@@ -107,7 +107,7 @@ class PagarView(LoginRequiredMixin, View):
                 'token': respuesta['token']
             }
 
-            return render(request, 'webpay.html', context)
+            return render(request, 'suscripciones/webpay.html', context)
         except User.DoesNotExist as e:
             print(f"Error: {e}")
             messages.error(request, 'Por favor, ingresa antes de continuar. Si no tienes una cuenta, regístrate.')
@@ -178,7 +178,7 @@ class RespuestaWebpayView(View):
                     'tarjeta': result[1],
                     'monto': suscripcion.monto
                 }
-                return render(request, 'voucher_webpay.html', context)
+                return render(request, 'suscripciones/voucher_webpay.html', context)
             elif result[0] == 'FAILED':
                 session_id = result[3]
                 suscripcion = suscripcion_session(session_id)
@@ -222,7 +222,7 @@ class PlanOrganizacion(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        return render(request, 'plan_organizacion.html')
+        return render(request, 'suscripciones/plan_organizacion.html')
 
     
 class SolicitudOrganizacionView(View):
@@ -232,7 +232,7 @@ class SolicitudOrganizacionView(View):
     def get(self, request: HttpRequest):
         form = SolicitudOrganizacionForm()
         context = {'form': form}
-        return render(request, 'plan_organizacion.html', context)
+        return render(request, 'suscripciones/plan_organizacion.html', context)
     
     def post(self, request: HttpRequest):
         # Cuando se reciba una solicitud de organización, la persona queda registrada como representante
@@ -254,7 +254,7 @@ class SolicitudOrganizacionView(View):
         else:
             context = {'form': form}
             messages.error(request, 'No se ha podido enviar tu solicitud. Por favor, intenta nuevamente.')
-            return render(request, 'plan_organizacion.html', context)
+            return render(request, 'suscripciones/plan_organizacion.html', context)
 
 
 class ElegirOrganizacionView(View):
@@ -264,7 +264,7 @@ class ElegirOrganizacionView(View):
     def get(self, request: HttpRequest):
         form = ElegirOrganizacionForm()
         context = {'form': form}
-        return render(request, 'elegir_organizacion.html', context)
+        return render(request, 'suscripciones/elegir_organizacion.html', context)
 
     def post(self, request: HttpRequest):
         form = ElegirOrganizacionForm(request.POST)
@@ -275,7 +275,7 @@ class ElegirOrganizacionView(View):
         else:
             context = {'form': form}
             messages.error(request, 'No se pudo recuperar los datos de la organización. Por favor, intenta nuevamente.')
-            return render(request, 'elegir_organizacion.html', context)
+            return render(request, 'suscripciones/elegir_organizacion.html', context)
         
 class SuscripcionOrganizacionView(View):
     def dispatch(self, *args, **kwargs):
@@ -292,7 +292,7 @@ class SuscripcionOrganizacionView(View):
             'id_org': id_org,
             'form': form
         }
-        return render(request, 'suscribir_organizacion.html', context)
+        return render(request, 'suscripciones/suscribir_organizacion.html', context)
     
     def post(self, request: HttpRequest, id_org):
         form = SuscripcionOrganizacionForm(request.POST)
@@ -340,7 +340,7 @@ class SuscripcionOrganizacionView(View):
                     }
                 
                 messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
-                return render(request, 'suscribir_organizacion.html', context)
+                return render(request, 'suscripciones/suscribir_organizacion.html', context)
 
         else:
             context = {
@@ -349,4 +349,4 @@ class SuscripcionOrganizacionView(View):
                 }
             
             messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
-            return render(request, 'suscribir_organizacion.html', context)
+            return render(request, 'suscripciones/suscribir_organizacion.html', context)
