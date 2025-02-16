@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.timezone import now
 from suscripciones.utils import get_tipo_organizacion
 from main.models import User, Perfil
+import datetime
 
 class Planes(models.Model):
     nombre = models.CharField(max_length=50, null=True, verbose_name='Nombre plan')
@@ -36,6 +37,9 @@ class Suscripcion(models.Model):
         related_name='plan'
     )
 
+    def __str__(self):
+        return f'ID: {self.id} | Fecha término: {datetime.date.strftime(self.fecha_termino, "%d/%m/%Y")} | Plan: {self.plan.nombre}'
+
 class CursosSuscripcion(models.Model):
     id = models.AutoField(primary_key=True, null=False,verbose_name='ID cursos suscripciones')
     suscripcion = models.ForeignKey(
@@ -68,8 +72,8 @@ class PerfilSuscripcion(models.Model):
     estado_suscripcion = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado suscripción')
     boleta_entregada = models.BooleanField(default=False, null=True, blank=True, verbose_name='Boleta Entregada')
 
-    # def __str__(self) -> str:
-    #     return f"Usuario: {self.perfil.user} | Descuento: {self.descuento_creactiva} | Estado suscripción: {self.estado_suscripcion}"
+    def __str__(self) -> str:
+        return f"Usuario: {self.perfil.user} | ID suscripción: {self.suscripcion.id} | Descuento: {self.perfil.descuento_creactiva} | Estado suscripción: {self.estado_suscripcion}"
 
 class SolicitudOrganizacion(models.Model):
     TIPOS_ORGANIZACIONES = get_tipo_organizacion()

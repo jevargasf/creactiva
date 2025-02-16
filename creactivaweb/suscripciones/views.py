@@ -196,11 +196,11 @@ class RespuestaWebpayView(View):
                 )
                 messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                 context = {
-                    'orden_compra': suscripcion.id,
+                    'tipo': suscripcion.plan.nombre,
                     'fecha_inicio': suscripcion.fecha_inicio,
                     'fecha_termino': suscripcion.fecha_termino,
-                    'tarjeta': result[1],
-                    'monto': suscripcion.monto
+                    'monto': suscripcion.monto,
+                    'dias_restantes': (suscripcion.fecha_termino - now()).days
                 }
                 return render(request, 'suscripciones/voucher_webpay.html', context)
             elif result[0] == 'FAILED':

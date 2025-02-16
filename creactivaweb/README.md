@@ -356,16 +356,16 @@ SUSCRIPCIONES
     1. Si no tiene descuento estudiante, que le despliegue una alerta con la información (básicamente, hazte usuario, si no tienes una cuenta, regístrate, luego, escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento)
     2. Administrador valida el documento, checkea campo "descuento creactiva" en bbdd y responde por mail.
     3. Si el usuario tiene check "descuento creactiva" == True, entonces aplicación suscripciones le permite pagar utilizando plan descuento creactiva
-    - Banner o bloque explicando descuento creactiva
-    - Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
+    ✔ Banner o bloque explicando descuento creactiva
+    ✔ Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
     ***	Descripción detalle: ***
-    o	Tu suscripción termina el día fecha_termino
-    o	Acceso a todo el contenido educativo
-    o	Valor
+    ✔	Tu suscripción termina el día fecha_termino
+    ✔	Acceso a todo el contenido educativo
+    ✔	Valor
     *** formatear fechas sin hora ***
-    - falta conteo de días
+    ✔ falta conteo de días
     *** Pestañas para ver planes estándar y dcto creactiva ***
-    - Planes: valor mensual + cantidad de mensual
+    ✔ Planes: valor mensual + cantidad de mensual
     - Número de tarjeta quitar, solo monto y tipo plan
 ✔ Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
 ✔ Agregar campo boolean para boletas entregadas en perfilsuscripcion
