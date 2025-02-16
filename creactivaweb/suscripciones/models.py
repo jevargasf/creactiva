@@ -5,8 +5,13 @@ from main.models import User, Perfil
 
 class Planes(models.Model):
     nombre = models.CharField(max_length=50, null=True, verbose_name='Nombre plan')
+    #tipo = models.CharField(max_field=50, default='0', verbose_name='Tipo plan')
     monto = models.IntegerField(null=True, verbose_name='Monto')
     duracion = models.IntegerField(null=True, verbose_name='Duración')
+    plan_descuento = models.BooleanField(default=False, verbose_name='Es plan descuento')
+
+    def __str__(self):
+        return f'{self.nombre} | Descuento Creactiva {self.plan_descuento}'
 
 class Suscripcion(models.Model):
     id = models.AutoField(primary_key=True, null=False, verbose_name='ID suscripción')
@@ -60,7 +65,10 @@ class PerfilSuscripcion(models.Model):
         related_name='perfil_sus'
     )
     estado_suscripcion = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado suscripción')
+    boleta_entregada = models.BooleanField(default=False, null=True, blank=True, verbose_name='Boleta Entregada')
 
+    # def __str__(self) -> str:
+    #     return f"Usuario: {self.perfil.user} | Descuento: {self.descuento_creactiva} | Estado suscripción: {self.estado_suscripcion}"
 
 class SolicitudOrganizacion(models.Model):
     TIPOS_ORGANIZACIONES = get_tipo_organizacion()

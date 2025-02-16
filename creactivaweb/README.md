@@ -346,26 +346,31 @@ ETAPA FINAL DE DETALLES:
 
 MAñANA:
 MAIN
-- Quitar botón cuenta institución en el login
+✔ Quitar botón cuenta institución en el login
 - Correo registro: mejorar wording
-- URL sobre nosotros
+✔ URL sobre nosotros
 
 SUSCRIPCIONES
--   integrar descuento estudiante/comunero
+***   integrar descuento estudiante/comunero ***
+- LÓGICA: Si alguien quiere pagar con descuento estudiante.
+1. Si no tiene descuento estudiante, que le despliegue una alerta con la información (básicamente, hazte usuario, si no tienes una cuenta, regístrate, luego, escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento)
+2. Administrador valida el documento, checkea campo "descuento creactiva" en bbdd y responde por mail.
+3. Si el usuario tiene check "descuento creactiva" == True, entonces aplicación suscripciones le permite pagar utilizando plan descuento creactiva
+-   Banner o bloque explicando descuento creactiva
 -	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
--	Descripción detalle:
+***	Descripción detalle: ***
     o	Tu suscripción termina el día fecha_termino
     o	Acceso a todo el contenido educativo
     o	Valor
-- formatear fechas sin hora
+*** formatear fechas sin hora ***
 - falta conteo de días
-- Agregar campo boolean para boletas entregadas en perfilsuscripcioN
+*** Agregar campo boolean para boletas entregadas en perfilsuscripcion ***
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
 - Mensaje de fallo o éxito transacción debe durar más
 - Número de tarjeta quitar, solo monto y tipo plan
 - Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
 - Códigos promocionales: ver lógica
-- Pestañas para ver planes estándar y dcto creactiva
+*** Pestañas para ver planes estándar y dcto creactiva ***
 - Planes: valor mensual + cantidad de mensual
 - Debug: Que el form de elegir organización recupere todas las solicitudes
 - Formulario solicitudes falta ver tema países, comunas
@@ -373,11 +378,12 @@ SUSCRIPCIONES
 CURSOS
 - botones para compartir curso y capítulo no están funcionales
 - Revisar los headers para volver atrás. Trailer debe volver al curso
-- Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente.
-- Botón replay quiebra el reproductor
+*** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
+*** Botón replay quiebra el reproductor ***
 - Dar funcionalidad de play al botón reproducir de abajo
 - Botón compartir link
 - ESTADOS CURSOS ??
+- sección principal cursos
 
 PERFILES
 - permite mostrar datos, pero todavía no permite editarlos

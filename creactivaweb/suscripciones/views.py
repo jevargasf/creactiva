@@ -9,7 +9,7 @@ from main.models import User, Perfil
 from cursos.models import Curso
 from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
-from suscripciones.services import suscripcion_activa, suscripcion_session, suscripcion_perfil
+from suscripciones.services import suscripcion_activa, suscripcion_session, suscripcion_perfil, check_descuento
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from smtplib import SMTPException
@@ -40,12 +40,35 @@ class DetallePlan(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest, id_plan):
-        plan = Planes.objects.get(pk=id_plan)
-        context = {
-            'plan': plan
-        }
-        return render(request, 'suscripciones/detalle_plan.html', context)
-    
+        if request.session.get('_auth_user_id'):
+            user_id = request.session.get('_auth_user_id')
+            posee_descuento = check_descuento(user_id)
+            plan = Planes.objects.get(pk=id_plan)
+            if posee_descuento == True and plan.plan_descuento == True:
+                context = {
+                    'plan': plan
+                }
+                messages.error(request, 'Hemos validado tu Descuento Creactiva.')
+                return render(request, 'suscripciones/detalle_plan.html', context)
+            elif posee_descuento == True and plan.plan_descuento == False:
+                nuevo_plan = Planes.objects.get(plan_descuento=True, duracion=plan.duracion)
+                context = {
+                    'plan': nuevo_plan
+                }
+                messages.error(request, '¡Actualmente posees el Descuento Creactiva! Hemos seleccionado el plan con descuento para ti.')
+                return render(request, 'suscripciones/detalle_plan.html', context)
+            elif posee_descuento == False and plan.plan_descuento == True:
+                messages.error(request, 'Actualmente no tienes habilitado el Descuento Creactiva. Puedes validarte como benefeficiario o eligir un plan estándar.')
+                return redirect('plan-individual')
+            elif posee_descuento == False and plan.plan_descuento == False:
+                context = {
+                    'plan': plan
+                }
+                return render(request, 'suscripciones/detalle_plan.html', context)
+        else:
+            messages.error(request, 'Por favor, ingresa para continuar.')
+            return redirect('login')
+
     def post(self, request: HttpRequest, id_plan):
         pass
 

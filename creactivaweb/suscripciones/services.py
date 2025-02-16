@@ -43,3 +43,7 @@ def suscripcion_session(session_id):
 def suscripcion_perfil(suscripcion) -> Perfil:
     registro_object = PerfilSuscripcion.objects.get(suscripcion=suscripcion)
     return Perfil.objects.get(pk=registro_object.perfil.id)
+
+def check_descuento(user_id):
+    perfil_object = Perfil.objects.get(user_id=user_id)
+    return perfil_object.descuento_creactiva
