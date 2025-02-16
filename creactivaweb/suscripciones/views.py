@@ -9,7 +9,7 @@ from main.models import User, Perfil
 from cursos.models import Curso
 from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
-from suscripciones.services import suscripcion_activa, suscripcion_session, suscripcion_perfil, check_descuento
+from suscripciones.services import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from smtplib import SMTPException
@@ -29,7 +29,7 @@ class PlanIndividual(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        planes = Planes.objects.all()
+        planes = planes_montos_mensuales()
         context = {
             'planes': planes
         }
@@ -87,9 +87,10 @@ class PagarView(LoginRequiredMixin, View):
                 context = {
                     'fecha_inicio': check_suscripcion.fecha_inicio,
                     'fecha_termino': check_suscripcion.fecha_termino,
-                    'tipo': check_suscripcion.plan.nombre
+                    'tipo': check_suscripcion.plan.nombre,
+                    'dias_restantes': (check_suscripcion.fecha_termino - now()).days
                 }
-                return render(request, 'suscripcion_activa.html', context)
+                return render(request, 'suscripciones/suscripcion_activa.html', context)
             elif check_suscripcion == None:
                 plan = Planes.objects.get(pk=id_plan)
                 fecha_inicio = now()

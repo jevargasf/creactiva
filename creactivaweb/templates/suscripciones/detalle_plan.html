@@ -3,22 +3,26 @@
 
 {% block content %}
 {% include 'snippets/header_plan.html' %}
+{% include 'snippets/navbar.html' %}
 
     <div id="fondo_animado2">
     </div>
     <span id="cuadricula2"></span>
-<form id="form-organizacion" class="form form-register" action="{% url 'pantalla-pagar' plan.id %}" method="post">
+<form id="plan-detalle" class="form form-register" action="{% url 'pantalla-pagar' plan.id %}" method="post">
     {% csrf_token %}
-    <div class="form-plan">
+    <div class="tarjeta-plan-detalle">
         <h2>DETALLE</h2>
             <a class="plan" href="">
                 <h7>{{ plan.nombre }}</h7>
                 <h1>{{ plan.monto }} CLP</h1>
-                <h5>por mes : {{ plan.duracion }}</h5>
+                {% if plan.duracion == 1 %}
+                <h5>Tu suscripción durará {{ plan.duracion }} mes</h5>
+                {% else %}
+                <h5>Tu suscripción durará {{ plan.duracion }} meses</h5>
+                {% endif %}
                 <ul> 
-                    <li>Acceso a todo el <br>contenido educativo.</li>
-                    <li>Acceso a todo el material complementario.</li>
-                    <li>Soporte 24/7</li>
+                    <li>{{ plan.descripcion }}</li>
+
                 </ul>
 
             </a>

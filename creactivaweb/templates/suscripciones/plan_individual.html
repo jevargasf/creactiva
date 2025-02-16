@@ -2,6 +2,7 @@
 
 {% block content %}
 {% include 'snippets/header_plan.html' %}
+{% include 'snippets/navbar.html' %}
 
     <div id="fondo_animado2">
     </div>
@@ -11,7 +12,7 @@
 <div class="form-plan">
 <h2>SELECCIONA UN PLAN</h2>
 <div class="planes-info">
-    <p>Hazte usuario. Si no tienes una cuenta, regístrate. Luego, escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento.</p>
+    <p>¿Eres estudiante o perteneces al pueblo mapuche?<br>Escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento.</p>
     <button class="btn-plan" id="btn-estandar">Estándar</button>
     <button class="btn-plan" id="btn-descuento">Descuento Creactiva</button>
 </div>
@@ -23,8 +24,12 @@
     <a class="plan plan-estandar" href="{% url 'detalle-plan' plan.id %}">
     {% endif%}
         <h7>{{ plan.nombre }}</h7>
-        <h1>{{ plan.monto }} CLP</h1>
-        <h5>por mes : {{ plan.duracion }}</h5>
+        <h1>{{ plan.monto_mensual | floatformat:"g" }} CLP</h1>
+        {% if plan.duracion == 1 %}
+        <h5>por {{ plan.duracion }} mes</h5>
+        {% else %}
+        <h5>por {{ plan.duracion }} meses</h5>
+        {% endif %}
         <ul> 
             <li>{{ plan.descripcion }}</li>
         </ul>

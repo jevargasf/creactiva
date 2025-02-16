@@ -12,10 +12,10 @@
 <div class="form form-register">
     <h7>TIENES UNA SUSCRIPCIÓN ACTIVA</h7><br><br>
     <h3>ESTOS SON LOS DETALLES DE SU SUSCRIPCIÓN:</h3>
-    <p>Tipo de suscripción: {{ tipo }}</p>
-    <p>Tu suscripción comenzó en {{ fecha_inicio }}</p>
-    <p>Finaliza el día {{ fecha_termino }}</p>
-
+    <p>Tu plan es: {{ tipo }}</p>
+    <p>Fecha de inicio: {{ fecha_inicio| date:"d M Y" }}</p>
+    <p>Fecha de término: {{ fecha_termino | date:"d M Y" }}</p>
+    <p>Te quedan: {{ dias_restantes }} días</p>
     <div id="form-org-footer">
         <a href="{% url 'index' %}">COMENZAR A EXPLORAR</a>
     </div>

@@ -1514,6 +1514,11 @@ float: left;
 
     .btn-plan{
         font-size: 20px;
+        background-color:#1787e9;
+    }
+
+    #plan-detalle li{
+        list-style: none;
     }
 
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
