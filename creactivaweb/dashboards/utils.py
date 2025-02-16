@@ -9,7 +9,11 @@ def suscripcion_activa(user):
         if registro_object:
             suscripcion_object = Suscripcion.objects.get(pk=registro_object.suscripcion_id, numero_usuarios=1)
             if suscripcion_object:
-                return {'suscripcion':suscripcion_object, 'perfil': perfil_object}
+                return {
+                    'suscripcion':suscripcion_object, 
+                    'dias_restantes': (suscripcion_object.fecha_termino - now()).days, 
+                    'perfil': perfil_object
+                    }
             else:
                 return {'perfil': perfil_object}
         else:

@@ -10,8 +10,12 @@
         <div class="form-register">
             <p>Nombre: {{ perfil.user.first_name }} {{ perfil.user.last_name}}</p>
             <p>Correo: {{ perfil.user.email }}</p>
-            <p>Suscripción: {{ suscripcion.plan.nombre }}</p>
-            <p>Fecha término: {{ suscripcion.fecha_termino }}</p>
+
+            <h3>ESTOS SON LOS DETALLES DE SU SUSCRIPCIÓN:</h3>
+            <p>Tu plan es: {{ suscripcion.plan.nombre }}</p>
+            <p>Fecha de inicio: {{ suscripcion.fecha_inicio| date:"d M Y" }}</p>
+            <p>Fecha de término: {{ suscripcion.fecha_termino | date:"d M Y" }}</p>
+            <p>Te quedan: {{ dias_restantes }} días</p>
         </div>
         {% else %}
         <div class="form-register">

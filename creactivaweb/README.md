@@ -366,7 +366,7 @@ SUSCRIPCIONES
     ✔ falta conteo de días
     *** Pestañas para ver planes estándar y dcto creactiva ***
     ✔ Planes: valor mensual + cantidad de mensual
-    - Número de tarjeta quitar, solo monto y tipo plan
+    ✔ Número de tarjeta quitar, solo monto y tipo plan
 ✔ Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
 ✔ Agregar campo boolean para boletas entregadas en perfilsuscripcion
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
