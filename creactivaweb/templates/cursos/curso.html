@@ -67,10 +67,11 @@
 
 
             <nav class="botones-cur">
-                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
+                <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
+                <!-- target="_blank" -->
                 <a id="add-favoritos"><button><img class="img-x2" src="{% static 'icon/fav-off.svg' %}" alt="Compartir"><h1>AÑADIR A FAVORITOS</h1></button></a>
+                {% include 'snippets/modal_compartir.html' %}
             </nav>
-
         </aside>
         <aside id="info-cur-menu">
 

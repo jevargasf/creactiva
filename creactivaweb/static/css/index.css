@@ -3790,3 +3790,14 @@ aside#cur-cap{
         display: none;
     }
     
+/* MODAL COMPARTIR */
+.modal-compartir-closed{
+    display: none;
+}
+
+.modal-compartir-open{
+    top: 20px;
+    display: block;
+    z-index: 6;
+}
+

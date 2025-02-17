@@ -86,13 +86,15 @@ class CapituloView(View):
                 context['recurso']['js_trailer'] = capitulo.curso.js_trailer
                 context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
                 context['recurso']['link'] = capitulo.curso.link_trailer
+                print(context)
                 # DATA CAP + TRAILER
                 return render(request, 'cursos/trailer.html', context)
         else:
-            context['recurso']['js_cap'] = capitulo.curso.js_trailer
-            context['recurso']['xml_cap'] = capitulo.curso.xml_trailer
+            context['recurso']['js_trailer'] = capitulo.curso.js_trailer
+            context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
             context['recurso']['link'] = capitulo.curso.link_trailer
             # DATA CAP + TRAILER
+            print(context['recurso'])
             return render(request, 'cursos/trailer.html', context)
         
     def post(self, request: HttpRequest, id):
