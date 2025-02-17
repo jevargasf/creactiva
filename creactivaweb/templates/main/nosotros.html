@@ -7,51 +7,48 @@
 
 <article id="nosotros">
     <img id="integra" src="{% static 'icon/descubre.png' %}" alt="">
-    <section>
+    <section id="nosotros_texto">
         <aside>
-            <p>En Creactiva, creemos que la educación debe ser una experiencia envolvente, estimulante y llena de posibilidades. Somos un equipo de apasionados por el conocimiento y la creatividad, y nos dedicamos a transformar el aprendizaje a través de animaciones interactivas que despiertan la curiosidad y fomentan la reflexión. Con años de experiencia en el mundo de la creación de contenido audivisual, nos hemos propuesto ir más allá de los métodos tradicionales, ofreciendo herramientas dinámicas que invitan a explorar, colaborar y aprender de una manera divertida y significativa. <br><br>
+            <p>En <b>Creactiva</b>, creemos que la educación debe ser una experiencia envolvente, estimulante y llena de posibilidades. Somos un equipo de apasionados por el conocimiento y la creatividad, y nos dedicamos a transformar el aprendizaje a través de animaciones interactivas que despiertan la curiosidad y fomentan la reflexión. Con años de experiencia en el mundo de la creación de contenido audivisual, nos hemos propuesto ir más allá de los métodos tradicionales, ofreciendo herramientas dinámicas que invitan a explorar, colaborar y aprender de una manera divertida y significativa. <br><br>
             Cada animación que creamos está pensada para ser un viaje donde el contenido se transforma en una experiencia que el usuario no solo recibe, sino que experimenta activamente. Creemos que el conocimiento no debe ser un proceso pasivo, sino una aventura que se vive con cada clic, cada interacción y cada descubrimiento.</p>
         </aside>
         <aside>
-            <h1>Una Forma Diferente de Aprehender</h1>
+            <h7>Una Forma Diferente de Aprehender</h7>
             <p>Entendemos que el aprendizaje verdadero ocurre cuando se combina la curiosidad con la creatividad. Por eso, nos dedicamos a ofrecer material interactivo que no solo informa, sino que inspira a cuestionar, explorar y pensar de manera diferente. Invitamos a nuestros usuarios a formar parte de esta comunidad de aprendizaje colaborativo, donde el conocimiento se comparte, se cuestiona y se expande de manera constante. <br><br>
-            Creactiva es mucho más que una plataforma de animaciones interactivas; es un espacio donde cada idea puede cobrar vida y cada reflexión tiene el potencial de transformar el mundo.</p>
-        </aside>
+            Creactiva es mucho más que una plataforma de animaciones interactivas; <b>es un espacio donde cada idea puede cobrar vida y cada reflexión tiene el potencial de transformar el mundo.</b>
     </section>
 
     <footer>
         <section>
-        <ul>
+        <ul id="r-menu">
             <li>Cursos</li>
             <li>Planes</li>
             <li>Contacto</li>
             <li>Preguntas Frecuentes</li>
             <li>¿Necesitas Contenido Interactivo?</li>
         </ul>
-        <ul>
+        <ul id="r-links">
             <li>© Creactiva 2025</li>
             <li>Condiciones de Uso</li>
-            <li>Politica de Privacidad</li>
-            <li>Politica de Cookies</li>
-            <li>Declaración de Accesibilidad</li>
         </ul>
         </section>
 
-        <section>
-            <aside>
+        <section id="creditos">
+            <aside id="rs">
             <ul>
+                <li><h1>SIGUENOS:</h1></li>
                 <li><img src="{% static 'icon/rs_fb.svg' %}" alt=""></li>
                 <li><img src="{% static 'icon/rs_tt.svg' %}" alt=""></li>
                 <li><img src="{% static 'icon/rs_ig.svg' %}" alt=""></li>
                 <li><img src="{% static 'icon/rs_yt.svg' %}" alt=""></li>
-                <li><img src="{% static 'icon/wsp.svg' %}" alt=""></li>
+                <li><img src="{% static 'icon/rs_wsp.svg' %}" alt=""></li>
             </ul>
         </aside>
-        <aside>
-            <img src="{% static 'icon/logo_creactiva_full.png' %}" alt="">
-            <img src="{% static 'icon/logo_gob.png' %}" alt="">
+        <aside id="logos">
+            <a href="{% url 'index' %}"><img src="{% static 'icon/logo_creactiva_full.png' %}" alt=""></a>
+            <a href="https://www.cultura.gob.cl/"><img src="{% static 'icon/logo_gob.png' %}" alt=""></a>
         </aside>
-
+        
         </section>
     </footer>
 

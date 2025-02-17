@@ -435,7 +435,7 @@ p{
     height:200vh;
     background-color: #00224a;
     position: fixed;
-    z-index: 2;
+    z-index: 6;
     top:0px;
     left:0px;
     opacity: 1;
@@ -2867,11 +2867,147 @@ aside#cur-cap {
 /* -------------------------------------------- NOSOTROS --------------------------------------------------- */
 /* -------------------------------------------- NOSOTROS --------------------------------------------------- */
 
+#nosotros{
+    position: absolute;
+    top:50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width:100%;
+    padding:15px 10% 20px 10%;
+    box-sizing: border-box;
+    background-color: #024C8D;
+    animation-timing-function: ease-in-out;
+    z-index: -1;
+    background-image: url('../img/fondo2.png');
+    background-size:8000px;
+    background-repeat: repeat;
+    animation: fondo3 70s infinite linear;
+
+}
+
 #integra{
     width:80%;
+    text-align: center;
+    margin:0 auto;
+    display: block;
+    margin-bottom: -20px;
+}
+
+#nosotros_texto{
+    padding:0px 0px 20px 0px;
+}
+
+#nosotros_texto aside{
+    display: table-cell;
+    width:49%;
+    
+    color:#003c71
 }
 
 
+#nosotros_texto aside h7{
+    font-size:30px;
+    color:#003c71;
+    padding: 6px;
+    text-align: justify;
+
+
+}
+
+#nosotros_texto aside p{
+    color:#003c71;
+    font-size: 15px;
+    text-align: justify;
+    padding: 0px 6px 0px 6px;
+
+
+}
+
+#nosotros footer{
+    border-top: 1px solid #fff;
+    padding:10px 0px 0px 0px;
+}
+
+#nosotros footer section{
+    display: inline-block;
+}
+
+#nosotros footer ul{
+    list-style: none;
+}
+#nosotros footer ul li{
+    display: inline-block;
+    margin-right:15px;
+    font-size: 15px;
+}
+
+#nosotros footer ul li:last-child{
+    margin-right:0px;
+}
+
+#rs{
+    float:right;
+}
+
+#rs h1{
+    color:#003c71;
+    font-family: latobold;
+
+}
+
+#rs img{
+    height:20px;
+    cursor: pointer;
+    opacity: 0.8;
+    padding-top:4px;
+    box-sizing: border-box;
+}
+
+#rs img:hover{
+    opacity: 1;
+
+
+}
+
+#logos img{
+    height:80px;
+    margin-left:20px;
+}
+
+#r-menu{
+    font-family: latobold;
+    text-shadow: 1px 1px 1px #00315c;
+}
+
+#r-menu li{
+    cursor: pointer;
+}
+
+#r-menu li:hover{
+    color:#003c71;
+    text-shadow: none;
+    
+
+}
+
+#r-links{
+    position: absolute;
+    bottom: 30px;
+}
+
+#r-links li{
+    color:#003c71;
+    cursor: pointer;
+}
+
+#r-links li:hover{
+    color:#fff;
+
+}
+
+#creditos{
+    float:right;
+}
 
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
