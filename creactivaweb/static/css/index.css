@@ -3097,6 +3097,12 @@ table#detalle{
 }
 
 
+/* MODAL COMPARTIR */
+.modal-compartir-closed{
+    display: none;
+}
+
+
 .modal-compartir-open{
     z-index: 6;
     display: block;
@@ -3106,12 +3112,6 @@ table#detalle{
     width:50%;
     height:20%;
 }
-
-/* MODAL COMPARTIR */
-.modal-compartir-closed{
-    display: none;
-}
-
 
 
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
