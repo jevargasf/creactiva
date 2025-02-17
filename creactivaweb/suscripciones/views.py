@@ -130,7 +130,6 @@ class PagarView(LoginRequiredMixin, View):
                     fecha_termino=fecha_termino,
                     monto=plan.monto,
                     numero_usuarios=1,
-                    codigo_validacion='0',
                     plan=plan
                 )
                 suscripcion.save()
@@ -179,7 +178,6 @@ class RespuestaWebpayView(View):
         try:
             # RECIBIR EL RESULTADO DEL REDIRECCIONAMIENTO WEBPAY
             # CUANDO ANULO UNA TRANSACCIÓN, EL TOKEN NO VUELVE COMO TOKEN_WS, VUELVE COMO TBK_TOKEN
-            print("VOLVIENDO DE WP: ", request.user)
             if request.GET.get('TBK_TOKEN'):
                 token = request.GET.get('TBK_TOKEN')
             elif request.GET.get('token_ws'):
@@ -356,7 +354,6 @@ class SuscripcionOrganizacionView(View):
                 fecha_termino=form.cleaned_data['fecha_termino'],
                 monto=0,
                 numero_usuarios=form.cleaned_data['numero_usuarios'],
-                codigo_validacion='0',
                 estado_suscripcion='1'
             )
             try:
