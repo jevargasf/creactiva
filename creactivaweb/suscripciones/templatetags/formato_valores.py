@@ -14,6 +14,10 @@ def separador_miles(valor):
                 str_result += "."
             else:
                 str_result += a
-        return str_result[::-1]
+        str_final = str_result[::-1]
+        if str_final[0] == ".":
+            return str_final[1:len(str_final)]
+        else:
+            return str_final
     except (ValueError, TypeError):
         return valor
