@@ -16,6 +16,14 @@
     <button class="btn-plan" id="btn-estandar">Estándar</button>
     <button class="btn-plan" id="btn-descuento">Descuento Creactiva</button>
 </div>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.codigo.label_tag }}
+        {{ form.codigo }}
+        <button type="submit">VALIDAR</button>
+    </form>
+</div>
 
     {% for plan in planes %}
     {% if plan.plan_descuento == True %}

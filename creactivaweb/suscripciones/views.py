@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpRequest, Http404, HttpResponseRedirect
-from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm, ElegirOrganizacionForm
+from suscripciones.forms import *
 from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion, Planes
 from suscripciones.utils import str_to_list, sumar_fecha
 from django.contrib import messages
@@ -30,10 +30,34 @@ class PlanIndividual(View):
 
     def get(self, request: HttpRequest):
         planes = planes_montos_mensuales()
+        form = CodigoPromocionalForm()
         context = {
-            'planes': planes
+            'planes': planes,
+            'form': form
         }
         return render(request, 'suscripciones/plan_individual.html', context)
+
+    def post(self, request: HttpRequest):
+        form = CodigoPromocionalForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['codigo'])
+            planes = planes_montos_mensuales()
+            form = CodigoPromocionalForm()
+            context = {
+                'planes': planes,
+                'form': form
+            }
+            messages.success(request, '¡Felicidades! Tu código ha sido validado con éxito. Elige un plan.')
+            return render(request, 'suscripciones/plan_individual.html', context)
+        else:
+            planes = planes_montos_mensuales()
+            form = CodigoPromocionalForm()
+            context = {
+                'planes': planes,
+                'form': form
+            }
+            messages.error(request, 'Lo sentimos, este código no es válido. Por favor, ingresa un código válido.')
+            return render(request, 'suscripciones/plan_individual.html', context)
 
 class DetallePlan(View):
     def dispatch(self, *args, **kwargs):
@@ -42,6 +66,10 @@ class DetallePlan(View):
     def get(self, request: HttpRequest, id_plan):
         if request.session.get('_auth_user_id'):
             user_id = request.session.get('_auth_user_id')
+            # IF PAYLOAD VIENE CON CÓDIGO PROMOCIONAL, ENTONCES LO VALIDA. SI NO, CONTINÚA A PANTALLA PAGOS.
+            # ESCRIBIR UTILIDAD QUE VALIDE CÓDIGO. ESTA UTILIDAD ES LA QUE ESCRIBE EL CHECK CODIGO DESCUENTO
+            # EN EL PERFIL. CON ESTO, EL PROCESO DE PAGO PUEDE SEGUIR NORMAL
+            # SI EL DESCUENTO ES INVÁLIDO, DA LO MISMO, YA ESTÁ LA RUTA A SEGUIR
             posee_descuento = check_descuento(user_id)
             plan = Planes.objects.get(pk=id_plan)
             if posee_descuento == True and plan.plan_descuento == True:
@@ -58,7 +86,7 @@ class DetallePlan(View):
                 messages.error(request, '¡Actualmente posees el Descuento Creactiva! Hemos seleccionado el plan con descuento para ti.')
                 return render(request, 'suscripciones/detalle_plan.html', context)
             elif posee_descuento == False and plan.plan_descuento == True:
-                messages.error(request, 'Actualmente no tienes habilitado el Descuento Creactiva. Puedes validarte como benefeficiario o eligir un plan estándar.')
+                messages.error(request, 'Actualmente no tienes habilitado el Descuento Creactiva. Puedes intentar validarte como beneficiario o eligir un plan estándar.')
                 return redirect('plan-individual')
             elif posee_descuento == False and plan.plan_descuento == False:
                 context = {

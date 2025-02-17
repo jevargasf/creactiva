@@ -4,6 +4,27 @@ from suscripciones.utils import get_tipo_organizacion
 from main.models import User, Perfil
 import datetime
 
+
+class CodigoPromocional(models.Model):
+    codigo = models.CharField(max_length=50, null=False, blank=False, verbose_name='Código promocional')
+    cantidad = models.IntegerField(null=False, blank=False, verbose_name='Cantidad')
+    fecha_creacion = models.DateTimeField(null=False, default=now, verbose_name='Fecha creación')
+    fecha_caducidad = models.DateTimeField(null=True, blank=True, verbose_name='Fecha caducidad')
+    estado_codigo = models.CharField(max_length=1, null=False, default='1', verbose_name='Estado código')
+
+class PerfilCodigo(models.Model):
+    id = models.AutoField(primary_key=True, null=False, verbose_name='ID códigos perfiles')
+    codigo = models.ForeignKey(
+        'CodigoPromocional',
+        on_delete=models.CASCADE,
+        verbose_name='ID Código Promocional'
+    )
+    perfil = models.ForeignKey(
+        'main.Perfil',
+        on_delete=models.CASCADE,
+        verbose_name='ID Perfil'
+    )
+
 class Planes(models.Model):
     nombre = models.CharField(max_length=50, null=True, verbose_name='Nombre plan')
     #tipo = models.CharField(max_field=50, default='0', verbose_name='Tipo plan')
@@ -22,7 +43,7 @@ class Suscripcion(models.Model):
     fecha_termino = models.DateTimeField(null=True, default=now, verbose_name='Fecha término')
     monto = models.IntegerField(null=True, blank=True, default=0, verbose_name='Monto')
     numero_usuarios = models.IntegerField(null=False, default=1, verbose_name='Número usuarios')
-    codigo_validacion = models.CharField(max_length=255, null=True, verbose_name='Código validación')
+    codigo_promocional = models.CharField(max_length=50, null=True, blank=True, default='0', verbose_name='Código promocional')
     token_ws = models.CharField(max_length=255, null=True, verbose_name='Token Webpay Service')
     tarjeta = models.CharField(max_length=10, null=True, verbose_name='Tarjeta Pago')
     fecha_transbank = models.CharField(max_length=100, null=True, verbose_name='Fecha Transbank')
@@ -60,13 +81,13 @@ class PerfilSuscripcion(models.Model):
     suscripcion = models.ForeignKey(
         'Suscripcion',
         on_delete=models.CASCADE,
-        verbose_name='Suscripción Detalle Perfil',
+        verbose_name='ID Suscripción',
         related_name='suscripcion_det_per'
     )
     perfil = models.ForeignKey(
         'main.Perfil',
         on_delete=models.CASCADE,
-        verbose_name='Perfil suscripción',
+        verbose_name='ID Perfil',
         related_name='perfil_sus'
     )
     estado_suscripcion = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado suscripción')

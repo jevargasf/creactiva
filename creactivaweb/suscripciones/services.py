@@ -52,3 +52,6 @@ def suscripcion_perfil(suscripcion) -> Perfil:
 def check_descuento(user_id):
     perfil_object = Perfil.objects.get(user_id=user_id)
     return perfil_object.descuento_creactiva
+
+def validar_codigo(codigo):
+    pass

@@ -387,11 +387,11 @@ CURSOS
 - sección principal cursos
 
 PERFILES
-- permite mostrar datos, pero todavía no permite editarlos
+✔ permite mostrar datos, pero todavía no permite editarlos: datos perfil y suscripción
 - falta mostrar historial de pagos
-- falta mostrar cursos suscritos ??
-- formatear fechas sin hora
-- falta conteo de días
+- falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
+✔ formatear fechas sin hora
+✔ falta conteo de días
 
 LUNES:
 - Subir versión de producción
@@ -402,3 +402,37 @@ LUNES:
 ACTUALMENTE TRABAJANDO:
 - mostrar los precios como se supone que deberían mostrarse
 - armar el js toggle para que muestre los planes según el botón estándar y descuento creactiva
+
+CÓDIGOS PROMOCIONALES:
+- Permiten al usuario portador a acceder a una suscripción precio descuento creactiva por 1 vez. Puede ser cualquiera de los 3 planes creactiva. Un usuario puede ocupar más de 1 código. Un código solo puede ser usado un determinado número de veces.
+    - Da lo mismo si el mismo usuario usó el mismo código dos veces? Por ejemplo, el código dura 2 meses, y uso el mismo código para conseguir 2 meses precio creactiva. Yo creo que sí.
+    - Cuando la suscripción pagada con el código caduca, el usuario debe volver a ser estándar (deja de ser plan descuento). Por lo tanto, se debe tener trazabilidad respecto a qué suscripciones fueron pagadas con código promocional. Cuando caduque esa suscripción, el usuario vuelve a ser estándar.
+    - El usuario que ingrese ese código, echa a andar un script que reescriba su perfil, haciendo el campo descuento_promocional = True. Esto le permitirá pagar una suscripción precio creactiva hasta que el código caduque.
+    - Hay dos formas a través de las que caduca un código: 1) Se ocupó el número de veces para las que fue creado, 2) LLegó la fecha de caducidad.
+    - En el fondo, el código promocional interviene al perfil del usuario que lo usa por un cierto periodo de tiempo. Lo hace usuario Creactiva hasta que el código caduque.
+    - Por lo tanto, lo más importante, es llevar trazabilidad de los usuarios que ingresan el código. Así, cuando llegue la fecha de caducidad, sabemos qué usuarios deben volver a usuario estándar.
+    - Un usuario puede ocupar puede ocupar muchos códigos, y un código puede ser ocupado muchas veces por el mismo usuario (siempre que la fecha de caducidad y la cantidad de usos lo permitan)
+    - ¿Un usuario puede tener una suscripción vigente pagada con código promocional y mientras la suscripción sigue vigente perder su estado de usuario creactiva? Debería poder. Y creo que se puede, ya que el tema código promocional es un estado extra del perfil, y no se ve reflejado en el código de acceso 1XX. Además, una vez pagada la suscripción, al usuario no se le pregunta si tiene descuento promocional para ingresar o para ver los cursos. Eso solo se pregunta cuando quiere pagar. Por lo tanto, el tener descuento es una condición independiente de tener suscripción. La duración de la suscripción individual es independiente del precio que se pagó por ella.
+    - Entonces, ¿es mejor dejarlos en tablas separadas o en perfilsuscripcion?
+    - En la suscripción así como está, se va a ver si el usuario pagó plan con descuento. No se va a ver si el usuario pagó con código promocional. ¿Pero importa eso? Por ahora, no mucho.
+    - Lo que sí importa es tener trazabilidad de qué usuario activó un código para saber cuándo caduca. Y tener trazabilidad de cuándo un código deja de ser vigente. Neceistamos una relación entre usuarios y códigos. De muchos a muchos.
+    - Si el usuario usó un código, no puede usar el mismo hasta que finalice su suscripción (porque en rigor, ya no puede comprar otra suscripción cuando todavía tiene una vigente). Podrá usar el mismo código siempre y cuando el código siga vigente.
+    - Si el usuario ya usó un código, no puede usar otro hasta que caduque (no tiene sentido, ya que el código solo le da check al campo descuento promocional).
+    - La promoción creactiva tiene 3 ciclos, dependiendo del tipo de promoción:
+        - Estudiante: Caduca el 1 de marzo del año siguiente? (lógica puede escribirse después)
+        - Pueblo mapuche: De por vida.
+        - Promocional: Código activa 1 pago a precio descuento. Se puede usar el código hasta la fecha establecida o hasta agotar stock. No hace check a descuento creactiva.
+
+    - El check al descuento se logran de dos maneras:
+        - Estudiante y pueblo mapuche: Manual mediante validación del administrador.
+        - Promocional: Código autoriza 1 pago a precio descuento.
+
+Proceso:
+1. Usuario ingresa código en un campo adicional del formulario de plan-individual. Se realiza una consulta a la tabla codigos. Si el código tiene estado 1, entonces se deja pasar a vista detalle de pago.
+¿Qué pasa si el usuario vuelve y anula el plann elegido? Vuelve a ingresar el código y vuelve a evaluar si está vigente. Cuando el confirma el pago, entonces se escriben 
+2. Formulario escribe el objeto perfil con descuento_promocional = True y objeto suscripción con el  codigo_promocional
+3. Se realiza el proceso de pago normal
+4. En la vista de respuesta webpay, si el objeto suscripción tiene código promocional distinto de cero, entonces se cambia el objeto perfil descuento_promocional = False. Además, si el código promocional de la suscripción pagada es igual a un código promocional de la tabla, entonces se resta 1 a la cantidad del código y se escribe un registro en la nub de perfiles_codigos.
+FIN DEL PROCESO
+
+Por escribir: tarea cron que valide la vigencia de los códigos creados. Actualiza estado = 0 si la fecha de término coincide con la fecha de hoy.

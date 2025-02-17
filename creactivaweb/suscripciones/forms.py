@@ -6,6 +6,12 @@ from suscripciones.services import get_solicitudes, get_planes
 from cursos.utils import pedir_nombres_cursos
 
 
+class CodigoPromocionalForm(forms.Form):
+     codigo = forms.CharField(
+          label='¿Tienes un código de descuento? Ingrésalo aquí:',
+          max_length=50
+     )
+
 class SolicitudOrganizacionForm(ModelForm):
     class Meta:
 
