@@ -2151,7 +2151,7 @@ float: left;
 #info-cur-info p{
     margin-top:5px;
     font-family: latolight;
-    letter-spacing: .5px;
+    letter-spacing: 1px;
 
 }
 
@@ -2584,7 +2584,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-info p{
     margin-top:5px;
     font-family: latolight;
-    letter-spacing: .5px;
+    letter-spacing: 1px;
 }
 
 #info-cap-info h6{
@@ -2809,7 +2809,7 @@ aside#cur-cap {
     -webkit-transition: opacity 1s;
     opacity: 1;
     animation: cierre-alerta 1s forwards ease;
-    animation-delay: 1s;
+    animation-delay: 5s;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
