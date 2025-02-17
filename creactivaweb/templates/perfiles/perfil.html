@@ -3,26 +3,39 @@
     {% block content %}
         {% include 'snippets/navbar.html' %}
         {% include 'snippets/fondo_azul.html' %}
-        
-        {% include 'snippets/header_index.html' %}
+        {% include 'snippets/header_centro.html' %}
+        {% include 'snippets/header_volver.html' %}
 
         {% if perfil.codigo == '100' %}
-        <div class="form-register">
-            <p>Nombre: {{ perfil.user.first_name }} {{ perfil.user.last_name}}</p>
-            <p>Correo: {{ perfil.user.email }}</p>
+    <div class="form-register" id="form-perfil">
+        <article class="perfil">
+            <section id="datos-user">
+            <h1>{{ perfil.user.first_name }} {{ perfil.user.last_name}}</h1>
+            <h3>{{ perfil.user.email }}</h3>
+            </section>
 
-            <h3>ESTOS SON LOS DETALLES DE SU SUSCRIPCIÓN:</h3>
-            <p>Tu plan es: {{ suscripcion.plan.nombre }}</p>
-            <p>Fecha de inicio: {{ suscripcion.fecha_inicio| date:"d M Y" }}</p>
-            <p>Fecha de término: {{ suscripcion.fecha_termino | date:"d M Y" }}</p>
-            <p>Te quedan: {{ dias_restantes }} días</p>
-        </div>
+            <section id="datos-sus">
+            <h7>{{ suscripcion.plan.nombre }}</h7>
+            <p>Te quedan {{ dias_restantes }} días</p>
+            </section>
+        </article>
+        <h7 id="perfil-preview">Pronto encontrarás más novedades en tu perfil</h7>
+
+    </div>
         {% else %}
-        <div class="form-register">
-            <p>Nombre: {{ perfil.user.first_name }} {{ perfil.user.last_name}}</p>
-            <p>Correo: {{ perfil.user.email }}</p>
-            <p>Aún no estás suscrito a nuestro contenido</p>
-            <p><a href="{% url 'planes' %}">Haz click aquí para conocer nuestros planes</a></p>
-        </div>
+
+
+        <div class="form-register" id="form-perfil">
+        <article class="perfil">
+            <section id="datos-user">
+            <h1>{{ perfil.user.first_name }} {{ perfil.user.last_name}}</h1>
+            <h3>{{ perfil.user.email }}</h3>
+            </section>
+            <section id="datos-sus">
+            <h4>Aún no estás suscrito a nuestro contenido</h4>
+            <button class="btn-curso"><a href="{% url 'planes' %}">Conoce nuestros planes</a></button>
+           </section>
+        </article>
+    </div>
         {% endif %}
     {% endblock %}

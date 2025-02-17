@@ -2,21 +2,41 @@
 {% load static %}
 
 {% block content %}
-{% include 'snippets/header_plan.html' %}
-{% include 'snippets/navbar.html' %}
+{% include 'snippets/header_centro.html' %}
+{% include 'snippets/header_volver.html' %}
+{% include 'snippets/navbar_azul.html' %}
+
 {% include 'snippets/fondo_celeste.html' %}
 
 
-<div class="form form-register">
-    <h7>TIENES UNA SUSCRIPCIÓN ACTIVA</h7><br><br>
-    <h3>ESTOS SON LOS DETALLES DE SU SUSCRIPCIÓN:</h3>
-    <p>Tu plan es: {{ tipo }}</p>
-    <p>Fecha de inicio: {{ fecha_inicio| date:"d M Y" }}</p>
-    <p>Fecha de término: {{ fecha_termino | date:"d M Y" }}</p>
-    <p>Te quedan: {{ dias_restantes }} días</p>
-    <div id="form-org-footer">
-        <a href="{% url 'index' %}">COMENZAR A EXPLORAR</a>
-    </div>
+<div id="plan-detalle" class="form form-register">
+    <h1 id="gracias">Ya estás suscrito</h1>
+    <h3>Tu plan es:</h3>
+    <h7>{{ tipo }}</h7><br><br>
+
+    <p>ESTOS SON LOS DETALLES DE TU SUSCRIPCIÓN:</p>
+
+
+    <table id="detalle">
+        <tr>
+          <th>Tipo de plan</th>
+          <th>Inicio</th>
+          <th>Termino</th>
+          <th>Días Restantes</th>
+      
+        </tr>
+        <tr>
+          <td>{{ tipo }}</td>
+          <td>{{ fecha_inicio| date:"d M Y" }}</td>
+          <td> {{ fecha_termino | date:"d M Y" }}</td>
+          <td>{{ dias_restantes }} días</td>
+        </tr>
+      
+      </table>
+
+
+    
+        <button id="btn-detalle"  class="btn-curso"><a href="{% url 'index' %}">CONTINUAR EXPLORANDO</a></button>
 </div>
 
 {% endblock %}

@@ -4,22 +4,38 @@
 
 {% block content %}
 {% include 'snippets/header_plan.html' %}
-{% include 'snippets/navbar.html' %}
+{% include 'snippets/navbar_azul.html' %}
+{% include 'snippets/fondo-celeste.html' %}
 
-<div id="fondo_animado2"></div>
-<span id="cuadricula2"></span>
 
-<div class="form form-register">
-    <h7>MUCHAS GRACIAS POR PREFERIRNOS</h7><br><br>
-    <h3>ESTOS SON LOS DETALLES DE SU SUSCRIPCIÓN:</h3>
-    <p>Tu plan es: {{ tipo }}</p>
-    <p>Fecha de inicio: {{ fecha_inicio| date:"d M Y" }}</p>
-    <p>Fecha de término: {{ fecha_termino | date:"d M Y" }}</p>
-    <p>Te quedan: {{ dias_restantes }} días</p>
-    <p>Precio: $ {{ monto | separador_miles }}</p>
-    <div id="form-org-footer">
-        <a href="{% url 'index' %}">COMENZAR A EXPLORAR</a>
-    </div>
+<div id="plan-detalle" class="form form-register">
+    <h1 id="gracias">¡Muchas Gracias!</h1>
+    <h3>Tu suscripción es:</h3>
+    <h7>{{ tipo }}</h7><br><br>
+
+    <p>Y ESTOS SON LOS DETALLES DE TU SUSCRIPCIÓN:</p>
+
+
+    <table id="detalle">
+        <tr>
+          <th>Tipo de plan</th>
+          <th>Inicio</th>
+          <th>Termino</th>
+          <th>Días Restantes</th>
+      
+        </tr>
+        <tr>
+          <td>{{ tipo }}</td>
+          <td>{{ fecha_inicio| date:"d M Y" }}</td>
+          <td> {{ fecha_termino | date:"d M Y" }}</td>
+          <td>{{ dias_restantes }} días</td>
+        </tr>
+      
+      </table>
+
+
+    
+        <button id="btn-detalle"  class="btn-curso"><a href="{% url 'index' %}">COMENZAR A EXPLORAR</a></button>
 </div>
 
 {% endblock %}

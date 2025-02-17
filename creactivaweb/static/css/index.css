@@ -1899,6 +1899,8 @@ float: left;
 #deslogin{
     opacity: .8;
     transition: all 0.1s ease-in-out;
+    font-size:13px;
+
     color:#57DEFF;
 }
 
@@ -2522,7 +2524,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     -webkit-transition: all .2s, bottom .75s;
     left: 0px;
     position:relative;
-    height: 90%;
+    height:100%;
 }
 
 .info-cur{
@@ -3008,6 +3010,109 @@ aside#cur-cap {
 #creditos{
     float:right;
 }
+#form-perfil{
+    padding:40px 0px 30px 0px;
+    width:80%;
+}
+
+#datos-sus h7{
+    font-size: 30px;
+}
+
+#perfil-preview{
+    font-size:40px;
+    width:100%;
+    border-top:1px solid #fff;
+    display: inline;
+}
+
+
+.perfil{
+    position: relative;
+    padding:0px 10% 15px 10%;
+    margin-bottom:70px;
+    
+}
+
+
+#datos-user{
+    float:left;
+}
+
+#datos-user h1{
+    text-align: left;
+    display: block;
+    font-family: latobold;
+}
+#datos-user h3{
+    text-align: left;
+    font-family: latolight;
+    display: block;
+}
+
+#datos-sus{
+    text-align: right;
+    float:right
+}
+
+#datos-sus h4{
+    margin-bottom:10px;
+    font-style: italic;
+}
+
+
+#datos-sus button{
+    text-align: right;
+    translate: none;
+    float:right;
+    text-transform: uppercase;
+}
+
+
+#pago{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 7;
+    transform: translate(-50%, -50%);
+
+}
+
+table#detalle{
+    margin:10px 0px 70px 0px;
+}
+
+#btn-detalle{
+    margin:0px;
+    float: inherit;
+}
+
+#gracias{
+    margin-bottom:10px;
+}
+
+#letra-azul{
+    color:#00315c;
+    font-size:13px;
+}
+
+
+.modal-compartir-open{
+    z-index: 6;
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color:#00315c;
+    width:50%;
+    height:20%;
+}
+
+/* MODAL COMPARTIR */
+.modal-compartir-closed{
+    display: none;
+}
+
+
 
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
@@ -3436,11 +3541,6 @@ aside#cur-cap{
 
 
 
-
-
-
-
-
 @media (max-width: 550px) {
     .fila-slider div {
         padding-bottom: 70%;
@@ -3790,14 +3890,4 @@ aside#cur-cap{
         display: none;
     }
     
-/* MODAL COMPARTIR */
-.modal-compartir-closed{
-    display: none;
-}
-
-.modal-compartir-open{
-    top: 20px;
-    display: block;
-    z-index: 6;
-}
 
