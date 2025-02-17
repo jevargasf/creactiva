@@ -24,7 +24,7 @@
     <a class="plan plan-estandar" href="{% url 'detalle-plan' plan.id %}">
     {% endif%}
         <h7>{{ plan.nombre }}</h7>
-        <h1>{{ plan.monto_mensual }} CLP</h1>
+        <h1>{{ plan.monto_mensual | separador_miles }} CLP</h1>
         {% if plan.duracion == 1 %}
         <h5>por {{ plan.duracion }} mes</h5>
         {% else %}
