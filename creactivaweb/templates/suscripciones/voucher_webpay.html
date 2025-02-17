@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load formato_valores %}
 
 {% block content %}
 {% include 'snippets/header_plan.html' %}
@@ -15,7 +16,7 @@
     <p>Fecha de inicio: {{ fecha_inicio| date:"d M Y" }}</p>
     <p>Fecha de término: {{ fecha_termino | date:"d M Y" }}</p>
     <p>Te quedan: {{ dias_restantes }} días</p>
-    <p>Precio: $ {{ monto }}</p>
+    <p>Precio: $ {{ monto | separador_miles }}</p>
     <div id="form-org-footer">
         <a href="{% url 'index' %}">COMENZAR A EXPLORAR</a>
     </div>
