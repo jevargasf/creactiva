@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% include 'snippets/header_plan.html' %}
+{% include 'snippets/header_centro.html' %}
 {% include 'snippets/navbar.html' %}
 
     <div id="fondo_animado2">
@@ -11,18 +11,9 @@
 
 <div class="form-plan">
 <h2>SELECCIONA UN PLAN</h2>
-<div class="planes-info">
-    <p>¿Eres estudiante o perteneces al pueblo mapuche?<br>Escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento.</p>
-    <button class="btn-plan" id="btn-estandar">Estándar</button>
+<div class="planes-botones">
+     <button class="btn-plan" id="btn-estandar">Estándar</button>
     <button class="btn-plan" id="btn-descuento">Descuento Creactiva</button>
-</div>
-<div>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.codigo.label_tag }}
-        {{ form.codigo }}
-        <button type="submit">VALIDAR</button>
-    </form>
 </div>
 
     {% for plan in planes %}
@@ -44,6 +35,20 @@
         <h3>Contratar</h3>
     </a>
     {% endfor %}
+
+    <div id="form-codigo">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.codigo }}
+            <button type="submit">VERIFICAR</button>
+        </form>
+    </div>
+
+    <div class="planes-info">
+        <p><b>¿Eres estudiante o perteneces a un pueblo originario?</b><br>Escríbenos a <ins>contacto@creactivaanimaciones.cl</ins> con asunto "DESCUENTO CREACTIVA" y adjunta tu Certificado de alumno regular o tu Certificado de acreditación de la calidad indígena entregado por CONADI. Te responderemos a la brevedad y habilitaremos tu descuento.</p>
+
+    </div>
+
 </div>
 
     {% include 'snippets/header_volver.html' %}

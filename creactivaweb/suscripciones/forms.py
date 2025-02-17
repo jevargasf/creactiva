@@ -8,7 +8,7 @@ from cursos.utils import pedir_nombres_cursos
 
 class CodigoPromocionalForm(forms.Form):
      codigo = forms.CharField(
-          label='¿Tienes un código de descuento? Ingrésalo aquí:',
+          label='Ingresa tu código de descuento:',
           max_length=50
      )
 
@@ -75,7 +75,7 @@ class SolicitudOrganizacionForm(ModelForm):
                 attrs={
                     'placeholder': 'Cuéntanos más',
                     'id': 'mensaje',
-                    'rows': 6
+                    'rows': 4
                 }
             )
         }

@@ -999,7 +999,7 @@ form{
 }
 
 .form-register {
-    padding:90px 0px 50px 0px;
+    padding:70px 0px 50px 0px;
 }
 
 .form form input{
@@ -1021,7 +1021,7 @@ form{
     border:none;
     font-size:14px;
     font-family: latolight;
-    padding:5px 5px 10px 5px;
+    padding:5px 5px 10px 10px;
     border-bottom:1px solid #fff;
     width:322px;
     margin-bottom:20px;
@@ -1164,11 +1164,12 @@ float: left;
 }
 
 #form-organizacion .form-mid input{
-    width:185px;
+    width:400px;
+    box-sizing: border-box;
 
 }
 
-#tipo_organizacion{
+#tipo_organizacion, #comuna, #pais{
     background-color: initial;
     color: #fff;
     border: none;
@@ -1184,8 +1185,17 @@ float: left;
 
 }
 
+.form2{
+    display:inline-block;
+}
 
-#tipo_organizacion option{
+#comuna, #pais{
+    width: 200px;
+    display: inline-block;
+
+}
+
+#tipo_organizacion option, #comuna option, #pais option{
     background-color: #005c99;
     color: #fff;
     letter-spacing: .5px;
@@ -1196,19 +1206,21 @@ float: left;
 
 }
 
-#tipo_organizacion option:first-child{
+#tipo_organizacion option:first-child, #comuna option:first-child,#pais option:first-child{
     color: rgba(256, 256, 256, .5);
     display: none;
 }
 
 
 
-#tipo_organizacion option:hover{
+#tipo_organizacion option:hover#comuna option:hover,#pais option:hover{
     background-color: #1787e9;
     color: #fff;
     cursor: pointer;
     border-radius: 0px;
 }
+
+
 
 #form-check{
     text-align: left;
@@ -1256,9 +1268,29 @@ float: left;
     border-top:1px solid #fff;
     color:#fff;
     width:400px;
-    padding:5px;
+    padding:10px 5px 5px 10px;
     margin: 5px auto 20px auto;
+    letter-spacing: .5px;
+    font-size:14px;
     resize: none;
+    font-family: latolight;
+}
+
+#textcontacto textarea{
+
+        background-color: rgba(0, 0, 0, .0);
+        border: 0;
+        border-bottom:1px solid #fff;
+        border-top:1px solid #fff;
+        color:#fff;
+        width:322px;
+        padding:10px 5px 5px 10px;
+        margin: 5px auto 20px auto;
+        letter-spacing: .5px;
+        font-size:14px;
+        resize: none;
+        font-family: latolight;
+
 }
 
 #form-organizacion{
@@ -1373,12 +1405,46 @@ float: left;
     width:60%;
     top:50%;
     left:50%;
-    translate: -50% -50%;
+    translate: -50% -45%;
     text-align: center;
 }
 
+#id_codigo{
+    background-color: initial;
+    color: #003c71;
+    border: none;
+    font-size: 14px;
+    font-family: latoregular;
+    padding: 25px 5px 10px 5px;
+    border-bottom: 1px solid #003c71;
+    width: 200px;
+    margin:0px 5px 20px 0px;
+    letter-spacing: .2px;
+}
+
+
+#id_codigo::placeholder{
+    color:#003c71;
+}
+
+.form-plan input:before{
+    content: 'Ingresa tu codigo de descuento';
+}
+
+#form-codigo button{
+    font-family: latoblack;
+    color: #003c71;
+    letter-spacing: .5px;
+
+}
+
+#form-codigo button:hover{
+    color: #fff;
+
+}
+
 .form-plan h2{
-    margin-bottom:30px;
+    margin-bottom:15px;
     font-family: latoblack;
     color:#024C8D;
     font-size: 22px;
@@ -1387,9 +1453,40 @@ float: left;
 
 .form-plan ul{
     list-style: none;
-
 }
 
+.planes-info{
+    width:100%;
+    height: 100%;
+    overflow: none; 
+    background-color: #024C8D;
+    z-index: -1;
+    background-image: url('../img/fondo2.png');
+    background-size:8000px;
+    background-repeat: repeat;
+    animation: fondo3 60s infinite linear;
+    top:0px;
+    animation-timing-function: ease-in-out;
+    left:0px;
+    padding:10px 0px 10px 0px;
+}
+
+.planes-info p{
+    color:#024C8D;
+    padding:0px 60px 0px 60px;
+}
+
+.planes-info p b{
+    color:#024C8D;
+    padding:0px 60px 0px 60px;
+    letter-spacing: .25px;
+    font-family: latoblack;
+    text-transform: uppercase;
+}
+
+.planes-info p ins{
+    font-family: latobold;
+}
 
 .plan{
     width:calc(33.333% - 20px);
@@ -1416,6 +1513,7 @@ float: left;
     font-size:25px;
     letter-spacing: 1px;
     color:#57DEFF;
+    padding: 5px 0px 0px 0px;
 }
 .plan h3{
     font-family: latoblack;
@@ -1431,6 +1529,13 @@ float: left;
     filter: none;
     -webkit-transition: all .25s;
     color:#1787e9;
+    line-height: 30px;
+    margin:0px 0px 10px 0px;
+}
+
+.plan h7::first-letter{
+    font-style: italic;
+
 }
 
 .plan:hover{
@@ -1514,13 +1619,82 @@ float: left;
 
     .btn-plan{
         font-size: 20px;
-        background-color:#1787e9;
+        padding:10px 5px 20px 5px;
+        color:#024C8D;
+        font-family: latobold;
+        opacity:.5;
+        transition: all .2;
+    }
+    
+    #btn-estandar{
+        opacity:1;
+    }
+
+    .btn-plan:hover{
+
+    }
+
+    .tarjeta-plan-detalle{
+        width: 70%;
+        float: right;
+    }
+#detalle-img{
+    width:30%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;;
+    top:0px;
+}
+
+#detalle-img img{
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    translate: -45% -50%;
+}
+
+    #plan-detalle h2{
+            text-align: left;
+    padding: 0px 10% 0px 10%;
+    font-family: latoregular;
+    font-style: italic;
+    font-size:20px;
+
     }
 
     #plan-detalle li{
         list-style: none;
     }
 
+#plan-detalle table{
+        display: inline-table;
+        margin: 10px 0px 200px 0px;
+        width:80%;
+        border-collapse: collapse;
+
+}
+
+    #plan-detalle table th,#plan-detalle table td {
+        border:1px solid #57DEFF;
+        padding:5px 10px 5px 10px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    
+
+    #form-detalle-footer{
+        width:80%;
+        margin:0 auto;
+    }
+    
+    
+    #form-detalle-footer button{
+        float:right;
+        margin-bottom: 10px;
+    }
+    
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
