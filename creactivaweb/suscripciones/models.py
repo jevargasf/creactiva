@@ -24,6 +24,7 @@ class PerfilCodigo(models.Model):
         on_delete=models.CASCADE,
         verbose_name='ID Perfil'
     )
+    estado_uso_codigo = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado uso código')
 
 class Planes(models.Model):
     nombre = models.CharField(max_length=50, null=True, verbose_name='Nombre plan')
@@ -89,6 +90,14 @@ class PerfilSuscripcion(models.Model):
         on_delete=models.CASCADE,
         verbose_name='ID Perfil',
         related_name='perfil_sus'
+    )
+    codigo_promocional = models.ForeignKey(
+        'CodigoPromocional',
+        default='0',
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        verbose_name='ID Código Promocional'
     )
     estado_suscripcion = models.CharField(max_length=1, null=False, default='0', verbose_name='Estado suscripción')
     boleta_entregada = models.BooleanField(default=False, null=True, blank=True, verbose_name='Boleta Entregada')

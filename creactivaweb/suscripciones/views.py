@@ -40,7 +40,29 @@ class PlanIndividual(View):
     def post(self, request: HttpRequest):
         form = CodigoPromocionalForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['codigo'])
+            codigo_object = validar_codigo(form.cleaned_data['codigo'])
+            if codigo_object != None:
+                if request.user.is_authenticated:
+                    perfil_object = Perfil.objects.get(user_id=request.session.get('_auth_user_id'))
+                    perfil_object.descuento_creactiva = True
+                    perfil_object.save()
+                    registro_descuento = PerfilCodigo(
+                        perfil=perfil_object,
+                        codigo=codigo_object,
+                    )
+                    registro_descuento.save()
+                else:
+                    messages.error(request, 'Por favor, ingresa para continuar.')
+                    return redirect('login')
+            else:
+                planes = planes_montos_mensuales()
+                form = CodigoPromocionalForm()
+                context = {
+                    'planes': planes,
+                    'form': form
+                }
+                messages.error(request, 'Lo sentimos, este código no es válido. Por favor, ingresa un código válido.')
+                return render(request, 'suscripciones/plan_individual.html', context)
             planes = planes_montos_mensuales()
             form = CodigoPromocionalForm()
             context = {
@@ -122,6 +144,9 @@ class PagarView(LoginRequiredMixin, View):
                 return render(request, 'suscripciones/suscripcion_activa.html', context)
             elif check_suscripcion == None:
                 plan = Planes.objects.get(pk=id_plan)
+                user_object = User.objects.get(username=request.user)
+                perfil_object = Perfil.objects.get(user_id=user_object.id)
+                codigo_object = conseguir_codigo_usado(perfil_object)
                 fecha_inicio = now()
                 fecha_termino = sumar_fecha(fecha_inicio, plan.duracion)
                 suscripcion = Suscripcion(
@@ -140,12 +165,10 @@ class PagarView(LoginRequiredMixin, View):
                         curso=curso
                     )
                     curso_suscripcion.save()
-
-                user_object = User.objects.get(username=request.user)
-                perfil_object = Perfil.objects.get(user_id=user_object.id)
                 perfil_suscripcion = PerfilSuscripcion(
                     perfil=perfil_object,
                     suscripcion=suscripcion,
+                    codigo_promocional=codigo_object,
                     estado_suscripcion='2'
                 )
                 perfil_suscripcion.save()
@@ -207,10 +230,14 @@ class RespuestaWebpayView(View):
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 perfil_object.codigo = '100'
+                perfil_object.descuento_creactiva = False
                 perfil_object.save()
                 perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
                 perfil_suscripcion_object.estado_suscripcion = '1'
                 perfil_suscripcion_object.save()
+                # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
+                perfil_codigo_object = PerfilCodigo(codigo=conseguir_codigo_usado(perfil_object))
+                perfil_codigo_object.estado_uso_codigo = '1'
                 send_mail(
                     f"Nueva Suscripción Creactiva Animaciones",
                     f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 

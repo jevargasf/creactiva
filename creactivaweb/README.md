@@ -401,12 +401,12 @@ SUSCRIPCIONES
 - Debug: Que el form de elegir organización recupere todas las solicitudes
 - Formulario solicitudes falta ver tema países, comunas
 CURSOS
-- botones para compartir curso y capítulo no están funcionales
-- Revisar los headers para volver atrás. Trailer debe volver al curso
+✔ botones para compartir curso y capítulo no están funcionales
+✔ Revisar los headers para volver atrás. Trailer debe volver al curso
 *** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
 *** Botón replay quiebra el reproductor ***
 - Dar funcionalidad de play al botón reproducir de abajo
-- Botón compartir link
+✔ Botón compartir link
 - ESTADOS CURSOS ??
 - sección principal cursos
 PERFILES
@@ -450,4 +450,13 @@ Proceso:
 4. En la vista de respuesta webpay, si el objeto suscripción tiene código promocional distinto de cero, entonces se cambia el objeto perfil descuento_promocional = False. Además, si el código promocional de la suscripción pagada es igual a un código promocional de la tabla, entonces se resta 1 a la cantidad del código y se escribe un registro en la nub de perfiles_codigos.
 FIN DEL PROCESO
 
+*** ESTADOS DEL USO DEL CÓDIGO EN TABLA PERFILCODIGO:
+- 0: Validado, pero no utilizado
+- 1: Utilizado (suscripción registrada exitosamente)
+
+
 Por escribir: tarea cron que valide la vigencia de los códigos creados. Actualiza estado = 0 si la fecha de término coincide con la fecha de hoy.
+
+
+DEBUG:
+- index.js se corta desde la línea 257 hacia abajo cuando lo usamos en el trailer.html y en el reproductor.html porque llama a algunas clases que no existen y se interrumpe la ejecución del script

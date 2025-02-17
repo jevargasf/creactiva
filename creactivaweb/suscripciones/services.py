@@ -57,4 +57,24 @@ def check_descuento(user_id):
     return perfil_object.descuento_creactiva
 
 def validar_codigo(codigo):
+    try:
+        # CÓDIGO EXISTE Y ESTÁ ACTIVO
+        consulta = CodigoPromocional.objects.get(codigo=codigo, estado_codigo='1')
+        return consulta
+    except Exception as e:
+        print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+        return None
+    
+def stock_codigo():
     pass
+
+def conseguir_codigo_usado(perfil):
+    try:
+        perfil_codigo_object = PerfilCodigo.objects.get(perfil=perfil, estado_uso_codigo='0')
+        if perfil_codigo_object.codigo.estado_codigo == '1':
+            return perfil_codigo_object.codigo
+        else:
+            return None
+    except Exception as e:
+        print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+        return None

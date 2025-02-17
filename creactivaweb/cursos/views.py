@@ -94,7 +94,6 @@ class CapituloView(View):
             context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
             context['recurso']['link'] = capitulo.curso.link_trailer
             # DATA CAP + TRAILER
-            print(context['recurso'])
             return render(request, 'cursos/trailer.html', context)
         
     def post(self, request: HttpRequest, id):
