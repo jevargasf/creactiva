@@ -47,6 +47,7 @@ class PlanIndividual(View):
                 'planes': planes,
                 'form': form
             }
+            # SI ES VÁLIDO, SE LE HACE EL CHECK PARA UQE PAGUE CON DCTO PROMOCIONAL
             messages.success(request, '¡Felicidades! Tu código ha sido validado con éxito. Elige un plan.')
             return render(request, 'suscripciones/plan_individual.html', context)
         else:

@@ -394,14 +394,29 @@ PERFILES
 ✔ falta conteo de días
 
 LUNES:
+SUSCRIPCIONES 
+- Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+- Mensaje de fallo o éxito transacción debe durar más
+- Códigos promocionales: ver lógica
+- Debug: Que el form de elegir organización recupere todas las solicitudes
+- Formulario solicitudes falta ver tema países, comunas
+CURSOS
+- botones para compartir curso y capítulo no están funcionales
+- Revisar los headers para volver atrás. Trailer debe volver al curso
+*** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
+*** Botón replay quiebra el reproductor ***
+- Dar funcionalidad de play al botón reproducir de abajo
+- Botón compartir link
+- ESTADOS CURSOS ??
+- sección principal cursos
+PERFILES
+- falta mostrar historial de pagos
+- falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
+DESPLIEGUE
 - Subir versión de producción
 - Migrar a bbdd postgresql
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 
-
-ACTUALMENTE TRABAJANDO:
-- mostrar los precios como se supone que deberían mostrarse
-- armar el js toggle para que muestre los planes según el botón estándar y descuento creactiva
 
 CÓDIGOS PROMOCIONALES:
 - Permiten al usuario portador a acceder a una suscripción precio descuento creactiva por 1 vez. Puede ser cualquiera de los 3 planes creactiva. Un usuario puede ocupar más de 1 código. Un código solo puede ser usado un determinado número de veces.
