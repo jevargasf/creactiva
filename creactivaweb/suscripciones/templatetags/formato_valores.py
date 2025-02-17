@@ -9,11 +9,11 @@ def separador_miles(valor):
         str_result = ""
         str_reversed = valor_str[::-1]
         for x, a in enumerate(str_reversed):
-            if (x+2)%3 == 0:
-                str_result += str_reversed[x]
+            if (x+4)%3 == 0:
+                str_result += a
                 str_result += "."
             else:
-                str_result += str_reversed[x]
-        return str_result
+                str_result += a
+        return str_result[::-1]
     except (ValueError, TypeError):
         return valor
