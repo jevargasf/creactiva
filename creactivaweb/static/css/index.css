@@ -2809,7 +2809,8 @@ aside#cur-cap {
     -webkit-transition: opacity 1s;
     opacity: 1;
     animation: cierre-alerta 1s forwards ease;
-    animation-delay: 5s;
+    animation-delay: 7s;
+    text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -2833,11 +2834,16 @@ aside#cur-cap {
     animation: fondoventana 60s infinite linear;
     display: inline-block;
     box-sizing: border-box;
-    padding: 60px;
+    padding: 60px 100px;
 }
 
 .alert strong{
-    padding: 50px;
+    text-align: center;
+}
+
+.alert p{
+    text-align: center;
+    margin-top: 10px;
 }
 
 .alert button{
