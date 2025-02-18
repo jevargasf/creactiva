@@ -8,339 +8,10 @@ window.addEventListener('load', function () {
         next(); 
       });
       $('body').css('overflow-y', 'auto');
-
+      document.querySelector('#btn-spotlight1').classList.add('collapsed');
+      document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
+      document.querySelector('#add-favoritos').classList.add('collapsed');
   })
-  
-// SLIDER NOTICIAS
-$(document).ready(function(){
-    $('#slider-fila').slick({
-        arrows: false,
-        easing: true,
-        pauseOnHover:true,
-        infinte: true,
-        autoplay: false,
-        speed: 500,
-        slidesToShow: 7,
-        slidesToScroll: 3,
-        responsive: [
-        {
-            breakpoint: 1460,
-            settings: {
-                slidesToShow: 5,
-                slidesToScroll: 5,
-            }
-        },
-        {
-            breakpoint: 900,
-            settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-            }
-        },
-        {
-            breakpoint: 760,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                centerMode: true,
-                centerPadding: '60px',
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                centerMode: true,
-                centerPadding: '15px',
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                centerMode: true,
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                centerPadding: '15px',
-            }
-        }
-        ]
-    });
-});
-
-$("#flecha-izquierda-slider-fila").click(function(){
-    $('#slider-fila').slick('slickPrev');
-});
-
-$("#flecha-derecha-slider-fila").click(function(){
-    $('#slider-fila').slick('slickNext');
-});
-
-
-// SLIDER FILA 2
-$(document).ready(function(){
-    $('#slider-fila-2').slick({
-        arrows: false,
-        easing: true,
-        pauseOnHover:true,
-        infinte: true,
-        autoplay: false,
-        speed: 500,
-        slidesToShow: 7,
-        slidesToScroll: 3,
-        responsive: [
-        {
-            breakpoint: 1460,
-            settings: {
-                slidesToShow: 5,
-                slidesToScroll: 5,
-            }
-        },
-        {
-            breakpoint: 900,
-            settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-            }
-        },
-        {
-            breakpoint: 760,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                centerMode: true,
-                centerPadding: '60px',
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                centerMode: true,
-                centerPadding: '15px',
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                centerMode: true,
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                centerPadding: '15px',
-            }
-        }
-        ]
-    });
-});
-
-$("#flecha-izquierda-slider-fila-2").click(function(){
-    $('#slider-fila-2').slick('slickPrev');
-});
-
-$("#flecha-derecha-slider-fila-2").click(function(){
-    $('#slider-fila-2').slick('slickNext');
-});
-
-
-// SLIDER FILA CURSOS
-$(document).ready(function(){
-    $('#slider-fila-curso').slick({
-        arrows: false,
-        easing: true,
-        pauseOnHover:true,
-        infinte: false,
-        autoplay: false,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 3,
-        responsive: [
-        {
-            breakpoint: 1460,
-            settings: {
-                slidesToShow: 5,
-                slidesToScroll: 5,
-            }
-        },
-        {
-            breakpoint: 900,
-            settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-            }
-        },
-        {
-            breakpoint: 760,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                centerMode: true,
-                centerPadding: '30px',
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                centerMode: true,
-                centerPadding: '15px',
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                centerMode: true,
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                centerPadding: '15px',
-            }
-        }
-        ]
-    });
-});
-
-$("#flecha-izquierda-slider-fila").click(function(){
-    $('#slider-fila-curso').slick('slickPrev');
-});
-
-$("#flecha-derecha-slider-fila").click(function(){
-    $('#slider-fila-curso').slick('slickNext');
-});
-
-// SLIDER INICIAL
-$(document).ready(function(){
-$('#slider-inicial').slick({
-arrows: false,
-easing: true,
-autoplay: true,
-infinte: true,
-speed: 300,
-fade:true,
-pauseOnFocus:false,
-pauseOnHover:true,
-autoplaySpeed: 5000,
-});
-});
-
-$('#slider-inicial').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-if(currentSlide === 0){
-document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
-document.querySelector('#btn-spotlight1').classList.add('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.remove('collapsed');
-document.querySelector('#btn-spotlight2').classList.remove('collapsed');
-document.querySelector('#btn-spotlight3').classList.remove('collapsed');
-document.querySelector('#btn-spotlight4').classList.remove('collapsed');
-}
-
-
-if(nextSlide === 0){
-document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.remove('collapsed');
-document.querySelector('#btn-spotlight1').classList.add('collapsed');
-document.querySelector('#btn-spotlight2').classList.remove('collapsed');
-document.querySelector('#btn-spotlight3').classList.remove('collapsed');
-document.querySelector('#btn-spotlight4').classList.remove('collapsed');
-}
-
-if(nextSlide === 1){
-document.querySelector('#slider-inicial-descripcion-1').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.add('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.remove('collapsed');
-document.querySelector('#btn-spotlight1').classList.remove('collapsed');
-document.querySelector('#btn-spotlight2').classList.add('collapsed');
-document.querySelector('#btn-spotlight3').classList.remove('collapsed');
-document.querySelector('#btn-spotlight4').classList.remove('collapsed');
-}
-
-if(nextSlide === 2){
-document.querySelector('#slider-inicial-descripcion-1').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.add('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.remove('collapsed');
-document.querySelector('#btn-spotlight1').classList.remove('collapsed');
-document.querySelector('#btn-spotlight2').classList.remove('collapsed');
-document.querySelector('#btn-spotlight3').classList.add('collapsed');
-document.querySelector('#btn-spotlight4').classList.remove('collapsed');
-}
-
-if(nextSlide === 3){
-document.querySelector('#slider-inicial-descripcion-1').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.add('collapsed');
-document.querySelector('#btn-spotlight1').classList.remove('collapsed');
-document.querySelector('#btn-spotlight2').classList.remove('collapsed');
-document.querySelector('#btn-spotlight3').classList.remove('collapsed');
-document.querySelector('#btn-spotlight4').classList.add('collapsed');
-}
-});
-
-$("#flecha-izquierda-slider-inicial").click(function(){
-$('#slider-inicial').slick('slickPrev');
-});
-
-$("#flecha-derecha-slider-inicial").click(function(){
-$('#slider-inicial').slick('slickNext');
-});
-
-$("#slider-inicial-descripcion-1").click(function(e){
-e.preventDefault();
-$('#slider-inicial').slick('slickGoTo', parseInt(0));
-document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.remove('collapsed');
-document.querySelector('#btn-spotlight1').classList.add('collapsed');
-document.querySelector('#btn-spotlight2').classList.remove('collapsed');
-document.querySelector('#btn-spotlight3').classList.remove('collapsed');
-document.querySelector('#btn-spotlight4').classList.remove('collapsed');
-});
-
-$("#slider-inicial-descripcion-2").click(function(e){
-e.preventDefault();
-$('#slider-inicial').slick('slickGoTo', parseInt(1));
-document.querySelector('#slider-inicial-descripcion-1').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.add('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.remove('collapsed');
-document.querySelector('#btn-spotlight1').classList.remove('collapsed');
-document.querySelector('#btn-spotlight2').classList.add('collapsed');
-document.querySelector('#btn-spotlight3').classList.remove('collapsed');
-document.querySelector('#btn-spotlight4').classList.remove('collapsed');
-});
-
-$("#slider-inicial-descripcion-3").click(function(e){
-e.preventDefault();
-$('#slider-inicial').slick('slickGoTo', parseInt(2));
-document.querySelector('#slider-inicial-descripcion-1').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.add('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.remove('collapsed');
-document.querySelector('#btn-spotlight1').classList.remove('collapsed');
-document.querySelector('#btn-spotlight2').classList.remove('collapsed');
-document.querySelector('#btn-spotlight3').classList.add('collapsed');
-document.querySelector('#btn-spotlight4').classList.remove('collapsed');
-});
-
-$("#slider-inicial-descripcion-4").click(function(e){
-e.preventDefault();
-$('#slider-inicial').slick('slickGoTo', parseInt(3));
-document.querySelector('#slider-inicial-descripcion-1').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-2').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-3').classList.remove('collapsed');
-document.querySelector('#slider-inicial-descripcion-4').classList.add('collapsed');
-document.querySelector('#btn-spotlight1').classList.remove('collapsed');
-document.querySelector('#btn-spotlight2').classList.remove('collapsed');
-document.querySelector('#btn-spotlight3').classList.remove('collapsed');
-document.querySelector('#btn-spotlight4').classList.add('collapsed');
-});
-
 
 
 // Botones
@@ -362,139 +33,36 @@ $("#btn-menu").click(function(){
     document.querySelector('#btn-menu').classList.toggle('collapsed');
 });
 
-// $("#busqueda").click(function(){
-//     document.querySelector('#spotlight').classList.add('collapsed');
-//     document.querySelector('#slider-inicial-nav').classList.add('collapsed');
-//     document.querySelector('#buscador').classList.add('collapsed');
-//     document.querySelector('#fila').classList.add('collapsed');
-//     document.querySelector('#slider-fila').classList.add('collapsed');
-// });
+// BTN COMPARTIR
+
+$(document).ready(function () {
+    btnCompartir = document.getElementById("btn-compartir")
+    btnCerrar = document.getElementById("modal-close")
+    btnClipboard = document.getElementById("btn-clipboard")
+    modalCompartir = document.getElementById("modal-compartir")
+    btnCompartir.addEventListener("click", function(){
+            modalCompartir.classList.toggle("modal-compartir-open")
+    })
+    btnCerrar.addEventListener("click", function(){
+        modalCompartir.classList.toggle("modal-compartir-open")
+})
+    btnClipboard.addEventListener("click", function(){
+        link = document.getElementById("share-link")
+        link.select()
+        link.setSelectionRange(0,99999)
+        navigator.clipboard.writeText(link.value)
+        alert("Texto copiado al portapapeles." + link.value)
+    })
+});
 
 
-// 
-// $("#fila").click(function(){
-//     document.querySelector('#spotlight').classList.add('collapsed');
-//     document.querySelector('#slider-inicial-nav').classList.add('collapsed');
-//     document.querySelector('#buscador').classList.add('collapsed');
-//     document.querySelector('#fila').classList.add('collapsed');
-//     document.querySelector('#slider-fila').classList.add('collapsed');
-// });
-// 
-// $("#btn-busqueda").click(function(){
-//     document.querySelector('#spotlight').classList.add('collapsed');
-//     document.querySelector('#slider-inicial-nav').classList.add('collapsed');
-//     document.querySelector('#buscador').classList.add('collapsed');
-//     document.querySelector('#fila').classList.add('collapsed');
-//     document.querySelector('#slider-fila').classList.add('collapsed');
-// });
-// 
-// 
-// $("#categorias").click(function(){
-//     document.querySelector('#spotlight').classList.add('collapsed');
-//     document.querySelector('#slider-inicial-nav').classList.add('collapsed');
-//     document.querySelector('#buscador').classList.add('collapsed');
-//     document.querySelector('#fila').classList.add('collapsed');
-//     document.querySelector('#slider-fila').classList.add('collapsed');
-// });
-// // 
-// 
-// $("#spotlight").click(function(){
-//     document.querySelector('#spotlight').classList.remove('collapsed');
-//     document.querySelector('#slider-inicial-nav').classList.remove('collapsed');
-//     document.querySelector('#buscador').classList.remove('collapsed');
-//     document.querySelector('#fila').classList.remove('collapsed');
-//     document.querySelector('#slider-fila').classList.remove('collapsed');
-// 
-// });
-// 
-// 
-// $("#logo").click(function(){
-//     document.querySelector('#spotlight').classList.remove('collapsed');
-//     document.querySelector('#slider-inicial-nav').classList.remove('collapsed');
-//     document.querySelector('#buscador').classList.remove('collapsed');
-//     document.querySelector('#fila').classList.remove('collapsed');
-// });
-// 
+
 
 // BOTON CERRAR ALERTA
 $("#cerrarAlerta").click(function(){
     document.querySelector('#alerta').classList.add('collapsed');
 });
 
-// BOTON + INFO CURSO
-//$("#mas-info").click(function(){
-//    document.querySelector('#contenido-curso1').classList.add('collapsed');
-//    document.querySelector('#curso-info1').classList.add('collapsed');
-//    document.querySelector('#mas-info').classList.add('collapsed');
-//    document.querySelector('#info-cap-full').classList.add('collapsed');
-//});
-
-// BOTON VOLVER CURSO INFO
-//$("#img-curso-cont").click(function(){
-//    document.querySelector('#contenido-curso1').classList.remove('collapsed');
-//    document.querySelector('#curso-info1').classList.remove('collapsed');
-//    document.querySelector('#info-cap-full').classList.remove('collapsed');
-//    document.querySelector('#mas-info').classList.remove('collapsed');
-//});
-
-// BOTON + INFO CAP
-//$("#mas-info-cap").click(function(){
-//    document.querySelector('#tscVideoContent').classList.add('collapsed');
-//    document.querySelector('#mas-info-cap').classList.add('collapsed');
-//    document.querySelector('.play-button-overlay-glyph').classList.add('collapsed');
-//    document.querySelector('#btn-capitulo-out').classList.add('collapsed');
-//    document.querySelector('#logo_abajo').classList.add('collapsed');
-//    document.querySelector('#cap-banner-top').classList.add('collapsed');
-//    document.querySelector('#info-cap-player').classList.add('collapsed');
-//    document.querySelector('#logo_capitulo').classList.add('collapsed2');
-//    document.querySelector('#info-cap-full').classList.add('collapsed');
-//});
-
-// BOTON MAS INFO CAP SOBRE VIDEO
-//$("#btn-capitulo-out").click(function(){
-//    document.querySelector('#tscVideoContent').classList.add('collapsed');
-//    document.querySelector('#mas-info-cap').classList.add('collapsed');
-//    document.querySelector('.play-button-overlay-glyph').classList.add('collapsed');
-//    document.querySelector('#btn-capitulo-out').classList.add('collapsed');
-//    document.querySelector('#logo_abajo').classList.add('collapsed');
-//    document.querySelector('#cap-banner-top').classList.add('collapsed');
-//    document.querySelector('#info-cap-player').classList.add('collapsed');
-//    document.querySelector('#logo_capitulo').classList.add('collapsed2');
-//    document.querySelector('#info-cap-full').classList.add('collapsed');
-//});
-
-//// BOTON REGRESO AL CAP DESDE INFOFULL
-//$("#tscVideoContent").click(function(){
-//    document.querySelector('#tscVideoContent').classList.remove('collapsed');
-//    document.querySelector('#mas-info-cap').classList.remove('collapsed');
-//    document.querySelector('#btn-capitulo-out').classList.remove('collapsed');
-//    document.querySelector('#logo_abajo').classList.remove('collapsed');
-//    document.querySelector('#cap-banner-top').classList.remove('collapsed');
-//    document.querySelector('#info-cap-player').classList.remove('collapsed');
-//    document.querySelector('#logo_capitulo').classList.remove('collapsed2');
-//    document.querySelector('#info-cap-full').classList.remove('collapsed');
-//});
-//
-//// BOTON REPRODUCIR DE LA INFO DEL CAP
-//$("#cap-reproducir").click(function(){
-//    document.querySelector('#tscVideoContent').classList.remove('collapsed');
-//    document.querySelector('#mas-info-cap').classList.remove('collapsed');
-//    document.querySelector('#btn-capitulo-out').classList.remove('collapsed');
-//    document.querySelector('#logo_abajo').classList.remove('collapsed');
-//    document.querySelector('#cap-banner-top').classList.remove('collapsed');
-//    document.querySelector('#info-cap-player').classList.remove('collapsed');
-//    document.querySelector('#logo_capitulo').classList.remove('collapsed2');
-//    document.querySelector('#info-cap-full').classList.remove('collapsed');
-//});
-//
-//// BOTONES CURSO MAS INFO
-//$("#btn-curso1").click(function(){
-//    document.querySelector('#contenido-curso1').classList.add('collapsed');
-//    document.querySelector('#curso-info1').classList.add('collapsed');
-//    document.querySelector('#mas-info').classList.add('collapsed');
-//    document.querySelector('#info-cap-full').classList.add('collapsed');
-//});
-//
 // BOTONES DE LA LISTA DESPLEGABLE EN CURSOS
 
 
@@ -580,13 +148,7 @@ $(document).ready(function(){
     });
 });
 
-// Funciones Iniciales
 
-$(document).ready(function () {
-    document.querySelector('#btn-spotlight1').classList.add('collapsed');
-    document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
-    document.querySelector('#add-favoritos').classList.add('collapsed');
-});
 
 // Botones scroll
 
@@ -635,3 +197,29 @@ $("#btn-capitulo-out").click(function() {
     }
 };
 
+
+// BOTONES PLANES
+
+$('#btn-estandar').click(function(){
+    $('#btn-descuento').css('opacity', '0.5');
+    $('#btn-estandar').css('opacity', '1');
+    $('.plan-estandar').css('display', 'inline-block');
+    $('.plan-descuento').css('display', 'none');
+
+});
+
+$('#btn-descuento').click(function(){
+    $('#btn-estandar').css('opacity', '0.5');
+    $('#btn-descuento').css('opacity', '1');
+    $('.plan-estandar').css('display', 'none');
+    $('.plan-descuento').css('display', 'inline-block');
+});
+
+
+
+// Funciones Iniciales
+
+
+
+
+$('#id_codigo').attr("placeholder", "Ingresa tu código de descuento");    

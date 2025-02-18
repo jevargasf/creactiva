@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div id="transicion">
+</div>
+<h1 id="pago">PAGANDO...</h1>
 
-PAGANDO...
 <form action="{{ url }}" method="POST" name="form">
     <input type="hidden" name="token_ws" value="{{ token }}">
     {% csrf_token %}

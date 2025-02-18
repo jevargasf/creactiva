@@ -435,7 +435,7 @@ p{
     height:200vh;
     background-color: #00224a;
     position: fixed;
-    z-index: 2;
+    z-index: 6;
     top:0px;
     left:0px;
     opacity: 1;
@@ -999,7 +999,7 @@ form{
 }
 
 .form-register {
-    padding:90px 0px 50px 0px;
+    padding:70px 0px 50px 0px;
 }
 
 .form form input{
@@ -1021,7 +1021,7 @@ form{
     border:none;
     font-size:14px;
     font-family: latolight;
-    padding:5px 5px 10px 5px;
+    padding:5px 5px 10px 10px;
     border-bottom:1px solid #fff;
     width:322px;
     margin-bottom:20px;
@@ -1164,11 +1164,12 @@ float: left;
 }
 
 #form-organizacion .form-mid input{
-    width:185px;
+    width:400px;
+    box-sizing: border-box;
 
 }
 
-#tipo_organizacion{
+#tipo_organizacion, #comuna, #pais{
     background-color: initial;
     color: #fff;
     border: none;
@@ -1184,8 +1185,17 @@ float: left;
 
 }
 
+.form2{
+    display:inline-block;
+}
 
-#tipo_organizacion option{
+#comuna, #pais{
+    width: 200px;
+    display: inline-block;
+
+}
+
+#tipo_organizacion option, #comuna option, #pais option{
     background-color: #005c99;
     color: #fff;
     letter-spacing: .5px;
@@ -1196,19 +1206,21 @@ float: left;
 
 }
 
-#tipo_organizacion option:first-child{
+#tipo_organizacion option:first-child, #comuna option:first-child,#pais option:first-child{
     color: rgba(256, 256, 256, .5);
     display: none;
 }
 
 
 
-#tipo_organizacion option:hover{
+#tipo_organizacion option:hover#comuna option:hover,#pais option:hover{
     background-color: #1787e9;
     color: #fff;
     cursor: pointer;
     border-radius: 0px;
 }
+
+
 
 #form-check{
     text-align: left;
@@ -1256,9 +1268,29 @@ float: left;
     border-top:1px solid #fff;
     color:#fff;
     width:400px;
-    padding:5px;
+    padding:10px 5px 5px 10px;
     margin: 5px auto 20px auto;
+    letter-spacing: .5px;
+    font-size:14px;
     resize: none;
+    font-family: latolight;
+}
+
+#textcontacto textarea{
+
+        background-color: rgba(0, 0, 0, .0);
+        border: 0;
+        border-bottom:1px solid #fff;
+        border-top:1px solid #fff;
+        color:#fff;
+        width:322px;
+        padding:10px 5px 5px 10px;
+        margin: 5px auto 20px auto;
+        letter-spacing: .5px;
+        font-size:14px;
+        resize: none;
+        font-family: latolight;
+
 }
 
 #form-organizacion{
@@ -1373,12 +1405,46 @@ float: left;
     width:60%;
     top:50%;
     left:50%;
-    translate: -50% -50%;
+    translate: -50% -45%;
     text-align: center;
 }
 
+#id_codigo{
+    background-color: initial;
+    color: #003c71;
+    border: none;
+    font-size: 14px;
+    font-family: latoregular;
+    padding: 25px 5px 10px 5px;
+    border-bottom: 1px solid #003c71;
+    width: 200px;
+    margin:0px 5px 20px 0px;
+    letter-spacing: .2px;
+}
+
+
+#id_codigo::placeholder{
+    color:#003c71;
+}
+
+.form-plan input:before{
+    content: 'Ingresa tu codigo de descuento';
+}
+
+#form-codigo button{
+    font-family: latoblack;
+    color: #003c71;
+    letter-spacing: .5px;
+
+}
+
+#form-codigo button:hover{
+    color: #fff;
+
+}
+
 .form-plan h2{
-    margin-bottom:30px;
+    margin-bottom:15px;
     font-family: latoblack;
     color:#024C8D;
     font-size: 22px;
@@ -1387,9 +1453,40 @@ float: left;
 
 .form-plan ul{
     list-style: none;
-
 }
 
+.planes-info{
+    width:100%;
+    height: 100%;
+    overflow: none; 
+    background-color: #024C8D;
+    z-index: -1;
+    background-image: url('../img/fondo2.png');
+    background-size:8000px;
+    background-repeat: repeat;
+    animation: fondo3 60s infinite linear;
+    top:0px;
+    animation-timing-function: ease-in-out;
+    left:0px;
+    padding:10px 0px 10px 0px;
+}
+
+.planes-info p{
+    color:#024C8D;
+    padding:0px 60px 0px 60px;
+}
+
+.planes-info p b{
+    color:#024C8D;
+    padding:0px 60px 0px 60px;
+    letter-spacing: .25px;
+    font-family: latoblack;
+    text-transform: uppercase;
+}
+
+.planes-info p ins{
+    font-family: latobold;
+}
 
 .plan{
     width:calc(33.333% - 20px);
@@ -1416,6 +1513,7 @@ float: left;
     font-size:25px;
     letter-spacing: 1px;
     color:#57DEFF;
+    padding: 5px 0px 0px 0px;
 }
 .plan h3{
     font-family: latoblack;
@@ -1431,6 +1529,13 @@ float: left;
     filter: none;
     -webkit-transition: all .25s;
     color:#1787e9;
+    line-height: 30px;
+    margin:0px 0px 10px 0px;
+}
+
+.plan h7::first-letter{
+    font-style: italic;
+
 }
 
 .plan:hover{
@@ -1507,9 +1612,89 @@ float: left;
         -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
         filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
         }
+
+    .planes-info p{
+        font-size: 15px;
+    }
+
+    .btn-plan{
+        font-size: 20px;
+        padding:10px 5px 20px 5px;
+        color:#024C8D;
+        font-family: latobold;
+        opacity:.5;
+        transition: all .2;
+    }
+    
+    #btn-estandar{
+        opacity:1;
+    }
+
+    .btn-plan:hover{
+
+    }
+
+    .tarjeta-plan-detalle{
+        width: 70%;
+        float: right;
+    }
+#detalle-img{
+    width:30%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;;
+    top:0px;
+}
+
+#detalle-img img{
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    translate: -45% -50%;
+}
+
+    #plan-detalle h2{
+            text-align: left;
+    padding: 0px 10% 0px 10%;
+    font-family: latoregular;
+    font-style: italic;
+    font-size:20px;
+
+    }
+
+    #plan-detalle li{
+        list-style: none;
+    }
+
+#plan-detalle table{
+        display: inline-table;
+        margin: 10px 0px 200px 0px;
+        width:80%;
+        border-collapse: collapse;
+
+}
+
+    #plan-detalle table th,#plan-detalle table td {
+        border:1px solid #57DEFF;
+        padding:5px 10px 5px 10px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
     
 
-
+    #form-detalle-footer{
+        width:80%;
+        margin:0 auto;
+    }
+    
+    
+    #form-detalle-footer button{
+        float:right;
+        margin-bottom: 10px;
+    }
+    
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
@@ -1714,6 +1899,8 @@ float: left;
 #deslogin{
     opacity: .8;
     transition: all 0.1s ease-in-out;
+    font-size:13px;
+
     color:#57DEFF;
 }
 
@@ -1964,7 +2151,7 @@ float: left;
 #info-cur-info p{
     margin-top:5px;
     font-family: latolight;
-    letter-spacing: .5px;
+    letter-spacing: 1px;
 
 }
 
@@ -2310,7 +2497,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-player{
     text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
-    translate: 0px -270px;
+    translate: 0px -240px;
     left:100px;
     width:50%;
     -webkit-transition: all .2s, bottom .75s;
@@ -2337,7 +2524,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     -webkit-transition: all .2s, bottom .75s;
     left: 0px;
     position:relative;
-    height: 90%;
+    height:100%;
 }
 
 .info-cur{
@@ -2397,7 +2584,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 #info-cap-info p{
     margin-top:5px;
     font-family: latolight;
-    letter-spacing: .5px;
+    letter-spacing: 1px;
 }
 
 #info-cap-info h6{
@@ -2622,7 +2809,7 @@ aside#cur-cap {
     -webkit-transition: opacity 1s;
     opacity: 1;
     animation: cierre-alerta 1s forwards ease;
-    animation-delay: 1s;
+    animation-delay: 5s;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -2678,8 +2865,258 @@ aside#cur-cap {
     100%{opacity:1;}
 }
 
+/* -------------------------------------------- NOSOTROS --------------------------------------------------- */
+/* -------------------------------------------- NOSOTROS --------------------------------------------------- */
+/* -------------------------------------------- NOSOTROS --------------------------------------------------- */
+
+#nosotros{
+    position: absolute;
+    top:50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width:100%;
+    padding:15px 10% 20px 10%;
+    box-sizing: border-box;
+    background-color: #024C8D;
+    animation-timing-function: ease-in-out;
+    z-index: -1;
+    background-image: url('../img/fondo2.png');
+    background-size:8000px;
+    background-repeat: repeat;
+    animation: fondo3 70s infinite linear;
+
+}
+
+#integra{
+    width:80%;
+    text-align: center;
+    margin:0 auto;
+    display: block;
+    margin-bottom: -20px;
+}
+
+#nosotros_texto{
+    padding:0px 0px 20px 0px;
+}
+
+#nosotros_texto aside{
+    display: table-cell;
+    width:49%;
+    
+    color:#003c71
+}
 
 
+#nosotros_texto aside h7{
+    font-size:30px;
+    color:#003c71;
+    padding: 6px;
+    text-align: justify;
+
+
+}
+
+#nosotros_texto aside p{
+    color:#003c71;
+    font-size: 15px;
+    text-align: justify;
+    padding: 0px 6px 0px 6px;
+
+
+}
+
+#nosotros footer{
+    border-top: 1px solid #fff;
+    padding:10px 0px 0px 0px;
+}
+
+#nosotros footer section{
+    display: inline-block;
+}
+
+#nosotros footer ul{
+    list-style: none;
+}
+#nosotros footer ul li{
+    display: inline-block;
+    margin-right:15px;
+    font-size: 15px;
+}
+
+#nosotros footer ul li:last-child{
+    margin-right:0px;
+}
+
+#rs{
+    float:right;
+}
+
+#rs h1{
+    color:#003c71;
+    font-family: latobold;
+
+}
+
+#rs img{
+    height:20px;
+    cursor: pointer;
+    opacity: 0.8;
+    padding-top:4px;
+    box-sizing: border-box;
+}
+
+#rs img:hover{
+    opacity: 1;
+
+
+}
+
+#logos img{
+    height:80px;
+    margin-left:20px;
+}
+
+#r-menu{
+    font-family: latobold;
+    text-shadow: 1px 1px 1px #00315c;
+}
+
+#r-menu li{
+    cursor: pointer;
+}
+
+#r-menu li:hover{
+    color:#003c71;
+    text-shadow: none;
+    
+
+}
+
+#r-links{
+    position: absolute;
+    bottom: 30px;
+}
+
+#r-links li{
+    color:#003c71;
+    cursor: pointer;
+}
+
+#r-links li:hover{
+    color:#fff;
+
+}
+
+#creditos{
+    float:right;
+}
+#form-perfil{
+    padding:40px 0px 30px 0px;
+    width:80%;
+}
+
+#datos-sus h7{
+    font-size: 30px;
+}
+
+#perfil-preview{
+    font-size:40px;
+    width:100%;
+    border-top:1px solid #fff;
+    display: inline;
+}
+
+
+.perfil{
+    position: relative;
+    padding:0px 10% 15px 10%;
+    margin-bottom:70px;
+    
+}
+
+
+#datos-user{
+    float:left;
+}
+
+#datos-user h1{
+    text-align: left;
+    display: block;
+    font-family: latobold;
+}
+#datos-user h3{
+    text-align: left;
+    font-family: latolight;
+    display: block;
+}
+
+#datos-sus{
+    text-align: right;
+    float:right
+}
+
+#datos-sus h4{
+    margin-bottom:10px;
+    font-style: italic;
+}
+
+
+#datos-sus button{
+    text-align: right;
+    translate: none;
+    float:right;
+    text-transform: uppercase;
+}
+
+
+#pago{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 7;
+    transform: translate(-50%, -50%);
+
+}
+
+table#detalle{
+    margin:10px 0px 70px 0px;
+}
+
+#btn-detalle{
+    margin:0px;
+    float: inherit;
+}
+
+#gracias{
+    margin-bottom:10px;
+}
+
+#letra-azul{
+    color:#00315c;
+    font-size:13px;
+}
+
+
+/* MODAL COMPARTIR */
+.modal-compartir-closed{
+    display: none;
+}
+
+
+.modal-compartir-open{
+    z-index: 6;
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color:#00315c;
+    width:50%;
+    height:20%;
+}
+
+
+/* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
+/* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
+/* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 
 
 
@@ -2788,8 +3225,22 @@ aside#cur-cap {
 
 @media (max-width: 900px) {
 
+    .form-login, .form-register {
+        width:90%;
+        
+        
+    }
+    
+    .form-user {
+        width:100%;
 
+    }
+    
+        
+    .form-plan {
+        width:100%;
 
+    }
     
     #logo_abajo {
         opacity: 0;
@@ -3081,11 +3532,6 @@ aside#cur-cap{
 }
 
 }
-
-
-
-
-
 
 
 
@@ -3444,3 +3890,4 @@ aside#cur-cap{
         display: none;
     }
     
+

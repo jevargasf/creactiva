@@ -74,12 +74,16 @@ setTimeout(function () {
                 videoElem = document.getElementsByTagName("video")[0]
                 videoElem.pause();
                 segReproduccion = document.querySelector("div.progress-scrubbar-track").ariaValueNow
+                user = document.querySelector("#user").innerHTML
                 url = window.location.href
                 const csrftoken = getCookie('csrftoken');                
-                data = JSON.stringify(segReproduccion)
+                data = {
+                    "minuto":segReproduccion,
+                    "user":user
+                }
                 console.log(data)
                 // Configuración de la solicitud POST con objeto Request
-                envioData(url, csrftoken, data);
+                envioData(url, csrftoken, JSON.stringify(data));
             }
             });
     });

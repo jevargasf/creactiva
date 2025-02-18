@@ -34,7 +34,7 @@ class IndexView(View):
             'capitulos_cultura': capitulos_cultura,
             'user': current_user
         }
-        return render(request, 'index.html', context)
+        return render(request, 'main/index.html', context)
     
 class RegisterView(View):
     next_page = reverse_lazy('index')
@@ -115,7 +115,7 @@ class ContactoView(View):
     def get (self, request: HttpRequest):
         form = ContactoModelForm()
         context = {'form': form}
-        return render(request, 'contacto.html', context)
+        return render(request, 'main/contacto.html', context)
     
     def post(self, request: HttpRequest):
         form = ContactoModelForm(request.POST)
@@ -126,4 +126,14 @@ class ContactoView(View):
         else:
             context = {'form': form}
             messages.error(request, 'No se ha podido enviar el mensaje. Por favor, intenta nuevamente.')
-            return render(request, 'contacto.html', context)
+            return render(request, 'main/contacto.html', context)
+        
+class NosotrosView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get (self, request: HttpRequest):
+        context = {
+
+        }
+        return render(request, 'main/nosotros.html', context)

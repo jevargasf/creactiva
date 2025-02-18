@@ -77,9 +77,7 @@
 {% include 'snippets/header_volver.html' %}
 {% include 'snippets/logo_abajo.html' %}
 {% include 'snippets/logo_capitulo.html' %}
-<div id="fondo_animado">
-</div>
-<span id="cuadricula"></span>
+{% include 'snippets/fondo_azul.html' %}
 
 <div id="cap-banner-top">
     <h3>{{ info.curso_nombre }} | <b>{{ info.capitulo_nombre }}</b></h3>
@@ -96,7 +94,7 @@
             <h6>{{ info.curso_nombre }} | Capítulo {{ info.numero }}</h6>
             <h8>{{ info.capitulo_nombre }}</h8>
             <h4>{{ info.desc_corta }}</h4>
-            <p>{{ info.descripcion }}</p>
+            <p>{{ info.descripcion | linebreaksbr }}</p>
             <h6>Duración: <b>{{ info.duracion }} Minutos</b></h6>
             <h6>Contenido:</h6>
             <ul class="cap-lista bloques">
@@ -116,8 +114,9 @@
 
             <nav class="botones-cap">
                 <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
-                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
-                <a href="{% url 'cursos' info.curso_id %}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
+                <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
+                <a href="{% url 'curso' info.curso_id %}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
+                {% include 'snippets/modal_compartir.html' %}
             </nav>
 
         </aside>
@@ -137,5 +136,6 @@
 
 <script src="{% static 'js/reproductor.js' %}" type="text/javascript" defer></script>
 {{ minuto | json_script:"minuto" }}
+{{ request.user.username | json_script:"user" }}
 </body>
 </html>

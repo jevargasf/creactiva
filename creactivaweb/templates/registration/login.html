@@ -4,6 +4,7 @@
 {% block content %}
         {% include 'snippets/navbar_log.html' %}
         {% include 'snippets/header_volver.html' %}
+        {% include 'snippets/fondo_azul.html' %}
 <div class="form form-login">
     <h3>HOLA</h3>
     <h7>CreActiv@</h7>
@@ -29,8 +30,8 @@
     </form>
     <p class="p-boton"><a href="{% url 'register' %}">Crear Cuenta</a></p>
 
-    <p class="p-texto">¿Te facilitaron una cuenta desde tu institución?</p>
-    <a href="{% url 'register' %}"><p class="p-boton">Ingresa Aquí</p></a>
+    <p class="p-texto" style="display: none;">¿Te facilitaron una cuenta desde tu institución?</p>
+    <a href="{% url 'register' %}" style="display: none;"><p class="p-boton">Ingresa Aquí</p></a>
 </div>
 
 {% endblock %}

@@ -2,7 +2,7 @@
 
 <header>
     {% if "capitulo" in request.path %}
-    <a id="sigue_explorando" href="{% url 'cursos' info.curso_id %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER AL CURSO</h6></a>
+    <a id="sigue_explorando" href="{% url 'curso' info.curso_id %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER AL CURSO</h6></a>
     {% elif "/planes/individual" in request.path or  "/planes/organizacion" in request.path %}
     <a id="sigue_explorando" href="{% url 'planes' %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER A PLANES</h6></a>
     {% elif "/accounts/registro" in request.path %}

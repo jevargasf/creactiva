@@ -10,8 +10,8 @@ class PerfilIndividualView(View):
     def get (self, request):
         # necesito data del perfil del usuario y de su suscripción
         context = suscripcion_activa(request.user)
-        print(context)
-        return render(request, 'perfil.html', context)
+        
+        return render(request, 'perfiles/perfil.html', context)
     
     def post (self, request, id):
         pass

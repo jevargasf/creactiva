@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+        {% include 'snippets/navbar.html' %}
+        {% include 'snippets/fondo_azul.html' %}
+        {% include 'snippets/header_centro.html' %}
+        {% include 'snippets/header_volver.html' %}
+
+        {% if perfil.codigo == '100' %}
+    <div class="form-register" id="form-perfil">
+        <article class="perfil">
+            <section id="datos-user">
+            <h1>{{ perfil.user.first_name }} {{ perfil.user.last_name}}</h1>
+            <h3>{{ perfil.user.email }}</h3>
+            </section>
+
+            <section id="datos-sus">
+            <h7>{{ suscripcion.plan.nombre }}</h7>
+            <p>Te quedan {{ dias_restantes }} días</p>
+            </section>
+        </article>
+        <h7 id="perfil-preview">Pronto encontrarás más novedades en tu perfil</h7>
+
+    </div>
+        {% else %}
+
+
+        <div class="form-register" id="form-perfil">
+        <article class="perfil">
+            <section id="datos-user">
+            <h1>{{ perfil.user.first_name }} {{ perfil.user.last_name}}</h1>
+            <h3>{{ perfil.user.email }}</h3>
+            </section>
+            <section id="datos-sus">
+            <h4>Aún no estás suscrito a nuestro contenido</h4>
+            <button class="btn-curso"><a href="{% url 'planes' %}">Conoce nuestros planes</a></button>
+           </section>
+        </article>
+    </div>
+        {% endif %}
+    {% endblock %}

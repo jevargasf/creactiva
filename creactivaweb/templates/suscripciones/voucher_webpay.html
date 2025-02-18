@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load formato_valores %}
+
+{% block content %}
+{% include 'snippets/header_centro.html' %}
+{% include 'snippets/header_volver.html' %}
+{% include 'snippets/navbar_azul.html' %}
+{% include 'snippets/fondo_celeste.html' %}
+
+
+<div id="plan-detalle" class="form form-register">
+    <h1 id="gracias">¡Muchas Gracias!</h1>
+    <h3>Tu suscripción es:</h3>
+    <h7>{{ tipo }}</h7><br><br>
+
+    <p>Y ESTOS SON LOS DETALLES DE TU SUSCRIPCIÓN:</p>
+
+
+    <table id="detalle">
+        <tr>
+          <th>Tipo de plan</th>
+          <th>Inicio</th>
+          <th>Término</th>
+          <th>Días Restantes</th>
+      
+        </tr>
+        <tr>
+          <td>{{ tipo }}</td>
+          <td>{{ fecha_inicio| date:"d M Y" }}</td>
+          <td> {{ fecha_termino | date:"d M Y" }}</td>
+          <td>{{ dias_restantes }} días</td>
+        </tr>
+      
+      </table>
+
+
+    
+        <button id="btn-detalle"  class="btn-curso"><a href="{% url 'index' %}">COMENZAR A EXPLORAR</a></button>
+</div>
+
+{% endblock %}

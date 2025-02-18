@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load formato_valores %}
+
+{% block content %}
+{% include 'snippets/header_centro.html' %}
+{% include 'snippets/navbar_azul.html' %}
+{% include 'snippets/fondo_celeste.html' %}
+
+<form id="plan-detalle" class="form form-register" action="{% url 'pantalla-pagar' plan.id %}" method="post">
+    {% csrf_token %}
+    <div id="detalle-img">
+        <img src="{% static 'img/c1_2.png' %}" alt="">
+    </div>
+    <div class="tarjeta-plan-detalle">
+        <h2>Detalle de tu compra:</h2>
+
+
+
+            <table>
+                <tr>
+                  <th>Tipo de plan</th>
+                  <th>Duración</th>
+                  <th>Total</th>
+              
+                </tr>
+                <tr>
+                  <td>{{ plan.nombre }}</td>
+                  {% if plan.duracion == 1 %}
+                  <td>{{ plan.duracion }} mes</td>
+                  {% else %}
+                  <td>{{ plan.duracion }} meses</td>
+                  {% endif %}
+
+                  <td>{{ plan.monto | separador_miles }} CLP</td>
+                </tr>
+              
+              </table>
+              
+            <div id="form-detalle-footer">
+                <button type="submit">PAGAR</button>
+            </div>        
+        
+        
+        </div>
+</form>
+
+
+<a id="sigue_explorando" href="{% url 'plan-individual' %}"> <img id="flecha_izquierda" src="{% static 'icon/flecha.svg' %}"></img><h6>VOLVER A PLANES</h6></a>
+{% endblock %}

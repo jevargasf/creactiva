@@ -11,11 +11,11 @@
                 
         <form class="form-logout" action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <button id="deslogin" type="submit">Salir</button>
+            <button id="deslogin" type="submit"><a  id="letra-azul"  href="">Salir</a></button>
         </form>
         <h6>&nbsp|&nbsp</h6>
         <button id="verperfil">
-            <p><a href="{% url 'perfil' %}">Ver perfil</a></p>
+            <p><a id="letra-azul" href="{% url 'perfil' %}">Ver perfil</a></p>
         </button>
 
         </div>

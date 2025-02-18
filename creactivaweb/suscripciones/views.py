@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpRequest, Http404, HttpResponseRedirect
-from suscripciones.forms import SolicitudOrganizacionForm, SuscripcionOrganizacionForm, ElegirOrganizacionForm
+from suscripciones.forms import *
 from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion, Planes
 from suscripciones.utils import str_to_list, sumar_fecha
 from django.contrib import messages
@@ -9,7 +9,7 @@ from main.models import User, Perfil
 from cursos.models import Curso
 from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
-from suscripciones.services import suscripcion_activa, suscripcion_session, suscripcion_perfil
+from suscripciones.services import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from smtplib import SMTPException
@@ -21,7 +21,7 @@ class PlanesView(View):
 
     def get(self, request: HttpRequest):
         
-        return render(request, 'elegir_tipo.html')
+        return render(request, 'suscripciones/elegir_tipo.html')
 
 ####### MANEJO DE SUSCRIPCIONES INDIVIDUALES #######
 class PlanIndividual(View):
@@ -29,23 +29,97 @@ class PlanIndividual(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        planes = Planes.objects.all()
+        planes = planes_montos_mensuales()
+        form = CodigoPromocionalForm()
         context = {
-            'planes': planes
+            'planes': planes,
+            'form': form
         }
-        return render(request, 'plan_individual.html', context)
+        return render(request, 'suscripciones/plan_individual.html', context)
+
+    def post(self, request: HttpRequest):
+        form = CodigoPromocionalForm(request.POST)
+        if form.is_valid():
+            codigo_object = validar_codigo(form.cleaned_data['codigo'])
+            if codigo_object != None:
+                if request.user.is_authenticated:
+                    perfil_object = Perfil.objects.get(user_id=request.session.get('_auth_user_id'))
+                    perfil_object.descuento_creactiva = True
+                    perfil_object.save()
+                    registro_descuento = PerfilCodigo(
+                        perfil=perfil_object,
+                        codigo=codigo_object,
+                    )
+                    registro_descuento.save()
+                else:
+                    messages.error(request, 'Por favor, ingresa para continuar.')
+                    return redirect('login')
+            else:
+                planes = planes_montos_mensuales()
+                form = CodigoPromocionalForm()
+                context = {
+                    'planes': planes,
+                    'form': form
+                }
+                messages.error(request, 'Lo sentimos, este código no es válido. Por favor, ingresa un código válido.')
+                return render(request, 'suscripciones/plan_individual.html', context)
+            planes = planes_montos_mensuales()
+            form = CodigoPromocionalForm()
+            context = {
+                'planes': planes,
+                'form': form
+            }
+            # SI ES VÁLIDO, SE LE HACE EL CHECK PARA UQE PAGUE CON DCTO PROMOCIONAL
+            messages.success(request, '¡Felicidades! Tu código ha sido validado con éxito. Elige un plan.')
+            return render(request, 'suscripciones/plan_individual.html', context)
+        else:
+            planes = planes_montos_mensuales()
+            form = CodigoPromocionalForm()
+            context = {
+                'planes': planes,
+                'form': form
+            }
+            messages.error(request, 'Lo sentimos, este código no es válido. Por favor, ingresa un código válido.')
+            return render(request, 'suscripciones/plan_individual.html', context)
 
 class DetallePlan(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest, id_plan):
-        plan = Planes.objects.get(pk=id_plan)
-        context = {
-            'plan': plan
-        }
-        return render(request, 'detalle_plan.html', context)
-    
+        if request.session.get('_auth_user_id'):
+            user_id = request.session.get('_auth_user_id')
+            # IF PAYLOAD VIENE CON CÓDIGO PROMOCIONAL, ENTONCES LO VALIDA. SI NO, CONTINÚA A PANTALLA PAGOS.
+            # ESCRIBIR UTILIDAD QUE VALIDE CÓDIGO. ESTA UTILIDAD ES LA QUE ESCRIBE EL CHECK CODIGO DESCUENTO
+            # EN EL PERFIL. CON ESTO, EL PROCESO DE PAGO PUEDE SEGUIR NORMAL
+            # SI EL DESCUENTO ES INVÁLIDO, DA LO MISMO, YA ESTÁ LA RUTA A SEGUIR
+            posee_descuento = check_descuento(user_id)
+            plan = Planes.objects.get(pk=id_plan)
+            if posee_descuento == True and plan.plan_descuento == True:
+                context = {
+                    'plan': plan
+                }
+                messages.error(request, 'Hemos validado tu Descuento Creactiva.')
+                return render(request, 'suscripciones/detalle_plan.html', context)
+            elif posee_descuento == True and plan.plan_descuento == False:
+                nuevo_plan = Planes.objects.get(plan_descuento=True, duracion=plan.duracion)
+                context = {
+                    'plan': nuevo_plan
+                }
+                messages.error(request, '¡Actualmente posees el Descuento Creactiva! Hemos seleccionado el plan con descuento para ti.')
+                return render(request, 'suscripciones/detalle_plan.html', context)
+            elif posee_descuento == False and plan.plan_descuento == True:
+                messages.error(request, 'Actualmente no tienes habilitado el Descuento Creactiva. Puedes intentar validarte como beneficiario o eligir un plan estándar.')
+                return redirect('plan-individual')
+            elif posee_descuento == False and plan.plan_descuento == False:
+                context = {
+                    'plan': plan
+                }
+                return render(request, 'suscripciones/detalle_plan.html', context)
+        else:
+            messages.error(request, 'Por favor, ingresa para continuar.')
+            return redirect('login')
+
     def post(self, request: HttpRequest, id_plan):
         pass
 
@@ -64,11 +138,15 @@ class PagarView(LoginRequiredMixin, View):
                 context = {
                     'fecha_inicio': check_suscripcion.fecha_inicio,
                     'fecha_termino': check_suscripcion.fecha_termino,
-                    'tipo': check_suscripcion.plan.nombre
+                    'tipo': check_suscripcion.plan.nombre,
+                    'dias_restantes': (check_suscripcion.fecha_termino - now()).days
                 }
-                return render(request, 'suscripcion_activa.html', context)
+                return render(request, 'suscripciones/suscripcion_activa.html', context)
             elif check_suscripcion == None:
                 plan = Planes.objects.get(pk=id_plan)
+                user_object = User.objects.get(username=request.user)
+                perfil_object = Perfil.objects.get(user_id=user_object.id)
+                codigo_object = conseguir_codigo_usado(perfil_object)
                 fecha_inicio = now()
                 fecha_termino = sumar_fecha(fecha_inicio, plan.duracion)
                 suscripcion = Suscripcion(
@@ -77,7 +155,6 @@ class PagarView(LoginRequiredMixin, View):
                     fecha_termino=fecha_termino,
                     monto=plan.monto,
                     numero_usuarios=1,
-                    codigo_validacion='0',
                     plan=plan
                 )
                 suscripcion.save()
@@ -88,12 +165,10 @@ class PagarView(LoginRequiredMixin, View):
                         curso=curso
                     )
                     curso_suscripcion.save()
-
-                user_object = User.objects.get(username=request.user)
-                perfil_object = Perfil.objects.get(user_id=user_object.id)
                 perfil_suscripcion = PerfilSuscripcion(
                     perfil=perfil_object,
                     suscripcion=suscripcion,
+                    codigo_promocional=codigo_object,
                     estado_suscripcion='2'
                 )
                 perfil_suscripcion.save()
@@ -107,7 +182,7 @@ class PagarView(LoginRequiredMixin, View):
                 'token': respuesta['token']
             }
 
-            return render(request, 'webpay.html', context)
+            return render(request, 'suscripciones/webpay.html', context)
         except User.DoesNotExist as e:
             print(f"Error: {e}")
             messages.error(request, 'Por favor, ingresa antes de continuar. Si no tienes una cuenta, regístrate.')
@@ -126,7 +201,6 @@ class RespuestaWebpayView(View):
         try:
             # RECIBIR EL RESULTADO DEL REDIRECCIONAMIENTO WEBPAY
             # CUANDO ANULO UNA TRANSACCIÓN, EL TOKEN NO VUELVE COMO TOKEN_WS, VUELVE COMO TBK_TOKEN
-            print("VOLVIENDO DE WP: ", request.user)
             if request.GET.get('TBK_TOKEN'):
                 token = request.GET.get('TBK_TOKEN')
             elif request.GET.get('token_ws'):
@@ -156,10 +230,14 @@ class RespuestaWebpayView(View):
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 perfil_object.codigo = '100'
+                perfil_object.descuento_creactiva = False
                 perfil_object.save()
                 perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
                 perfil_suscripcion_object.estado_suscripcion = '1'
                 perfil_suscripcion_object.save()
+                # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
+                perfil_codigo_object = PerfilCodigo(codigo=conseguir_codigo_usado(perfil_object))
+                perfil_codigo_object.estado_uso_codigo = '1'
                 send_mail(
                     f"Nueva Suscripción Creactiva Animaciones",
                     f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
@@ -172,13 +250,13 @@ class RespuestaWebpayView(View):
                 )
                 messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                 context = {
-                    'orden_compra': suscripcion.id,
+                    'tipo': suscripcion.plan.nombre,
                     'fecha_inicio': suscripcion.fecha_inicio,
                     'fecha_termino': suscripcion.fecha_termino,
-                    'tarjeta': result[1],
-                    'monto': suscripcion.monto
+                    'monto': suscripcion.monto,
+                    'dias_restantes': (suscripcion.fecha_termino - now()).days
                 }
-                return render(request, 'voucher_webpay.html', context)
+                return render(request, 'suscripciones/voucher_webpay.html', context)
             elif result[0] == 'FAILED':
                 session_id = result[3]
                 suscripcion = suscripcion_session(session_id)
@@ -222,7 +300,7 @@ class PlanOrganizacion(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        return render(request, 'plan_organizacion.html')
+        return render(request, 'suscripciones/plan_organizacion.html')
 
     
 class SolicitudOrganizacionView(View):
@@ -232,7 +310,7 @@ class SolicitudOrganizacionView(View):
     def get(self, request: HttpRequest):
         form = SolicitudOrganizacionForm()
         context = {'form': form}
-        return render(request, 'plan_organizacion.html', context)
+        return render(request, 'suscripciones/plan_organizacion.html', context)
     
     def post(self, request: HttpRequest):
         # Cuando se reciba una solicitud de organización, la persona queda registrada como representante
@@ -254,7 +332,7 @@ class SolicitudOrganizacionView(View):
         else:
             context = {'form': form}
             messages.error(request, 'No se ha podido enviar tu solicitud. Por favor, intenta nuevamente.')
-            return render(request, 'plan_organizacion.html', context)
+            return render(request, 'suscripciones/plan_organizacion.html', context)
 
 
 class ElegirOrganizacionView(View):
@@ -264,7 +342,7 @@ class ElegirOrganizacionView(View):
     def get(self, request: HttpRequest):
         form = ElegirOrganizacionForm()
         context = {'form': form}
-        return render(request, 'elegir_organizacion.html', context)
+        return render(request, 'suscripciones/elegir_organizacion.html', context)
 
     def post(self, request: HttpRequest):
         form = ElegirOrganizacionForm(request.POST)
@@ -275,7 +353,7 @@ class ElegirOrganizacionView(View):
         else:
             context = {'form': form}
             messages.error(request, 'No se pudo recuperar los datos de la organización. Por favor, intenta nuevamente.')
-            return render(request, 'elegir_organizacion.html', context)
+            return render(request, 'suscripciones/elegir_organizacion.html', context)
         
 class SuscripcionOrganizacionView(View):
     def dispatch(self, *args, **kwargs):
@@ -292,7 +370,7 @@ class SuscripcionOrganizacionView(View):
             'id_org': id_org,
             'form': form
         }
-        return render(request, 'suscribir_organizacion.html', context)
+        return render(request, 'suscripciones/suscribir_organizacion.html', context)
     
     def post(self, request: HttpRequest, id_org):
         form = SuscripcionOrganizacionForm(request.POST)
@@ -303,7 +381,6 @@ class SuscripcionOrganizacionView(View):
                 fecha_termino=form.cleaned_data['fecha_termino'],
                 monto=0,
                 numero_usuarios=form.cleaned_data['numero_usuarios'],
-                codigo_validacion='0',
                 estado_suscripcion='1'
             )
             try:
@@ -340,7 +417,7 @@ class SuscripcionOrganizacionView(View):
                     }
                 
                 messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
-                return render(request, 'suscribir_organizacion.html', context)
+                return render(request, 'suscripciones/suscribir_organizacion.html', context)
 
         else:
             context = {
@@ -349,4 +426,4 @@ class SuscripcionOrganizacionView(View):
                 }
             
             messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
-            return render(request, 'suscribir_organizacion.html', context)
+            return render(request, 'suscripciones/suscribir_organizacion.html', context)

@@ -330,6 +330,10 @@ APP SUSCRIPCIONES:
 - BOTÓN "QUIERO CAMBIAR MI SUSCRIPCIÓN" en PANTALLA_COMPRA, en caso de que la persona quiera cambiar el plan que va a pagar (habiendo elegido otro anteriormente)
 
 
+APP PERFILES
+- botón favoritos necesita lógica
+
+
 DEBUG EN PRODUCCIÓN:
 - suscripciones/services.py: comenté líneas 30-32. Al parecer, la excepción interrumpe el flujo del programa cuando no encuentra el perfil (el usuario todavía no tiene código '100'). Actualización: Así funciona bien.
 - cambiar a bbdd postgresql. En postgresql existe el arrayField que almacena listas. Por ahora, en sqlite, lo haré con json
@@ -337,18 +341,122 @@ DEBUG EN PRODUCCIÓN:
 - subir tareas cron
 
 ETAPA FINAL DE DETALLES:
-- Debug: Que el form de elegir organización recupere todas las solicitudes
-- javascript en el front-end para desplegar mensaje que redirija a planes cuando termine de ver el trailer o lo pause (ESPERAR A JOSÉ QUE RECUPERE LA FUNCIONALIDAD DEL REPRODUCTOR)
--	Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
--	Descripción detalle:
-    o	Tu suscripción termina el día fecha_termino
-    o	Acceso a todo el contenido educativo
-    o	Valor
-- integrar descuento estudiante/comunero
-- recopilar contenidos de capítulos y agregarlos a videos lengua mapuche
-- botones para compartir curso y capítulo no están funcionales
-- botón favoritos necesita lógica
-- app perfiles debe editar datos
+✔ recopilar contenidos de capítulos y agregarlos a videos lengua mapuche (lo hará Fabián)
 
-APP PERFILES
-- permite mostrar datos, pero todavía no permite editarlos
+
+MAñANA:
+MAIN
+✔ Quitar botón cuenta institución en el login
+- Correo registro: mejorar wording
+✔ URL sobre nosotros
+
+SUSCRIPCIONES
+✔ integrar descuento estudiante/comunero
+    - LÓGICA: Si alguien quiere pagar con descuento estudiante.
+    1. Si no tiene descuento estudiante, que le despliegue una alerta con la información (básicamente, hazte usuario, si no tienes una cuenta, regístrate, luego, escríbenos a contacto@creactivaanimaciones.cl con asunto "Descuento Creactiva" y adjunta tu certificado de alumno regular de tu institución educativa o tu certificado de pertenencia al pueblo mapuche entregado por CONADI. Nosotros te responderemos a la brevedad y habilitaremos tu descuento)
+    2. Administrador valida el documento, checkea campo "descuento creactiva" en bbdd y responde por mail.
+    3. Si el usuario tiene check "descuento creactiva" == True, entonces aplicación suscripciones le permite pagar utilizando plan descuento creactiva
+    ✔ Banner o bloque explicando descuento creactiva
+    ✔ Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
+    ***	Descripción detalle: ***
+    ✔	Tu suscripción termina el día fecha_termino
+    ✔	Acceso a todo el contenido educativo
+    ✔	Valor
+    *** formatear fechas sin hora ***
+    ✔ falta conteo de días
+    *** Pestañas para ver planes estándar y dcto creactiva ***
+    ✔ Planes: valor mensual + cantidad de mensual
+    ✔ Número de tarjeta quitar, solo monto y tipo plan
+✔ Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
+✔ Agregar campo boolean para boletas entregadas en perfilsuscripcion
+- Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+- Mensaje de fallo o éxito transacción debe durar más
+
+- Códigos promocionales: ver lógica
+- Debug: Que el form de elegir organización recupere todas las solicitudes
+- Formulario solicitudes falta ver tema países, comunas
+
+CURSOS
+- botones para compartir curso y capítulo no están funcionales
+- Revisar los headers para volver atrás. Trailer debe volver al curso
+*** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
+*** Botón replay quiebra el reproductor ***
+- Dar funcionalidad de play al botón reproducir de abajo
+- Botón compartir link
+- ESTADOS CURSOS ??
+- sección principal cursos
+
+PERFILES
+✔ permite mostrar datos, pero todavía no permite editarlos: datos perfil y suscripción
+- falta mostrar historial de pagos
+- falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
+✔ formatear fechas sin hora
+✔ falta conteo de días
+
+LUNES:
+SUSCRIPCIONES 
+- Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+- Mensaje de fallo o éxito transacción debe durar más
+- Códigos promocionales: ver lógica
+- Debug: Que el form de elegir organización recupere todas las solicitudes
+- Formulario solicitudes falta ver tema países, comunas
+CURSOS
+✔ botones para compartir curso y capítulo no están funcionales
+✔ Revisar los headers para volver atrás. Trailer debe volver al curso
+*** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
+*** Botón replay quiebra el reproductor ***
+- Dar funcionalidad de play al botón reproducir de abajo
+✔ Botón compartir link
+- ESTADOS CURSOS ??
+- sección principal cursos
+PERFILES
+- falta mostrar historial de pagos
+- falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
+DESPLIEGUE
+- Subir versión de producción
+- Migrar a bbdd postgresql
+- Conectar a github repo para realizar cambios desde local y automatizar despliegue
+
+
+CÓDIGOS PROMOCIONALES:
+- Permiten al usuario portador a acceder a una suscripción precio descuento creactiva por 1 vez. Puede ser cualquiera de los 3 planes creactiva. Un usuario puede ocupar más de 1 código. Un código solo puede ser usado un determinado número de veces.
+    - Da lo mismo si el mismo usuario usó el mismo código dos veces? Por ejemplo, el código dura 2 meses, y uso el mismo código para conseguir 2 meses precio creactiva. Yo creo que sí.
+    - Cuando la suscripción pagada con el código caduca, el usuario debe volver a ser estándar (deja de ser plan descuento). Por lo tanto, se debe tener trazabilidad respecto a qué suscripciones fueron pagadas con código promocional. Cuando caduque esa suscripción, el usuario vuelve a ser estándar.
+    - El usuario que ingrese ese código, echa a andar un script que reescriba su perfil, haciendo el campo descuento_promocional = True. Esto le permitirá pagar una suscripción precio creactiva hasta que el código caduque.
+    - Hay dos formas a través de las que caduca un código: 1) Se ocupó el número de veces para las que fue creado, 2) LLegó la fecha de caducidad.
+    - En el fondo, el código promocional interviene al perfil del usuario que lo usa por un cierto periodo de tiempo. Lo hace usuario Creactiva hasta que el código caduque.
+    - Por lo tanto, lo más importante, es llevar trazabilidad de los usuarios que ingresan el código. Así, cuando llegue la fecha de caducidad, sabemos qué usuarios deben volver a usuario estándar.
+    - Un usuario puede ocupar puede ocupar muchos códigos, y un código puede ser ocupado muchas veces por el mismo usuario (siempre que la fecha de caducidad y la cantidad de usos lo permitan)
+    - ¿Un usuario puede tener una suscripción vigente pagada con código promocional y mientras la suscripción sigue vigente perder su estado de usuario creactiva? Debería poder. Y creo que se puede, ya que el tema código promocional es un estado extra del perfil, y no se ve reflejado en el código de acceso 1XX. Además, una vez pagada la suscripción, al usuario no se le pregunta si tiene descuento promocional para ingresar o para ver los cursos. Eso solo se pregunta cuando quiere pagar. Por lo tanto, el tener descuento es una condición independiente de tener suscripción. La duración de la suscripción individual es independiente del precio que se pagó por ella.
+    - Entonces, ¿es mejor dejarlos en tablas separadas o en perfilsuscripcion?
+    - En la suscripción así como está, se va a ver si el usuario pagó plan con descuento. No se va a ver si el usuario pagó con código promocional. ¿Pero importa eso? Por ahora, no mucho.
+    - Lo que sí importa es tener trazabilidad de qué usuario activó un código para saber cuándo caduca. Y tener trazabilidad de cuándo un código deja de ser vigente. Neceistamos una relación entre usuarios y códigos. De muchos a muchos.
+    - Si el usuario usó un código, no puede usar el mismo hasta que finalice su suscripción (porque en rigor, ya no puede comprar otra suscripción cuando todavía tiene una vigente). Podrá usar el mismo código siempre y cuando el código siga vigente.
+    - Si el usuario ya usó un código, no puede usar otro hasta que caduque (no tiene sentido, ya que el código solo le da check al campo descuento promocional).
+    - La promoción creactiva tiene 3 ciclos, dependiendo del tipo de promoción:
+        - Estudiante: Caduca el 1 de marzo del año siguiente? (lógica puede escribirse después)
+        - Pueblo mapuche: De por vida.
+        - Promocional: Código activa 1 pago a precio descuento. Se puede usar el código hasta la fecha establecida o hasta agotar stock. No hace check a descuento creactiva.
+
+    - El check al descuento se logran de dos maneras:
+        - Estudiante y pueblo mapuche: Manual mediante validación del administrador.
+        - Promocional: Código autoriza 1 pago a precio descuento.
+
+Proceso:
+1. Usuario ingresa código en un campo adicional del formulario de plan-individual. Se realiza una consulta a la tabla codigos. Si el código tiene estado 1, entonces se deja pasar a vista detalle de pago.
+¿Qué pasa si el usuario vuelve y anula el plann elegido? Vuelve a ingresar el código y vuelve a evaluar si está vigente. Cuando el confirma el pago, entonces se escriben 
+2. Formulario escribe el objeto perfil con descuento_promocional = True y objeto suscripción con el  codigo_promocional
+3. Se realiza el proceso de pago normal
+4. En la vista de respuesta webpay, si el objeto suscripción tiene código promocional distinto de cero, entonces se cambia el objeto perfil descuento_promocional = False. Además, si el código promocional de la suscripción pagada es igual a un código promocional de la tabla, entonces se resta 1 a la cantidad del código y se escribe un registro en la nub de perfiles_codigos.
+FIN DEL PROCESO
+
+*** ESTADOS DEL USO DEL CÓDIGO EN TABLA PERFILCODIGO:
+- 0: Validado, pero no utilizado
+- 1: Utilizado (suscripción registrada exitosamente)
+
+
+Por escribir: tarea cron que valide la vigencia de los códigos creados. Actualiza estado = 0 si la fecha de término coincide con la fecha de hoy.
+
+
+DEBUG:
+- index.js se corta desde la línea 257 hacia abajo cuando lo usamos en el trailer.html y en el reproductor.html porque llama a algunas clases que no existen y se interrumpe la ejecución del script

@@ -15,6 +15,7 @@ class Perfil(models.Model):
     nombre_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Ninguno', verbose_name='Nombre organización')
     tipo_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Cuenta individual', choices=TIPOS_ORGANIZACION, verbose_name='Tipo organización')
     verificado = models.BooleanField(default=False, verbose_name='Verificado')
+    descuento_creactiva = models.BooleanField(default=False, verbose_name='Descuento Creactiva')
     user = models.OneToOneField(
         User,
         related_name='perfil_usuario',
@@ -37,7 +38,7 @@ class Perfil(models.Model):
         apellido = self.user.last_name
         usuario = self.user.email
         tipo = self.codigo
-        return f'{nombre} {apellido} | Username: {usuario} | Código: {tipo}'
+        return f'{nombre} {apellido} | Username: {usuario} | Código: {tipo} | Descuento Creactiva: {self.descuento_creactiva}'
 
 class Contacto(models.Model):
     nombre = models.CharField(max_length=255, null=True, blank=True, verbose_name='Nombre')

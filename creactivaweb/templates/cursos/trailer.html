@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Trailer {{ curso.nombre }}</title>
+<title>Trailer {{ info.capitulo_nombre }}</title>
 <link href="{% static '/skins/remix/techsmith-smart-player.min.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
@@ -26,9 +26,9 @@
 </div>
 
 <aside id="info-cap-player">
-    <h3>Trailer curso</h3>
-    <h8>{{ curso.nombre }}</h8>
-    <h4>{{ curso.desc_corta }}</h4>
+    <h3>Capítulo {{ info.numero }}</h3>
+    <h8>{{ info.capitulo_nombre }}</h8>
+    <h4>{{ info.desc_corta }}</h4>
 </aside>
 <button type="button" class="btn-capitulo" name="Play" id="btn-capitulo-out" ><a href="#">MÁS INFORMACIÓN</a></button>
 
@@ -36,12 +36,12 @@
 
 
 
-<script src="{% static 'scripts/' %}{{ curso.js_trailer }}" type="text/javascript"></script>
+<script src="{% static 'scripts/' %}{{ recurso.js_trailer }}" type="text/javascript"></script>
 <script type="text/javascript">
     (function (window) {
         function setup(TSC) {
-             TSC.playerConfiguration.addMediaSrc("{{ curso.link_trailer }}");
-             TSC.playerConfiguration.setXMPSrc("{% static 'xml/' %}{{ curso.xml_trailer }}");
+             TSC.playerConfiguration.addMediaSrc("{{ recurso.link }}");
+             TSC.playerConfiguration.setXMPSrc("{% static 'xml/' %}{{ recurso.xml_trailer }}");
              TSC.playerConfiguration.setAutoHideControls(true);
              TSC.playerConfiguration.setBackgroundColor("#000000");
              TSC.playerConfiguration.setCaptionsEnabled(false);
@@ -52,7 +52,7 @@
              TSC.playerConfiguration.skipVideoDuration = 10;
              
              TSC.playerConfiguration.setAutoPlayMedia(false);
-             TSC.playerConfiguration.setPosterImageSrc("{% static '/img/' %}{{ curso.imagen_portada }}");
+             TSC.playerConfiguration.setPosterImageSrc("{% static '/img/' %}{{ info.first_frame }}");
              TSC.playerConfiguration.setIsSearchable(true);
              TSC.playerConfiguration.setEndActionType("stop");
              TSC.playerConfiguration.setEndActionParam("true");
@@ -76,12 +76,10 @@
 {% include 'snippets/header_volver.html' %}
 {% include 'snippets/logo_abajo.html' %}
 {% include 'snippets/logo_capitulo.html' %}
-<div id="fondo_animado">
-</div>
-<span id="cuadricula"></span>
+{% include 'snippets/fondo_azul.html' %}
 
 <div id="cap-banner-top">
-    <h3>Curso | <b>{{ curso.nombre }}</b></h3>
+    <h3>Capítulo {{ info.numero}} | <b>{{ info.capitulo_nombre }}</b></h3>
 </div>
 
 
@@ -94,26 +92,27 @@
 <article id="info-cap-full">
     <section>
         <aside id="info-cap-info"> 
-            <h6>{{ curso.nombre }}</h6>
-            <h8>{{ curso.nombre }}</h8>
-            <h4>{{ curso.desc_corta }}</h4>
-            <p>{{ curso.desc_larga }}</p>
-            <h6>Duración curso: <b>{{ curso.duracion}} Minutos</b></h6>
+            <h6>Capítulo {{ info.numero }}</h6>
+            <h8>{{ info.capitulo_nombre }}</h8>
+            <h4>{{ info.desc_corta }}</h4>
+            <p>{{ info.descripcion | linebreaksbr }}</p>
+            <h6>Duración capítulo: <b>{{ info.duracion}} Minutos</b></h6>
             <h6>Contenido:</h6>
             <ul class="cap-lista bloques">
-                    {% for contenido in list %}
-                    <li>· </li>
+                    {% for contenido in info.contenidos %}
+                    <li>· {{ contenido }}</li>
                     {% endfor %}
             </ul>
 
             <nav class="botones-cap">
                 <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
-                <a href="" target="_blank"><button><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
+                <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
                 <a href="{% url 'login' %}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
+                {% include 'snippets/modal_compartir.html' %}
             </nav>
 
         </aside>
-        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ curso.first_frame}}" alt="{{ info.capitulo_nombre }}"></aside>
+        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ info.first_frame}}" alt="{{ info.capitulo_nombre }}"></aside>
 
     </section>
 </article>

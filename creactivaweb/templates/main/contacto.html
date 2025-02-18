@@ -3,6 +3,7 @@
 {% block content %}
 {% include 'snippets/navbar.html' %}
 {% include 'snippets/header_volver.html' %}
+{% include 'snippets/fondo_azul.html' %}
     <div class="form form-register">
         <h7>CreActiv@</h7><br><br><br>
         <h3>CUÉNTANOS... ¿QUÉ NECESITAS?</h3>
@@ -13,7 +14,7 @@
         {{ form.apellido }}
     </div>
         <div>{{ form.email }}</div>
-        <div>{{ form.mensaje }}</div>
+        <div id="textcontacto">{{ form.mensaje }}</div>
 
         <button type="submit">ENVIAR</button>
 
