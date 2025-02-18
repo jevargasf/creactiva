@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<!-- AQUÍ LOS HEADS DE ESTE TEMPLATE -->
+<meta property="og:locale" content="es_ES" />
+<meta property="og:title" content="Creactiva Animaciones" />
+<meta property="og:type" content="website" />
+<meta property="og:URL" content="https://www.creactivaanimaciones.cl" />
+<meta property="og:image" content="{% static 'icon/index_portada.jpg' %}" />
+<meta property="og:description" content="Más que una plataforma de cursos y animaciones interactivas; Un espacio donde cada idea puede cobrar vida y cada reflexión tiene el potencial de transformar el mundo." />
+{% endblock %}
 
     {% block content %}
         {% include 'snippets/navbar.html' %}

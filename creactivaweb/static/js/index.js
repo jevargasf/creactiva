@@ -55,7 +55,10 @@ $(document).ready(function () {
     })
 });
 
-
+// BOTON CERRAR ALERTA
+$("#cerrar-compartir").click(function(){
+    document.querySelector('#modal-compartir').classList.toggle('modal-compartir-open');
+});
 
 
 // BOTON CERRAR ALERTA
@@ -154,29 +157,38 @@ $(document).ready(function(){
 
 $("#mas-info").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cap-full").offset().top},
+        scrollTop: $("#info-cur-info").offset().top},
         'slow');
 });
 
 
 $("#btn-curso1").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cap-full").offset().top},
+        scrollTop: $("#info-cur-info").offset().top},
         'slow');
 });
 
 
 $("#mas-info-cap").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cap-full").offset().top},
+        scrollTop: $("#info-cap-info").offset().top},
         'slow');
 });
 
 $("#btn-capitulo-out").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cap-full").offset().top},
+        scrollTop: $("#info-cap-info").offset().top},
         'slow');
 });
+
+
+$("#cap-reproducir").click(function() {
+    $('html,body').animate({
+        scrollTop: $("html").offset().top},
+        'slow');
+});
+
+
 
 
 // Animación Título Principal con scroll

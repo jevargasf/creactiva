@@ -90,11 +90,11 @@
 
 #bannerback{
     background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,0) 100%);
     position: fixed;
     top:0px;
     width:100vw;
-    height:150px;
+    height:100px;
     z-index: 2;
     transition: all .25s;
     opacity: 0;
@@ -2524,7 +2524,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     -webkit-transition: all .2s, bottom .75s;
     left: 0px;
     position:relative;
-    height:100%;
+    height:110%;
 }
 
 .info-cur{
@@ -2612,6 +2612,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 .materiales{
     padding:5px 0px 5px 5px;
+    display: none;
 }
 
 .materiales li{
@@ -3104,22 +3105,128 @@ table#detalle{
 
 
 /* MODAL COMPARTIR */
+
+#modal-compartir{
+    z-index: 6;
+    width:100%;
+    height:100%;
+    position: fixed;
+    transition: all .5s;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    left:0;
+    top:0;
+}
+
+#modal-compartir h1{
+    font-size:14px;
+    
+}
+
+#cerrar-compartir{
+    position: fixed;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    
+}
+
 .modal-compartir-closed{
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    animation: cierre-compartir .5s forwards linear;
+    
+}
+
+@keyframes cierre-compartir{
+    0%{      }
+    100%{     display: none;}
 }
 
 
 .modal-compartir-open{
-    z-index: 6;
+    pointer-events: initial;
+    opacity: 1;
     display: block;
-    position: absolute;
-    top: 0;
-    background-color:#00315c;
-    width:50%;
-    height:20%;
+    animation: none;
+    transition: all .5s;
+
 }
 
 
+#compartir-lista{
+    position: absolute;
+    background-color: #024C8D;
+    animation-timing-function: ease-in-out;
+    background-image: url('../img/fondo2.png');
+    background-size:4000px;
+    background-repeat: repeat;
+    animation: fondo3 60s infinite linear;
+    width:30%;
+    height:30%;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    padding:3.5%;
+    box-sizing: border-box;
+}
+
+#share-icon{
+    list-style: none;
+    margin:0 auto;
+    display: table;
+}
+
+#share-icon li{
+    float:left;
+    width:100px;
+    text-align: center;
+}
+
+#share-icon img{
+    height:40px;
+}
+
+#share-clip{
+    display: table;
+    margin:0 auto;
+    width:100%;
+    text-align: center;
+
+}
+
+#btn-clipboard{
+    display: block;
+    margin-bottom:20px;
+    width:100%;
+}
+
+#share-link{
+    background-color:initial;
+    color:#003c71;
+    background-color: #fff;
+    border:none;
+    font-size:14px;
+    font-family: latolight;
+    padding:5px 5px 10px 5px;
+    border:1px solid #fff;
+    width:75%;
+    margin-bottom:5px;
+    letter-spacing: .5px;
+    text-align: center;
+}
+
+
+
+#add-favoritos{
+    display: none;
+}
+
+.botones-cur button {
+    width: 100%;
+}
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
