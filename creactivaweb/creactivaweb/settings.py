@@ -21,7 +21,7 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
+BASE_URL = 'https://www.creactivaanimaciones.cl/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -32,7 +32,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# VER SI HAY QUE AGREGAR MÁS HOSTS A ESTA CONFIGURACIÓN
+ALLOWED_HOSTS = ['https://www.creactivaanimaciones.cl/']
 
 
 # Application definition
@@ -207,3 +208,18 @@ USE_THOUSAND_SEPARATOR = True
 USE_DECIMAL_SEPARATOR = False
 NUMBER_GROUPING = 3
 THOUSAND_SEPARATOR = "."
+
+# LOG DE ERRORES
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}
