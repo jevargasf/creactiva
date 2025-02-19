@@ -884,6 +884,29 @@ p{
     text-shadow: 1px 1px 3px #000;
 }
 
+.fila-slider .etiqueta-promo-slider {
+    position: absolute;
+    font-family:latoregular;
+    font-size:11px;
+    text-align:left;
+    margin:0px;
+    top:10px;
+    left:20px;
+    text-shadow: 1px 1px 3px #000;
+    background-color: #0bf7b8;
+}
+
+.fila-slider .titulo-promo-slider {
+    position: absolute;
+    font-family:latoregular;
+    font-size:11px;
+    text-align:left;
+    margin:0px;
+    top:30px;
+    left:20px;
+    text-shadow: 1px 1px 3px #000;
+}
+
 #flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-2 {
     transition: all 0.1s ease-in-out;
     cursor:pointer;

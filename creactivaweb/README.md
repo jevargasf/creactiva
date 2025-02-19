@@ -358,31 +358,30 @@ SUSCRIPCIONES
     3. Si el usuario tiene check "descuento creactiva" == True, entonces aplicación suscripciones le permite pagar utilizando plan descuento creactiva
     ✔ Banner o bloque explicando descuento creactiva
     ✔ Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
-    ***	Descripción detalle: ***
+    ✔ ***	Descripción detalle: ***
     ✔	Tu suscripción termina el día fecha_termino
     ✔	Acceso a todo el contenido educativo
     ✔	Valor
-    *** formatear fechas sin hora ***
+    ✔ *** formatear fechas sin hora ***
     ✔ falta conteo de días
-    *** Pestañas para ver planes estándar y dcto creactiva ***
+    ✔ *** Pestañas para ver planes estándar y dcto creactiva ***
     ✔ Planes: valor mensual + cantidad de mensual
     ✔ Número de tarjeta quitar, solo monto y tipo plan
 ✔ Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
 ✔ Agregar campo boolean para boletas entregadas en perfilsuscripcion
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
-- Mensaje de fallo o éxito transacción debe durar más
-
-- Códigos promocionales: ver lógica
+✔ Mensaje de fallo o éxito transacción debe durar más
+✔ Códigos promocionales: ver lógica
 - Debug: Que el form de elegir organización recupere todas las solicitudes
 - Formulario solicitudes falta ver tema países, comunas
 
 CURSOS
-- botones para compartir curso y capítulo no están funcionales
-- Revisar los headers para volver atrás. Trailer debe volver al curso
+✔ botones para compartir curso y capítulo no están funcionales
+✔ Revisar los headers para volver atrás. Trailer debe volver al curso
 *** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
 *** Botón replay quiebra el reproductor ***
 - Dar funcionalidad de play al botón reproducir de abajo
-- Botón compartir link
+✔ Botón compartir link
 - ESTADOS CURSOS ??
 - sección principal cursos
 
@@ -390,14 +389,15 @@ PERFILES
 ✔ permite mostrar datos, pero todavía no permite editarlos: datos perfil y suscripción
 - falta mostrar historial de pagos
 - falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
+Sección: "Actualmente suscrito:"
 ✔ formatear fechas sin hora
 ✔ falta conteo de días
 
 LUNES:
 SUSCRIPCIONES 
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
-- Mensaje de fallo o éxito transacción debe durar más
-- Códigos promocionales: ver lógica
+✔ Mensaje de fallo o éxito transacción debe durar más
+✔ Códigos promocionales: ver lógica
 - Debug: Que el form de elegir organización recupere todas las solicitudes
 - Formulario solicitudes falta ver tema países, comunas
 CURSOS
@@ -413,7 +413,7 @@ PERFILES
 - falta mostrar historial de pagos
 - falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
 DESPLIEGUE
-- Subir versión de producción
+✔ Subir versión de producción
 - Migrar a bbdd postgresql
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 
@@ -467,3 +467,13 @@ DEBUG:
 DETALLES FABIÁN
 - textos nosotros desde bbdd
 - etiqueta próximamente
+
+SISTEMA ETIQUETAS PROMOCIONALES:
+    - ESTADOS PROMOCIONALES:
+        - 0: NINGUNO
+        - 1: ESTRENO/NUEVO/NOVEDAD
+        - 2: PRÓXIMAMENTE
+    - Para estado promocional == 2, la etiqueta muestra fecha de lanzamiento
+    - Si los 5 capítulos tienen etiqueta próximamente, el curso muestra etiqueta próximamente
+    - Si al menos 1 capítulo muestra etiqueta estreno, el curso muestra etiqueta estreno
+    - Hay que determinar el número de días durante los cuales el capítulo se considerará en estreno. De momento, se hará manual En el futuro, se puede programar un trabajo cron para eso.

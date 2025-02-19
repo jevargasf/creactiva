@@ -10,8 +10,18 @@
                         <div><a href="{% url 'capitulo' capitulo.cap %}"></a></div>
                     </div>
                     <dl>
+                        {% if capitulo.etiqueta_promocional != '0' %}
+                        <dd class="etiqueta-promo-slider">{{ capitulo.get_etiqueta_promocional_display }} 
+                            {% if capitulo.fecha_lanzamiento %}  
+                             | DISPONIBLE DESDE EL {{ capitulo.fecha_lanzamiento | date:"d/F/Y" | upper }}
+                            {% endif %}
+                        </dd>
                         <dd>{{ capitulo.curso }}</dd>
                         <dt>{{ capitulo.nombre }}</dt>
+                        {% else %}
+                        <dd>{{ capitulo.curso }}</dd>
+                        <dt>{{ capitulo.nombre }}</dt>
+                        {% endif %}
                     </dl>
                 </section>
             </div>

@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+from django.utils.timezone import now
 
 class Etiqueta(models.Model):
     eti = models.AutoField(primary_key=True, null=False, verbose_name='ID Etiqueta')
@@ -58,6 +58,12 @@ class Curso(models.Model):
         return self.nombre
 
 class Capitulo(models.Model):
+    ETIQUETAS_PROMOCIONALES = (
+        ('0', '--- NINGUNO ---'),
+        ('1', 'ESTRENO'),
+        ('2', 'PRÓXIMAMENTE')
+    )
+
     cap = models.AutoField(primary_key=True, null=False, verbose_name='ID capítulo')
     numero = models.IntegerField(null=True, verbose_name='Número capítulo')
     nombre = models.CharField(max_length=255, verbose_name='Nombre capítulo')
@@ -71,6 +77,8 @@ class Capitulo(models.Model):
     thumbnail = models.CharField(verbose_name='Link thumbnail', null=True, max_length=255)
     first_frame = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
     contenidos = models.JSONField(default=list, blank=True)
+    etiqueta_promocional = models.CharField(max_length=1, choices=ETIQUETAS_PROMOCIONALES, null=True, blank=True, default='0', verbose_name='Etiqueta promocional')
+    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=now, verbose_name='Fecha lanzamiento')
     material = models.ForeignKey(
         MaterialesComplementario,
         blank=True, 

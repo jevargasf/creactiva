@@ -2,7 +2,7 @@
 # 0 0 * * * source /Users/klau/.virtualenvs/creactivaweb/bin/activate && cd /Users/klau/Documents/javier/creactiva/creactivaweb && python manage.py check_suscripciones >> /var/log/django_log.log 2>&1
 # <cron_timer> source <ruta archivo activate del venv> && cd <ruta manage.py> && python manage.py <nombre archivo del script .py> >> <ruta archivo log> 2>&1
 # RUTA PRODUCCIÓN
-# source /home/creacti3/virtualenv/creactivaweb/3.11/bin/activate && cd /home/creacti3/creactivaweb python manage.py check_suscripciones.py >> /home/creacti3/logs/check_suscripciones.log log 2>&1
+# source /home/creacti3/virtualenv/creactivaweb/3.11/bin/activate && cd /home/creacti3/creactivaweb python manage.py check_suscripciones.py >> /home/creacti3/logs/check_suscripciones.log 2>&1
 
 from django.core.management.base import BaseCommand, CommandError
 from suscripciones.models import PerfilSuscripcion
