@@ -11,21 +11,19 @@
                         <div><a href="{% url 'capitulo' capitulo.cap %}"></a></div>
                     </div>
                     <dl>
-                        {% if capitulo.etiqueta_promocional != '0' %}
-                                <dd class="etiqueta-promo-slider">{{ capitulo.get_etiqueta_promocional_display }}
-                                    {% if capitulo.fecha_lanzamiento %}  
-                                     | DISPONIBLE DESDE EL {{ capitulo.fecha_lanzamiento | date:"d/F/Y" | upper }}
-                                    {% endif %}
-                                </dd>
+                        {% if capitulo.fecha_lanzamiento and capitulo.etiqueta_promocional == '2' %}
+                            <dd class="titulo-promo-slider">{{ capitulo.curso }}</dd>
+                            <dd class="etiqueta-promo-slider">
+                            ESTRENO EL {{ capitulo.fecha_lanzamiento | date:"d/F/Y" | upper }}
+                            </dd>
+                            <dt>{{ capitulo.nombre }}</dt>
+                        {% elif capitulo.etiqueta_promocional == '2' or capitulo.etiqueta_promocional == '1' %}
                                 <dd class="titulo-promo-slider">{{ capitulo.curso }}</dd>
+                                <dd class="etiqueta-promo-slider">{{ capitulo.get_etiqueta_promocional_display }}</dd>
                                 <dt>{{ capitulo.nombre }}</dt>
-
-                        <dd class="etiqueta-promo-slider">{{ capitulo.get_etiqueta_promocional_display }}</dd>
-                        <dd class="titulo-promo-slider">{{ capitulo.curso }}</dd>
-                        <dt>{{ capitulo.nombre }}</dt>
                         {% else %}
-                        <dd>{{ capitulo.curso }}</dd>
-                        <dt>{{ capitulo.nombre }}</dt>
+                            <dd>{{ capitulo.curso }}</dd>
+                            <dt>{{ capitulo.nombre }}</dt>
                         {% endif %}
                     </dl>
                 </section>

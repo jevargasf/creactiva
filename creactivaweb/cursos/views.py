@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpRequest, HttpResponse
 from django.templatetags.static import static
-from cursos.models import Curso, Capitulo, Visualizacion, EstadoCapitulo
+from cursos.models import *
 from cursos.utils import *
 from main.models import User, Perfil
 from django.utils import timezone
@@ -34,9 +34,7 @@ class CursoView(View):
         return super().dispatch(*args, **kwargs)
     
     def get (self, request, id):
-        print("PIDO ESTA DATA")
         context = data_curso(id)
-        print(context['capitulos'][0].cap)
         return render(request, 'cursos/curso.html', context)
     
 class TrailerView(View):
@@ -64,7 +62,10 @@ class CapituloView(View):
                 'duracion': capitulo.duracion,
                 'first_frame': capitulo.first_frame,
                 'contenidos': capitulo.contenidos,
-                'first_frame': capitulo.first_frame
+                'first_frame': capitulo.first_frame,
+                'etiqueta_promocional_id': capitulo.etiqueta_promocional,
+                'etiqueta_promocional': capitulo.get_etiqueta_promocional_display(),
+                'fecha_lanzamiento': capitulo.fecha_lanzamiento
             },
             'recurso': {}
         }
@@ -73,20 +74,26 @@ class CapituloView(View):
             perfil_object = pedir_perfil(request.user)
             # TIENE SUSCRIPCIÓN INDIVIDUAL
             if perfil_object.codigo[0] == '1':
-                context['recurso']['js_cap'] = capitulo.js_cap
-                context['recurso']['link'] = capitulo.link
-                context['recurso']['xml_cap'] = capitulo.xml_cap
-                ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
-                if ultima_visualizacion != None:
-                    context['minuto'] = ultima_visualizacion
-                
-                return render(request, 'cursos/reproductor.html', context)
+                if capitulo.etiqueta_promocional == '0':
+                    context['recurso']['js_cap'] = capitulo.js_cap
+                    context['recurso']['link'] = capitulo.link
+                    context['recurso']['xml_cap'] = capitulo.xml_cap
+                    ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
+                    if ultima_visualizacion != None:
+                        context['minuto'] = ultima_visualizacion
+                    
+                    return render(request, 'cursos/reproductor.html', context)
+                else:
+                    context['recurso']['js_trailer'] = capitulo.curso.js_trailer
+                    context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
+                    context['recurso']['link'] = capitulo.curso.link_trailer
+                    return render(request, 'cursos/trailer.html', context)
+
             # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
             else:
                 context['recurso']['js_trailer'] = capitulo.curso.js_trailer
                 context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
                 context['recurso']['link'] = capitulo.curso.link_trailer
-                print(context)
                 # DATA CAP + TRAILER
                 return render(request, 'cursos/trailer.html', context)
         else:

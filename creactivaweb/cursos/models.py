@@ -31,6 +31,12 @@ class MaterialesComplementario(models.Model):
         return f'{self.nombre_material}'
 
 class Curso(models.Model):
+    ETIQUETAS_PROMOCIONALES = (
+        ('0', '--- NINGUNO ---'),
+        ('1', 'ESTRENO'),
+        ('2', 'PRÓXIMAMENTE')
+    )
+
     cur = models.AutoField(primary_key=True, null=False, verbose_name='ID curso')
     nombre = models.CharField(max_length=255, verbose_name='Nombre curso')
     desc_corta= models.CharField(max_length=255, verbose_name='Descripción Corta')
@@ -39,6 +45,9 @@ class Curso(models.Model):
     link_trailer = models.URLField(verbose_name='Link trailer', null=True, max_length=255)
     xml_trailer = models.CharField(verbose_name='Xml trailer', null=True, max_length=255)
     js_trailer = models.CharField(verbose_name='Xml.js trailer', null=True, max_length=255)
+    etiqueta_promocional = models.CharField(max_length=1, choices=ETIQUETAS_PROMOCIONALES, null=True, blank=True, default='0', verbose_name='Etiqueta promocional')
+    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=now, verbose_name='Fecha lanzamiento')
+
     etiquetas = models.ForeignKey(
         Etiqueta,
         on_delete=models.CASCADE,

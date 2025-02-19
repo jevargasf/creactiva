@@ -886,14 +886,15 @@ p{
 
 .fila-slider .etiqueta-promo-slider {
     position: absolute;
-    font-family:latoregular;
+    font-family:latobold;
     font-size:11px;
     text-align:left;
     margin:0px;
-    top:10px;
+    padding: 5px 7px 7px 7px;
+    top:30px;
     left:20px;
     text-shadow: 1px 1px 3px #000;
-    background-color: #0bf7b8;
+    background-color: #1787e9;
 }
 
 .fila-slider .titulo-promo-slider {
@@ -902,7 +903,7 @@ p{
     font-size:11px;
     text-align:left;
     margin:0px;
-    top:30px;
+    top:10px;
     left:20px;
     text-shadow: 1px 1px 3px #000;
 }
@@ -2009,6 +2010,11 @@ float: left;
     transition: all .5s;
 }
 
+.etiqueta-promo-info{
+    background-color: #1787e9;
+    width: fit-content;
+    padding: 5px 7px 7px 7px;
+}
 
 #curso-info1.collapsed{
  opacity: 0;
@@ -2525,6 +2531,18 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     width:50%;
     -webkit-transition: all .2s, bottom .75s;
     position: absolute;
+}
+
+.etiqueta-promo-info-trailer{
+    text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
+    translate: 0px -270px;
+    /* translate: 100px -250px; */
+    left:100px;
+    width: fit-content;
+    -webkit-transition: all .2s, bottom .75s;
+    position: absolute;
+    background-color: #1787e9;
+    padding: 5px 7px 7px 7px;
 }
 
 #info-cap-player h4{
