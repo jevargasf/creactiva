@@ -97,6 +97,7 @@
     height:100px;
     z-index: 2;
     transition: all .25s;
+    pointer-events: none;
     opacity: 0;
 }
 
@@ -109,6 +110,9 @@ html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, v
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color:#fff;
     user-select:none;
+}
+
+html{
 }
 
 main{
@@ -429,30 +433,6 @@ p{
     0%{rotate: 0deg;}
     100%{rotate: 360deg;}
 }
-
-#transicion{
-    width:200vw;
-    height:200vh;
-    background-color: #00224a;
-    position: fixed;
-    z-index: 6;
-    top:0px;
-    left:0px;
-    opacity: 1;
-    transition:all .75s;
-    pointer-events: none;
-    background-size: 20px 20px;
-    background-image:
-      linear-gradient(to right, #00315c 1px, transparent .1px),
-      linear-gradient(to bottom, #00315c 1px, transparent .1px);
-      background-repeat:  repeat;
-      background-position: center;
-    animation: rotatebg 100s infinite;
-    left:-50%;
-    top:-50%;
-    overflow: hidden;
-}
-
 
 
 /*--------------------------------------------Spotlight Principal--------------------------------------------------*/
@@ -2428,7 +2408,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 #body-trailer #tscVideoContent .play-button-overlay-glyph::before {
-    content:"VER TRAILER";
+    content:"VER PRUEBA";
 }
 
 #tscVideoContent.collapsed .play-button-overlay-glyph{
@@ -2525,19 +2505,18 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 
 #info-cap-player{
-    text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
-    translate: 0px -240px;
-    left:100px;
-    width:50%;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+    translate: 0px -220px;
+    left: 100px;
+    width: 75%;
     -webkit-transition: all .2s, bottom .75s;
     position: absolute;
 }
 
 .etiqueta-promo-info-trailer{
     text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
-    translate: 0px -270px;
+    translate: 0px -35px;
     /* translate: 100px -250px; */
-    left:100px;
     width: fit-content;
     -webkit-transition: all .2s, bottom .75s;
     position: absolute;
@@ -2547,6 +2526,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-player h4{
     margin: 10px 0px 14px 0px;
+    width: 500px;
 }
 
 #info-cap-player.collapsed{
@@ -2556,6 +2536,13 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-player.collapsed2{
     opacity:0;
+    animation: info-player 1s forwards ease;
+}
+
+
+@keyframes info-player{
+0%{   }
+100%{    display: none;}
 }
 
 #info-cap-full{
@@ -3268,6 +3255,45 @@ table#detalle{
 .botones-cur button {
     width: 100%;
 }
+
+
+#no-user{
+    width:100%;
+    position: absolute;
+    top:75px;
+    background-color:#ff4141;
+    text-align: center;
+    padding:7px 5px 10px 5px;
+    cursor: pointer;
+    color:#fff;
+    transition: all .2s;
+}
+
+#no-user h1{
+    color:#fff;
+    transition: all .2s;
+    font-size:16px;
+}
+#no-user:hover{
+    background-color: #57DEFF;
+    z-index: 10;
+}
+
+#no-user:hover h1{
+    color:#003c71;
+}
+
+
+
+
+
+#no-user b{
+    font-family: latobold;
+
+}
+
+
+
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */

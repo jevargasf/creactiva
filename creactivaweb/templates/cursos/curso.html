@@ -80,7 +80,7 @@
                 <!-- número de actividades interactivas -->
                 <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
                 <li><img src="{% static 'icon/parlante.svg' %}" alt=""><h4>Español, Mapuzungun</h4></li>
-                <li><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
+                <li style="display: none;"><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
             </ul>
             <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
             <p>{{ curso.desc_larga | linebreaksbr }}</p>

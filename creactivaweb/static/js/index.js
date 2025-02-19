@@ -157,27 +157,26 @@ $(document).ready(function(){
 
 $("#mas-info").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cur-info").offset().top},
-        'slow');
+        scrollTop: $("#info-cur-info").offset().top + (-180)},'slow');
 });
 
 
 $("#btn-curso1").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cur-info").offset().top},
+        scrollTop: $("#info-cur-info").offset().top + (-180)},
         'slow');
 });
 
 
 $("#mas-info-cap").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cap-info").offset().top},
+        scrollTop: $("#info-cap-info").offset().top + (-120)},
         'slow');
 });
 
 $("#btn-capitulo-out").click(function() {
     $('html,body').animate({
-        scrollTop: $("#info-cap-info").offset().top},
+        scrollTop: $("#info-cap-info").offset().top + (-120)},
         'slow');
 });
 
