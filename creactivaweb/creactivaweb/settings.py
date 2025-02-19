@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 # VER SI HAY QUE AGREGAR MÁS HOSTS A ESTA CONFIGURACIÓN
-ALLOWED_HOSTS = ['https://www.creactivaanimaciones.cl/']
+ALLOWED_HOSTS = ['www.creactivaanimaciones.cl/']
 
 
 # Application definition
