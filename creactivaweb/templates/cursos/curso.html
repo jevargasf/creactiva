@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block head %}
+<!-- AQUÍ LOS HEADS DE ESTE TEMPLATE -->
+<meta property="og:locale" content="es_ES" />
+<meta property="og:title" content="CURSO: {{ curso.nombre }}" />
+<meta property="og:type" content="product" />
+<meta property="og:URL" content="https://www.creactivaanimaciones.cl" />
+<meta property="og:image" content="{% static 'img/' %}{{ curso.imagen_portada }}" />
+<meta property="og:description" content="{{ curso.desc_larga }}" />
+{% endblock %}
+
 {% block content %}
 
 {% include 'snippets/fondo_azul.html' %}

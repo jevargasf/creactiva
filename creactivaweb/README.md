@@ -460,3 +460,10 @@ Por escribir: tarea cron que valide la vigencia de los códigos creados. Actuali
 
 DEBUG:
 - index.js se corta desde la línea 257 hacia abajo cuando lo usamos en el trailer.html y en el reproductor.html porque llama a algunas clases que no existen y se interrumpe la ejecución del script
+- mote reestrablecer contraseña
+- los prints de views quiebran el programa en producción. La razón tiene que ver con el caracter de espacio indivisible '\xa0'
+
+
+DETALLES FABIÁN
+- textos nosotros desde bbdd
+- etiqueta próximamente

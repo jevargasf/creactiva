@@ -1,7 +1,13 @@
+{% load static %}
+
 <div class="modal-compartir-closed" id="modal-compartir">
-    <a>
-        <button id="btn-clipboard"><input id="share-link" value="{{ request.build_absolute_uri }}">COPIAR</button>
-    </a>
-    <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}">WSP</a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">FB</a>
+    <div id="cerrar-compartir"></div>
+    <nav id="compartir-lista">
+        <a id="share-clip"><button id="btn-clipboard"><input id="share-link" value="{{ request.build_absolute_uri }}"><h1>Copiar Enlace</h1></button></a>
+
+        <ul id="share-icon">
+            <li><a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer"><img src="{% static 'icon/rs_wsp.svg' %}" alt=""><h1>WhatsApp</h1></a></li>
+            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer"><img src="{% static 'icon/rs_fb.svg' %}" alt=""><h1>Facebook</h1></a></li>
+        </ul> 
+    </nav>
 </div>
