@@ -484,13 +484,15 @@ SEMANA 17 DE FEBRERO:
 
 CURSOS
 - Tarea automatizada que quite etiquetas cuando llega la fecha de estreno
-- *** Botón replay quiebra el reproductor ***
-- *** Dar funcionalidad de play al botón reproducir de abajo ***
+- *** Botón replay quiebra el reproductor *** TENGO LA POSIBILIDAD DE RECARGAR LA PÁGINA CUANDO VUELVA A APRETAR EL BOTÓN VOLVER A REPRODUCIR(que la idea sería hacerlo reaparecer con este evento reload). No es lo ideal, pero funcionaría.
+✔ *** Dar funcionalidad de play al botón reproducir de abajo ***
 - Estados cursos ??
+- corrección fabián: no mostrar trailer para curso cultura
 SUSCRIPCIONES
 - *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
 - *** Formulario solicitudes falta ver tema países, comunas ***
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+- Integrar etiqueta suscripción activa
 PERFILES
 X falta mostrar historial de pagos
 - *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
