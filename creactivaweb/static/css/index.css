@@ -97,6 +97,7 @@
     height:100px;
     z-index: 2;
     transition: all .25s;
+    pointer-events: none;
     opacity: 0;
 }
 
@@ -109,6 +110,9 @@ html, body, h1, h2, dl, h3, h4, h5, h6, p, ol, ul, button, pre, code, address, v
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color:#fff;
     user-select:none;
+}
+
+html{
 }
 
 main{
@@ -429,30 +433,6 @@ p{
     0%{rotate: 0deg;}
     100%{rotate: 360deg;}
 }
-
-#transicion{
-    width:200vw;
-    height:200vh;
-    background-color: #00224a;
-    position: fixed;
-    z-index: 6;
-    top:0px;
-    left:0px;
-    opacity: 1;
-    transition:all .75s;
-    pointer-events: none;
-    background-size: 20px 20px;
-    background-image:
-      linear-gradient(to right, #00315c 1px, transparent .1px),
-      linear-gradient(to bottom, #00315c 1px, transparent .1px);
-      background-repeat:  repeat;
-      background-position: center;
-    animation: rotatebg 100s infinite;
-    left:-50%;
-    top:-50%;
-    overflow: hidden;
-}
-
 
 
 /*--------------------------------------------Spotlight Principal--------------------------------------------------*/
@@ -892,7 +872,7 @@ p{
     margin:0px;
     padding: 5px 7px 7px 7px;
     top:30px;
-    left:20px;
+    left:5px;
     text-shadow: 1px 1px 3px #000;
     background-color: #1787e9;
 }
@@ -1053,7 +1033,7 @@ form{
 }
 .form div.form-mid input{
 
-    width:150px;
+    width:147px;
     margin: 0px 5px 20px 5px;
 }
 
@@ -1305,7 +1285,6 @@ float: left;
         background-color: rgba(0, 0, 0, .0);
         border: 0;
         border-bottom:1px solid #fff;
-        border-top:1px solid #fff;
         color:#fff;
         width:322px;
         padding:10px 5px 5px 10px;
@@ -1455,6 +1434,12 @@ float: left;
     content: 'Ingresa tu codigo de descuento';
 }
 
+#form-codigo{
+    display: inline-block;
+    width:100%;
+
+}
+
 #form-codigo button{
     font-family: latoblack;
     color: #003c71;
@@ -1502,7 +1487,6 @@ float: left;
 
 .planes-info p b{
     color:#024C8D;
-    padding:0px 60px 0px 60px;
     letter-spacing: .25px;
     font-family: latoblack;
     text-transform: uppercase;
@@ -2014,6 +1998,7 @@ float: left;
     background-color: #1787e9;
     width: fit-content;
     padding: 5px 7px 7px 7px;
+    display: table;
 }
 
 #curso-info1.collapsed{
@@ -2428,7 +2413,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 #body-trailer #tscVideoContent .play-button-overlay-glyph::before {
-    content:"VER TRAILER";
+    content:"VER PRUEBA";
 }
 
 #tscVideoContent.collapsed .play-button-overlay-glyph{
@@ -2525,19 +2510,18 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 
 #info-cap-player{
-    text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
-    translate: 0px -240px;
-    left:100px;
-    width:50%;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.75);
+    translate: 0px -220px;
+    left: 100px;
+    width: 75%;
     -webkit-transition: all .2s, bottom .75s;
     position: absolute;
 }
 
 .etiqueta-promo-info-trailer{
     text-shadow:2px 2px 3px rgba(0, 0, 0, 0.75);
-    translate: 0px -270px;
+    translate: 0px -35px;
     /* translate: 100px -250px; */
-    left:100px;
     width: fit-content;
     -webkit-transition: all .2s, bottom .75s;
     position: absolute;
@@ -2547,6 +2531,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-player h4{
     margin: 10px 0px 14px 0px;
+    width: 500px;
 }
 
 #info-cap-player.collapsed{
@@ -2556,6 +2541,13 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 #info-cap-player.collapsed2{
     opacity:0;
+    animation: info-player 1s forwards ease;
+}
+
+
+@keyframes info-player{
+0%{   }
+100%{    display: none;}
 }
 
 #info-cap-full{
@@ -2959,7 +2951,7 @@ aside#cur-cap {
     font-size:30px;
     color:#003c71;
     padding: 6px;
-    text-align: justify;
+    display: block;
 
 
 }
@@ -3070,15 +3062,19 @@ aside#cur-cap {
 #perfil-preview{
     font-size:40px;
     width:100%;
+    display: inline-block;
     border-top:1px solid #fff;
-    display: inline;
+    margin-top: 50px;
+    box-sizing: border-box;
+    padding:20px;
+
 }
 
 
 .perfil{
     position: relative;
-    padding:0px 10% 15px 10%;
-    margin-bottom:70px;
+    padding:0px 10% 0px 10%;
+    margin-bottom:0px;
     
 }
 
@@ -3204,14 +3200,12 @@ table#detalle{
     background-size:4000px;
     background-repeat: repeat;
     animation: fondo3 60s infinite linear;
-    width:30%;
-    height:30%;
     left:50%;
     top:50%;
     transform: translate(-50%, -50%);
-    display: grid;
-    padding:3.5%;
+    padding: 60px;
     box-sizing: border-box;
+    width:400px;
 }
 
 #share-icon{
@@ -3240,7 +3234,7 @@ table#detalle{
 
 #btn-clipboard{
     display: block;
-    margin-bottom:20px;
+    margin-bottom:30px;
     width:100%;
 }
 
@@ -3253,10 +3247,11 @@ table#detalle{
     font-family: latolight;
     padding:5px 5px 10px 5px;
     border:1px solid #fff;
-    width:75%;
+    width:100%;
     margin-bottom:5px;
     letter-spacing: .5px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 
@@ -3268,6 +3263,46 @@ table#detalle{
 .botones-cur button {
     width: 100%;
 }
+
+
+#no-user{
+    width:100%;
+    position: absolute;
+    top:75px;
+    background-color:#ff4141;
+    text-align: center;
+    padding:7px 5px 10px 5px;
+    cursor: pointer;
+    color:#fff;
+    transition: all .2s;
+    box-sizing: border-box;
+}
+
+#no-user h1{
+    color:#fff;
+    transition: all .2s;
+    font-size:16px;
+}
+#no-user:hover{
+    background-color: #57DEFF;
+    z-index: 10;
+}
+
+#no-user:hover h1{
+    color:#003c71;
+}
+
+
+
+
+
+#no-user b{
+    font-family: latobold;
+
+}
+
+
+
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
@@ -3279,13 +3314,14 @@ table#detalle{
         height: 55.6vw;
         max-height: 100vh;
     }
-
+    .form-login, .form-register {
+        width: 80%;
+       }
 
 
 }
 
 @media (max-width: 1150px) {
-
 
     #curso-fila #fila{
         width:100%;
@@ -3312,7 +3348,9 @@ table#detalle{
         padding:10px 20px 0px 00px;
         margin-left:25px;
     }
-
+    .etiqueta-promo-info {
+        margin-left:25px;
+    }
     #btn-curso2 {
         float: right;
         right: 25px;
@@ -3336,6 +3374,9 @@ table#detalle{
     #info-cur-info {
         padding: 0px 20px 20px 20px;
     }
+
+
+
 }
 
 @media (max-width: 1080px) {
@@ -3359,8 +3400,43 @@ table#detalle{
         overflow: hidden;
     }
 
+    #nosotros footer section{
+        text-align: center;
+        display:block;
+        width: 100%;
+    }
+
+
+#r-links {
+    position: relative;
+    bottom: 30px;
 }
 
+#creditos aside{
+    display: inline-block;
+    width: 100%;
+}
+
+#nosotros footer ul{
+    bottom:0px;
+}
+#nosotros footer ul{
+    padding: 10px 20px;
+    line-height: 30px;
+}
+
+#nosotros footer ul li#siguenos{
+    display: block;
+    margin-bottom: 10px;
+}
+
+#rs img {
+    height: 30px;
+}
+#creditos li {
+    margin: 0 15px;
+}
+}
 
 
 
@@ -3380,7 +3456,7 @@ table#detalle{
 @media (max-width: 900px) {
 
     .form-login, .form-register {
-        width:90%;
+        width:100%;
         
         
     }
@@ -3463,7 +3539,6 @@ table#detalle{
 
 .btn-curso{
     translate: 0px 0px;
-    margin-left:0px;   
     margin-bottom:15px;
 }
 
@@ -3505,7 +3580,18 @@ table#detalle{
     overflow: hidden;
     display: none;
 }
-    
+
+
+
+
+#nosotros_texto aside {
+    display: inline;
+    width: 100%;
+}
+#integra {
+    margin-bottom: 0px;
+}
+
 }
 
 
@@ -3588,6 +3674,11 @@ table#detalle{
     #buscador{
     }
 
+
+    .etiqueta-promo-info {
+        margin-left:0px;
+        display: inline-block;
+    }
     #curso-info1{
         text-align: center;
 
@@ -3673,7 +3764,7 @@ aside#cur-cap{
 }
 
 .botones-cur button {
-    width: 47%;
+          /*   width: 47%; */
 }
 
 #info-cap-info{
@@ -3685,6 +3776,44 @@ aside#cur-cap{
     margin-top: 20px;
 }
 
+#no-user{
+    padding: 4px 5px 6px 5px;
+}
+
+#no-user h1 {
+    font-size: 13px;
+}
+
+
+#datos-sus {
+    text-align: left;
+    float: left;
+}
+#datos-user {
+    width:100%;
+}
+
+#nosotros {
+    top:75px;
+    -ms-transform: translateY(0%);
+    transform: translateY(0%);
+    padding: 15px 5% 20px 5%;
+
+}
+
+#integra {
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+#nosotros_texto aside h7 {
+    font-size: 24px;
+    margin-top:10px;
+    padding: 2px 0px 8px 0px;
+    display: block;
+    text-align: center;
+
+}
 }
 
 
@@ -3695,18 +3824,108 @@ aside#cur-cap{
 
 
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
     .fila-slider div {
         padding-bottom: 70%;
 
     }
     #logo_centro {
         opacity:0;
+        translate: -50% -100%;
     }
 
     #info-cap-img {
         height:40%;
     }
+    #flecha-derecha-slider-fila, #flecha-derecha-slider-fila-2, #flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-2 {
+        width: 30px;
+    }
+
+    .tarjeta{
+        width: 90%;
+        height: 5%;
+        padding: 40px;
+        margin: 10px 5% 10px 5%;
+    }
+
+    .form-plan{
+        position: relative;
+        translate: none;
+        left:0px;
+        top:100px;
+    }
+
+    .plan{
+        width: 90%;
+        height: 5%;
+        padding: 20px;
+        opacity: 1;
+        margin: 5px 5% 5px 5%;
+    }
+
+    .plan h3{
+        display: none;
+    }
+
+    .plan ul{
+        display: none;
+    }
+
+    .plan h7{
+        opacity: 1;
+        color:rgba(255, 255, 255, .95);
+    
+
+    }
+
+    .planes-info p {
+        padding: 40px 14px;
+        box-sizing: border-box;
+    }
+    .planes-info p b {
+        padding: 0px 0px 0px 0px;
+        letter-spacing: .25px;
+    }
+
+
+    .alert div{
+
+        width:95%;
+        padding: 60px 50px;
+    }
+
+
+    #detalle-img {
+        width: 100%;
+        height: 25%;
+        overflow: hidden;
+        position: absolute;
+        top: initial;
+        bottom:0px;
+    }
+    
+    #detalle-img img{
+        width:100%;
+        height:auto;
+        translate: -50% -50%;
+    }
+
+    .tarjeta-plan-detalle {
+        width: 100%;
+    }
+    #form-detalle-footer button {
+        margin-bottom: calc(25% + 25px);
+    }
+#info-cap-player{
+    animation: info-player 1s forwards ease;
+}
+
+table#detalle {
+    margin: 10px 0px 30px 0px;
+}
+.form-register {
+    padding: 70px 0px 70px 0px;
+}
 }
 
 
