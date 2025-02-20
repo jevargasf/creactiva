@@ -487,6 +487,7 @@ CURSOS
 - *** Botón replay quiebra el reproductor ***
 - *** Dar funcionalidad de play al botón reproducir de abajo ***
 - Estados cursos ??
+- corrección fabián: no mostrar trailer para curso cultura
 SUSCRIPCIONES
 - *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
 - *** Formulario solicitudes falta ver tema países, comunas ***
