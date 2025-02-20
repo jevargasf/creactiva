@@ -21,9 +21,34 @@
 <link href="{% static '/skins/remix/techsmith-smart-player.min.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
-<script>
-    
-</script>
+<style>
+    @keyframes rotatebg{
+0%{rotate: 0deg;}
+100%{rotate: 360deg;}
+}
+
+#transicion{
+width:500%;
+height:500%;
+background-color: #00224a;
+position: fixed;
+z-index: 6;
+opacity: 1;
+transition:all .75s;
+pointer-events: none;
+background-size: 20px 20px;
+background-image:
+  linear-gradient(to right, #00315c 1px, transparent .1px),
+  linear-gradient(to bottom, #00315c 1px, transparent .1px);
+  background-repeat:  repeat;
+  background-position: center;
+animation: rotatebg 100s infinite;
+left:-200%;
+top:-200%;
+overflow: hidden;
+}
+
+</style>
 </head>
 <body id="body-trailer">
     
