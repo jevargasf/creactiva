@@ -358,52 +358,51 @@ SUSCRIPCIONES
     3. Si el usuario tiene check "descuento creactiva" == True, entonces aplicación suscripciones le permite pagar utilizando plan descuento creactiva
     ✔ Banner o bloque explicando descuento creactiva
     ✔ Corrección tarjeta planes: Eliminar contenido innecesario, duración por mes
-    ***	Descripción detalle: ***
+    ✔ ***	Descripción detalle: ***
     ✔	Tu suscripción termina el día fecha_termino
     ✔	Acceso a todo el contenido educativo
     ✔	Valor
-    *** formatear fechas sin hora ***
+    ✔ *** formatear fechas sin hora ***
     ✔ falta conteo de días
-    *** Pestañas para ver planes estándar y dcto creactiva ***
+    ✔ *** Pestañas para ver planes estándar y dcto creactiva ***
     ✔ Planes: valor mensual + cantidad de mensual
     ✔ Número de tarjeta quitar, solo monto y tipo plan
 ✔ Descuento Creactiva: Integrante de la comunidad mapuche/estudiante
 ✔ Agregar campo boolean para boletas entregadas en perfilsuscripcion
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
-- Mensaje de fallo o éxito transacción debe durar más
-
-- Códigos promocionales: ver lógica
+✔ Mensaje de fallo o éxito transacción debe durar más
+✔ Códigos promocionales: ver lógica
 - Debug: Que el form de elegir organización recupere todas las solicitudes
 - Formulario solicitudes falta ver tema países, comunas
 
 CURSOS
-- botones para compartir curso y capítulo no están funcionales
-- Revisar los headers para volver atrás. Trailer debe volver al curso
-*** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
+✔ botones para compartir curso y capítulo no están funcionales
+✔ Revisar los headers para volver atrás. Trailer debe volver al curso
+✔ *** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
 *** Botón replay quiebra el reproductor ***
 - Dar funcionalidad de play al botón reproducir de abajo
-- Botón compartir link
+✔ Botón compartir link
 - ESTADOS CURSOS ??
-- sección principal cursos
 
 PERFILES
 ✔ permite mostrar datos, pero todavía no permite editarlos: datos perfil y suscripción
 - falta mostrar historial de pagos
 - falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
+Sección: "Actualmente suscrito:"
 ✔ formatear fechas sin hora
 ✔ falta conteo de días
 
-LUNES:
+SEMANA 17 DE FEBRERO:
 SUSCRIPCIONES 
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
-- Mensaje de fallo o éxito transacción debe durar más
-- Códigos promocionales: ver lógica
+✔ Mensaje de fallo o éxito transacción debe durar más
+✔ Códigos promocionales: ver lógica
 - Debug: Que el form de elegir organización recupere todas las solicitudes
 - Formulario solicitudes falta ver tema países, comunas
 CURSOS
 ✔ botones para compartir curso y capítulo no están funcionales
 ✔ Revisar los headers para volver atrás. Trailer debe volver al curso
-*** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
+✔ *** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
 *** Botón replay quiebra el reproductor ***
 - Dar funcionalidad de play al botón reproducir de abajo
 ✔ Botón compartir link
@@ -413,7 +412,7 @@ PERFILES
 - falta mostrar historial de pagos
 - falta mostrar cursos suscritos ?? No, porque los planes vigentes son por todo el contenido
 DESPLIEGUE
-- Subir versión de producción
+✔ Subir versión de producción
 - Migrar a bbdd postgresql
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 
@@ -438,7 +437,7 @@ CÓDIGOS PROMOCIONALES:
         - Pueblo mapuche: De por vida.
         - Promocional: Código activa 1 pago a precio descuento. Se puede usar el código hasta la fecha establecida o hasta agotar stock. No hace check a descuento creactiva.
 
-    - El check al descuento se logran de dos maneras:
+    - El check al descuento se logra de dos maneras:
         - Estudiante y pueblo mapuche: Manual mediante validación del administrador.
         - Promocional: Código autoriza 1 pago a precio descuento.
 
@@ -454,8 +453,9 @@ FIN DEL PROCESO
 - 0: Validado, pero no utilizado
 - 1: Utilizado (suscripción registrada exitosamente)
 
-
-Por escribir: tarea cron que valide la vigencia de los códigos creados. Actualiza estado = 0 si la fecha de término coincide con la fecha de hoy.
+- Por escribir: tarea cron que valide la vigencia de los códigos creados. Actualiza estado = 0 si la fecha de término coincide con la fecha de hoy.
+- Lógica que resta contador de usos en tabla
+- Lógica que restringa a un mismo usuario utilizar dos veces el mismo código
 
 
 DEBUG:
@@ -466,4 +466,39 @@ DEBUG:
 
 DETALLES FABIÁN
 - textos nosotros desde bbdd
-- etiqueta próximamente
+✔ etiqueta próximamente
+- Tarea automatizada que quite etiquetas cuando llega la fecha de estreno
+
+SISTEMA ETIQUETAS PROMOCIONALES:
+    - ESTADOS PROMOCIONALES:
+        - 0: NINGUNO
+        - 1: ESTRENO/NUEVO/NOVEDAD
+        - 2: PRÓXIMAMENTE
+    - Para estado promocional == 2, la etiqueta muestra fecha de lanzamiento
+    - Curso también tiene etiqueta promocional, se debe cambiar manual
+    - Si el capítulo tiene etiqueta promocional, aunque la persona esté suscrita a la aplicación, le redirige al trailer del capítulo
+    - Hay que determinar el número de días durante los cuales el capítulo se considerará en estreno. De momento, se hará manual En el futuro, se puede programar un trabajo cron para eso.
+
+
+SEMANA 17 DE FEBRERO:
+
+CURSOS
+- Tarea automatizada que quite etiquetas cuando llega la fecha de estreno
+- *** Botón replay quiebra el reproductor ***
+- *** Dar funcionalidad de play al botón reproducir de abajo ***
+- Estados cursos ??
+SUSCRIPCIONES
+- *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
+- *** Formulario solicitudes falta ver tema países, comunas ***
+- Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+PERFILES
+X falta mostrar historial de pagos
+- *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
+MAIN
+- textos nosotros desde bbdd
+- correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
+DESPLIEGUE
+- Subir versión de producción
+- Migrar a bbdd postgresql
+- Poner webpay en producción
+- Conectar a github repo para realizar cambios desde local y automatizar despliegue

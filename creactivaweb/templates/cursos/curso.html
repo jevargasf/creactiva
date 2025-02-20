@@ -23,7 +23,16 @@
     <div id="mascara_curso"></div>
 
     <div id="curso-info1">
-
+        {% if curso.fecha_lanzamiento and curso.etiqueta_promocional == '2' %}
+        <div>
+            <h6 class="etiqueta-promo-info">
+            ESTRENO EL {{ curso.fecha_lanzamiento | date:"d/F/Y" | upper }}
+            </h6>
+        </div>
+        {% elif curso.etiqueta_promocional == '2' or curso.etiqueta_promocional == '1' %}
+            <h6 class="etiqueta-promo-info">{{ curso.get_etiqueta_promocional_display }}</h6>
+        {% else %}
+        {% endif %}
     
     <h1>{{ curso.nombre }}</h1>
     <ul>
@@ -71,7 +80,7 @@
                 <!-- número de actividades interactivas -->
                 <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
                 <li><img src="{% static 'icon/parlante.svg' %}" alt=""><h4>Español, Mapuzungun</h4></li>
-                <li><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
+                <li style="display: none;"><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
             </ul>
             <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
             <p>{{ curso.desc_larga | linebreaksbr }}</p>
