@@ -142,3 +142,6 @@ class GlosarioView(LoginRequiredMixin, View):
         # TIENE SUSCRIPCIÓN INDIVIDUAL
         if perfil_object.codigo[0] == '1':
             return render(request, 'cursos/recursos/glosario.html')
+        else:
+            messages.error(request, 'Suscríbete a uno de nuestros planes para acceder a este y otros contenidos.')
+            return redirect('plan-individual')
