@@ -132,3 +132,13 @@ class CapituloView(View):
         # necesito: perfil del usuario, cap (que sale del id recibido en request),
         # el minuto recuperado y la fecha es autoadd
         return HttpResponse(status = 200)
+    
+class GlosarioView(LoginRequiredMixin, View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get (self, request: HttpRequest):
+        perfil_object = pedir_perfil(request.user)
+        # TIENE SUSCRIPCIÓN INDIVIDUAL
+        if perfil_object.codigo[0] == '1':
+            return render(request, 'cursos/recursos/glosario.html')

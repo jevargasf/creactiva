@@ -1,0 +1,172 @@
+@font-face {
+  font-family: cabin;
+  src: url(font/CabinSketch-Regular.otf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: cabin;
+  src: url(fonts/CabinSketch-Bold.otf);
+  font-weight: bold;
+}
+
+
+@font-face {
+  font-family: alpha;
+  src: url(fonts/alpha_echo.ttf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: bahiana;
+  src: url(fonts/Bahiana-Regular.otf);
+  font-weight: normal;
+}
+
+html, h1, ul, li, p{
+	margin:0 auto;
+	padding: 0;
+
+}
+
+body{
+	background-image: url('/static/img/glosario_fondo.jpg');
+	background-size: 1000px auto;
+  border:none;
+	margin:0 auto;
+	padding: 0;
+
+}
+
+
+#contenido{
+  background-size: auto 30% ;
+	margin:0 auto;
+	padding:10px 40px 150px 20px;
+	opacity:0.975;
+
+
+}
+
+img{
+	position: fixed;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	width: 120%;
+	mix-blend-mode: multiply;
+}
+
+ul{
+	padding: 0px 50px 0px 30px;
+}
+
+h1{
+	font-family: alpha;
+	font-size: 75px;
+	font-weight: normal;
+	text-align: center;
+	margin:50px 0px 0px 0px;
+	line-height: 1em;
+
+}
+
+p{
+	font-family: bahiana;
+	font-size: 70px;
+	font-weight: normal;
+	text-align: center;
+	margin:20px 0px 10px 0px;
+	line-height: 1em;
+
+}
+
+
+h2{
+	color: #512319;
+	list-style: none;
+	display: table;
+	font-size:70px;
+	font-family: cabin;
+   -webkit-text-fill-color: #512319;
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: #512319;
+	margin:0px 0px 0px 0px;
+}
+
+li{
+	color: #512319;
+	list-style: none;
+	display: table;
+	font-size:30px;
+	font-family: cabin;
+   -webkit-text-fill-color: #512319;
+   -webkit-text-stroke-width: .5px;
+   -webkit-text-stroke-color: #512319;
+	margin:0px 0px 10px 0px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+b{
+	transition: all .2s ease-in-out;
+	font-size:35px;
+   -webkit-text-stroke-width: .5px;
+	cursor: pointer;
+
+}
+
+b:hover{
+   -webkit-text-stroke-width: 1.2px;
+}
+
+
+b:active{
+	color:#FFFC00;
+	text-shadow: 0px 0px 20px #FFFC00;
+   -webkit-text-fill-color: #FFFC00;
+   -webkit-text-stroke-color: #FFFC00;
+}
+
+b:focus{
+	color:#FFFC00;
+	text-shadow: 0px 0px 20px #FFFC00;
+   -webkit-text-fill-color: #FFFC00;
+   -webkit-text-stroke-color: #FFFC00;
+}
+
+p{
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: red;
+  background: yellow;
+}
+
+::selection {
+  color: red;
+  background: yellow;
+}
+
+@media (max-width: 1080px) {
+
+
+h1{
+	font-size:90px;
+
+}
+
+h2{
+	font-size:90px;
+
+}
+
+li{
+	font-size:45px;
+}
+
+b{
+	font-size:50px;
+
+}
+
+}

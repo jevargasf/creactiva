@@ -493,7 +493,7 @@ SUSCRIPCIONES
 - *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
 - *** Formulario solicitudes falta ver tema países, comunas ***
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
-- Integrar etiqueta suscripción activa
+✔ Integrar etiqueta suscripción activa
 PERFILES
 X falta mostrar historial de pagos
 - *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
