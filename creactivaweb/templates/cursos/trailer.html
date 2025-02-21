@@ -163,8 +163,11 @@ overflow: hidden;
     </section>
 </article>
 
+{% if suscripcion == 'ninguna' %}
 <a href="{% url 'planes' %}" id="no-user"><h1><b>No cuentas con una suscripción activa, solo podrás ver una muestra del material. </b>Para ver este y todos los cursos que tenemos para ti, contrata un plan <b><ins>AQUÍ</ins></b></h1></a>
-
+{% else %}
+<a href="{% url 'login' %}" id="no-user"><h1><b>No cuentas con una suscripción activa, solo podrás ver una muestra del material. </b>Para contratar un plan, inicia sesión o regsítrate <b><ins>AQUÍ</ins></b></h1></a>
+{% endif %}
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>
 <script src="{% static 'js/index.js' %}"></script>

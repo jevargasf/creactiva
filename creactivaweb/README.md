@@ -121,6 +121,7 @@ Proceso:
 Mejoras a futuro:
 - El administrador tendrá la necesidad de mejorar el análisis de las organizaciones que se suscriben a su contenido. A futuro puede implementar nuevas categorías como "¿a qué se dedican?", con el fin de capturar la categoría de actividad específica de la organización. Esto permitiría comprender mejor el "público organizaciones" al que se está llegando, con el fin de buscar estrategias para ampliarlo o para elaborar productos dirigidos a ellos.
 - El registro de visualizaciones genera muchos datos que pierden su utilidad rápidamente. Esto es un espacio de memoria de la bbdd que en un futuro podría causar un problema. Para solucionarlo, se puede escribir un procedimiento almacenado que limpie la bbdd todos los días a las 5AM y solo deje la última visualización. También, se podría estudiar manejar estas visualizaciones intermedias en memoria y solo escribir la bbdd con "ese" dato que a las 5AM se deja. MMmm. Hay que seguir estudiándolo.
+- BOTÓN REPLAY: SE PUEDE PROGRAMAR QUE APAREZCA NUEVAMENTE EL TEXTO DESCRIPTIVO DEL CAP Y DARLE OTRO ESTILO AL BOTÓN.
 
 ACTUALMENTE TRABAJANDO:
 - app suscripciones/formulario solicitud organizaciones/categorías organizaciones
@@ -403,7 +404,7 @@ CURSOS
 ✔ botones para compartir curso y capítulo no están funcionales
 ✔ Revisar los headers para volver atrás. Trailer debe volver al curso
 ✔ *** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
-*** Botón replay quiebra el reproductor ***
+✔ *** Botón replay quiebra el reproductor *** BOTÓN REPLAY RECUPERADO
 - Dar funcionalidad de play al botón reproducir de abajo
 ✔ Botón compartir link
 - ESTADOS CURSOS ??
@@ -484,7 +485,7 @@ SEMANA 17 DE FEBRERO:
 
 CURSOS
 - Tarea automatizada que quite etiquetas cuando llega la fecha de estreno
-- *** Botón replay quiebra el reproductor *** TENGO LA POSIBILIDAD DE RECARGAR LA PÁGINA CUANDO VUELVA A APRETAR EL BOTÓN VOLVER A REPRODUCIR(que la idea sería hacerlo reaparecer con este evento reload). No es lo ideal, pero funcionaría.
+✔ *** Botón replay quiebra el reproductor *** RECUPERÉ EL BOTÓN REINICIAR DE SMART PLAYER. 
 ✔ *** Dar funcionalidad de play al botón reproducir de abajo ***
 - Estados cursos ??
 - corrección fabián: no mostrar trailer para curso cultura
@@ -497,6 +498,9 @@ PERFILES
 X falta mostrar historial de pagos
 - *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
 MAIN
+- Función reestablecer contraseña usuario
+- Proceso de verificación de correo al registrarse
+- Captcha formularios
 - textos nosotros desde bbdd
 - correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
 DESPLIEGUE

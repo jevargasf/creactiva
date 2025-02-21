@@ -91,6 +91,7 @@ class CapituloView(View):
 
             # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
             else:
+                context['suscripcion'] = 'ninguna'
                 context['recurso']['js_trailer'] = capitulo.curso.js_trailer
                 context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
                 context['recurso']['link'] = capitulo.curso.link_trailer
