@@ -25,17 +25,21 @@ setTimeout(function () {
         videoElem.addEventListener("ended", () => {
             console.log("EL VIDEO HA FINALIZADO")
             // DESPLIEGO UN BOTÓN
-            document.querySelector('#btn-capitulo-out').classList.remove('collapsed2');
-            document.querySelector('#logo_abajo').classList.remove('collapsed2');
-            document.querySelector('#info-cap-player').classList.remove('collapsed2');
-            document.querySelector('#logo_capitulo').classList.remove('collapsed');
-            divBtnComenzar = document.querySelector("div.video-click-to-play-link")
+            // document.querySelector('#btn-capitulo-out').classList.remove('collapsed2');
+            // document.querySelector('#logo_abajo').classList.remove('collapsed2');
+            // document.querySelector('#info-cap-player').classList.remove('collapsed2');
+            // document.querySelector('#logo_capitulo').classList.remove('collapsed');
+            //divBtnComenzar = document.querySelector("div.video-click-to-play-link")
+            btnReiniciar = document.querySelector("#tscVideoContent > div.before-after-play-controls > div.video-click-to-replay-link > button")
+            btnReiniciar.style.zIndex = 1
+            btnReiniciar.style.pointerEvents = 'all'
+            // Change the styles of the pseudo element. 
             // #tscVideoContent > div.before-after-play-controls > div.video-click-to-play-link
-            divBtnComenzar.style.display = "block";
-            divBtnComenzar.addEventListener("click", () => {
-                videoElem.currentTime = 0;
-                videoElem.play()
-            })
+            //divBtnComenzar.style.display = "block";
+            
+            // divBtnComenzar.addEventListener("click", () => {
+            //     window.location.reload();
+            // })
         })
 
     });

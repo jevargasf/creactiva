@@ -2412,9 +2412,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     content:"COMENZAR";
 }
 
-#body-trailer #tscVideoContent .play-button-overlay-glyph::before {
-    content:"VER PRUEBA";
-}
 
 #tscVideoContent.collapsed .play-button-overlay-glyph{
     opacity:0;
