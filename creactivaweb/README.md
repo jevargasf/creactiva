@@ -489,14 +489,16 @@ CURSOS
 ✔ *** Dar funcionalidad de play al botón reproducir de abajo ***
 - Estados cursos ??
 - corrección fabián: no mostrar trailer para curso cultura
+- imagen en full info cap no se muestra en todos los cursos/capítulos
 SUSCRIPCIONES
 - *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
-- *** Formulario solicitudes falta ver tema países, comunas ***: showif(comunas) y selectize (países)
+✔ *** Formulario solicitudes falta ver tema países, comunas ***: showif(comunas) y selectize (países)
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
 ✔ Integrar etiqueta suscripción activa
+- tarea automatizada que actualice la vigencia de los códigos promocionales
 PERFILES
 X falta mostrar historial de pagos
-- *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
+X *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
 MAIN
 - Función reestablecer contraseña usuario
 - Proceso de verificación de correo al registrarse
@@ -510,4 +512,4 @@ DESPLIEGUE
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 
 
-ACTUALMENTE: REESCRIBIR EL FORM SOLICITUD DE ORGANIZACIÓN SIN META Y USAR LA SINTAXIS TRADICIONAL DE FORMULARIO DJANGO CAMPO POR CAMPO
+ACTUALMENTE: ARREGLAR ESTILO DEL OPTION REGIONES, VER CÓMO PROCESA EL DJANGO EL FORM

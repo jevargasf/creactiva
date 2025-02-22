@@ -244,10 +244,10 @@ divSelectComuna = document.getElementById("div-comuna")
 selectPais.addEventListener("change", ()=>{
     value = selectPais.options[selectPais.selectedIndex].value
     if (value == 'CL'){
-        console.log("Sí")
         divSelectRegion.classList.remove("form-hide")
-    } else {
+    } else if (value != 'CL') {
         divSelectRegion.classList.add("form-hide")
+        divSelectComuna.classList.add("form-hide")
     }
 })
 selectRegion.addEventListener("change", ()=>{

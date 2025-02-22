@@ -1173,7 +1173,7 @@ float: left;
 
 }
 
-#tipo_organizacion, #comuna, #pais{
+#tipo_organizacion, #comuna, #pais, #region{
     background-color: initial;
     color: #fff;
     border: none;
@@ -1199,7 +1199,11 @@ float: left;
 
 }
 
-#tipo_organizacion option, #comuna option, #pais option{
+#region{
+    width: 200px;
+}
+
+#tipo_organizacion option, #comuna option, #pais option, #region option{
     background-color: #005c99;
     color: #fff;
     letter-spacing: .5px;
@@ -1210,14 +1214,14 @@ float: left;
 
 }
 
-#tipo_organizacion option:first-child, #comuna option:first-child,#pais option:first-child{
+#tipo_organizacion option:first-child, #comuna option:first-child,#pais option:first-child, #region option:first-child{
     color: rgba(256, 256, 256, .5);
     display: none;
 }
 
 
 
-#tipo_organizacion option:hover#comuna option:hover,#pais option:hover{
+#tipo_organizacion option:hover#comuna option:hover,#pais option:hover, #region option:hover{
     background-color: #1787e9;
     color: #fff;
     cursor: pointer;

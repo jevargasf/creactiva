@@ -308,9 +308,13 @@ class SolicitudOrganizacionView(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        form = SolicitudOrganizacionForm()
-        context = {'form': form}
-        return render(request, 'suscripciones/plan_organizacion.html', context)
+        if request.user.is_authenticated:
+            form = SolicitudOrganizacionForm()
+            context = {'form': form}
+            return render(request, 'suscripciones/plan_organizacion.html', context)
+        else:
+            messages.error(request, 'Por favor, inicia sesión o regístrate para continuar.')
+            return redirect('login')
     
     def post(self, request: HttpRequest):
         # Cuando se reciba una solicitud de organización, la persona queda registrada como representante
