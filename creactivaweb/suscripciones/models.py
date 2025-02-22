@@ -114,6 +114,7 @@ class SolicitudOrganizacion(models.Model):
     comuna = models.CharField(max_length=5, default=None, blank=True, verbose_name='Comuna')
     cursos = models.JSONField(null=False, blank=True, default=None, verbose_name='Cursos')
     mensaje = models.TextField(null=True, blank=True, verbose_name='Mensaje')
+    fecha_solicitud = models.DateField(default=now, verbose_name='Fecha de solicitud')
     usuario = models.ForeignKey(
         User,
         default=None,
@@ -121,3 +122,7 @@ class SolicitudOrganizacion(models.Model):
         verbose_name='Solicitud organización',
         related_name='solicitud_org'
     )
+    respondida = models.BooleanField(default=False, null=True, blank=True, verbose_name='Solicitud respondida')
+
+    def __str__(self) -> str:
+        return f"ID: {self.id} | Solicitante: {self.usuario.first_name} {self.usuario.last_name} de {self.nombre_organizacion} | Fecha: {self.fecha_solicitud}"

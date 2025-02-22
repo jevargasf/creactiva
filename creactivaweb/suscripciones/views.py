@@ -331,6 +331,24 @@ class SolicitudOrganizacionView(View):
                 usuario=user
             )
             solicitud.save()
+            send_mail(
+                f"Nueva Solicitud de Suscripción Organización",
+                f"""Detalles de la solicitud:\nNombre organización: {form.cleaned_data['nombre_organizacion']}\n 
+                Nombre representante: {user.first_name} {user.last_name}\n 
+                Correo representante: {user.email}\n""",
+                "no-reply@creactivaanimaciones.cl",
+                ["contacto@creactivaanimaciones.cl"],
+                fail_silently=False,
+            )
+            send_mail(
+                f"Hemos recibido tu solicitud satisfactoriamente",
+                f"""
+                ¡Muchas gracias por contactarte con nosotros! Prontamente nuestro equipo se encargará de revisar tu solicitud y contactarte a este mismo correo.
+                """,
+                "no-reply@creactivaanimaciones.cl",
+                [f"{user.email}"],
+                fail_silently=False,
+            )
             messages.success(request, 'Hemos recibido tu solicitud con éxito.')
             return redirect('index')
         else:
