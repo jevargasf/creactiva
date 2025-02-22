@@ -491,7 +491,7 @@ CURSOS
 - corrección fabián: no mostrar trailer para curso cultura
 SUSCRIPCIONES
 - *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
-- *** Formulario solicitudes falta ver tema países, comunas ***
+- *** Formulario solicitudes falta ver tema países, comunas ***: showif(comunas) y selectize (países)
 - Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
 ✔ Integrar etiqueta suscripción activa
 PERFILES
@@ -508,3 +508,6 @@ DESPLIEGUE
 - Migrar a bbdd postgresql
 - Poner webpay en producción
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
+
+
+ACTUALMENTE: REESCRIBIR EL FORM SOLICITUD DE ORGANIZACIÓN SIN META Y USAR LA SINTAXIS TRADICIONAL DE FORMULARIO DJANGO CAMPO POR CAMPO

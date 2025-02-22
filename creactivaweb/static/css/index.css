@@ -1224,7 +1224,9 @@ float: left;
     border-radius: 0px;
 }
 
-
+.form-hide {
+    display: none;
+}
 
 #form-check{
     text-align: left;

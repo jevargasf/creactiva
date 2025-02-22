@@ -234,3 +234,20 @@ $('#btn-descuento').click(function(){
 
 
 $('#id_codigo').attr("placeholder", "Ingresa tu código de descuento");    
+
+// BOTONES 
+selectPais = document.getElementById("pais")
+selectComuna = document.getElementById("div-comuna")
+selectPais.addEventListener("change", ()=>{
+    value = selectPais.options[selectPais.selectedIndex].value
+    if (value == 'CL'){
+        console.log("Sí")
+        selectComuna.classList.toggle("form-hide")
+    }
+    //if (selectPais.options[selectPais.selectedIndex].value == 'CL'){
+        console.log(selectPais.options[selectPais.selectedIndex].value)
+        //selectComuna.classList.toggle("form-hide")
+    //}
+})
+
+console.log("EJECUCIIÓN COMPLETA")
