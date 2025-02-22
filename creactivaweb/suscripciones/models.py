@@ -111,7 +111,7 @@ class SolicitudOrganizacion(models.Model):
     nombre_organizacion = models.CharField(max_length=255, null=True, blank=True, verbose_name='Nombre organización')
     tipo_organizacion = models.CharField(max_length=33, choices=TIPOS_ORGANIZACIONES, default=None, verbose_name='Tipo organización')
     pais = models.CharField(max_length=2, default=None, verbose_name='País')
-    comuna = models.CharField(max_length=5, default=None, verbose_name='Comuna')
+    comuna = models.CharField(max_length=5, default=None, blank=True, verbose_name='Comuna')
     cursos = models.JSONField(null=False, blank=True, default=None, verbose_name='Cursos')
     mensaje = models.TextField(null=True, blank=True, verbose_name='Mensaje')
     usuario = models.ForeignKey(
