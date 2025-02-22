@@ -42,8 +42,22 @@ def get_paises():
     for cat in lista:
         data = ast.literal_eval(cat)
         choices.append((data['alfa-2'], data['nombre']))
+    return choices
+
+def get_regiones():
+    f = open("./static/json/regiones.json")
+    text = f.read()
+    f.close()
+    lista = json.loads(text)
+    choices = [
+        ('', 'Seleccione región:')
+    ]
+    for reg in lista:
+        data = ast.literal_eval(reg)
+        choices.append((data['codigo'], data['nombre']))
     
     return choices
+
 class SelectCustom(Select):
     def create_option(self, *args, **kwargs):
         option = super().create_option(*args, **kwargs)

@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from suscripciones.models import SolicitudOrganizacion, Suscripcion
-from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises
+from suscripciones.utils import get_tipo_organizacion, SelectCustom, get_comunas, get_paises, get_regiones
 from suscripciones.services import get_solicitudes, get_planes
 from cursos.utils import pedir_nombres_cursos
 
@@ -13,6 +13,12 @@ class CodigoPromocionalForm(forms.Form):
      )
 
 class SolicitudOrganizacionForm(ModelForm):
+    region = forms.CharField(widget=SelectCustom(
+                choices=get_regiones(),
+                attrs={
+                    'id': 'region'
+                }
+    ))    
     class Meta:
 
         def __init__(self, *args, **kwargs):
@@ -37,7 +43,8 @@ class SolicitudOrganizacionForm(ModelForm):
             'cursos': 'Selecciona el contenido que te interesa',
             'tipo_organizacion': 'Tipo de organización',
             'comuna': 'Comuna',
-            'pais': 'País'
+            'pais': 'País',
+            'region': 'Región'
         }
         widgets = {
             'nombre_organizacion': forms.TextInput(
@@ -53,18 +60,18 @@ class SolicitudOrganizacionForm(ModelForm):
                     'id': 'tipo_organizacion'
                 }
             ),
-            'comuna': SelectCustom(
-                choices=get_comunas(),
-                attrs={
-                    'id': 'comuna'
-                }
-            ),    
             'pais': SelectCustom(
                 choices=get_paises(),
                 attrs={
                     'id': 'pais'
                 }
             ),     
+            'comuna': SelectCustom(
+                choices=get_comunas(),
+                attrs={
+                    'id': 'comuna'
+                }
+            ),
             'cursos': forms.CheckboxSelectMultiple(
                 choices=pedir_nombres_cursos(),
                 attrs={
@@ -79,6 +86,7 @@ class SolicitudOrganizacionForm(ModelForm):
                 }
             )
         }
+
 
 class ElegirOrganizacionForm(forms.Form):
       organizacion = forms.CharField(widget=SelectCustom(
