@@ -491,9 +491,9 @@ CURSOS
 - corrección fabián: no mostrar trailer para curso cultura
 - imagen en full info cap no se muestra en todos los cursos/capítulos
 SUSCRIPCIONES
-- *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
+X *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
 ✔ *** Formulario solicitudes falta ver tema países, comunas ***: showif(comunas) y selectize (países)
-- Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+X Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo. Monto, tipo de plan
 ✔ Integrar etiqueta suscripción activa
 - tarea automatizada que actualice la vigencia de los códigos promocionales
 PERFILES
@@ -505,11 +505,12 @@ MAIN
 - Captcha formularios
 - textos nosotros desde bbdd
 - correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
+- revisar pestaña quieres un contenido "pronto", usar form contacto
+- revisar todos los redirect(login) usando redirect_to_login(next, login_url=None, redirect_field_name='next')
 DESPLIEGUE
 - Subir versión de producción
 - Migrar a bbdd postgresql
 - Poner webpay en producción
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
+- revisar formato correos
 
-
-ACTUALMENTE: ARREGLAR ESTILO DEL OPTION REGIONES, VER CÓMO PROCESA EL DJANGO EL FORM

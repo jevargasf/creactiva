@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordChangeDoneView, PasswordResetConfirmView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.utils import IntegrityError
@@ -15,6 +15,7 @@ from main.forms import ContactoModelForm
 from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.conf import settings
+from django.contrib.auth.forms import PasswordResetForm
 
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
@@ -137,3 +138,43 @@ class NosotrosView(View):
 
         }
         return render(request, 'main/nosotros.html', context)
+    
+class ResetPasswordView(PasswordResetView):
+    template_name = 'registration/password_reset.html'
+    from_email = 'no-reply@creactivaanimaciones.cl'
+    # form_class = PasswordResetForm()
+    # success_url = reverse_lazy('index')
+    # template_name = 'change_password'
+
+    # def dispatch(self, *args, **kwargs):
+    #     return super().dispatch(*args, **kwargs)
+    
+    # def get(self, request: HttpRequest):
+    #     form_class = PasswordResetForm()
+    #     return render(request, 'change_password.html', {'form': form_class})
+    
+    # def post(self, request: HttpRequest):
+    #     form = PasswordResetForm(request.POST)
+    #     if form.is_valid():
+    #         print(form)
+    #         email = form['email']
+    #         form.send_mail(
+    #             subject_template_name='Reestablecer Contraseña Creactiva Animaciones',
+    #             email_template_name='Acá puedes reestablecer tu contraseña: ',
+    #             from_email='no-reply@creactivaanimaciones.cl',
+    #             to_email=email,
+    #         )
+    #         print(email)
+    #         messages.success(request, f'Te hemos enviado un link para reestablecer tu contraseña a {email}.')
+    #         return redirect('login')
+    #     else:
+    #         form = PasswordResetForm()
+    #         messages.error(request, 'No se ha podido reestablecer la contraseña. Por favor, intenta nuevamente.')
+    #         return render(request, 'registration/change_password.html', {'form': form})
+
+class DoneResetPasswordView(PasswordChangeDoneView):
+    template_name = 'registration/password_reset_done.html'
+
+class ConfirmResetPasswordView(PasswordResetConfirmView):
+    template_name = 'registration/password_reset_confirm.html'
+
