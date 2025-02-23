@@ -4,6 +4,6 @@ django-extensions==3.2.3
 python-dotenv==1.0.1
 sqlparse==0.5.1
 whitenoise
-django-formset==1.6
 requests==2.32.3
 psycopg2==2.9.10
+jwt==1.3.1

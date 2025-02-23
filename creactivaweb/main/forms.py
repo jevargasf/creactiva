@@ -2,6 +2,12 @@ from django import forms
 from django.forms import ModelForm
 from main.models import Contacto
 
+class SolicitarResetPasswordForm(forms.Form):
+    email = forms.EmailField(
+        required=True,
+        widget=forms.TextInput()
+        )
+
 class ContactoModelForm(ModelForm):
     class Meta:
         model = Contacto

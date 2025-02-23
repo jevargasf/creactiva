@@ -1,5 +1,9 @@
 from django.contrib.auth.models import User
 from main.models import Perfil
+from jwt import JWT
+from jwt.jwk import OctetJWK
+from django.utils import timezone
+from creactivaweb.settings import JWT_SECURE
 
 def crear_usuario(username: str, first_name: str, last_name: str, email: str, password: str):
     user = User.objects.create_user(
@@ -7,7 +11,8 @@ def crear_usuario(username: str, first_name: str, last_name: str, email: str, pa
         email=email,
         password=password,
         first_name=first_name,
-        last_name=last_name
+        last_name=last_name,
+        is_active=False
     )
     user.save()
     perfil = Perfil.objects.create(
@@ -27,16 +32,24 @@ def get_representantes():
     else:
         return None
     
-# SIGUIENTE: probar cómo funciona esto. Continuar con el proceso de capturar la data del formulario
-# de solicitud.
-    # 1. Guardar la data de 1 solicitud
-    # 2. Recuperarla con autollenado en el formulario de admin
-        # - Primero, elegir al representante que se desea registrar (realizar post)
-        # - Segundo, redirigir a otro formulario previamente autollenado, que este sea el final
-        # para realizar el registro de la suscripción
+def crear_token(**kwargs):
+    jwt = JWT()
+    jwk = OctetJWK(key=JWT_SECURE.encode('utf-8'))
     
-# SIGUIENTE: Programa que identifique cuándo la suscripción es caduca. Esto quiere decir:
-# dejar una tarea programada en el servidor
-    
-# SIGUIENTE 2: Desarrollar la pantalla de "detalle" de la compra de suscripción individual
-# REQUISITO PREVIO: Agregar los datos de las suscripciones individuales a una tabla en la bd
+    ts = str(timezone.now())
+    payload = {
+        'ts': ts
+    }
+
+    for key, arg in kwargs.items():
+        payload[key] = arg
+        
+    token = jwt.encode(payload, jwk, alg='HS256')
+    return token
+
+def traducir_token(token):
+    jwt = JWT()
+    jwk = OctetJWK(key=JWT_SECURE.encode('utf-8'))
+
+    mensaje = jwt.decode(token, jwk, do_time_check=True)
+    return mensaje

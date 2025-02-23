@@ -501,16 +501,18 @@ X falta mostrar historial de pagos
 X *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
 MAIN
 - Función reestablecer contraseña usuario
-- Proceso de verificación de correo al registrarse
+✔ Proceso de verificación de correo al registrarse
 - Captcha formularios
 - textos nosotros desde bbdd
-- correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
+- html correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
 - revisar pestaña quieres un contenido "pronto", usar form contacto
 - revisar todos los redirect(login) usando redirect_to_login(next, login_url=None, redirect_field_name='next')
 DESPLIEGUE
 - Subir versión de producción
+- pasar variables de entorno a config.json
 - Migrar a bbdd postgresql
 - Poner webpay en producción
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 - revisar formato correos
 
+ACTUALMENTE: función reestablecer contraseña, ver clase curso udemy
