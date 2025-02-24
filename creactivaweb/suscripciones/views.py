@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.contrib.auth import login
-
+from django.urls import reverse
 class PlanesView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -53,7 +53,7 @@ class PlanIndividual(View):
                     registro_descuento.save()
                 else:
                     messages.error(request, 'Por favor, ingresa para continuar.')
-                    return redirect('login')
+                    return redirect(reverse('login')+f'?next={request.path}')
             else:
                 planes = planes_montos_mensuales()
                 form = CodigoPromocionalForm()
@@ -118,7 +118,7 @@ class DetallePlan(View):
                 return render(request, 'suscripciones/detalle_plan.html', context)
         else:
             messages.error(request, 'Por favor, ingresa para continuar.')
-            return redirect('login')
+            return redirect(reverse('login')+f'?next={request.path}')
 
     def post(self, request: HttpRequest, id_plan):
         pass
@@ -186,7 +186,7 @@ class PagarView(LoginRequiredMixin, View):
         except User.DoesNotExist as e:
             print(f"Error: {e}")
             messages.error(request, 'Por favor, ingresa antes de continuar. Si no tienes una cuenta, regístrate.')
-            return redirect('login')
+            return redirect(reverse('login')+f'?next={request.path}')
         except Exception as e:
             print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
             messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
@@ -328,7 +328,7 @@ class SolicitudOrganizacionView(View):
             return render(request, 'suscripciones/plan_organizacion.html', context)
         else:
             messages.error(request, 'Por favor, inicia sesión o regístrate para continuar.')
-            return redirect('login')
+            return redirect(reverse('login')+f'?next={request.path}')
     
     def post(self, request: HttpRequest):
         # Cuando se reciba una solicitud de organización, la persona queda registrada como representante

@@ -19,6 +19,7 @@ from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 import datetime
 from django.contrib.auth.hashers import make_password
+from django.urls import reverse
 
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
@@ -152,11 +153,12 @@ class VerificacionView(View):
             except SMTPException as e:
                 print("NO SE PUDO ENVIAR EL CORREO.", e)
                 messages.error(request, f'La cuenta fue registrada exitosamente, pero no pudimos enviarte un correo para verificar tu cuenta. Por favor, escribe a contacto@creactivaanimaciones.cl para solucionar este problema.')
-                return redirect('login')
+                return redirect('index')
 class CustomLoginView(SuccessMessageMixin, LoginView):
     success_message = "Sesión Iniciada Exitosamente"
     template_name = 'registration/login.html'  
     redirect_authenticated_user = True
+    
 
 
 class CustomLogoutView(LogoutView):
@@ -237,7 +239,7 @@ class ResetPasswordView(View):
             msg.send()
             # mandar correo con token
             messages.success(request, f'Te hemos enviado un link para reestablecer tu contraseña a {email}.')
-            return redirect('login')
+            return redirect('index')
         else:
             form = SolicitarResetPasswordForm()
             messages.error(request, 'No se ha podido reestablecer la contraseña. Por favor, intenta nuevamente.')
@@ -263,11 +265,11 @@ class ResetPasswordConfirmView(View):
                 return render(request, 'registration/password_reset_form.html', context)
             else:
                 messages.error(request, 'El token ha caducado. Por favor, intenta nuevamente.')
-                return render('login')
+                return redirect('login')
         except User.DoesNotExist as e:
             print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
             messages.error(request, 'El token no es válido. Por favor, intenta nuevamente.')
-            return render('login')
+            return redirect('login')
 
 
     def post(self, request: HttpRequest, token):

@@ -23,7 +23,7 @@
 
     {% else %}
         
-        <a id="iniciarsesion" class="link-nav" href="{% url 'login' %}"><h6>INICIA SESIÓN</h6><img id="amp_off" src="{% static 'icon/amp_off.svg' %}" alt=""></a>
+        <a id="iniciarsesion" class="link-nav" href="{% url 'login' %}?next={{ request.path }}"><h6>INICIA SESIÓN</h6><img id="amp_off" src="{% static 'icon/amp_off.svg' %}" alt=""></a>
     {% endif %}
 
     <button id="btn-menu">

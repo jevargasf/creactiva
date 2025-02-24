@@ -476,7 +476,7 @@ SISTEMA ETIQUETAS PROMOCIONALES:
         - 1: ESTRENO + fecha_lanzamiento > etiqueta: ESTRENO DD/MM/YYYY
         - 2: PRÓXIMAMENTE
     - capítulo en próximamente: no despliega trailer, curso en próximamente: muestra descripción y nombres capítulos (sin interactividad)
-    - si curso no tiene trailer, se despliega con 
+    - si curso no tiene trailer, se despliega con capítulos sin link
 
     - Para estado promocional == 2, la etiqueta muestra fecha de lanzamiento
     - Curso también tiene etiqueta promocional, se debe cambiar manual
