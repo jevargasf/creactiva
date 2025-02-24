@@ -544,7 +544,7 @@ MAñANA:
 - tareas automatizadas
     ✔ check_suscripciones
     ✔ check_descuentos
-    - check_etiquetas(aunque esto no sé si sea necesario gestionar con trabajo cron)
+    ✔ check_etiquetas(aunque esto no sé si sea necesario gestionar con trabajo cron)
 - debug replay cap y otras minucias app cursos
 - revisar redirects
 - habilitar ¿quieres un contenido? y revisar mail que envía formulario

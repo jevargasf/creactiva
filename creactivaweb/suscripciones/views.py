@@ -230,14 +230,28 @@ class RespuestaWebpayView(View):
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 perfil_object.codigo = '100'
-                perfil_object.descuento_creactiva = False
-                perfil_object.save()
                 perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
                 perfil_suscripcion_object.estado_suscripcion = '1'
                 perfil_suscripcion_object.save()
                 # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
-                perfil_codigo_object = PerfilCodigo(codigo=conseguir_codigo_usado(perfil_object))
+                codigo_object = conseguir_codigo_usado(perfil_object)
+                perfil_codigo_object = PerfilCodigo(codigo=codigo_object)
+                # USUARIO YA USÓ EL CÓDIGO
                 perfil_codigo_object.estado_uso_codigo = '1'
+                perfil_codigo_object.save()
+                # SE LE QUITA EL DESCUENTO CREACTIVA
+                perfil_object.descuento_creactiva = False
+                perfil_object.save()
+                # DISMINUYE EL NÚMERO DE USOS DISPONIBLES
+                codigo_object.cantidad -= 1
+                if codigo_object.cantidad == 0:
+                    codigo_object.estado_codigo = '0'
+                    codigo_object.save()
+                elif codigo_object.cantidad > 0:
+                    codigo_object.save()
+                else:
+                    codigo_object.cantidad = 0
+                    codigo_object.save()
                 send_mail(
                     f"Nueva Suscripción Creactiva Animaciones",
                     f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
