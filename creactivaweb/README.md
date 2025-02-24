@@ -473,8 +473,11 @@ DETALLES FABIÁN
 SISTEMA ETIQUETAS PROMOCIONALES:
     - ESTADOS PROMOCIONALES:
         - 0: NINGUNO
-        - 1: ESTRENO/NUEVO/NOVEDAD
+        - 1: ESTRENO + fecha_lanzamiento > etiqueta: ESTRENO DD/MM/YYYY
         - 2: PRÓXIMAMENTE
+    - capítulo en próximamente: no despliega trailer, curso en próximamente: muestra descripción y nombres capítulos (sin interactividad)
+    - si curso no tiene trailer, se despliega con 
+
     - Para estado promocional == 2, la etiqueta muestra fecha de lanzamiento
     - Curso también tiene etiqueta promocional, se debe cambiar manual
     - Si el capítulo tiene etiqueta promocional, aunque la persona esté suscrita a la aplicación, le redirige al trailer del capítulo
@@ -546,7 +549,7 @@ MAñANA:
     ✔ check_descuentos
     ✔ check_etiquetas(aunque esto no sé si sea necesario gestionar con trabajo cron)
 ✔ revisión lógica códigos suscripción exitosa
-- debug replay cap y otras minucias app cursos
+✔ debug replay cap y otras minucias app cursos
 - revisar redirects
 - habilitar ¿quieres un contenido? y revisar mail que envía formulario
 

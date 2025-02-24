@@ -9,15 +9,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 <meta property="og:locale" content="es_ES" />
-<meta property="og:title" content="{{ info.capitulo_nombre }} | {{ info.curso_nombre }}" />
+<meta property="og:title" content="{{ capitulo.nombre }} | {{ capitulo.curso.nombre }}" />
 <meta property="og:type" content="product" />
 <meta property="og:URL" content="https://www.creactivaanimaciones.cl" />
-<meta property="og:image" content="{% static 'img/' %}{{ info.first_frame}}" />
-<meta property="og:description" content="{{ info.descripcion }}" />
+<meta property="og:image" content="{% static 'img/' %}{{ capitulo.first_frame }}" />
+<meta property="og:description" content="{{ capitulo.descripcion }}" />
 
 
 
-<title>{{ info.capitulo_nombre }} | {{ info.curso_nombre }}</title>
+<title>{{ capitulo.nombre }} | {{ capitulo.curso.nombre }}</title>
 <link href="{% static '/skins/remix/techsmith-smart-player.min.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
@@ -63,17 +63,17 @@ overflow: hidden;
 
 
 <aside id="info-cap-player">
-    {% if info.fecha_lanzamiento and info.etiqueta_promocional_id == '2' %}
+    {% if capitulo.fecha_lanzamiento and capitulo.etiqueta_promocional_id == '2' %}
     <h6 class="etiqueta-promo-info-trailer">
-    ESTRENO: {{ info.fecha_lanzamiento | date:"d" | upper }} DE {{ info.fecha_lanzamiento | date:"F" | upper }}
+    ESTRENO: {{ capitulo.fecha_lanzamiento | date:"d" | upper }} DE {{ capitulo.fecha_lanzamiento | date:"F" | upper }}
     </h6>
-{% elif info.etiqueta_promocional_id == '2' or info.etiqueta_promocional_id == '1' %}
-    <h6 class="etiqueta-promo-info-trailer">{{ info.etiqueta_promocional }}</h6>
+{% elif capitulo.etiqueta_promocional_id == '2' or capitulo.etiqueta_promocional_id == '1' %}
+    <h6 class="etiqueta-promo-info-trailer">{{ capitulo.etiqueta_promocional }}</h6>
 {% else %}
 {% endif %}
-    <h3>Capítulo {{ info.numero }}</h3>
-    <h8>{{ info.capitulo_nombre }}</h8>
-    <h4>{{ info.desc_corta }}</h4>
+    <h3>Capítulo {{ capitulo.numero }}</h3>
+    <h8>{{ capitulo.nombre }}</h8>
+    <h4>{{ capitulo.desc_corta }}</h4>
 
 </aside>
 
@@ -82,12 +82,12 @@ overflow: hidden;
 
 
 
-<script src="{% static 'scripts/' %}{{ recurso.js_trailer }}" type="text/javascript"></script>
+<script src="{% static 'scripts/' %}{{ capitulo.js_trailer }}" type="text/javascript"></script>
 <script type="text/javascript">
     (function (window) {
         function setup(TSC) {
-             TSC.playerConfiguration.addMediaSrc("{{ recurso.link }}");
-             TSC.playerConfiguration.setXMPSrc("{% static 'xml/' %}{{ recurso.xml_trailer }}");
+             TSC.playerConfiguration.addMediaSrc("{{ capitulo.link_trailer }}");
+             TSC.playerConfiguration.setXMPSrc("{% static 'xml/' %}{{ capitulo.xml_trailer }}");
              TSC.playerConfiguration.setAutoHideControls(true);
              TSC.playerConfiguration.setBackgroundColor("#000000");
              TSC.playerConfiguration.setCaptionsEnabled(false);
@@ -98,7 +98,7 @@ overflow: hidden;
              TSC.playerConfiguration.skipVideoDuration = 10;
              
              TSC.playerConfiguration.setAutoPlayMedia(false);
-             TSC.playerConfiguration.setPosterImageSrc("{% static '/img/' %}{{ info.first_frame }}");
+             TSC.playerConfiguration.setPosterImageSrc("{% static '/img/' %}{{ capitulo.first_frame }}");
              TSC.playerConfiguration.setIsSearchable(true);
              TSC.playerConfiguration.setEndActionType("stop");
              TSC.playerConfiguration.setEndActionParam("true");
@@ -125,7 +125,7 @@ overflow: hidden;
 {% include 'snippets/fondo_azul.html' %}
 
 <div id="cap-banner-top">
-    <h3>Capítulo {{ info.numero}} | <b>{{ info.capitulo_nombre }}</b></h3>
+    <h3>Capítulo {{ capitulo.numero }} | <b>{{ capitulo.nombre }}</b></h3>
 </div>
 
 
@@ -138,14 +138,14 @@ overflow: hidden;
 <article id="info-cap-full">
     <section>
         <aside id="info-cap-info"> 
-            <h6>Capítulo {{ info.numero }}</h6>
-            <h8>{{ info.capitulo_nombre }}</h8>
-            <h4>{{ info.desc_corta }}</h4>
-            <p>{{ info.descripcion | linebreaksbr }}</p>
-            <h6>Duración capítulo: <b>{{ info.duracion}} Minutos</b></h6>
+            <h6>Capítulo {{ capitulo.numero }}</h6>
+            <h8>{{ capitulo.nombre }}</h8>
+            <h4>{{ capitulo.desc_corta }}</h4>
+            <p>{{ capitulo.descripcion | linebreaksbr }}</p>
+            <h6>Duración capítulo: <b>{{ capitulo.duracion }} Minutos</b></h6>
             <h6>Contenido:</h6>
             <ul class="cap-lista bloques">
-                    {% for contenido in info.contenidos %}
+                    {% for contenido in capitulo.contenidos %}
                     <li>· {{ contenido }}</li>
                     {% endfor %}
             </ul>
@@ -158,7 +158,7 @@ overflow: hidden;
             </nav>
 
         </aside>
-        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ info.first_frame}}" alt="{{ info.capitulo_nombre }}"></aside>
+        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ capitulo.first_frame }}" alt="{{ capitulo.nombre }}"></aside>
 
     </section>
 </article>
