@@ -51,21 +51,20 @@ setTimeout(function () {
         });
         // RECUPERAR EVENTO 'ended'
         videoElem.addEventListener("ended", () => {
-            console.log("EL VIDEO HA FINALIZADO")
+            document.querySelector('#btn-capitulo-out').classList.remove('collapsed2');
+            document.querySelector('#logo_abajo').classList.remove('collapsed2');
+            document.querySelector('#info-cap-player').classList.remove('collapsed2');
+            document.querySelector('#logo_capitulo').classList.remove('collapsed');
             btnReiniciar = document.querySelector("#tscVideoContent > div.before-after-play-controls > div.video-click-to-replay-link > button")
             btnReiniciar.style.zIndex = 1
             btnReiniciar.style.pointerEvents = 'all'
-            // document.querySelector('#btn-capitulo-out').classList.remove('collapsed2');
-            // document.querySelector('#logo_abajo').classList.remove('collapsed2');
-            // document.querySelector('#info-cap-player').classList.remove('collapsed2');
-            // document.querySelector('#logo_capitulo').classList.remove('collapsed');
-            // divBtnComenzar = document.querySelector("div.video-click-to-play-link")
-
-            // #tscVideoContent > div.before-after-play-controls > div.video-click-to-play-link
-            // divBtnComenzar.style.display = "block";
-            // divBtnComenzar.addEventListener("click", () => {
-            //     window.location.reload();
-            // })
+            btnReiniciar.style.backgroundImage = 'none'
+            btnReiniciar.addEventListener("click", ()=>{
+                document.querySelector('#btn-capitulo-out').classList.add('collapsed2');
+                document.querySelector('#logo_abajo').classList.add('collapsed2');
+                document.querySelector('#info-cap-player').classList.add('collapsed2');
+                document.querySelector('#logo_capitulo').classList.add('collapsed');  
+            })
         })
         // A la función se le provee del nombre de la cookie que se necesite
         function getCookie(name) {

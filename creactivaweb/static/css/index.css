@@ -2418,6 +2418,35 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     content:"COMENZAR";
 }
 
+#tscVideoContent > div.before-after-play-controls > div.video-click-to-replay-link > button{
+    position: absolute;
+    background-color:#fff;
+    font-size:14px;
+    border:none;
+    font-family: latoblack;
+    color:#00224a;
+    border-radius: 5px;
+    z-index: 2;
+    letter-spacing: .5px;
+    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    padding:10px 30px 10px 30px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    pointer-events: auto;
+    top: auto;
+    bottom:60px;
+    left:100px;
+    margin:0px;
+    -webkit-transition: all .3s;
+    opacity: 1;
+}
+
+#tscVideoContent > div.before-after-play-controls > div.video-click-to-replay-link > button::before{
+    background-image: none;
+    content: "REINICIAR";
+}
 
 #tscVideoContent.collapsed .play-button-overlay-glyph{
     opacity:0;

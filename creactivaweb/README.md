@@ -541,10 +541,11 @@ DESPLIEGUE
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 
 MAñANA:
-- tareas automatizadas
+✔ tareas automatizadas
     ✔ check_suscripciones
     ✔ check_descuentos
     ✔ check_etiquetas(aunque esto no sé si sea necesario gestionar con trabajo cron)
+✔ revisión lógica códigos suscripción exitosa
 - debug replay cap y otras minucias app cursos
 - revisar redirects
 - habilitar ¿quieres un contenido? y revisar mail que envía formulario

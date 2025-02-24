@@ -1,6 +1,3 @@
-// if pausa(), entonces despliega info planes
-// if termina_video, entonces despliega info planes
-
 setTimeout(function () {
     // EL PUTO MALDITO BOTÓN PLAY
     btnComenzar = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
@@ -23,23 +20,20 @@ setTimeout(function () {
         });
         // RECUPERAR EVENTO 'ended'
         videoElem.addEventListener("ended", () => {
-            console.log("EL VIDEO HA FINALIZADO")
-            // DESPLIEGO UN BOTÓN
-            // document.querySelector('#btn-capitulo-out').classList.remove('collapsed2');
-            // document.querySelector('#logo_abajo').classList.remove('collapsed2');
-            // document.querySelector('#info-cap-player').classList.remove('collapsed2');
-            // document.querySelector('#logo_capitulo').classList.remove('collapsed');
-            //divBtnComenzar = document.querySelector("div.video-click-to-play-link")
+            document.querySelector('#btn-capitulo-out').classList.remove('collapsed2');
+            document.querySelector('#logo_abajo').classList.remove('collapsed2');
+            document.querySelector('#info-cap-player').classList.remove('collapsed2');
+            document.querySelector('#logo_capitulo').classList.remove('collapsed');
             btnReiniciar = document.querySelector("#tscVideoContent > div.before-after-play-controls > div.video-click-to-replay-link > button")
             btnReiniciar.style.zIndex = 1
             btnReiniciar.style.pointerEvents = 'all'
-            // Change the styles of the pseudo element. 
-            // #tscVideoContent > div.before-after-play-controls > div.video-click-to-play-link
-            //divBtnComenzar.style.display = "block";
-            
-            // divBtnComenzar.addEventListener("click", () => {
-            //     window.location.reload();
-            // })
+            btnReiniciar.style.backgroundImage = 'none'
+            btnReiniciar.addEventListener("click", ()=>{
+                document.querySelector('#btn-capitulo-out').classList.add('collapsed2');
+                document.querySelector('#logo_abajo').classList.add('collapsed2');
+                document.querySelector('#info-cap-player').classList.add('collapsed2');
+                document.querySelector('#logo_capitulo').classList.add('collapsed');  
+            })
         })
 
     });
