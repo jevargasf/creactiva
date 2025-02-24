@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.db.utils import IntegrityError
 from main.utils import crear_usuario, crear_token, traducir_token
 from cursos.utils import pedir_cursos, capitulos_index
-from main.forms import ContactoModelForm, SolicitarResetPasswordForm
+from main.forms import ContactoModelForm, SolicitarResetPasswordForm, ResetPasswordForm
 from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.conf import settings
@@ -22,6 +22,7 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 import datetime
+from django.contrib.auth.hashers import make_password
 
 class IndexView(View):
     def dispatch(self, *args, **kwargs):
@@ -76,6 +77,13 @@ class RegisterView(View):
                 # Crear url
                 url = f'{settings.BASE_URL}accounts/verificacion/{token}'
                 # Preparar html
+                text_content = render_to_string(
+                    "templates/mails/verify_mail.txt",
+                    context={
+                        'nombre': user_object.first_name,
+                        'url': url
+                    }
+                )
                 html_content = render_to_string(
                     'templates/mails/verify_mail.html',
                     context={
@@ -86,7 +94,7 @@ class RegisterView(View):
                 # Enviar por email
                 msg = EmailMultiAlternatives(
                     "Verifica tu correo en Creactiva Animaciones",
-                    html_content,
+                    text_content,
                     "no-reply@creactivaanimaciones.cl",
                     [user_object.email]
                 )
@@ -122,6 +130,13 @@ class VerificacionView(View):
             try:
                 token = crear_token(id=user_object.id, email=user_object.email)
                 url = f'{settings.BASE_URL}accounts/verificacion/{token}'
+                text_content = render_to_string(
+                    "templates/mails/verify_mail.txt",
+                    context={
+                        'nombre': user_object.first_name,
+                        'url': url
+                    }
+                )
                 html_content = render_to_string(
                     'templates/mails/verify_mail.html',
                     context={
@@ -131,13 +146,13 @@ class VerificacionView(View):
                 )
                 msg = EmailMultiAlternatives(
                     "Verifica tu correo en Creactiva Animaciones",
-                    html_content,
+                    text_content,
                     "no-reply@creactivaanimaciones.cl",
                     [user_object.email]
                 )
                 msg.attach_alternative(html_content, "text/html")
                 msg.send()
-                
+
                 messages.success(request, f'El token ha caducado. Te hemos enviado un nuevo enlace a {user_object.email} para activar tu cuenta.')
                 return redirect('index')
             except SMTPException as e:
@@ -193,29 +208,125 @@ class ResetPasswordView(View):
     
     def get(self, request: HttpRequest):
         form = SolicitarResetPasswordForm()
-        return render(request, 'password_reset.html', {'form': form})
+        return render(request, 'registration/password_reset.html', {'form': form})
     
     def post(self, request: HttpRequest):
         form = SolicitarResetPasswordForm(request.POST)
         if form.is_valid():
-            email = form['email']
-            send_mail(
-                subject_template_name='Reestablecer Contraseña Creactiva Animaciones',
-                email_template_name='Acá puedes reestablecer tu contraseña: ',
-                from_email='no-reply@creactivaanimaciones.cl',
-                to_email=email,
-            )
+            email = request.POST['email']
+            # crear token
             print(email)
+            user_object = User.objects.get(email=email)
+            token = crear_token(id=user_object.id, user=user_object.username)
+            url = f'{settings.BASE_URL}accounts/password-form/{token}'
+            text_content = render_to_string(
+                "templates/mails/reset_password.txt",
+                context={
+                    'nombre': user_object.first_name,
+                    'url': url
+                }
+            )
+            html_content = render_to_string(
+                'templates/mails/reset_password.html',
+                context={
+                    'nombre': user_object.first_name,
+                    'url': url
+                }
+            )
+            msg = EmailMultiAlternatives(
+                "Verifica tu correo en Creactiva Animaciones",
+                text_content,
+                "no-reply@creactivaanimaciones.cl",
+                [user_object.email]
+            )
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            # mandar correo con token
             messages.success(request, f'Te hemos enviado un link para reestablecer tu contraseña a {email}.')
             return redirect('login')
         else:
-            form = PasswordResetForm()
+            form = SolicitarResetPasswordForm()
             messages.error(request, 'No se ha podido reestablecer la contraseña. Por favor, intenta nuevamente.')
-            return render(request, 'registration/change_password.html', {'form': form})
+            return render(request, 'registration/password_reset.html', {'form': form})
 
-class DoneResetPasswordView(PasswordChangeDoneView):
-    template_name = 'registration/password_reset_done.html'
+class ResetPasswordConfirmView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get(self, request: HttpRequest, token):
+        try:
+            # recibir url con token, validar token
+            token = traducir_token(token)
+            user_object = User.objects.get(pk=token['id'])
+            fecha_vigencia = timezone.now() + datetime.timedelta(days=1)
+            fecha_timestamp = parse_datetime(token['ts'])
+            if fecha_vigencia > fecha_timestamp:
+                # mandar form con campos nueva contraseña
+                form = ResetPasswordForm()
+                context = {
+                    'form': form
+                }
+                return render(request, 'registration/password_reset_form.html', context)
+            else:
+                messages.error(request, 'El token ha caducado. Por favor, intenta nuevamente.')
+                return render('login')
+        except User.DoesNotExist as e:
+            print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+            messages.error(request, 'El token no es válido. Por favor, intenta nuevamente.')
+            return render('login')
 
-class ConfirmResetPasswordView(PasswordResetConfirmView):
-    template_name = 'registration/password_reset_confirm.html'
 
+    def post(self, request: HttpRequest, token):
+        form = ResetPasswordForm(request.POST)
+        token = traducir_token(token)
+        user_object = User.objects.get(pk=token['id'])
+        if form.is_valid():
+            password1 = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+            if password1 != password2:
+                form = ResetPasswordForm()
+                context = {
+                    'form': form
+                }
+                messages.error(request, 'Las contraseñas no coinciden. Por favor, intenta nuevamente.')
+                return render(request, 'registration/password_reset_form.html', context)
+            else:
+                try:
+                    user_object.password = make_password(password1)
+                    user_object.save()
+                    text_content = render_to_string(
+                        "templates/mails/reset_password_done.txt",
+                        context={
+                            'nombre': user_object.first_name,
+                        }
+                    )
+                    html_content = render_to_string(
+                        'templates/mails/reset_password_done.html',
+                        context={
+                            'nombre': user_object.first_name,
+                        }
+                    )
+                    msg = EmailMultiAlternatives(
+                        "Contraseña Restablecida Satisfactoriamente Creactiva Animaciones",
+                        text_content,
+                        "no-reply@creactivaanimaciones.cl",
+                        [user_object.email]
+                    )
+                    msg.attach_alternative(html_content, "text/html")
+                    msg.send()
+
+                    messages.success(request, 'La contraseña se ha reestablecido satisfactoriamente. Por favor, inicie sesión.')
+                    return redirect('login')
+                except SMTPException as e:
+                    messages.error(request, f'Ocurrió un error. No pudimos confirmar tu nueva contraseña. Por favor, intenta nuevamente')
+                    return redirect('login')
+                except Exception as e:
+                    messages.error(request, f'Ocurrió un error. No pudimos reestablecer tu contraseña. Por favor, intenta nuevamente')
+                    return redirect('login')
+        else:
+            form = ResetPasswordForm()
+            context = {
+                'form': form
+            }
+            messages.error(request, 'El formulario no es válido. Por favor, intenta nuevamente.')
+            return render(request, 'registration/password_reset_form.html', context)

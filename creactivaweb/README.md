@@ -500,7 +500,7 @@ PERFILES
 X falta mostrar historial de pagos
 X *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
 MAIN
-- Función reestablecer contraseña usuario
+✔ Función reestablecer contraseña usuario
 ✔ Proceso de verificación de correo al registrarse
 - Captcha formularios
 - textos nosotros desde bbdd
@@ -515,4 +515,6 @@ DESPLIEGUE
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 - revisar formato correos
 
-ACTUALMENTE: función reestablecer contraseña, ver clase curso udemy
+ACTUALMENTE: función reestablecer contraseña
+- crear formulario y template para introducir nueva contraseña
+- recibirlo y validar la información
