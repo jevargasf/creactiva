@@ -1,21 +1,17 @@
-from typing import Any
 from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views import View
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordChangeDoneView, PasswordResetConfirmView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.utils import IntegrityError
 from main.utils import crear_usuario, crear_token, traducir_token
 from cursos.utils import pedir_cursos, capitulos_index
 from main.forms import ContactoModelForm, SolicitarResetPasswordForm, ResetPasswordForm
-from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.conf import settings
-from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -56,7 +52,6 @@ class RegisterView(View):
         email = request.POST['email']
         password = request.POST['password1']
         password_repeat = request.POST['password2']
-        # Validación del password ingresado
         if password != password_repeat:
             messages.error(request, 'Las contraseñas no coinciden')
             return render(request, 'registration/register.html')
@@ -68,7 +63,6 @@ class RegisterView(View):
         except Exception as e:
             messages.error(request, 'No se ha podido registrar el usuario')
             return render(request, 'registration/register.html')
-        # método authenticate(request, **credentials)
         else:
             try:
                 # Crear token

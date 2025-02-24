@@ -515,6 +515,47 @@ DESPLIEGUE
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
 - revisar formato correos
 
-ACTUALMENTE: función reestablecer contraseña
-- crear formulario y template para introducir nueva contraseña
-- recibirlo y validar la información
+SEMANA 24 DE FEBRERO:
+
+CURSOS
+- Tarea automatizada que quite etiquetas cuando llega la fecha de estreno
+- // Estados cursos ??
+- corrección fabián: no mostrar trailer para curso cultura
+- imagen en full info cap no se muestra en todos los cursos/capítulos
+- mostrar info cap con botón replay al finalizar un cap
+SUSCRIPCIONES
+- tarea automatizada que actualice la vigencia de los códigos promocionales
+- tarea de revisión de suscripciones envía correo electrónico cuando caduca la suscripción
+MAIN
+- reestablecer contraseña desde perfil ??
+- // Captcha formularios
+- textos nosotros desde bbdd
+- html correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
+- revisar pestaña quieres un contenido "pronto", usar form contacto
+- revisar todos los redirect(login) usando redirect_to_login(next, login_url=None, redirect_field_name='next')
+DESPLIEGUE
+- pasar variables de entorno a config.json
+- Migrar a bbdd postgresql
+- Subir versión de producción
+- Poner webpay en producción
+- Conectar a github repo para realizar cambios desde local y automatizar despliegue
+
+MAñANA:
+- tareas automatizadas
+    ✔ check_suscripciones
+    ✔ check_descuentos
+    - check_etiquetas(aunque esto no sé si sea necesario gestionar con trabajo cron)
+- debug replay cap y otras minucias app cursos
+- revisar redirects
+- habilitar ¿quieres un contenido? y revisar mail que envía formulario
+
+MARTES:
+- revisión responsividad
+- despliegue
+
+MIÉRCOLES:
+- despliegue versión de producción
+- testeo página
+
+JUEVES:
+- ENTREGA

@@ -46,7 +46,7 @@ class Curso(models.Model):
     xml_trailer = models.CharField(verbose_name='Xml trailer', null=True, max_length=255)
     js_trailer = models.CharField(verbose_name='Xml.js trailer', null=True, max_length=255)
     etiqueta_promocional = models.CharField(max_length=1, choices=ETIQUETAS_PROMOCIONALES, null=True, blank=True, default='0', verbose_name='Etiqueta promocional')
-    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=now, verbose_name='Fecha lanzamiento')
+    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=None, verbose_name='Fecha lanzamiento')
 
     etiquetas = models.ForeignKey(
         Etiqueta,
@@ -87,7 +87,7 @@ class Capitulo(models.Model):
     first_frame = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
     contenidos = models.JSONField(default=list, blank=True)
     etiqueta_promocional = models.CharField(max_length=1, choices=ETIQUETAS_PROMOCIONALES, null=True, blank=True, default='0', verbose_name='Etiqueta promocional')
-    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=now, verbose_name='Fecha lanzamiento')
+    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=None, verbose_name='Fecha lanzamiento')
     material = models.ForeignKey(
         MaterialesComplementario,
         blank=True, 
