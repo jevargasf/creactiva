@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 # VER SI HAY QUE AGREGAR MÁS HOSTS A ESTA CONFIGURACIÓN
-ALLOWED_HOSTS = ['www.creactivaanimaciones.cl/']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -138,26 +138,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = '/home/creacti3/public_html/static/'
-
-
-
-#Whitenoise Middleware para manejo de archivos estáticos
-# STORAGES = {
-#     # ...
-#     "staticfiles": {
-#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-#     },
-# }
-WHITENOISE_INDEX_FILE = True
-
-#Whitenoise Middleware para manejo de archivos estáticos
-# STORAGES = {
-#     # ...
-#     "staticfiles": {
-#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-#     },
-# }
-WHITENOISE_INDEX_FILE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

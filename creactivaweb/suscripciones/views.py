@@ -133,7 +133,6 @@ class PagarView(LoginRequiredMixin, View):
     def post(self, request: HttpRequest, id_plan):
         try:
             check_suscripcion = suscripcion_activa(request.user)
-            print(check_suscripcion)
             if check_suscripcion != None:
                 context = {
                     'fecha_inicio': check_suscripcion.fecha_inicio,
@@ -410,7 +409,6 @@ class SuscripcionOrganizacionView(View):
     
     def post(self, request: HttpRequest, id_org):
         form = SuscripcionOrganizacionForm(request.POST)
-        print(form.is_valid())
         if form.is_valid():
             suscripcion = Suscripcion(
                 fecha_inicio=form.cleaned_data['fecha_inicio'],
@@ -446,7 +444,6 @@ class SuscripcionOrganizacionView(View):
                 messages.success(request, 'La suscripción se ha registrado con éxito.')
                 return redirect('index')
             except:
-                print("Algo falló.")
                 context = {
                     'id_org': id_org,
                     'form': form
