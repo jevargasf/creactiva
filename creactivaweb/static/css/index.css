@@ -2980,7 +2980,7 @@ aside#cur-cap {
 
 
 #nosotros_texto aside h7{
-    font-size:30px;
+    font-size:26px;
     color:#003c71;
     padding: 6px;
     display: block;
@@ -2990,7 +2990,7 @@ aside#cur-cap {
 
 #nosotros_texto aside p{
     color:#003c71;
-    font-size: 15px;
+    font-size: 13px;
     text-align: justify;
     padding: 0px 6px 0px 6px;
 
@@ -4295,4 +4295,3 @@ table#detalle {
         display: none;
     }
     
-

@@ -1,7 +1,8 @@
 setTimeout(function () {
     // EL PUTO MALDITO BOTÓN PLAY
     btnComenzar = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
-
+    divAdvertenciaReproductor = document.querySelector("#tscVideoContent > div.message-bar-view-container")
+    divAdvertenciaReproductor.style.display = 'none'
     // EVENTO CLICK AGREGADO AL PUTO MALDITO
     btnComenzar?.addEventListener("click", () => {
         // EL BOTÓN MÁS INFO
@@ -41,5 +42,5 @@ setTimeout(function () {
     $(document).ready(function () {
         $('#transicion').css('opacity', '0');
     });
-    // TIEMPO DE ESPERA = 5 segundos
-},1000);
+    
+},700);

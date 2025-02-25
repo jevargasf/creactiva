@@ -551,7 +551,8 @@ MAñANA:
 ✔ revisión lógica códigos suscripción exitosa
 ✔ debug replay cap y otras minucias app cursos
 ✔ revisar redirects
-- habilitar ¿quieres un contenido? y revisar mail que envía formulario
+✔ habilitar ¿quieres un contenido? y revisar mail que envía formulario
+- subir versión de despliegue con bbdd postgresql y mandarla a amigos para testear responsividad
 
 MARTES:
 - revisión responsividad
@@ -559,7 +560,9 @@ MARTES:
 
 MIÉRCOLES:
 - despliegue versión de producción
+- disponibilización transbank
 - testeo página
 
 JUEVES:
 - ENTREGA
+    - observaciones: trailer debe ser exportado desde smart player, si no, muestra mensaje de error
