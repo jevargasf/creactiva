@@ -1173,7 +1173,7 @@ float: left;
 
 }
 
-#tipo_organizacion, #comuna, #pais{
+#tipo_organizacion, #comuna, #pais, #region{
     background-color: initial;
     color: #fff;
     border: none;
@@ -1199,7 +1199,11 @@ float: left;
 
 }
 
-#tipo_organizacion option, #comuna option, #pais option{
+#region{
+    width: 200px;
+}
+
+#tipo_organizacion option, #comuna option, #pais option, #region option{
     background-color: #005c99;
     color: #fff;
     letter-spacing: .5px;
@@ -1210,21 +1214,23 @@ float: left;
 
 }
 
-#tipo_organizacion option:first-child, #comuna option:first-child,#pais option:first-child{
+#tipo_organizacion option:first-child, #comuna option:first-child,#pais option:first-child, #region option:first-child{
     color: rgba(256, 256, 256, .5);
     display: none;
 }
 
 
 
-#tipo_organizacion option:hover#comuna option:hover,#pais option:hover{
+#tipo_organizacion option:hover#comuna option:hover,#pais option:hover, #region option:hover{
     background-color: #1787e9;
     color: #fff;
     cursor: pointer;
     border-radius: 0px;
 }
 
-
+.form-hide {
+    display: none;
+}
 
 #form-check{
     text-align: left;
@@ -2412,8 +2418,34 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     content:"COMENZAR";
 }
 
-#body-trailer #tscVideoContent .play-button-overlay-glyph::before {
-    content:"VER PRUEBA";
+#tscVideoContent > div.before-after-play-controls > div.video-click-to-replay-link > button{
+    position: absolute;
+    background-color:#fff;
+    font-size:14px;
+    border:none;
+    font-family: latoblack;
+    color:#00224a;
+    border-radius: 5px;
+    z-index: 2;
+    letter-spacing: .5px;
+    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    padding:10px 30px 10px 30px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    pointer-events: auto;
+    top: auto;
+    bottom:60px;
+    left:100px;
+    margin:0px;
+    -webkit-transition: all .3s;
+    opacity: 1;
+}
+
+#tscVideoContent > div.before-after-play-controls > div.video-click-to-replay-link > button::before{
+    background-image: none;
+    content: "REINICIAR";
 }
 
 #tscVideoContent.collapsed .play-button-overlay-glyph{
@@ -2948,7 +2980,7 @@ aside#cur-cap {
 
 
 #nosotros_texto aside h7{
-    font-size:30px;
+    font-size:26px;
     color:#003c71;
     padding: 6px;
     display: block;
@@ -2958,7 +2990,7 @@ aside#cur-cap {
 
 #nosotros_texto aside p{
     color:#003c71;
-    font-size: 15px;
+    font-size: 13px;
     text-align: justify;
     padding: 0px 6px 0px 6px;
 
@@ -4263,4 +4295,3 @@ table#detalle {
         display: none;
     }
     
-

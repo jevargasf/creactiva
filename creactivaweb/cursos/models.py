@@ -42,11 +42,8 @@ class Curso(models.Model):
     desc_corta= models.CharField(max_length=255, verbose_name='Descripción Corta')
     desc_larga = models.TextField(verbose_name='Descripción Larga')
     imagen_portada = models.CharField(max_length=255, verbose_name='Imagen portada', null=True)
-    link_trailer = models.URLField(verbose_name='Link trailer', null=True, max_length=255)
-    xml_trailer = models.CharField(verbose_name='Xml trailer', null=True, max_length=255)
-    js_trailer = models.CharField(verbose_name='Xml.js trailer', null=True, max_length=255)
     etiqueta_promocional = models.CharField(max_length=1, choices=ETIQUETAS_PROMOCIONALES, null=True, blank=True, default='0', verbose_name='Etiqueta promocional')
-    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=now, verbose_name='Fecha lanzamiento')
+    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=None, verbose_name='Fecha lanzamiento')
 
     etiquetas = models.ForeignKey(
         Etiqueta,
@@ -70,7 +67,8 @@ class Capitulo(models.Model):
     ETIQUETAS_PROMOCIONALES = (
         ('0', '--- NINGUNO ---'),
         ('1', 'ESTRENO'),
-        ('2', 'PRÓXIMAMENTE')
+        ('2', 'PRÓXIMAMENTE'),
+        ('3', 'SIN LANZAMIENTO')
     )
 
     cap = models.AutoField(primary_key=True, null=False, verbose_name='ID capítulo')
@@ -87,7 +85,10 @@ class Capitulo(models.Model):
     first_frame = models.CharField(verbose_name='Link frame preview', null=True, max_length=255)
     contenidos = models.JSONField(default=list, blank=True)
     etiqueta_promocional = models.CharField(max_length=1, choices=ETIQUETAS_PROMOCIONALES, null=True, blank=True, default='0', verbose_name='Etiqueta promocional')
-    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=now, verbose_name='Fecha lanzamiento')
+    fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=None, verbose_name='Fecha lanzamiento')
+    link_trailer = models.URLField(verbose_name='Link trailer', default=None, null=True, blank=True, max_length=255)
+    xml_trailer = models.CharField(verbose_name='Xml trailer', default=None, blank=True, null=True, max_length=255)
+    js_trailer = models.CharField(verbose_name='Xml.js trailer', default=None, blank=True, null=True, max_length=255)
     material = models.ForeignKey(
         MaterialesComplementario,
         blank=True, 

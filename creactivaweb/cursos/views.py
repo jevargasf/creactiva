@@ -52,56 +52,32 @@ class CapituloView(View):
     def get (self, request: HttpRequest, id):
         capitulo = Capitulo.objects.get(pk=id)
         context = {
-            'info': {
-                'capitulo_nombre': capitulo.nombre,
-                'curso_nombre': capitulo.curso.nombre,
-                'curso_id': capitulo.curso.cur,
-                'desc_corta': capitulo.desc_corta,
-                'numero': capitulo.numero,
-                'descripcion': capitulo.descripcion,
-                'duracion': capitulo.duracion,
-                'first_frame': capitulo.first_frame,
-                'contenidos': capitulo.contenidos,
-                'first_frame': capitulo.first_frame,
-                'etiqueta_promocional_id': capitulo.etiqueta_promocional,
-                'etiqueta_promocional': capitulo.get_etiqueta_promocional_display(),
-                'fecha_lanzamiento': capitulo.fecha_lanzamiento
-            },
-            'recurso': {}
+            'capitulo': capitulo
         }
-        if request.user.is_authenticated:
-                # TIENE CUENTA      
-            perfil_object = pedir_perfil(request.user)
-            # TIENE SUSCRIPCIÓN INDIVIDUAL
-            if perfil_object.codigo[0] == '1':
-                if capitulo.etiqueta_promocional == '0':
-                    context['recurso']['js_cap'] = capitulo.js_cap
-                    context['recurso']['link'] = capitulo.link
-                    context['recurso']['xml_cap'] = capitulo.xml_cap
-                    ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
-                    if ultima_visualizacion != None:
-                        context['minuto'] = ultima_visualizacion
-                    
-                    return render(request, 'cursos/reproductor.html', context)
+        if capitulo.link_trailer is None:
+            messages.error(request, '¡Próximamente podrás disfrutar de este contenido!')
+            return redirect('curso', capitulo.curso.cur)
+        else:
+            if request.user.is_authenticated:
+                    # TIENE CUENTA      
+                perfil_object = pedir_perfil(request.user)
+                # TIENE SUSCRIPCIÓN INDIVIDUAL
+                if perfil_object.codigo[0] == '1':
+                    if capitulo.etiqueta_promocional == '0':
+                        ultima_visualizacion = pedir_ultima_visualizacion(perfil_object, capitulo)
+                        if ultima_visualizacion != None:
+                            context['minuto'] = ultima_visualizacion
+                        return render(request, 'cursos/reproductor.html', context)
+                    else:
+                        return render(request, 'cursos/trailer.html', context)
+                # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
                 else:
-                    context['recurso']['js_trailer'] = capitulo.curso.js_trailer
-                    context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
-                    context['recurso']['link'] = capitulo.curso.link_trailer
+                    context['suscripcion'] = 'ninguna'
+                    # DATA CAP + TRAILER
                     return render(request, 'cursos/trailer.html', context)
-
-            # NO TIENE SUSCRIPCIÓN INDIVIDUAL, MANDA INFO TRAILER EN VEZ DE MANDAR CONTEXT, MEJO REDIRECT A URL TRAILER
             else:
-                context['recurso']['js_trailer'] = capitulo.curso.js_trailer
-                context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
-                context['recurso']['link'] = capitulo.curso.link_trailer
                 # DATA CAP + TRAILER
                 return render(request, 'cursos/trailer.html', context)
-        else:
-            context['recurso']['js_trailer'] = capitulo.curso.js_trailer
-            context['recurso']['xml_trailer'] = capitulo.curso.xml_trailer
-            context['recurso']['link'] = capitulo.curso.link_trailer
-            # DATA CAP + TRAILER
-            return render(request, 'cursos/trailer.html', context)
         
     def post(self, request: HttpRequest, id):
         # código para almacenar el segundo de reproducción
@@ -131,3 +107,16 @@ class CapituloView(View):
         # necesito: perfil del usuario, cap (que sale del id recibido en request),
         # el minuto recuperado y la fecha es autoadd
         return HttpResponse(status = 200)
+    
+class GlosarioView(LoginRequiredMixin, View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get (self, request: HttpRequest):
+        perfil_object = pedir_perfil(request.user)
+        # TIENE SUSCRIPCIÓN INDIVIDUAL
+        if perfil_object.codigo[0] == '1':
+            return render(request, 'cursos/recursos/glosario.html')
+        else:
+            messages.error(request, 'Suscríbete a uno de nuestros planes para acceder a este y otros contenidos.')
+            return redirect('plan-individual')

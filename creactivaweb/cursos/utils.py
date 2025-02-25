@@ -1,13 +1,13 @@
 from cursos.models import Capitulo, Curso, Visualizacion
 from main.models import Perfil
 from random import shuffle
-from django.db.models import Max
+from django.db.models import Max, Q
 
 def pedir_capitulos(id_curso):
-    return Capitulo.objects.filter(curso=id_curso)
+    return Capitulo.objects.filter(Q(curso=id_curso) & ~Q(etiqueta_promocional='4'))
 
 def pedir_cursos():
-    return Curso.objects.all()
+    return Curso.objects.filter(~Q(etiqueta_promocional='4'))
 
 def pedir_nombres_cursos():
     lista = list(Curso.objects.all().values('cur', 'nombre'))

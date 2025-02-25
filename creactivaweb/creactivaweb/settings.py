@@ -49,9 +49,7 @@ INSTALLED_APPS = [
     'main',
     'cursos',
     'suscripciones',
-    'dashboards',
-    'whitenoise.runserver_nostatic',
-    'formset'
+    'dashboards'
 ]
 
 MIDDLEWARE = [
@@ -209,6 +207,8 @@ USE_DECIMAL_SEPARATOR = False
 NUMBER_GROUPING = 3
 THOUSAND_SEPARATOR = "."
 
+# JWT PASS
+JWT_SECURE = "=)^+ls6f^[mb"
 # LOG DE ERRORES
 LOGGING = {
     "version": 1,

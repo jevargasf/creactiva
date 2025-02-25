@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.contrib.auth import login
-
+from django.urls import reverse
 class PlanesView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -53,7 +53,7 @@ class PlanIndividual(View):
                     registro_descuento.save()
                 else:
                     messages.error(request, 'Por favor, ingresa para continuar.')
-                    return redirect('login')
+                    return redirect(reverse('login')+f'?next={request.path}')
             else:
                 planes = planes_montos_mensuales()
                 form = CodigoPromocionalForm()
@@ -118,7 +118,7 @@ class DetallePlan(View):
                 return render(request, 'suscripciones/detalle_plan.html', context)
         else:
             messages.error(request, 'Por favor, ingresa para continuar.')
-            return redirect('login')
+            return redirect(reverse('login')+f'?next={request.path}')
 
     def post(self, request: HttpRequest, id_plan):
         pass
@@ -186,7 +186,7 @@ class PagarView(LoginRequiredMixin, View):
         except User.DoesNotExist as e:
             print(f"Error: {e}")
             messages.error(request, 'Por favor, ingresa antes de continuar. Si no tienes una cuenta, regístrate.')
-            return redirect('login')
+            return redirect(reverse('login')+f'?next={request.path}')
         except Exception as e:
             print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
             messages.error(request, 'No se ha podido registrar la suscripción. Por favor, intenta nuevamente.')
@@ -230,14 +230,28 @@ class RespuestaWebpayView(View):
                 suscripcion.session_id_transbank = 'DESTROYED'
                 suscripcion.save()
                 perfil_object.codigo = '100'
-                perfil_object.descuento_creactiva = False
-                perfil_object.save()
                 perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
                 perfil_suscripcion_object.estado_suscripcion = '1'
                 perfil_suscripcion_object.save()
                 # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
-                perfil_codigo_object = PerfilCodigo(codigo=conseguir_codigo_usado(perfil_object))
+                codigo_object = conseguir_codigo_usado(perfil_object)
+                perfil_codigo_object = PerfilCodigo(codigo=codigo_object)
+                # USUARIO YA USÓ EL CÓDIGO
                 perfil_codigo_object.estado_uso_codigo = '1'
+                perfil_codigo_object.save()
+                # SE LE QUITA EL DESCUENTO CREACTIVA
+                perfil_object.descuento_creactiva = False
+                perfil_object.save()
+                # DISMINUYE EL NÚMERO DE USOS DISPONIBLES
+                codigo_object.cantidad -= 1
+                if codigo_object.cantidad == 0:
+                    codigo_object.estado_codigo = '0'
+                    codigo_object.save()
+                elif codigo_object.cantidad > 0:
+                    codigo_object.save()
+                else:
+                    codigo_object.cantidad = 0
+                    codigo_object.save()
                 send_mail(
                     f"Nueva Suscripción Creactiva Animaciones",
                     f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
@@ -308,9 +322,13 @@ class SolicitudOrganizacionView(View):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request: HttpRequest):
-        form = SolicitudOrganizacionForm()
-        context = {'form': form}
-        return render(request, 'suscripciones/plan_organizacion.html', context)
+        if request.user.is_authenticated:
+            form = SolicitudOrganizacionForm()
+            context = {'form': form}
+            return render(request, 'suscripciones/plan_organizacion.html', context)
+        else:
+            messages.error(request, 'Por favor, inicia sesión o regístrate para continuar.')
+            return redirect(reverse('login')+f'?next={request.path}')
     
     def post(self, request: HttpRequest):
         # Cuando se reciba una solicitud de organización, la persona queda registrada como representante
@@ -327,6 +345,24 @@ class SolicitudOrganizacionView(View):
                 usuario=user
             )
             solicitud.save()
+            send_mail(
+                f"Nueva Solicitud de Suscripción Organización",
+                f"""Detalles de la solicitud:\nNombre organización: {form.cleaned_data['nombre_organizacion']}\n 
+                Nombre representante: {user.first_name} {user.last_name}\n 
+                Correo representante: {user.email}\n""",
+                "no-reply@creactivaanimaciones.cl",
+                ["contacto@creactivaanimaciones.cl"],
+                fail_silently=False,
+            )
+            send_mail(
+                f"Hemos recibido tu solicitud satisfactoriamente",
+                f"""
+                ¡Muchas gracias por contactarte con nosotros! Prontamente nuestro equipo se encargará de revisar tu solicitud y contactarte a este mismo correo.
+                """,
+                "no-reply@creactivaanimaciones.cl",
+                [f"{user.email}"],
+                fail_silently=False,
+            )
             messages.success(request, 'Hemos recibido tu solicitud con éxito.')
             return redirect('index')
         else:

@@ -68,7 +68,7 @@ def validar_codigo(codigo):
 def stock_codigo():
     pass
 
-def conseguir_codigo_usado(perfil):
+def conseguir_codigo_usado(perfil) -> CodigoPromocional:
     try:
         perfil_codigo_object = PerfilCodigo.objects.get(perfil=perfil, estado_uso_codigo='0')
         if perfil_codigo_object.codigo.estado_codigo == '1':

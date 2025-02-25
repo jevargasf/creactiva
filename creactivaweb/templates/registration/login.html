@@ -18,13 +18,15 @@
         <div>
             <input type="password" name="{{ form.password.name }}" id="password" required placeholder="Contraseña">
         </div>
+        <input type="hidden" name="next" value="{{ next }}">
         {% if form.errors %}
         <div class="alerta_registro" role="alert">
             <strong>Usuario y contraseña no coinciden</strong>
         </div>
     
         {% endif %}
-        <p>¿Has olvidado tu contraseña?</p>
+        <p>¿Has olvidado tu contraseña? <a href="{% url 'reset-password' %}"><p class="p-boton">Ingresa Aquí</p></a>
+    </p>
 
         <button type="submit">ENTRAR</button>
     </form>

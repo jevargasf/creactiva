@@ -121,6 +121,7 @@ Proceso:
 Mejoras a futuro:
 - El administrador tendrá la necesidad de mejorar el análisis de las organizaciones que se suscriben a su contenido. A futuro puede implementar nuevas categorías como "¿a qué se dedican?", con el fin de capturar la categoría de actividad específica de la organización. Esto permitiría comprender mejor el "público organizaciones" al que se está llegando, con el fin de buscar estrategias para ampliarlo o para elaborar productos dirigidos a ellos.
 - El registro de visualizaciones genera muchos datos que pierden su utilidad rápidamente. Esto es un espacio de memoria de la bbdd que en un futuro podría causar un problema. Para solucionarlo, se puede escribir un procedimiento almacenado que limpie la bbdd todos los días a las 5AM y solo deje la última visualización. También, se podría estudiar manejar estas visualizaciones intermedias en memoria y solo escribir la bbdd con "ese" dato que a las 5AM se deja. MMmm. Hay que seguir estudiándolo.
+- BOTÓN REPLAY: SE PUEDE PROGRAMAR QUE APAREZCA NUEVAMENTE EL TEXTO DESCRIPTIVO DEL CAP Y DARLE OTRO ESTILO AL BOTÓN.
 
 ACTUALMENTE TRABAJANDO:
 - app suscripciones/formulario solicitud organizaciones/categorías organizaciones
@@ -403,7 +404,7 @@ CURSOS
 ✔ botones para compartir curso y capítulo no están funcionales
 ✔ Revisar los headers para volver atrás. Trailer debe volver al curso
 ✔ *** Etiqueta “próximamente” curso cultura mapuche con fecha de lanzamiento para cada capítulo. Si no tiene fecha de lanzamiento, aparece solo próximamente. ***
-*** Botón replay quiebra el reproductor ***
+✔ *** Botón replay quiebra el reproductor *** BOTÓN REPLAY RECUPERADO
 - Dar funcionalidad de play al botón reproducir de abajo
 ✔ Botón compartir link
 - ESTADOS CURSOS ??
@@ -472,8 +473,11 @@ DETALLES FABIÁN
 SISTEMA ETIQUETAS PROMOCIONALES:
     - ESTADOS PROMOCIONALES:
         - 0: NINGUNO
-        - 1: ESTRENO/NUEVO/NOVEDAD
+        - 1: ESTRENO + fecha_lanzamiento > etiqueta: ESTRENO DD/MM/YYYY
         - 2: PRÓXIMAMENTE
+    - capítulo en próximamente: no despliega trailer, curso en próximamente: muestra descripción y nombres capítulos (sin interactividad)
+    - si curso no tiene trailer, se despliega con capítulos sin link
+
     - Para estado promocional == 2, la etiqueta muestra fecha de lanzamiento
     - Curso también tiene etiqueta promocional, se debe cambiar manual
     - Si el capítulo tiene etiqueta promocional, aunque la persona esté suscrita a la aplicación, le redirige al trailer del capítulo
@@ -484,22 +488,81 @@ SEMANA 17 DE FEBRERO:
 
 CURSOS
 - Tarea automatizada que quite etiquetas cuando llega la fecha de estreno
-- *** Botón replay quiebra el reproductor ***
-- *** Dar funcionalidad de play al botón reproducir de abajo ***
+✔ *** Botón replay quiebra el reproductor *** RECUPERÉ EL BOTÓN REINICIAR DE SMART PLAYER. 
+✔ *** Dar funcionalidad de play al botón reproducir de abajo ***
 - Estados cursos ??
 - corrección fabián: no mostrar trailer para curso cultura
+- imagen en full info cap no se muestra en todos los cursos/capítulos
 SUSCRIPCIONES
-- *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
-- *** Formulario solicitudes falta ver tema países, comunas ***
-- Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo,. Monto, tipo de plan
+X *** Debug: Que el form de elegir organización recupere todas las solicitudes ***
+✔ *** Formulario solicitudes falta ver tema países, comunas ***: showif(comunas) y selectize (países)
+X Datos para correo post suscripción digirido a contacto@creactivaanimaciones.cl : nombre, apellido, correo. Monto, tipo de plan
+✔ Integrar etiqueta suscripción activa
+- tarea automatizada que actualice la vigencia de los códigos promocionales
 PERFILES
 X falta mostrar historial de pagos
-- *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
+X *** falta mostrar cursos suscritos ?? Sección: "Actualmente suscrito:" ***
 MAIN
+✔ Función reestablecer contraseña usuario
+✔ Proceso de verificación de correo al registrarse
+- Captcha formularios
 - textos nosotros desde bbdd
-- correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
+- html correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
+- revisar pestaña quieres un contenido "pronto", usar form contacto
+- revisar todos los redirect(login) usando redirect_to_login(next, login_url=None, redirect_field_name='next')
 DESPLIEGUE
 - Subir versión de producción
+- pasar variables de entorno a config.json
 - Migrar a bbdd postgresql
 - Poner webpay en producción
 - Conectar a github repo para realizar cambios desde local y automatizar despliegue
+- revisar formato correos
+
+SEMANA 24 DE FEBRERO:
+
+CURSOS
+- Tarea automatizada que quite etiquetas cuando llega la fecha de estreno
+- // Estados cursos ??
+- corrección fabián: no mostrar trailer para curso cultura
+- imagen en full info cap no se muestra en todos los cursos/capítulos
+- mostrar info cap con botón replay al finalizar un cap
+SUSCRIPCIONES
+- tarea automatizada que actualice la vigencia de los códigos promocionales
+- tarea de revisión de suscripciones envía correo electrónico cuando caduca la suscripción
+MAIN
+- reestablecer contraseña desde perfil ??
+- // Captcha formularios
+- textos nosotros desde bbdd
+- html correos automatizados cuando usuarios envíen formularios de contacto y solicitud de suscripción organización
+- revisar pestaña quieres un contenido "pronto", usar form contacto
+- revisar todos los redirect(login) usando redirect_to_login(next, login_url=None, redirect_field_name='next')
+DESPLIEGUE
+- pasar variables de entorno a config.json
+- Migrar a bbdd postgresql
+- Subir versión de producción
+- Poner webpay en producción
+- Conectar a github repo para realizar cambios desde local y automatizar despliegue
+
+MAñANA:
+✔ tareas automatizadas
+    ✔ check_suscripciones
+    ✔ check_descuentos
+    ✔ check_etiquetas(aunque esto no sé si sea necesario gestionar con trabajo cron)
+✔ revisión lógica códigos suscripción exitosa
+✔ debug replay cap y otras minucias app cursos
+✔ revisar redirects
+✔ habilitar ¿quieres un contenido? y revisar mail que envía formulario
+- subir versión de despliegue con bbdd postgresql y mandarla a amigos para testear responsividad
+
+MARTES:
+- revisión responsividad
+- despliegue
+
+MIÉRCOLES:
+- despliegue versión de producción
+- disponibilización transbank
+- testeo página
+
+JUEVES:
+- ENTREGA
+    - observaciones: trailer debe ser exportado desde smart player, si no, muestra mensaje de error
