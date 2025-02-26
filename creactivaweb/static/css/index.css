@@ -977,6 +977,10 @@ form{
     line-height: 1px;
 }
 
+.bajada{
+    display: inline-flex;
+}
+
 .form form{
     padding:35px 0px 0px 0px;
 
@@ -3945,6 +3949,15 @@ table#detalle {
         left: 5%;
     }
 
+    /* FORM REGISTRO */
+    #sigue_explorando h6{
+        display: none;
+    }
+
+    .bajada{
+        width: 75%;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 400px){
@@ -3989,11 +4002,29 @@ table#detalle {
 
 }
 
-@media (max-width: 345px){
+@media (max-width: 350px){
     .btn-spotlight{
         padding: 10px 28px 10px 28px;
     }
 
+    /* FORM REGISTER */
+    body > main > div.form.form-register > form{
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .form-login, .form-register{
+        top: 53%;
+    }
+    .form div.form-mid input{
+        width: 80%;
+    }
+
+    .form-register div input{
+        width: 80%;
+    }
+    
 }
 
 
