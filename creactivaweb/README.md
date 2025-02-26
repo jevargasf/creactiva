@@ -566,3 +566,15 @@ MIÉRCOLES:
 JUEVES:
 - ENTREGA
     - observaciones: trailer debe ser exportado desde smart player, si no, muestra mensaje de error
+
+responsividad tareas
+✔    /* agrandar letras slider-fila */
+✔    /* NAV CENTRADO */
+✔    /* probar slider-fila con 1 sola slide */
+x    /* AGRANDAR LETRA DE LOGIN */
+-   BOTÓN VOLVER QUITAR EL TEXTO Y DEJAR SOLO EL ÍCONO DESDE 500PX probablemente???
+-    /* pantalla registro hacer de nuevo con letra más grande y campos hacia abajo */
+-    /* SOBRE NOSOTROS LETRA MÁS GRANDE */
+-    /* form contacto recuperar dimensiones de nuevo form registro */
+-    /* DISEñO CURSOS SE DESCUADRA y no muestra pierden la imagen portada, letra pequeña */
+-    /* DISEñO CAPÍTULOS RECUPERR DIMENSIONES NUEVO DISñO CURSOS */
