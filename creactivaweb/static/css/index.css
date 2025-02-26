@@ -4010,15 +4010,7 @@ table#detalle {
         font-size: 16px;
     }
 
-
-}
-
-@media (max-width: 350px){
-    .btn-spotlight{
-        padding: 10px 28px 10px 28px;
-    }
-
-    /* FORM REGISTER */
+        /* FORM REGISTER */
     body > main > div.form.form-register > form{
         width: 80%;
         display: block;
@@ -4035,6 +4027,19 @@ table#detalle {
     .form-register div input{
         width: 80%;
     }
+
+    #textcontacto textarea{
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 350px){
+    .btn-spotlight{
+        padding: 10px 28px 10px 28px;
+    }
+
+
     
 }
 

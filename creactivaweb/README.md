@@ -572,9 +572,21 @@ responsividad tareas
 ✔    /* NAV CENTRADO */
 ✔    /* probar slider-fila con 1 sola slide */
 x    /* AGRANDAR LETRA DE LOGIN */
--   BOTÓN VOLVER QUITAR EL TEXTO Y DEJAR SOLO EL ÍCONO DESDE 500PX probablemente???
--    /* pantalla registro hacer de nuevo con letra más grande y campos hacia abajo */
+✔   BOTÓN VOLVER QUITAR EL TEXTO Y DEJAR SOLO EL ÍCONO DESDE 500PX probablemente???
+✔    /* pantalla registro hacer de nuevo con letra más grande y campos hacia abajo */
+✔   planes individuales form y tarjetas
 -    /* SOBRE NOSOTROS LETRA MÁS GRANDE */
 -    /* form contacto recuperar dimensiones de nuevo form registro */
 -    /* DISEñO CURSOS SE DESCUADRA y no muestra pierden la imagen portada, letra pequeña */
 -    /* DISEñO CAPÍTULOS RECUPERR DIMENSIONES NUEVO DISñO CURSOS */
+
+partes públicas:
+- contacto
+- nosotros
+- curso
+- trailer
+privado:
+- capítulo
+- detalle pago
+- recibo wp
+- solicitud organización
