@@ -585,14 +585,12 @@ x    /* AGRANDAR LETRA DE LOGIN */
 partes públicas:
 ✔ contacto
 ✔ nosotros
-- curso
-    DEBUG:
-    RANGO 360px - 400px
-        - botones uno encima de otro
-        - achicar tamaño letras capítulo slider
-        - título más pequeño
-        - letra texto descripción más grande
-- trailer
+✔ curso
+- trailer/capítulo:
+    debug:
+        - recuperé img cap info vertical, ahora tengo que recuperar la responsividad de la img
+        - el problema: funcionaba con position relative, cambié a absolute
+        - ver si en los tamaños más pequeños requiere position relative
 privado:
 - capítulo
 - detalle pago

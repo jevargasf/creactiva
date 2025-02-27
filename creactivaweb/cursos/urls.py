@@ -9,5 +9,3 @@ urlpatterns = [
     path('recursos/glosario', RecursosView.as_view(), name='recursos'),
 
 ]
-# <int:id_curso>/<str:embedIFrameId>
-# POSIBLE SOLUCIóN: cursos/<id_curso>/capitulos/<id_cap>

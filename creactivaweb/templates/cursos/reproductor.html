@@ -140,10 +140,6 @@ overflow: hidden;
             <h6>Recursos adicionales:</h6>
             <ul class="cap-lista materiales">
                 <a href="{% url 'recursos' %}" target="_blank"><li>{{ capitulo.material.nombre_material }}</li></a>
-                <!-- &nbsp; -  &nbsp; 
-                <a href="" target="_blank"><li>Glosario</li></a>
-                &nbsp; -  &nbsp; 
-                <a href="" target="_blank"><li>Otros documentos</li></a> -->
             </ul>
             {% else %}
             {% endif %}
@@ -155,7 +151,7 @@ overflow: hidden;
             </nav>
 
         </aside>
-        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ capitulo.first_frame }}" alt="{{ capitulo.nombre }}"></aside>
+        <aside id="info-cap-img"><img src="{% static '/img/' %}{{ capitulo.first_frame }}" alt="{{ capitulo.nombre }}"></aside>
 
     </section>
 </article>

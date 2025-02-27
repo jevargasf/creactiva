@@ -2665,7 +2665,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 #info-cap-img{
-    position: relative;
+    position: absolute;
     width: 40%;
     height: 100%;
     display: inline-block;
@@ -2677,6 +2677,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     position: absolute;
     left:50%;
     height:100%;
+    width: auto;
     top:50%;
     translate: -40% -50%;
 }
@@ -3645,8 +3646,14 @@ table#detalle{
 
 #info-cap-img{
     width:100%;
-
+    position: relative;
 }
+
+#info-cap-img img{
+    translate: -50% -50%;
+    overflow-x: hidden;
+}
+
 #info-cap-info{
     width:100%;
     
