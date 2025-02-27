@@ -575,18 +575,34 @@ x    /* AGRANDAR LETRA DE LOGIN */
 ✔   BOTÓN VOLVER QUITAR EL TEXTO Y DEJAR SOLO EL ÍCONO DESDE 500PX probablemente???
 ✔    /* pantalla registro hacer de nuevo con letra más grande y campos hacia abajo */
 ✔   planes individuales form y tarjetas
--    /* SOBRE NOSOTROS LETRA MÁS GRANDE */
--    /* form contacto recuperar dimensiones de nuevo form registro */
+✔    /* SOBRE NOSOTROS LETRA MÁS GRANDE */
+✔    /* form contacto recuperar dimensiones de nuevo form registro */
 -    /* DISEñO CURSOS SE DESCUADRA y no muestra pierden la imagen portada, letra pequeña */
 -    /* DISEñO CAPÍTULOS RECUPERR DIMENSIONES NUEVO DISñO CURSOS */
 
+- consolidar bdd con textos definitivos
+- responsividad
 partes públicas:
 ✔ contacto
-- nosotros
+✔ nosotros
 - curso
+    DEBUG:
+    RANGO 360px - 400px
+        - botones uno encima de otro
+        - achicar tamaño letras capítulo slider
+        - título más pequeño
+        - letra texto descripción más grande
 - trailer
 privado:
 - capítulo
 - detalle pago
 - recibo wp
 - solicitud organización
+
+observaciones:
+- que cursor desaparezca cuando está en pantalla completa
+- actualizar duraciones (60 min)
+- último dumpdata está en el hosting 26-02
+- foto capítulo no aparece en curso mapuzungun
+
+APUNTE: el sistema está hecho para que si no hay video trailer, no se puede entrar a la vista del trailer

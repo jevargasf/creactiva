@@ -920,6 +920,39 @@ p{
     background-position: center;
 }
 
+#flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-3 {
+    transition: all 0.1s ease-in-out;
+    cursor:pointer;
+    height: calc(100% - 2px);
+    left:0px;
+    position:absolute;
+    width:50px;
+    top:0px;
+    background-size:20%;
+    background-color:rgba(0, 34, 74, 0.65);
+    background-image: url('../icon/flecha-slider-fila-i.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity:0.0;
+}
+
+#flecha-derecha-slider-fila, #flecha-derecha-slider-fila-3 {
+    transition: all 0.1s ease-in-out;
+    cursor:pointer;
+    height: calc(100% - 2px);
+    width:50px;
+    right:0px;
+    position:absolute;
+    top:0px;
+    background-size:20%;
+    background-color:rgba(0, 34, 74, 0.65);
+    background-image: url('../icon/flecha-slider-fila-d.png');
+    background-repeat: no-repeat;
+    opacity:0.0;
+    background-position: center;
+}
+
+
 
 #slider-fila:hover ~ #flecha-derecha-slider-fila{
     opacity:0.5;
@@ -942,6 +975,16 @@ p{
 
 }
 
+#slider-fila-3:hover ~ #flecha-derecha-slider-fila-3{
+    opacity:0.5;
+
+}
+
+#slider-fila-3:hover ~ #flecha-izquierda-slider-fila-3{
+    opacity:0.5;
+
+}
+
 #flecha-derecha-slider-fila:hover {
     opacity:1;
 }
@@ -959,6 +1002,13 @@ p{
     opacity:1;
 }
 
+#flecha-derecha-slider-fila-3:hover {
+    opacity:1;
+}
+
+#flecha-izquierda-slider-fila-3:hover {
+    opacity:1;
+}
 /* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
 /* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
 /* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
@@ -3526,10 +3576,13 @@ table#detalle{
         box-sizing: border-box;
         left:0px;
         padding:0px 20px 0px 20px;
-        opacity: 0;
+        opacity: 1;
+        text-align: center;
     }
 
-
+    #info-cap-player h4{
+        margin: 10px auto 14px auto;
+    }
     #slider-inicial div img {
         margin-top:0%;
         height: 100%;
@@ -3873,6 +3926,9 @@ aside#cur-cap{
         width: 30px;
     }
 
+    #flecha-derecha-slider-fila, #flecha-derecha-slider-fila-3, #flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-3 {
+        width: 30px;
+    }
     .tarjeta{
         width: 90%;
         height: 5%;
@@ -3948,22 +4004,30 @@ aside#cur-cap{
     #form-detalle-footer button {
         margin-bottom: calc(25% + 25px);
     }
-#info-cap-player{
-    animation: info-player 1s forwards ease;
-}
+    #info-cap-player{
+        translate: 0px -130px;    
+    }
 
-table#detalle {
-    margin: 10px 0px 30px 0px;
-}
-.form-register {
-    padding: 70px 0px 70px 0px;
-}
+    #info-cap-player h8{
+        font-size: 30px;
+    }
 
-#integra{
-    margin-bottom: 3%;
-    margin-top: 0;
-    padding-top: 0;
-}
+    #info-cap-player h4{
+        display: none;
+    }
+
+    table#detalle {
+        margin: 10px 0px 30px 0px;
+    }
+    .form-register {
+        padding: 70px 0px 70px 0px;
+    }
+
+    #integra{
+        margin-bottom: 3%;
+        margin-top: 0;
+        padding-top: 0;
+    }
 
 }
 
