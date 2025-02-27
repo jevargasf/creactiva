@@ -3834,7 +3834,9 @@ aside#cur-cap{
 
 #integra {
     width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: 3%;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 #nosotros_texto aside h7 {
@@ -3956,6 +3958,13 @@ table#detalle {
 .form-register {
     padding: 70px 0px 70px 0px;
 }
+
+#integra{
+    margin-bottom: 3%;
+    margin-top: 0;
+    padding-top: 0;
+}
+
 }
 
 @media (max-width: 500px){
@@ -3982,11 +3991,7 @@ table#detalle {
         justify-content: center;
     }
 
-    #integra{
-        margin-bottom: 3%;
-        margin-top: 0;
-        padding-top: 0;
-    }
+
     #nosotros_texto aside p{
         font-size:16px;
     }
