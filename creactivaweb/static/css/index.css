@@ -2732,7 +2732,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 .materiales{
     padding:5px 0px 5px 5px;
-    display: none;
 }
 
 .materiales li{
@@ -4102,6 +4101,15 @@ aside#cur-cap{
 
     .etiqueta-promo-slider{
         font-size: 16px;
+    }
+
+    /* SLIDER DETALLE CURSO */
+    #slider-fila-3 .fila-slider dl dd{
+        font-size: 12px;
+    }
+
+    #slider-fila-3 .fila-slider dl dt{
+        font-size: 15px;
     }
 
         /* FORM REGISTER */

@@ -136,16 +136,17 @@ overflow: hidden;
                 <li>· {{contenido}}</li>
                 {% endfor %}
             </ul>
-            <h6 style="visibility: hidden;">Recursos adicionales:</h6>
-            <ul class="cap-lista materiales" style="visibility: hidden;">
-                <a href="" target="_blank"><li>Texto sobre Mapuzungun</li></a>
-                &nbsp; -  &nbsp; 
+            {% if capitulo.material %}
+            <h6>Recursos adicionales:</h6>
+            <ul class="cap-lista materiales">
+                <a href="{% url 'recursos' %}" target="_blank"><li>{{ capitulo.material.nombre_material }}</li></a>
+                <!-- &nbsp; -  &nbsp; 
                 <a href="" target="_blank"><li>Glosario</li></a>
                 &nbsp; -  &nbsp; 
-                <a href="" target="_blank"><li>Otros documentos</li></a>
-
+                <a href="" target="_blank"><li>Otros documentos</li></a> -->
             </ul>
-
+            {% else %}
+            {% endif %}
             <nav class="botones-cap">
                 <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
                 <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
