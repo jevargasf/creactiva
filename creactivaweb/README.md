@@ -586,7 +586,7 @@ partes públicas:
 ✔ contacto
 ✔ nosotros
 ✔ curso
-- trailer/capítulo:
+✔ trailer/capítulo:
     debug:
         - recuperé img cap info vertical, ahora tengo que recuperar la responsividad de la img
         - el problema: funcionaba con position relative, cambié a absolute
@@ -601,6 +601,6 @@ observaciones:
 - que cursor desaparezca cuando está en pantalla completa
 - actualizar duraciones (60 min)
 - último dumpdata está en el hosting 26-02
-- foto capítulo no aparece en curso mapuzungun
+✔ foto capítulo no aparece en curso mapuzungun
 
 APUNTE: el sistema está hecho para que si no hay video trailer, no se puede entrar a la vista del trailer

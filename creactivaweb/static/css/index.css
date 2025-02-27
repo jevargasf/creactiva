@@ -3658,9 +3658,15 @@ table#detalle{
     width:100%;
     
 }
-#mas-info-cap{
+/* #mas-info-cap{
     display: none;
+} */
+
+.div-btn-mas{
+    width: 100%;
+    padding: 5%
 }
+
 #info-cap-full {
 
     margin-top: 0px;

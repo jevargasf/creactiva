@@ -118,8 +118,9 @@ overflow: hidden;
 </div>
 
 
-
-<button id="mas-info-cap" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información" data-cy="video-click-to-play"></button>
+<div class="div-btn-mas">
+    <button id="mas-info-cap" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información" data-cy="video-click-to-play"></button>
+</div>
 
 
 <article id="info-cap-full">
@@ -151,7 +152,7 @@ overflow: hidden;
             </nav>
 
         </aside>
-        <aside id="info-cap-img"><img src="{% static '/img/' %}{{ capitulo.first_frame }}" alt="{{ capitulo.nombre }}"></aside>
+        <aside id="info-cap-img"><img src="{% static 'img/' %}{{ capitulo.first_frame }}" alt="{{ capitulo.nombre }}"></aside>
 
     </section>
 </article>
