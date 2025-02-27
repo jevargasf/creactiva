@@ -3664,7 +3664,7 @@ table#detalle{
 
 .div-btn-mas{
     width: 100%;
-    padding: 5%
+    padding-top: 10%
 }
 
 #info-cap-full {
@@ -4039,6 +4039,11 @@ aside#cur-cap{
         margin-bottom: 3%;
         margin-top: 0;
         padding-top: 0;
+    }
+
+    /* DETALLE PAGO PLAN */
+    #plan-detalle{
+        margin-top: 15%;
     }
 
 }

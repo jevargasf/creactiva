@@ -592,7 +592,7 @@ partes públicas:
         - el problema: funcionaba con position relative, cambié a absolute
         - ver si en los tamaños más pequeños requiere position relative
 privado:
-- capítulo
+✔ capítulo
 - detalle pago
 - recibo wp
 - solicitud organización
