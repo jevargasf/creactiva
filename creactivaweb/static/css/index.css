@@ -3366,6 +3366,10 @@ table#detalle{
     .form-plan{
         top:55%;
     }
+
+    #form-organizacion{
+        width: 50%;
+    }
 }
 
 @media (max-width: 1150px) {
@@ -3442,6 +3446,11 @@ table#detalle{
         opacity: 0;
         pointer-events: none;
         overflow: hidden;
+    }
+
+    #nosotros {
+        top: 65%;
+
     }
 
     #nosotros footer section{
@@ -3625,6 +3634,8 @@ table#detalle{
 }
 #integra {
     margin-bottom: 0px;
+    margin-top: 13%;
+    padding-top: 5%;
 }
 
 }
@@ -3813,7 +3824,7 @@ aside#cur-cap{
     width:100%;
 }
 
-#nosotros {
+#nosotros{
     top:75px;
     -ms-transform: translateY(0%);
     transform: translateY(0%);
@@ -3839,6 +3850,7 @@ aside#cur-cap{
     width:100%;
 
 }
+
 
 }
 
@@ -3968,6 +3980,19 @@ table#detalle {
     .bajada{
         width: 75%;
         justify-content: center;
+    }
+
+    #integra{
+        margin-bottom: 3%;
+        margin-top: 0;
+        padding-top: 0;
+    }
+    #nosotros_texto aside p{
+        font-size:16px;
+    }
+
+    #nosotros_texto aside h7{
+        font-size: 28px;
     }
 }
 

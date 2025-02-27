@@ -581,7 +581,7 @@ x    /* AGRANDAR LETRA DE LOGIN */
 -    /* DISEñO CAPÍTULOS RECUPERR DIMENSIONES NUEVO DISñO CURSOS */
 
 partes públicas:
-- contacto
+✔ contacto
 - nosotros
 - curso
 - trailer
