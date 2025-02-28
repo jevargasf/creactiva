@@ -44,3 +44,52 @@ setTimeout(function () {
     });
     
 },700);
+
+// CONSTRUIR EL SETTIMEOUT OBJECT
+timeoutObject = {
+    ocultarCursor(){
+        if (typeof this.timeoutID === "number") {
+            this.cancelarTimeout()
+        }
+        this.timeoutID = setTimeout(function(){
+            zonaCursor.style.cursor = "none"
+            console.log("timeout seteado")
+        }, 1500)
+    },
+    cancelarTimeout(){
+        clearTimeout(this.timeoutID);
+        console.log("timeout cancelado")
+    }
+}
+
+function mouseHandler(e) {
+    zonaCursor = document.getElementById("body-trailer")
+    zonaCursor.style.cursor = "auto"
+    if (zonaCursor.style.cursor != "none") {
+        timeoutObject.ocultarCursor();
+    }
+
+}
+
+function defaultCursor(){
+    document.getElementById("body-trailer").style.cursor = "auto"
+    console.log("cursor restaurado")
+}
+
+isFullScreen = false;
+document.addEventListener("fullscreenchange", () => {
+
+    if (isFullScreen == false) {
+        console.log("entramos en fullscreen")
+        isFullScreen = true
+
+        document.addEventListener("mousemove", mouseHandler)
+    } else if (isFullScreen == true) {
+        document.removeEventListener("mousemove", mouseHandler)
+        console.log("saliendo de fs")
+        timeoutObject.cancelarTimeout();
+        defaultCursor();
+        isFullScreen = false
+    }
+
+});

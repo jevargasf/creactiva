@@ -566,3 +566,41 @@ MIÉRCOLES:
 JUEVES:
 - ENTREGA
     - observaciones: trailer debe ser exportado desde smart player, si no, muestra mensaje de error
+
+responsividad tareas
+✔    /* agrandar letras slider-fila */
+✔    /* NAV CENTRADO */
+✔    /* probar slider-fila con 1 sola slide */
+x    /* AGRANDAR LETRA DE LOGIN */
+✔   BOTÓN VOLVER QUITAR EL TEXTO Y DEJAR SOLO EL ÍCONO DESDE 500PX probablemente???
+✔    /* pantalla registro hacer de nuevo con letra más grande y campos hacia abajo */
+✔   planes individuales form y tarjetas
+✔    /* SOBRE NOSOTROS LETRA MÁS GRANDE */
+✔    /* form contacto recuperar dimensiones de nuevo form registro */
+-    /* DISEñO CURSOS SE DESCUADRA y no muestra pierden la imagen portada, letra pequeña */
+-    /* DISEñO CAPÍTULOS RECUPERR DIMENSIONES NUEVO DISñO CURSOS */
+
+- consolidar bdd con textos definitivos
+- responsividad
+partes públicas:
+✔ contacto
+✔ nosotros
+✔ curso
+✔ trailer/capítulo:
+    debug:
+        - recuperé img cap info vertical, ahora tengo que recuperar la responsividad de la img
+        - el problema: funcionaba con position relative, cambié a absolute
+        - ver si en los tamaños más pequeños requiere position relative
+privado:
+✔ capítulo
+✔ detalle pago
+- recibo wp
+- solicitud organización
+
+observaciones:
+✔ que cursor desaparezca cuando está en pantalla completa
+- actualizar duraciones (60 min)
+- último dumpdata está en el hosting 26-02
+✔ foto capítulo no aparece en curso mapuzungun
+
+APUNTE: el sistema está hecho para que si no hay video trailer, no se puede entrar a la vista del trailer

@@ -108,7 +108,7 @@ class CapituloView(View):
         # el minuto recuperado y la fecha es autoadd
         return HttpResponse(status = 200)
     
-class GlosarioView(LoginRequiredMixin, View):
+class RecursosView(LoginRequiredMixin, View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     

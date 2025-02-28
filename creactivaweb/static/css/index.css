@@ -920,6 +920,39 @@ p{
     background-position: center;
 }
 
+#flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-3 {
+    transition: all 0.1s ease-in-out;
+    cursor:pointer;
+    height: calc(100% - 2px);
+    left:0px;
+    position:absolute;
+    width:50px;
+    top:0px;
+    background-size:20%;
+    background-color:rgba(0, 34, 74, 0.65);
+    background-image: url('../icon/flecha-slider-fila-i.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity:0.0;
+}
+
+#flecha-derecha-slider-fila, #flecha-derecha-slider-fila-3 {
+    transition: all 0.1s ease-in-out;
+    cursor:pointer;
+    height: calc(100% - 2px);
+    width:50px;
+    right:0px;
+    position:absolute;
+    top:0px;
+    background-size:20%;
+    background-color:rgba(0, 34, 74, 0.65);
+    background-image: url('../icon/flecha-slider-fila-d.png');
+    background-repeat: no-repeat;
+    opacity:0.0;
+    background-position: center;
+}
+
+
 
 #slider-fila:hover ~ #flecha-derecha-slider-fila{
     opacity:0.5;
@@ -942,6 +975,16 @@ p{
 
 }
 
+#slider-fila-3:hover ~ #flecha-derecha-slider-fila-3{
+    opacity:0.5;
+
+}
+
+#slider-fila-3:hover ~ #flecha-izquierda-slider-fila-3{
+    opacity:0.5;
+
+}
+
 #flecha-derecha-slider-fila:hover {
     opacity:1;
 }
@@ -959,6 +1002,13 @@ p{
     opacity:1;
 }
 
+#flecha-derecha-slider-fila-3:hover {
+    opacity:1;
+}
+
+#flecha-izquierda-slider-fila-3:hover {
+    opacity:1;
+}
 /* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
 /* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
 /* --------------------------------------------- FORMULARIO LOGIN Y REGISTRO -------------------------------------- */
@@ -975,6 +1025,10 @@ form{
     font-size:16px;
     letter-spacing: 1px;
     line-height: 1px;
+}
+
+.bajada{
+    display: inline-flex;
 }
 
 .form form{
@@ -1359,6 +1413,7 @@ float: left;
 
 .form-user h2{
     margin-bottom:30px;
+    margin-top: 70px;
     font-family: latoblack;
     color:#fff;
     letter-spacing:2px;
@@ -2610,7 +2665,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 }
 
 #info-cap-img{
-    position: relative;
+    position: absolute;
     width: 40%;
     height: 100%;
     display: inline-block;
@@ -2622,6 +2677,7 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     position: absolute;
     left:50%;
     height:100%;
+    width: auto;
     top:50%;
     translate: -40% -50%;
 }
@@ -2677,7 +2733,6 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
 
 .materiales{
     padding:5px 0px 5px 5px;
-    display: none;
 }
 
 .materiales li{
@@ -3339,7 +3394,11 @@ table#detalle{
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 /* -------------------------------------------- RESPONSIVE --------------------------------------------------- */
 
-
+@media (max-width: 1280px) {
+    .form-plan{
+        top: 55%;
+    }
+}
 
 @media (max-width: 1250px) {
     #tscVideoContent{
@@ -3350,7 +3409,17 @@ table#detalle{
         width: 80%;
        }
 
+    .form-user{
+        width: 60%;
+    }
 
+    .form-plan{
+        top:55%;
+    }
+
+    #form-organizacion{
+        width: 50%;
+    }
 }
 
 @media (max-width: 1150px) {
@@ -3406,9 +3475,6 @@ table#detalle{
     #info-cur-info {
         padding: 0px 20px 20px 20px;
     }
-
-
-
 }
 
 @media (max-width: 1080px) {
@@ -3432,6 +3498,11 @@ table#detalle{
         overflow: hidden;
     }
 
+    #nosotros {
+        top: 65%;
+
+    }
+
     #nosotros footer section{
         text-align: center;
         display:block;
@@ -3439,51 +3510,47 @@ table#detalle{
     }
 
 
-#r-links {
-    position: relative;
-    bottom: 30px;
+    #r-links {
+        position: relative;
+        bottom: 30px;
+    }
+
+    #creditos aside{
+        display: inline-block;
+        width: 100%;
+    }
+
+    #nosotros footer ul{
+        bottom:0px;
+    }
+    #nosotros footer ul{
+        padding: 10px 20px;
+        line-height: 30px;
+    }
+
+    #nosotros footer ul li#siguenos{
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #rs img {
+        height: 30px;
+    }
+    #creditos li {
+        margin: 0 15px;
+    }
+
+    /* PLANES TARJETAS */
+        .form-user{
+            width: 75%;
+        }
+
+    /* PLANES */
+    .form-plan{
+        top: 60%;
+        width: 75%;
+    }
 }
-
-#creditos aside{
-    display: inline-block;
-    width: 100%;
-}
-
-#nosotros footer ul{
-    bottom:0px;
-}
-#nosotros footer ul{
-    padding: 10px 20px;
-    line-height: 30px;
-}
-
-#nosotros footer ul li#siguenos{
-    display: block;
-    margin-bottom: 10px;
-}
-
-#rs img {
-    height: 30px;
-}
-#creditos li {
-    margin: 0 15px;
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 900px) {
 
@@ -3493,15 +3560,10 @@ table#detalle{
         
     }
     
-    .form-user {
-        width:100%;
-
-    }
-    
         
     .form-plan {
         width:100%;
-
+        top: 55%;
     }
     
     #logo_abajo {
@@ -3514,10 +3576,13 @@ table#detalle{
         box-sizing: border-box;
         left:0px;
         padding:0px 20px 0px 20px;
-        opacity: 0;
+        opacity: 1;
+        text-align: center;
     }
 
-
+    #info-cap-player h4{
+        margin: 10px auto 14px auto;
+    }
     #slider-inicial div img {
         margin-top:0%;
         height: 100%;
@@ -3581,15 +3646,27 @@ table#detalle{
 
 #info-cap-img{
     width:100%;
-
+    position: relative;
 }
+
+#info-cap-img img{
+    translate: -50% -50%;
+    overflow-x: hidden;
+}
+
 #info-cap-info{
     width:100%;
     
 }
-#mas-info-cap{
+/* #mas-info-cap{
     display: none;
+} */
+
+.div-btn-mas{
+    width: 100%;
+    padding-top: 10%
 }
+
 #info-cap-full {
 
     margin-top: 0px;
@@ -3622,24 +3699,11 @@ table#detalle{
 }
 #integra {
     margin-bottom: 0px;
+    margin-top: 13%;
+    padding-top: 5%;
 }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 760px) {
 
@@ -3825,7 +3889,7 @@ aside#cur-cap{
     width:100%;
 }
 
-#nosotros {
+#nosotros{
     top:75px;
     -ms-transform: translateY(0%);
     transform: translateY(0%);
@@ -3835,7 +3899,9 @@ aside#cur-cap{
 
 #integra {
     width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: 3%;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 #nosotros_texto aside h7 {
@@ -3846,15 +3912,14 @@ aside#cur-cap{
     text-align: center;
 
 }
+
+.form-user {
+    width:100%;
+
 }
 
 
-
-
-
-
-
-
+}
 
 @media (max-width: 600px) {
     .fila-slider div {
@@ -3873,6 +3938,9 @@ aside#cur-cap{
         width: 30px;
     }
 
+    #flecha-derecha-slider-fila, #flecha-derecha-slider-fila-3, #flecha-izquierda-slider-fila, #flecha-izquierda-slider-fila-3 {
+        width: 30px;
+    }
     .tarjeta{
         width: 90%;
         height: 5%;
@@ -3948,20 +4016,152 @@ aside#cur-cap{
     #form-detalle-footer button {
         margin-bottom: calc(25% + 25px);
     }
-#info-cap-player{
-    animation: info-player 1s forwards ease;
+    #info-cap-player{
+        translate: 0px -130px;    
+    }
+
+    #info-cap-player h8{
+        font-size: 30px;
+    }
+
+    #info-cap-player h4{
+        display: none;
+    }
+
+    table#detalle {
+        margin: 10px 0px 30px 0px;
+    }
+    .form-register {
+        padding: 70px 0px 70px 0px;
+    }
+
+    #integra{
+        margin-bottom: 3%;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    /* DETALLE PAGO PLAN */
+    #plan-detalle{
+        margin-top: 15%;
+    }
+
 }
 
-table#detalle {
-    margin: 10px 0px 30px 0px;
-}
-.form-register {
-    padding: 70px 0px 70px 0px;
-}
-}
+@media (max-width: 500px){
+
+    #slider-inicial-nav {
+        width: 85%;
+    }
+
+    /* ELEGIR TIPO PLAN */
+    body > main > div.form-user > h2{
+        margin-top: 30px;
+        width: 90%;
+        position: relative;
+        left: 5%;
+    }
+
+    /* FORM REGISTRO */
+    #sigue_explorando h6{
+        display: none;
+    }
+
+    .bajada{
+        width: 75%;
+        justify-content: center;
+    }
 
 
+    #nosotros_texto aside p{
+        font-size:16px;
+    }
 
+    #nosotros_texto aside h7{
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 400px){
+
+    /* NAV Y LOGO CREACTIVA UNO ENCIMA DEL OTRO */
+    body > main > header > a{
+        display: none;
+    }
+    
+    body > main > nav{
+        right: 10%;
+        left: 10%;
+        width: 80%;
+        }
+
+    #btn-menu{
+        float: left;
+    }
+
+    #menudesplegabe{
+        translate: -19px 19px;
+        transform-origin: 0px 0px;
+    }
+
+    /* SLIDERS INDEX */
+    .fila-slider dl dd{
+        font-size: 16px;
+    }
+
+    .fila-slider dl dt{
+        font-size: 20px;
+    }
+
+    .titulo-promo-slider{
+        font-size: 16px;
+    }
+
+    .etiqueta-promo-slider{
+        font-size: 16px;
+    }
+
+    /* SLIDER DETALLE CURSO */
+    #slider-fila-3 .fila-slider dl dd{
+        font-size: 12px;
+    }
+
+    #slider-fila-3 .fila-slider dl dt{
+        font-size: 15px;
+    }
+
+        /* FORM REGISTER */
+    body > main > div.form.form-register > form{
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .form-login, .form-register{
+        top: 53%;
+    }
+    .form div.form-mid input{
+        width: 80%;
+    }
+
+    .form-register div input{
+        width: 80%;
+    }
+
+    #textcontacto textarea{
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 350px){
+    .btn-spotlight{
+        padding: 10px 28px 10px 28px;
+    }
+
+
+    
+}
 
 
 
