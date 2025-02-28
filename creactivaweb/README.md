@@ -594,7 +594,7 @@ partes públicas:
 privado:
 ✔ capítulo
 - detalle pago
-- recibo wp
+✔ recibo wp
 - solicitud organización
 
 observaciones:
