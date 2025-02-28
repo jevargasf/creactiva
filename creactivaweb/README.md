@@ -593,12 +593,12 @@ partes públicas:
         - ver si en los tamaños más pequeños requiere position relative
 privado:
 ✔ capítulo
-- detalle pago
-✔ recibo wp
+✔ detalle pago
+- recibo wp
 - solicitud organización
 
 observaciones:
-- que cursor desaparezca cuando está en pantalla completa
+✔ que cursor desaparezca cuando está en pantalla completa
 - actualizar duraciones (60 min)
 - último dumpdata está en el hosting 26-02
 ✔ foto capítulo no aparece en curso mapuzungun

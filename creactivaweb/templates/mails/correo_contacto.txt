@@ -1,0 +1,8 @@
+Hola, {{ nombre }}. Hemos recibido tu mensaje con éxito. Nos contactaremos contigo a la brevedad a través de tu correo electrónico.
+
+
+
+Atentamente,
+
+
+    Equipo Creactiva
