@@ -4163,9 +4163,13 @@ aside#cur-cap{
     
 }
 
+/* DEVICE PIXEL RATIO */
 
-
-
+@media (max-resolution: 2dppx) and (max-width:400px) {
+    #slider-inicial-descripciones dd {
+        margin-bottom: 15px;
+    }
+  }
 
 
 

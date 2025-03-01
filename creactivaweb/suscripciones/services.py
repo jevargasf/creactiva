@@ -68,13 +68,21 @@ def validar_codigo(codigo):
 def stock_codigo():
     pass
 
-def conseguir_codigo_usado(perfil) -> CodigoPromocional:
+def conseguir_codigo_usado(perfil: Perfil) -> CodigoPromocional:
     try:
+        # BUSCA UN CÓDIGO REGISTRADO PARA EL USUARIO Y QUE NO HAYA USADO
         perfil_codigo_object = PerfilCodigo.objects.get(perfil=perfil, estado_uso_codigo='0')
+        # SI ESTÁ VIGENTE, LE PERMITE USARLO
         if perfil_codigo_object.codigo.estado_codigo == '1':
+            # DEVUELVE EL OBJETO CÓDIGO
             return perfil_codigo_object.codigo
         else:
             return None
     except Exception as e:
         print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
-        return None
+        if perfil.descuento_creactiva == True:
+            print("Excepción controlada: Usuario es estudiante/pueblo originario.")
+            return True
+        else:
+            print("Error no controlado: Comportamiento inesperado.")
+            return None

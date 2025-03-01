@@ -93,6 +93,7 @@ class DetallePlan(View):
             # ESCRIBIR UTILIDAD QUE VALIDE CÓDIGO. ESTA UTILIDAD ES LA QUE ESCRIBE EL CHECK CODIGO DESCUENTO
             # EN EL PERFIL. CON ESTO, EL PROCESO DE PAGO PUEDE SEGUIR NORMAL
             # SI EL DESCUENTO ES INVÁLIDO, DA LO MISMO, YA ESTÁ LA RUTA A SEGUIR
+            # no debería seguir con descuentos inválidos
             posee_descuento = check_descuento(user_id)
             plan = Planes.objects.get(pk=id_plan)
             if posee_descuento == True and plan.plan_descuento == True:
@@ -228,49 +229,85 @@ class RespuestaWebpayView(View):
                 suscripcion.fecha_transbank=result[2]
                 suscripcion.token_ws=token
                 suscripcion.session_id_transbank = 'DESTROYED'
-                suscripcion.save()
                 perfil_object.codigo = '100'
                 perfil_suscripcion_object = PerfilSuscripcion.objects.get(suscripcion_id=suscripcion.id)
                 perfil_suscripcion_object.estado_suscripcion = '1'
-                perfil_suscripcion_object.save()
-                # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
-                codigo_object = conseguir_codigo_usado(perfil_object)
-                perfil_codigo_object = PerfilCodigo(codigo=codigo_object)
-                # USUARIO YA USÓ EL CÓDIGO
-                perfil_codigo_object.estado_uso_codigo = '1'
-                perfil_codigo_object.save()
-                # SE LE QUITA EL DESCUENTO CREACTIVA
-                perfil_object.descuento_creactiva = False
-                perfil_object.save()
-                # DISMINUYE EL NÚMERO DE USOS DISPONIBLES
-                codigo_object.cantidad -= 1
-                if codigo_object.cantidad == 0:
-                    codigo_object.estado_codigo = '0'
-                    codigo_object.save()
-                elif codigo_object.cantidad > 0:
-                    codigo_object.save()
+                if perfil_object.descuento_creactiva == True:
+                    # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
+                    codigo_object = conseguir_codigo_usado(perfil_object)
+                    if codigo_object.codigo:
+                        perfil_codigo_object = PerfilCodigo.objects.get(codigo=codigo_object)
+                        # USUARIO YA USÓ EL CÓDIGO
+                        perfil_codigo_object.estado_uso_codigo = '1'
+                        print(perfil_codigo_object)
+                        perfil_codigo_object.save()
+                        # TIPO DE PROMOCIÓN QUE USÓ
+                        suscripcion.codigo_promocional = 'CÓDIGO'
+                        suscripcion.save()
+                        perfil_suscripcion_object.save()
+                        # SE LE QUITA EL DESCUENTO CREACTIVA
+                        perfil_object.descuento_creactiva = False
+                        perfil_object.save()
+                        # DISMINUYE EL NÚMERO DE USOS DISPONIBLES
+                        codigo_object.cantidad -= 1
+                        if codigo_object.cantidad == 0:
+                            codigo_object.estado_codigo = '0'
+                            codigo_object.save()
+                        elif codigo_object.cantidad > 0:
+                            codigo_object.save()
+                        else:
+                            codigo_object.cantidad = 0
+                            codigo_object.save()
+                        send_mail(
+                            f"Nueva Suscripción Creactiva Animaciones",
+                            f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
+                            Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
+                            Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
+                            Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
+                            "no-reply@creactivaanimaciones.cl",
+                            ["contacto@creactivaanimaciones.cl"],
+                            fail_silently=False,
+                        )
+                        messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
+                        context = {
+                            'tipo': suscripcion.plan.nombre,
+                            'fecha_inicio': suscripcion.fecha_inicio,
+                            'fecha_termino': suscripcion.fecha_termino,
+                            'monto': suscripcion.monto,
+                            'dias_restantes': (suscripcion.fecha_termino - now()).days
+                        }
+                        return render(request, 'suscripciones/voucher_webpay.html', context)
+                    # ES ESTUDIANTE/MAPUCHE
+                    elif codigo_object == True:
+                        # TIPO DE PROMOCIÓN QUE USÓ
+                        suscripcion.codigo_promocional = 'ESTUDIANTE/PUEBLO ORIGINARIO'
+                        perfil_suscripcion_object.save()
+                        suscripcion.save()
+                        perfil_object.save()
+                        send_mail(
+                            f"Nueva Suscripción Creactiva Animaciones",
+                            f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
+                            Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
+                            Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
+                            Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
+                            "no-reply@creactivaanimaciones.cl",
+                            ["contacto@creactivaanimaciones.cl"],
+                            fail_silently=False,
+                        )
+                        messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
+                        context = {
+                            'tipo': suscripcion.plan.nombre,
+                            'fecha_inicio': suscripcion.fecha_inicio,
+                            'fecha_termino': suscripcion.fecha_termino,
+                            'monto': suscripcion.monto,
+                            'dias_restantes': (suscripcion.fecha_termino - now()).days
+                        }
+                        return render(request, 'suscripciones/voucher_webpay.html', context)
+                    # CÓDIGO NO ES VÁLIDO/COMPORTAMIENTOS NO ESPERADOS
+                    elif codigo_object == None:
+                        raise Exception
                 else:
-                    codigo_object.cantidad = 0
-                    codigo_object.save()
-                send_mail(
-                    f"Nueva Suscripción Creactiva Animaciones",
-                    f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
-                    Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
-                    Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
-                    Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
-                    "no-reply@creactivaanimaciones.cl",
-                    ["contacto@creactivaanimaciones.cl"],
-                    fail_silently=False,
-                )
-                messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
-                context = {
-                    'tipo': suscripcion.plan.nombre,
-                    'fecha_inicio': suscripcion.fecha_inicio,
-                    'fecha_termino': suscripcion.fecha_termino,
-                    'monto': suscripcion.monto,
-                    'dias_restantes': (suscripcion.fecha_termino - now()).days
-                }
-                return render(request, 'suscripciones/voucher_webpay.html', context)
+                    raise Exception
             elif result[0] == 'FAILED':
                 session_id = result[3]
                 suscripcion = suscripcion_session(session_id)
@@ -302,8 +339,9 @@ class RespuestaWebpayView(View):
         except SMTPException as e:
             print("NO SE PUDO ENVIAR EL CORREO.", e)
         except Exception as e:
+            messages.error(request, 'Lo sentimos, ocurrió un error en el pago. Por favor, póngase en contacto con nuestro equipo para resolverlo.')
             print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
-            raise Http404
+            redirect('contacto')
     
     def post(self, request: HttpRequest):
         pass

@@ -604,3 +604,12 @@ observaciones:
 ✔ foto capítulo no aparece en curso mapuzungun
 
 APUNTE: el sistema está hecho para que si no hay video trailer, no se puede entrar a la vista del trailer
+1600 x 720, 260 pppgi
+
+- quitar templates de las funciones de rendern_to_string correos
+
+SISTEMA DESCUENTOS PROMOCIONALES
+- conseguir_descuento_usado()
+    - CASO 1: ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, RETORNA: OBJETO CÓDIGO
+    - CASO 2: NO ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, PERO TIENE DESCUENTO ESTUDIANTE, RETORNA: TRUE
+    - CASO 3: NO ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, NO TIENE DESCUENTO ESTUDIENTE, RETORNA: NONE 
