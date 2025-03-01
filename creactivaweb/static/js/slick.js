@@ -15,6 +15,7 @@
 
  */
 /* global window, document, define, jQuery, setInterval, clearInterval */
+console.log("COMENZÓ LA EJECUCIÓN SLICK")
 ;(function(factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -3035,3 +3036,5 @@
     };
 
 }));
+
+console.log("TERMINÓ LA EJECUCIÓN SLIDER")

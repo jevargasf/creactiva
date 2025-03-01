@@ -1,4 +1,5 @@
 
+console.log("COMENZÓ LA EJECUCIÓN NDEX")
 window.addEventListener('load', function () {
     $('#transicion').css('opacity', '0');
     $('#transicion')
@@ -10,55 +11,30 @@ window.addEventListener('load', function () {
       $('body').css('overflow-y', 'auto');
       document.querySelector('#btn-spotlight1').classList.add('collapsed');
       document.querySelector('#slider-inicial-descripcion-1').classList.add('collapsed');
-      document.querySelector('#add-favoritos').classList.add('collapsed');
+    //   document.querySelector('#add-favoritos').classList.add('collapsed');
   })
 
 
 // Botones
 
-$(document).ready(function(){   
-    $(".categoria1").click(function(){
-        if ( $(this).attr('class') == 'categoria1') {
-            $(this).removeClass('categoria1');
-            $(this).addClass('categoria2');
-        } else {
-            $(this).removeClass('categoria2');
-            $(this).addClass('categoria1');
-        }
-    });
-});
+// $(document).ready(function(){   
+//     $(".categoria1").click(function(){
+//         if ( $(this).attr('class') == 'categoria1') {
+//             $(this).removeClass('categoria1');
+//             $(this).addClass('categoria2');
+//         } else {
+//             $(this).removeClass('categoria2');
+//             $(this).addClass('categoria1');
+//         }
+//     });
+// });
 
 $("#btn-menu").click(function(){
     document.querySelector('#menudesplegabe').classList.toggle('collapsed');
     document.querySelector('#btn-menu').classList.toggle('collapsed');
 });
 
-// BTN COMPARTIR
 
-$(document).ready(function () {
-    btnCompartir = document.getElementById("btn-compartir")
-    btnCerrar = document.getElementById("modal-close")
-    btnClipboard = document.getElementById("btn-clipboard")
-    modalCompartir = document.getElementById("modal-compartir")
-    btnCompartir.addEventListener("click", function(){
-            modalCompartir.classList.toggle("modal-compartir-open")
-    })
-    btnCerrar.addEventListener("click", function(){
-        modalCompartir.classList.toggle("modal-compartir-open")
-})
-    btnClipboard.addEventListener("click", function(){
-        link = document.getElementById("share-link")
-        link.select()
-        link.setSelectionRange(0,99999)
-        navigator.clipboard.writeText(link.value)
-        alert("Texto copiado al portapapeles." + link.value)
-    })
-});
-
-// BOTON CERRAR ALERTA
-$("#cerrar-compartir").click(function(){
-    document.querySelector('#modal-compartir').classList.toggle('modal-compartir-open');
-});
 
 
 // BOTON CERRAR ALERTA
@@ -66,90 +42,20 @@ $("#cerrarAlerta").click(function(){
     document.querySelector('#alerta').classList.add('collapsed');
 });
 
-// BOTONES DE LA LISTA DESPLEGABLE EN CURSOS
 
-
-    $(".boton-ra1").click(function(){
-        document.querySelector('.boton-ra1').classList.toggle('collapsed');
-        document.querySelector('.boton-ra2').classList.remove('collapsed');
-        document.querySelector('.boton-ra3').classList.remove('collapsed');
-        document.querySelector('.boton-ra4').classList.remove('collapsed');
-        document.querySelector('.boton-ra5').classList.remove('collapsed');
-        document.querySelector('.lista-ra1').classList.toggle('collapsed');
-        document.querySelector('.lista-ra2').classList.remove('collapsed');
-        document.querySelector('.lista-ra3').classList.remove('collapsed');
-        document.querySelector('.lista-ra4').classList.remove('collapsed');
-        document.querySelector('.lista-ra5').classList.remove('collapsed');
-    });
-    
-    $(".boton-ra2").click(function(){
-        document.querySelector('.boton-ra1').classList.remove('collapsed');
-        document.querySelector('.boton-ra2').classList.toggle('collapsed');
-        document.querySelector('.boton-ra3').classList.remove('collapsed');
-        document.querySelector('.boton-ra4').classList.remove('collapsed');
-        document.querySelector('.boton-ra5').classList.remove('collapsed');
-        document.querySelector('.lista-ra1').classList.remove('collapsed');
-        document.querySelector('.lista-ra2').classList.toggle('collapsed');
-        document.querySelector('.lista-ra3').classList.remove('collapsed');
-        document.querySelector('.lista-ra4').classList.remove('collapsed');
-        document.querySelector('.lista-ra5').classList.remove('collapsed');
-    });
-            
-    $(".boton-ra3").click(function(){
-        document.querySelector('.boton-ra1').classList.remove('collapsed');
-        document.querySelector('.boton-ra2').classList.remove('collapsed');
-        document.querySelector('.boton-ra3').classList.toggle('collapsed');
-        document.querySelector('.boton-ra4').classList.remove('collapsed');
-        document.querySelector('.boton-ra5').classList.remove('collapsed');
-        document.querySelector('.lista-ra1').classList.remove('collapsed');
-        document.querySelector('.lista-ra2').classList.remove('collapsed');
-        document.querySelector('.lista-ra3').classList.toggle('collapsed');
-        document.querySelector('.lista-ra4').classList.remove('collapsed');
-        document.querySelector('.lista-ra5').classList.remove('collapsed');
-    });
-
-    $(".boton-ra4").click(function(){
-        document.querySelector('.boton-ra1').classList.remove('collapsed');
-        document.querySelector('.boton-ra2').classList.remove('collapsed');
-        document.querySelector('.boton-ra3').classList.remove('collapsed');
-        document.querySelector('.boton-ra4').classList.toggle('collapsed');
-        document.querySelector('.boton-ra5').classList.remove('collapsed');
-        document.querySelector('.lista-ra1').classList.remove('collapsed');
-        document.querySelector('.lista-ra2').classList.remove('collapsed');
-        document.querySelector('.lista-ra3').classList.remove('collapsed');
-        document.querySelector('.lista-ra4').classList.toggle('collapsed');
-        document.querySelector('.lista-ra5').classList.remove('collapsed');
-    });
-
-    $(".boton-ra5").click(function(){
-        document.querySelector('.boton-ra1').classList.remove('collapsed');
-        document.querySelector('.boton-ra2').classList.remove('collapsed');
-        document.querySelector('.boton-ra3').classList.remove('collapsed');
-        document.querySelector('.boton-ra4').classList.remove('collapsed');
-        document.querySelector('.boton-ra5').classList.toggle('collapsed');
-        document.querySelector('.lista-ra1').classList.remove('collapsed');
-        document.querySelector('.lista-ra2').classList.remove('collapsed');
-        document.querySelector('.lista-ra3').classList.remove('collapsed');
-        document.querySelector('.lista-ra4').classList.remove('collapsed');
-        document.querySelector('.lista-ra5').classList.toggle('collapsed');
-    });
-
-
-
-
-$(document).ready(function(){   
-    $("#add-favoritos").click(function(){
-        if ( $(this).attr('class') == 'collapsed') {
-            $(this).removeClass('collapsed');
-            $("#add-favoritos img").attr("src", "/static/icon/fav-on.svg");
-            $("#add-favoritos h1").text("FAVORITO");
-        } else {
-            $(this).addClass('collapsed');
-            $("#add-favoritos img").attr("src", "/static/icon/fav-off.svg");
-            $("#add-favoritos h1").text("AÑADIR A FAVORITOS");
-        }
-    });
-});
+// $(document).ready(function(){   
+//     $("#add-favoritos").click(function(){
+//         if ( $(this).attr('class') == 'collapsed') {
+//             $(this).removeClass('collapsed');
+//             $("#add-favoritos img").attr("src", "/static/icon/fav-on.svg");
+//             $("#add-favoritos h1").text("FAVORITO");
+//         } else {
+//             $(this).addClass('collapsed');
+//             $("#add-favoritos img").attr("src", "/static/icon/fav-off.svg");
+//             $("#add-favoritos h1").text("AÑADIR A FAVORITOS");
+//         }
+//     });
+// });
 
 
 
@@ -235,29 +141,4 @@ $('#btn-descuento').click(function(){
 
 $('#id_codigo').attr("placeholder", "Ingresa tu código de descuento");    
 
-// BOTONES 
-selectPais = document.getElementById("pais")
-selectRegion = document.getElementById("region")
-selectComuna = document.getElementById("comuna")
-divSelectRegion = document.getElementById("div-region")
-divSelectComuna = document.getElementById("div-comuna")
-selectPais.addEventListener("change", ()=>{
-    value = selectPais.options[selectPais.selectedIndex].value
-    if (value == 'CL'){
-        divSelectRegion.classList.remove("form-hide")
-    } else if (value != 'CL') {
-        divSelectRegion.classList.add("form-hide")
-        divSelectComuna.classList.add("form-hide")
-    }
-})
-selectRegion.addEventListener("change", ()=>{
-    divSelectComuna.classList.remove("form-hide")
-    region = selectRegion.options[selectRegion.selectedIndex].value
-    for (i=0; i<selectComuna.options.length; i++) {
-        if (selectComuna.options[i].value.slice(0,2) == region){
-            selectComuna.options[i].style.display = 'block'
-        } else {
-            selectComuna.options[i].style.display = 'none'
-        }
-    }
-})
+console.log("TERMINÓ LA EJECUCIÓN INDEX")
