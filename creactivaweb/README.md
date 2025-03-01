@@ -619,3 +619,9 @@ SISTEMA DESCUENTOS PROMOCIONALES
 OBS DETALLES:
 - login: diferenciar excepciones: usuario no está registrado != contraseñas no coinciden
 - verificar= falta check verificado true o quitar del perfil el campo "verificado", porque parece que no lo usé
+
+✔ revisar scripts y ejecución tareas cron
+- revisar responsividad
+- habilitar sistema cuentas staff y plan 1 semana gratuita
+- revisar script reproductor.js
+- cambios menores varios
