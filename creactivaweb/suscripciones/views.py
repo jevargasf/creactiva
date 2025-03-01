@@ -134,7 +134,6 @@ class PagarView(LoginRequiredMixin, View):
     def post(self, request: HttpRequest, id_plan):
         try:
             check_suscripcion = suscripcion_activa(request.user)
-            print(check_suscripcion)
             if check_suscripcion != None:
                 context = {
                     'fecha_inicio': check_suscripcion.fecha_inicio,
@@ -239,7 +238,6 @@ class RespuestaWebpayView(View):
                         perfil_codigo_object = PerfilCodigo.objects.get(codigo=codigo_object)
                         # USUARIO YA USÓ EL CÓDIGO
                         perfil_codigo_object.estado_uso_codigo = '1'
-                        print(perfil_codigo_object)
                         perfil_codigo_object.save()
                         # TIPO DE PROMOCIÓN QUE USÓ
                         suscripcion.codigo_promocional = 'CÓDIGO'
@@ -280,7 +278,7 @@ class RespuestaWebpayView(View):
                     # ES ESTUDIANTE/MAPUCHE
                     elif codigo_object == True:
                         # TIPO DE PROMOCIÓN QUE USÓ
-                        suscripcion.codigo_promocional = 'ESTUDIANTE/PUEBLO ORIGINARIO'
+                        suscripcion.codigo_promocional = perfil_object.tipo_descuento
                         perfil_suscripcion_object.save()
                         suscripcion.save()
                         perfil_object.save()
@@ -306,8 +304,30 @@ class RespuestaWebpayView(View):
                     # CÓDIGO NO ES VÁLIDO/COMPORTAMIENTOS NO ESPERADOS
                     elif codigo_object == None:
                         raise Exception
+                # ESTO NO ES UN COMPORTAMIENTO NO ESPERADO, ES EL FLUJO CUANDO EL USUARIO PAGÓ SIN CÓDIGO
                 else:
-                    raise Exception
+                    suscripcion.save()
+                    perfil_object.save()
+                    perfil_suscripcion_object.save()
+                    send_mail(
+                        f"Nueva Suscripción Creactiva Animaciones",
+                        f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
+                        Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
+                        Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
+                        Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
+                        "no-reply@creactivaanimaciones.cl",
+                        ["contacto@creactivaanimaciones.cl"],
+                        fail_silently=False,
+                    )
+                    messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
+                    context = {
+                        'tipo': suscripcion.plan.nombre,
+                        'fecha_inicio': suscripcion.fecha_inicio,
+                        'fecha_termino': suscripcion.fecha_termino,
+                        'monto': suscripcion.monto,
+                        'dias_restantes': (suscripcion.fecha_termino - now()).days
+                    }
+                    return render(request, 'suscripciones/voucher_webpay.html', context)
             elif result[0] == 'FAILED':
                 session_id = result[3]
                 suscripcion = suscripcion_session(session_id)

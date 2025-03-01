@@ -263,7 +263,7 @@ class ResetPasswordView(View):
                 }
             )
             msg = EmailMultiAlternatives(
-                "Verifica tu correo en Creactiva Animaciones",
+                "Reestablece tu contraseña en Creactiva Animaciones",
                 text_content,
                 "no-reply@creactivaanimaciones.cl",
                 [user_object.email]
@@ -336,7 +336,7 @@ class ResetPasswordConfirmView(View):
                         }
                     )
                     msg = EmailMultiAlternatives(
-                        "Contraseña Restablecida Satisfactoriamente Creactiva Animaciones",
+                        "Contraseña Restablecida Exitosamente Creactiva Animaciones",
                         text_content,
                         "no-reply@creactivaanimaciones.cl",
                         [user_object.email]

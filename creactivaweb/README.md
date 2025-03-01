@@ -613,3 +613,9 @@ SISTEMA DESCUENTOS PROMOCIONALES
     - CASO 1: ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, RETORNA: OBJETO CÓDIGO
     - CASO 2: NO ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, PERO TIENE DESCUENTO ESTUDIANTE, RETORNA: TRUE
     - CASO 3: NO ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, NO TIENE DESCUENTO ESTUDIENTE, RETORNA: NONE 
+
+
+
+OBS DETALLES:
+- login: diferenciar excepciones: usuario no está registrado != contraseñas no coinciden
+- verificar= falta check verificado true o quitar del perfil el campo "verificado", porque parece que no lo usé

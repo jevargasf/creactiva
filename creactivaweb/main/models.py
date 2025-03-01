@@ -8,14 +8,19 @@ class Perfil(models.Model):
     TIPOS_ORGANIZACION = get_tipo_organizacion()
     PAISES = get_paises()
     COMUNAS = get_comunas()
+    TIPOS_DESCUENTO = (
+        ('0', 'ESTÁNDAR'),
+        ('1', 'ESTUDIANTE'),
+        ('2', 'PUEBLO ORIGINARIO')
+    )
 
     codigo = models.CharField(max_length=3, null=False, blank=False, default='000', verbose_name='Código perfil')
     pais = models.CharField(max_length=2, null=True, blank=True, choices=PAISES, verbose_name='País')
     comuna = models.CharField(max_length=5, null=True, blank=True, choices=COMUNAS, verbose_name='Comuna')
     nombre_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Ninguno', verbose_name='Nombre organización')
     tipo_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Cuenta individual', choices=TIPOS_ORGANIZACION, verbose_name='Tipo organización')
-    verificado = models.BooleanField(default=False, verbose_name='Verificado')
     descuento_creactiva = models.BooleanField(default=False, verbose_name='Descuento Creactiva')
+    tipo_descuento = models.CharField(max_length=50, null=True, blank=True, default='0', choices=TIPOS_DESCUENTO, verbose_name='Tipo descuento')
     user = models.OneToOneField(
         User,
         related_name='perfil_usuario',
