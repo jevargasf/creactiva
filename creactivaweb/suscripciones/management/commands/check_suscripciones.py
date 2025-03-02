@@ -18,7 +18,7 @@ class Command(BaseCommand):
             for a in data:
                 if now() <= a.suscripcion.fecha_termino:
                     self.stdout.write(f"{now()} Vigente. E: {a.estado_suscripcion}")
-                    user_object = User.objects.get(perfil_id=data.perfil_id)
+                    user_object = User.objects.get(perfil_id=a.perfil_id)
                     text_content = render_to_string(
                         "templates/mails/suscripcion_caduca.txt",
                         context={

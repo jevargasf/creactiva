@@ -621,7 +621,12 @@ OBS DETALLES:
 - verificar= falta check verificado true o quitar del perfil el campo "verificado", porque parece que no lo usé
 
 ✔ revisar scripts y ejecución tareas cron
+DETALLES REVISADOS EN LOCAL
+✔ mejora ejecución slick
 - revisar responsividad
 - habilitar sistema cuentas staff y plan 1 semana gratuita
 - revisar script reproductor.js
 - cambios menores varios
+    ✔ Colocar el link para reestablecer contraseña en el texto pregunta
+    ✔ Revisar posiciones del menú hamburguesa
+    - Que el nav se colapse cuando se hace click fuera de él

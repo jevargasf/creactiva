@@ -1138,9 +1138,10 @@ input:-webkit-autofill:active{
     color:#00224a;
     margin-bottom:30px;
     padding:10px 30px 10px 30px;
-    display: inline-block;
+    display: block;
     border-radius: 5px;
-
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form form button:hover{
@@ -3703,6 +3704,11 @@ table#detalle{
     padding-top: 5%;
 }
 
+
+#form-organizacion{
+    width: 80%;
+}
+
 }
 
 @media (max-width: 760px) {
@@ -4046,6 +4052,42 @@ aside#cur-cap{
         margin-top: 15%;
     }
 
+    #form-organizacion{
+        top: 60%
+    }
+
+    #form-organizacion .form-mid input {
+        width: 75%;
+    }
+
+    #form-org-footer{
+        width: 75%;
+    }
+
+    #form-organizacion textarea{
+        width: 75%;
+    }
+
+    #form-check{
+        width: 75%;
+    }
+
+    #tipo_organizacion{
+        width: 75%;
+    }
+
+    #pais{
+        width: 75%;
+    }
+
+    #div-region, #div-comuna{
+        width: 75%;
+    }
+
+    #form-organizacion > h3{
+        text-wrap: wrap;
+        display: contents;
+    }
 }
 
 @media (max-width: 500px){
@@ -4085,19 +4127,15 @@ aside#cur-cap{
 @media (max-width: 400px){
 
     /* NAV Y LOGO CREACTIVA UNO ENCIMA DEL OTRO */
-    body > main > header > a{
-        display: none;
+    .main-nav{
+        right: 40px;
     }
     
     body > main > nav{
         right: 10%;
-        left: 10%;
-        width: 80%;
+        width: 60%;
         }
 
-    #btn-menu{
-        float: left;
-    }
 
     #menudesplegabe{
         translate: -19px 19px;
