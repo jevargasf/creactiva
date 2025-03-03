@@ -130,6 +130,7 @@ overflow: hidden;
             <h4>{{ capitulo.desc_corta }}</h4>
             <p>{{ capitulo.descripcion | linebreaksbr }}</p>
             <h6>Duración: <b>{{ capitulo.duracion }} Minutos</b></h6>
+            <h6>Actividades: <b>{{ capitulo.num_actividades }} Actividades interactivas</b></h6>
             <h6>Contenido:</h6>
             <ul class="cap-lista bloques">
                 {% for contenido in capitulo.contenidos %}

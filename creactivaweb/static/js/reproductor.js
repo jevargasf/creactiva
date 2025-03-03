@@ -28,7 +28,12 @@ setTimeout(function () {
         // RECUPERAR MIN DE REPRODUCCIÓN ALMACENADO
         minAlmacenado = document.getElementById("minuto")?.textContent
 
+        // LISTENER DE EVENTO BEFOREUNLOAD ACá
+        window.addEventListener("beforeunload", (event) => {
+            event.preventDefault();
+            event.returnValue = "¿Desea abandonar la reproducción del video?";
 
+            });
 
         
         // EL BOTÓN MÁS INFO
@@ -112,12 +117,7 @@ setTimeout(function () {
 
 
 
-// LISTENER DE EVENTO BEFOREUNLOAD ACá
-window.addEventListener("beforeunload", (event) => {
-    event.preventDefault();
-    event.returnValue = "¿Desea abandonar la reproducción del video?";
 
-    });
 
 window.addEventListener("fullscreenchange", (event) => {
     console.log("entramos en fullscreen")

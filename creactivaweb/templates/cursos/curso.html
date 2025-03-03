@@ -28,25 +28,32 @@
             <h6 class="etiqueta-promo-info">
             ESTRENO EL {{ curso.fecha_lanzamiento | date:"d/F/Y" | upper }}
             </h6>
+            <h1>{{ curso.nombre }}</h1>
+            <p>{{ curso.desc_corta }}</p>
+    
         </div>
         {% elif curso.etiqueta_promocional == '2' or curso.etiqueta_promocional == '1' %}
             <h6 class="etiqueta-promo-info">{{ curso.get_etiqueta_promocional_display }}</h6>
+            <h1>{{ curso.nombre }}</h1>
+            <p>{{ curso.desc_corta }}</p>
+    
         {% else %}
+        <h1>{{ curso.nombre }}</h1>
+        <ul>
+            <!-- número capítulos y duración total -->
+            <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>{{ capitulos.count }} Capítulos <i>({{ duracion }}hrs)</i></h4></li>
+            <!-- número de recursos adicionales -->
+            {% if num_materiales == 0 %}
+            {% else %}
+            <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recursos adicionales</h4></li>
+            {% endif %}
+            <!-- número de actividades interactivas -->
+            <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
+        </ul>
+        <p>{{ curso.desc_corta }}</p>
         {% endif %}
     
-    <h1>{{ curso.nombre }}</h1>
-    <ul>
-        <!-- número capítulos y duración total -->
-        <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>{{ capitulos.count }} Capítulos <i>({{ duracion }}hrs)</i></h4></li>
-        <!-- número de recursos adicionales -->
-        {% if num_materiales == 0 %}
-        {% else %}
-        <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recursos adicionales</h4></li>
-        {% endif %}
-        <!-- número de actividades interactivas -->
-        <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
-    </ul>
-    <p>{{ curso.desc_corta }}</p>
+
 
 
     <div id="botonera">
@@ -70,8 +77,19 @@
 <article id="info-cap-full" class="info-cur">
     <section id="info-curso">
         <aside id="info-cur-info"> 
-            <h5>Cultura | Idiomas</h5>
+            <h5>Cultura</h5>
             <h8>{{ curso.nombre }}</h8>
+            {% if curso.fecha_lanzamiento and curso.etiqueta_promocional == '2' %}
+            <div>
+                <h6 class="etiqueta-promo-info">
+                ESTRENO EL {{ curso.fecha_lanzamiento | date:"d/F/Y" | upper }}
+                </h6>
+            </div>
+            {% elif curso.etiqueta_promocional == '2' or curso.etiqueta_promocional == '1' %}
+            <div>
+                <h6 class="etiqueta-promo-info">{{ curso.get_etiqueta_promocional_display }}</h6>
+            </div>
+            {% else %}    
             <ul id="listado-curso">
                 <!-- número capítulos y duración total -->
                 <li><img src="{% static 'icon/capitulos.svg' %}" alt=""><h4>{{ capitulos.count }} Capítulos <i>({{ duracion }}hrs)</i></h4></li>
@@ -85,6 +103,7 @@
                 <li><img src="{% static 'icon/parlante.svg' %}" alt=""><h4>Español, Mapuzungun</h4></li>
                 <li style="display: none;"><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
             </ul>
+            {% endif %}
             <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
             <p>{{ curso.desc_larga | linebreaksbr }}</p>
 

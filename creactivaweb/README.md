@@ -624,9 +624,9 @@ OBS DETALLES:
 DETALLES REVISADOS EN LOCAL
 ✔ mejora ejecución slick
 ✔ revisar responsividad general
-- revisar responsividad cursos/trailer/capítulos
+✔ revisar responsividad cursos/trailer/capítulos
 - habilitar sistema cuentas staff y plan 1 semana gratuita
-- revisar script reproductor.js
+✔ revisar script reproductor.js
 - cambios menores varios
     ✔ Colocar el link para reestablecer contraseña en el texto pregunta
     ✔ Revisar posiciones del menú hamburguesa
@@ -645,4 +645,3 @@ OBSERVACIONES JOSÉ:
 OBSERVACIONES LUNES 03-03:
 - Revisar responsividad img info cap porque al parecer no se ajusta en todos los tamaños al aside, queda con bordes
 
-ACTUALMENTE: CONTINUAR CON RESPONSIVIDAD CAPÍTULO
