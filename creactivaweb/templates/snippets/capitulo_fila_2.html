@@ -12,17 +12,17 @@
                     </div>
                     <dl>
                         {% if capitulo.fecha_lanzamiento and capitulo.etiqueta_promocional == '2' %}
-                            <dd class="titulo-promo-slider">{{ capitulo.curso }}</dd>
+                            <dd class="titulo-promo-slider">Capítulo {{ capitulo.numero }}</dd>
                             <dd class="etiqueta-promo-slider">
                                 ESTRENO: {{ capitulo.fecha_lanzamiento | date:"d" | upper }} DE {{ capitulo.fecha_lanzamiento | date:"F" | upper }}
                             </dd>
                             <dt>{{ capitulo.nombre }}</dt>
                         {% elif capitulo.etiqueta_promocional == '2' or capitulo.etiqueta_promocional == '1' %}
-                                <dd class="titulo-promo-slider">{{ capitulo.curso }}</dd>
+                                <dd class="titulo-promo-slider">Capítulo {{ capitulo.numero }}</dd>
                                 <dd class="etiqueta-promo-slider">{{ capitulo.get_etiqueta_promocional_display }}</dd>
                                 <dt>{{ capitulo.nombre }}</dt>
                         {% else %}
-                            <dd>{{ capitulo.curso }}</dd>
+                            <dd>Capítulo {{ capitulo.numero }}</dd>
                             <dt>{{ capitulo.nombre }}</dt>
                         {% endif %}
                     </dl>

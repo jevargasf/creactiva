@@ -8,10 +8,10 @@ window.addEventListener('load', function () {
         $(this).hide(); 
         next(); 
       });
+
+      $('body').css('overflow-y', 'auto');
   })
 
-
-// Botones
 
 // $(document).ready(function(){   
 //     $(".categoria1").click(function(){

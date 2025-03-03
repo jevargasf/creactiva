@@ -623,10 +623,26 @@ OBS DETALLES:
 ✔ revisar scripts y ejecución tareas cron
 DETALLES REVISADOS EN LOCAL
 ✔ mejora ejecución slick
-- revisar responsividad
+✔ revisar responsividad general
+- revisar responsividad cursos/trailer/capítulos
 - habilitar sistema cuentas staff y plan 1 semana gratuita
 - revisar script reproductor.js
 - cambios menores varios
     ✔ Colocar el link para reestablecer contraseña en el texto pregunta
     ✔ Revisar posiciones del menú hamburguesa
     - Que el nav se colapse cuando se hace click fuera de él
+
+OBSERVACIONES JOSÉ:
+✔ Agregar autoplay a los sliders fila, a diferentes velocidades, harto tiempo
+✔ Poner numero de capitulo en vez de el titulo del curso en las filas.
+- Ver la posibilidad de hacer una barra de carga
+- Al poner pantalla completa, girar la pagina (en celus).
+- Que los titulos en la base de datos resistan un salto de linea
+- Ajustar el ancho del padding del slick, para que coincida con el ancho de las flechas laterales
+- No me permite enviar la solicitud de organizacion para la antartida u otro pais al parecer, tendrá que ver con la obligatoriedad de la region y la comuna por chile?.
+✔ El + de la pantalla capitulo debe desaparecer al verse en el celu
+
+OBSERVACIONES LUNES 03-03:
+- Revisar responsividad img info cap porque al parecer no se ajusta en todos los tamaños al aside, queda con bordes
+
+ACTUALMENTE: CONTINUAR CON RESPONSIVIDAD CAPÍTULO

@@ -1154,9 +1154,9 @@ input:-webkit-autofill:active{
 
 
 .form-register form button{
-    margin:40px 0px 0px 0px;
-    
+    margin: 40px auto auto auto;    
 }
+
 .form-logout{
     top: 0px;
 }
@@ -3659,14 +3659,15 @@ table#detalle{
     width:100%;
     
 }
-/* #mas-info-cap{
-    display: none;
-} */
 
-.div-btn-mas{
-    width: 100%;
-    padding-top: 10%
+#mas-info{
+    display: none;
 }
+
+#mas-info-cap{
+    display: none;
+}
+
 
 #info-cap-full {
 
@@ -3676,6 +3677,19 @@ table#detalle{
     display: inline-block;
 }
 
+.botones-cap{
+    display: flex;
+    justify-content: center;
+}
+
+.botones-cap a{
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.botones-cap button{
+    width: 100%;
+}
 
 #tscVideoContent .play-button-overlay-glyph 
 {
@@ -4023,11 +4037,11 @@ aside#cur-cap{
         margin-bottom: calc(25% + 25px);
     }
     #info-cap-player{
-        translate: 0px -130px;    
+        display: none;
     }
 
     #info-cap-player h8{
-        font-size: 30px;
+        display: none;
     }
 
     #info-cap-player h4{
@@ -4129,6 +4143,12 @@ aside#cur-cap{
     /* NAV Y LOGO CREACTIVA UNO ENCIMA DEL OTRO */
     .main-nav{
         right: 40px;
+        width: 75%;
+        /* FALTA TIRAR EL BOTON MENÚ A LA IZQUIERDA Y VER CÓMO RESPONDE */
+    }
+
+    #logo{
+        display: none;
     }
     
     body > main > nav{
@@ -4141,6 +4161,7 @@ aside#cur-cap{
         translate: -19px 19px;
         transform-origin: 0px 0px;
     }
+
 
     /* SLIDERS INDEX */
     .fila-slider dl dd{

@@ -20,6 +20,7 @@
 <title>{{ capitulo.nombre }} | {{ capitulo.curso.nombre }}</title>
 <link href="{% static '/skins/remix/techsmith-smart-player.min.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/trailer.css' %}">
 <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
 <style>
     @keyframes rotatebg{
@@ -81,7 +82,6 @@ overflow: hidden;
 
 
 
-
 <script src="{% static 'scripts/' %}{{ capitulo.js_trailer }}" type="text/javascript"></script>
 <script type="text/javascript">
     (function (window) {
@@ -130,9 +130,9 @@ overflow: hidden;
 
 
 
-<div class="div-btn-mas">
+
 <button id="mas-info-cap" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información" data-cy="video-click-to-play"></button>
-</div>
+
 
 
 <article id="info-cap-full">
@@ -153,7 +153,7 @@ overflow: hidden;
             <nav class="botones-cap">
                 <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
                 <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
-                <a href="{% url 'login' %}?next={{ request.path }}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
+                <a href="{% url 'login' %}?next={{ request.path }}" style="display: none;"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
                 {% include 'snippets/modal_compartir.html' %}
             </nav>
 
@@ -170,7 +170,7 @@ overflow: hidden;
 {% endif %}
 <div id="timeOutput" style="display: none;"></div>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>
-<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/base.js' %}"></script>
 <script src="{% static 'js/btn_compartir.js' %}"></script>
 <script src="{% static 'js/trailer.js' %}" type="text/javascript" defer></script>
 </body>

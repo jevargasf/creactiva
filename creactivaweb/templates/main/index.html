@@ -39,7 +39,6 @@
     {% block js %}
     <script type="text/javascript">
         setTimeout(function(){
-            console.log("COMENZÓ LA EJECUCIÓN SLIDER INDEX")
         
         $(document).ready(function(){
             $('#slider-fila').slick({
@@ -47,7 +46,8 @@
                 easing: true,
                 pauseOnHover:true,
                 infinte: true,
-                autoplay: false,
+                autoplay: true,
+                autoplaySpeed: 5000,
                 speed: 500,
                 slidesToShow: 4,
                 slidesToScroll: 2,
@@ -121,7 +121,8 @@
                 easing: true,
                 pauseOnHover:true,
                 infinte: true,
-                autoplay: false,
+                autoplay: true,
+                autoplaySpeed: 5000,
                 speed: 500,
                 slidesToShow: 4,
                 slidesToScroll: 2,
