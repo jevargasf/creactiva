@@ -83,6 +83,12 @@
 }
 
 
+@font-face {
+    font-family: baltiholm;
+    src: url(fonts/Baltiholm.ttf.ttf);
+    font-style:normal;
+}
+
 
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
@@ -328,6 +334,16 @@ h8{
     font-family: latoblack;
     text-transform: uppercase;
     line-height: 40px;
+    
+}
+
+
+h9{
+    font-size:100px;
+    font-family: baltiholm;
+    line-height: 40px;
+    text-shadow:0px 0px 10px #57DEFF;
+    line-height: 70px;
 }
 
 p{
@@ -3016,11 +3032,10 @@ aside#cur-cap {
 }
 
 #integra{
-    width:80%;
+    width:100%;
     text-align: center;
-    margin:0 auto;
     display: block;
-    margin-bottom: -20px;
+    margin: 20px auto 0px auto;
 }
 
 #nosotros_texto{
@@ -3038,8 +3053,10 @@ aside#cur-cap {
 #nosotros_texto aside h7{
     font-size:26px;
     color:#003c71;
-    padding: 6px;
     display: block;
+    margin:10px 0px 10px 0px;
+    text-transform: uppercase;
+    translate: 0px 6px;
 
 
 }
@@ -3049,6 +3066,7 @@ aside#cur-cap {
     font-size: 13px;
     text-align: justify;
     padding: 0px 6px 0px 6px;
+    letter-spacing: 0.5px;
 
 
 }
@@ -3064,6 +3082,8 @@ aside#cur-cap {
 
 #nosotros footer ul{
     list-style: none;
+    display: inline-block;
+    float:right;
 }
 #nosotros footer ul li{
     display: inline-block;
@@ -3077,6 +3097,7 @@ aside#cur-cap {
 
 #rs{
     float:right;
+    width:100%;
 }
 
 #rs h1{
@@ -3522,6 +3543,8 @@ table#detalle{
     }
 
     #nosotros footer ul{
+    float:initial;
+
         bottom:0px;
     }
     #nosotros footer ul{
