@@ -147,6 +147,7 @@ class PagarView(LoginRequiredMixin, View):
                 user_object = User.objects.get(username=request.user)
                 perfil_object = Perfil.objects.get(user_id=user_object.id)
                 codigo_object = conseguir_codigo_usado(perfil_object)
+                # ES ESTUDIANTE
                 fecha_inicio = now()
                 fecha_termino = sumar_fecha(fecha_inicio, plan.duracion)
                 suscripcion = Suscripcion(
@@ -165,12 +166,23 @@ class PagarView(LoginRequiredMixin, View):
                         curso=curso
                     )
                     curso_suscripcion.save()
-                perfil_suscripcion = PerfilSuscripcion(
-                    perfil=perfil_object,
-                    suscripcion=suscripcion,
-                    codigo_promocional=codigo_object,
-                    estado_suscripcion='2'
-                )
+                # USUARIO ESTÁ USANDO CÓDIGO DE ESTUDIANTE/PUEBLO ORIGINARIO
+                if codigo_object == True:
+                    perfil_suscripcion = PerfilSuscripcion(
+                        perfil=perfil_object,
+                        suscripcion=suscripcion,
+                        codigo_promocional=None,
+                        estado_suscripcion='2'
+                    )
+
+                # RETORNÓ CÓDIGO SI USÓ CÓDIGO VÁLIDO, RETORNÓ NONE SI NO USÓ CÓDIGO VÁLIDO
+                else:
+                    perfil_suscripcion = PerfilSuscripcion(
+                        perfil=perfil_object,
+                        suscripcion=suscripcion,
+                        codigo_promocional=codigo_object,
+                        estado_suscripcion='2'
+                    )
                 perfil_suscripcion.save()
             
 
@@ -234,7 +246,8 @@ class RespuestaWebpayView(View):
                 if perfil_object.descuento_creactiva == True:
                     # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
                     codigo_object = conseguir_codigo_usado(perfil_object)
-                    if codigo_object.codigo:
+                    print(codigo_object)
+                    if codigo_object != True:
                         perfil_codigo_object = PerfilCodigo.objects.get(codigo=codigo_object)
                         # USUARIO YA USÓ EL CÓDIGO
                         perfil_codigo_object.estado_uso_codigo = '1'
@@ -301,9 +314,7 @@ class RespuestaWebpayView(View):
                             'dias_restantes': (suscripcion.fecha_termino - now()).days
                         }
                         return render(request, 'suscripciones/voucher_webpay.html', context)
-                    # CÓDIGO NO ES VÁLIDO/COMPORTAMIENTOS NO ESPERADOS
-                    elif codigo_object == None:
-                        raise Exception
+
                 # ESTO NO ES UN COMPORTAMIENTO NO ESPERADO, ES EL FLUJO CUANDO EL USUARIO PAGÓ SIN CÓDIGO
                 else:
                     suscripcion.save()

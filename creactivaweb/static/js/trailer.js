@@ -36,13 +36,13 @@ setTimeout(function () {
         })
 
     });
+
+    
+},2000);
     // CÓDIGO DEL ALERT
     $(document).ready(function () {
         $('#transicion').css('opacity', '0');
     });
-    
-},700);
-
 // CONSTRUIR EL SETTIMEOUT OBJECT
 timeoutObject = {
     ocultarCursor(){

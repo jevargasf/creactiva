@@ -11,5 +11,6 @@ urlpatterns = [
     path('accounts/login', CustomLoginView.as_view(next_page=''), name='login'),
     path('accounts/logout', CustomLogoutView.as_view(next_page=''), name='logout'),
     path('contacto', ContactoView.as_view(), name='contacto'),
-    path('nosotros', NosotrosView.as_view(), name='nosotros')
+    path('nosotros', NosotrosView.as_view(), name='nosotros'),
+    path('sugerencias', SugerenciasView.as_view(), name='sugerencias')
 ]

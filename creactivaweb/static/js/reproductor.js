@@ -18,10 +18,6 @@ async function envioData(url, csrftoken, data){
     
 }
 
-// function getSegundoReproduccion(){
-//     monitorEvents(window, "ended")
-    
-// }
 
 setTimeout(function () {
     // EL PUTO MALDITO BOTÓN PLAY
@@ -117,12 +113,12 @@ setTimeout(function () {
             }
             });
     });
+
+},2000);
     // CÓDIGO DEL ALERT
     $(document).ready(function () {
         $('#transicion').css('opacity', '0');
     });
-},1000);
-
 // CONSTRUIR EL SETTIMEOUT OBJECT
 timeoutObject = {
     ocultarCursor(){

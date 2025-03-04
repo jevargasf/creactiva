@@ -221,6 +221,60 @@ class ContactoView(View):
             messages.error(request, 'No se ha podido enviar el mensaje. Por favor, intenta nuevamente.')
             return render(request, 'main/contacto.html', context)
         
+class SugerenciasView(View):
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get (self, request: HttpRequest):
+        form = ContactoModelForm()
+        context = {'form': form}
+        return render(request, 'main/sugerencias.html', context)
+    
+    def post(self, request: HttpRequest):
+        form = ContactoModelForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            apellido = form.cleaned_data['apellido']
+            email = form.cleaned_data['email']
+            form.save()
+            try:
+                text_content = render_to_string(
+                    "templates/mails/correo_sugerencias.txt",
+                    context={
+                        'nombre': f'{nombre} {apellido}',
+                    }
+                )
+                html_content = render_to_string(
+                    'templates/mails/correo_sugerencias.html',
+                    context={
+                        'nombre': f'{nombre} {apellido}',
+                    }
+                )
+                msg = EmailMultiAlternatives(
+                    "Gracias por ayudarnos a mejorar",
+                    text_content,
+                    "no-reply@creactivaanimaciones.cl",
+                    [email]
+                )
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
+                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
+                return redirect('index')
+            except SMTPException as e:
+                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
+                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                return redirect('index')
+            except Exception as e:
+                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
+                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                return redirect('index')
+        else:
+            context = {'form': form}
+            messages.error(request, 'No se ha podido enviar el mensaje. Por favor, intenta nuevamente.')
+            return render(request, 'main/sugerencias.html', context)
+        
+
 class NosotrosView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)

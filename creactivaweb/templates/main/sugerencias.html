@@ -6,8 +6,8 @@
 {% include 'snippets/fondo_azul.html' %}
     <div class="form form-register">
         <h7>CreActiv@</h7><br><br><br>
-        <h3>CUÉNTANOS... ¿QUÉ NECESITAS?</h3>
-        <form action="{% url 'contacto' %}" method="post">
+        <h3>¿CÓMO HA SIDO TU EXPERIENCIA CON NOSOTROS?</h3>
+        <form action="{% url 'sugerencias' %}" method="post">
             {% csrf_token %}
     <div class="form-mid">
         {{ form.nombre }}
