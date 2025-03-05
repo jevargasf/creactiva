@@ -7,17 +7,17 @@ window.addEventListener('load', function () {
   })
 
 // LOCAL STORAGE
-flag = localStorage.getItem("alert")
-if (localStorage.flag === "true"){
-  console.log("no hago nada")
-} else if (flag === null){
-  document.querySelector("#publicidad").innerHTML += 
-  `<div id="alerta" class="alert" role="alert">
-  <div>
-  <strong>USTED HA INGRESADO POR PRIMERA VEZ</strong>
-  <p>haz click para continuar</p>
-  <button id="cerrarAlerta"  type="button"><img src="" alt=""></button>
-  </div>
-  </div>`
-  localStorage.setItem("flag", "true")
-}
+// flag = localStorage.getItem("alert")
+// if (localStorage.flag === "true"){
+//   console.log("no hago nada")
+// } else if (flag === null){
+//   document.querySelector("#publicidad").innerHTML += 
+//   `<div id="alerta" class="alert" role="alert">
+//   <div>
+//   <strong>USTED HA INGRESADO POR PRIMERA VEZ</strong>
+//   <p>haz click para continuar</p>
+//   <button id="cerrarAlerta"  type="button"><img src="" alt=""></button>
+//   </div>
+//   </div>`
+//   localStorage.setItem("flag", "true")
+// }
