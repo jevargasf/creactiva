@@ -1,6 +1,6 @@
 @font-face {
   font-family: cabin;
-  src: url(font/CabinSketch-Regular.otf);
+  src: url(fonts/CabinSketch-Regular.otf);
   font-weight: normal;
 }
 
@@ -42,7 +42,7 @@ body{
 #contenido{
   background-size: auto 30% ;
 	margin:0 auto;
-	padding:10px 40px 150px 20px;
+	padding:45px 40px 150px 20px;
 	opacity:0.975;
 
 
@@ -66,21 +66,33 @@ h1{
 	font-size: 75px;
 	font-weight: normal;
 	text-align: center;
-	margin:50px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
 	line-height: 1em;
 
 }
 
 p{
-	font-family: bahiana;
-	font-size: 70px;
+	font-family: cabin;
+	font-size: 30px;
 	font-weight: normal;
 	text-align: center;
 	margin:20px 0px 10px 0px;
 	line-height: 1em;
+	/* animation: ; */
+	color:#009504;
+	text-shadow: 0px 0px 10px #FFFC00;
 
 }
 
+
+h3{
+		font-family: bahiana;
+	font-size: 50px;
+	font-weight: normal;
+	text-align: center;
+	margin:0px 0px 0px 0px;
+	line-height: 1em;
+}
 
 h2{
 	color: #512319;
@@ -89,10 +101,24 @@ h2{
 	font-size:70px;
 	font-family: cabin;
    -webkit-text-fill-color: #512319;
-   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-width: .3px;
    -webkit-text-stroke-color: #512319;
 	margin:0px 0px 0px 0px;
+	pointer-events: none;
+
 }
+
+
+.no-select, h2{
+		  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 
 li{
 	color: #512319;
@@ -105,18 +131,21 @@ li{
    -webkit-text-stroke-color: #512319;
 	margin:0px 0px 10px 0px;
     -webkit-tap-highlight-color: transparent;
+
 }
 
 b{
 	transition: all .2s ease-in-out;
-	font-size:35px;
-   -webkit-text-stroke-width: .5px;
+	font-size:40px;
+   -webkit-text-stroke-width: .3px;
 	cursor: pointer;
+      text-transform: capitalize;
+  font-variant: small-caps;
 
 }
 
 b:hover{
-   -webkit-text-stroke-width: 1.2px;
+   -webkit-text-stroke-width: .5px;
 }
 
 
@@ -135,16 +164,15 @@ b:focus{
 }
 
 p{
+
 }
 
 ::-moz-selection { /* Code for Firefox */
-  color: red;
-  background: yellow;
+  background: rgba(256, 256, 256, .5);
 }
 
 ::selection {
-  color: red;
-  background: yellow;
+  background: rgba(256, 256, 256, .25);
 }
 
 @media (max-width: 1080px) {
@@ -168,5 +196,4 @@ b{
 	font-size:50px;
 
 }
-
 }

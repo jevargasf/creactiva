@@ -1,0 +1,6 @@
+Hola, {{ nombre }}. Hemos recibido tu mensaje con éxito. Nos alegra que estés interesado en ayudarnos a mejorar. De ser necesario, nos contactaremos contigo por este mismo medio para obtener mayor información. 
+
+
+Atentamente,
+
+Equipo CreActiva

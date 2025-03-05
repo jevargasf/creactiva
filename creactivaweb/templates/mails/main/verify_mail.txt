@@ -1,0 +1,10 @@
+Hola, {{ nombre }}. Estás a punto de completar tu registro en Creactiva Animaciones. Por favor, haz clic en el siguiente enlace para terminar el proceso, o cópialo y pégalo en la barra de direcciones de tu navegador favorito:
+
+
+{{url}}
+
+
+Atentamente,
+
+
+Equipo Creactiva

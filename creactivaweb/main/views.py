@@ -7,7 +7,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.utils import IntegrityError
-from main.utils import crear_usuario, crear_token, traducir_token
+from main.utils import *
 from cursos.utils import pedir_cursos, capitulos_index
 from main.forms import ContactoModelForm, SolicitarResetPasswordForm, ResetPasswordForm
 from smtplib import SMTPException
@@ -58,6 +58,14 @@ class RegisterView(View):
             return render(request, 'registration/register.html')
         try:
             crear_usuario(username, first_name, last_name, email, password)
+            if "@creactivaanimaciones.cl" in username:
+                usuario_creactiva = crear_usuario_creactiva(username)
+                if usuario_creactiva == True:
+                    messages.success(request, f'El usuario CreActiva fue registrado exitosamente.')
+                    return redirect('index')
+                else:
+                    messages.error(request, 'No se pudo registrar el usuario CreActiva. Por favor, intenta nuevamente.')
+                    return render(request, 'registration/register.html')
         except IntegrityError:
             messages.error(request, 'El correo ya existe')
             return render(request, 'registration/register.html')
@@ -68,39 +76,28 @@ class RegisterView(View):
             try:
                 # Crear token
                 user_object = User.objects.get(username=username)
-                token = crear_token(id=user_object.id, email=user_object.email)
-                # Crear url
-                url = f'{settings.BASE_URL}accounts/verificacion/{token}'
-                # Preparar html
-                text_content = render_to_string(
-                    "templates/mails/verify_mail.txt",
-                    context={
-                        'nombre': user_object.first_name,
-                        'url': url
-                    }
-                )
-                html_content = render_to_string(
-                    'templates/mails/verify_mail.html',
-                    context={
-                        'nombre': user_object.first_name,
-                        'url': url
-                    }
-                )
-                # Enviar por email
-                msg = EmailMultiAlternatives(
-                    "Verifica tu correo en Creactiva Animaciones",
-                    text_content,
-                    "no-reply@creactivaanimaciones.cl",
-                    [user_object.email]
-                )
-                msg.attach_alternative(html_content, "text/html")
-                msg.send()
-                # Retornar mensaje
-                messages.success(request, f'La cuenta fue registrada exitosamente. Te hemos enviado un correo a {email} con un enlace para activar tu cuenta.')
-                return redirect('index')
-            except SMTPException as e:
-                print("NO SE PUDO ENVIAR EL CORREO.", e)
-                messages.error(request, f'La cuenta fue registrada exitosamente, pero no pudimos enviarte un correo para verificar tu cuenta. Por favor, escribe a contacto@creactivaanimaciones.cl para solucionar este problema.')
+                if user_object.is_active == False:
+                    token = crear_token(id=user_object.id, email=user_object.email)
+                    # Crear url
+                    url = f'{settings.BASE_URL}accounts/verificacion/{token}'
+                    correo = enviar_correo(
+                        r_nombre=user_object.first_name,
+                        r_email=user_object.email,
+                        e_mail="no-reply@creactivaanimaciones.cl",
+                        asunto="Verifica tu correo en CreActiva Animaciones",
+                        app="main",
+                        archivo="verify_mail",
+                        url=url
+                    )
+                    if correo == True:
+                        messages.success(request, f'La cuenta fue registrada exitosamente. Te hemos enviado un correo a {user_object.email} con un enlace para activar tu cuenta.')
+                        return redirect('index')
+                    else:
+                        messages.error(request, f'La cuenta fue registrada exitosamente, pero no pudimos enviarte un correo para verificar tu cuenta. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                        return redirect('login')
+            except Exception as e:
+                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                messages.error(request, f'La cuenta fue registrada exitosamente, ocurrió un error inesperado. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
                 return redirect('login')
         
     def get(self, request):
@@ -113,47 +110,54 @@ class VerificacionView(View):
     def get(self, request: HttpRequest, token):
         token = traducir_token(token)
         user_object = User.objects.get(pk=token['id'])
-
         fecha_vigencia = timezone.now() + datetime.timedelta(days=1)
         fecha_timestamp = parse_datetime(token['ts'])
         if fecha_vigencia > fecha_timestamp:
-            user_object.is_active = True
-            user_object.save()
-            messages.success(request, f'Hemos verificado tu cuenta exitosamente.')
-            return redirect('index')
+            try:
+                user_object.is_active = True
+                user_object.save()
+                correo = enviar_correo(
+                    r_nombre=user_object.first_name,
+                    r_email=user_object.email,
+                    e_mail="no-reply@creactivaanimaciones.cl",
+                    asunto="Has creado tu cuenta en Creactiva Animaciones",
+                    app="main",
+                    archivo="registration_complete"
+                )
+                if correo == True:
+                    messages.success(request, f'Hemos verificado tu cuenta exitosamente.')
+                    return redirect('index')
+                else:
+                    messages.error(request, f'La cuenta fue verificada exitosamente, pero falló el envío del correo de éxito. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                    return redirect('index')
+            except Exception as e:
+                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                messages.error(request, f'Hemos verificado tu cuenta exitosamente, pero ocurrió un error inesperado. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                return redirect('index')
         else:
             try:
                 token = crear_token(id=user_object.id, email=user_object.email)
                 url = f'{settings.BASE_URL}accounts/verificacion/{token}'
-                text_content = render_to_string(
-                    "templates/mails/verify_mail.txt",
-                    context={
-                        'nombre': user_object.first_name,
-                        'url': url
-                    }
+                correo = enviar_correo(
+                    r_nombre=user_object.first_name,
+                    r_email=user_object.email,
+                    e_mail="no-reply@creactivaanimaciones.cl",
+                    asunto="Verifica tu correo en CreActiva Animaciones",
+                    app="main",
+                    archivo="verify_mail",
+                    url=url
                 )
-                html_content = render_to_string(
-                    'templates/mails/verify_mail.html',
-                    context={
-                        'nombre': user_object.first_name,
-                        'url': url
-                    }
-                )
-                msg = EmailMultiAlternatives(
-                    "Verifica tu correo en Creactiva Animaciones",
-                    text_content,
-                    "no-reply@creactivaanimaciones.cl",
-                    [user_object.email]
-                )
-                msg.attach_alternative(html_content, "text/html")
-                msg.send()
-
-                messages.success(request, f'El token ha caducado. Te hemos enviado un nuevo enlace a {user_object.email} para activar tu cuenta.')
+                if correo == True:
+                    messages.success(request, f'El token ha caducado. Te hemos enviado un nuevo enlace a {user_object.email} para activar tu cuenta.')
+                    return redirect('index')
+                else:
+                    messages.error(request, f'El token ha caducado. Lamentablemente, no pudimos enviarte un nuevo correo para verificar tu cuenta. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                    return redirect('index')
+            except Exception as e:
+                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                messages.error(request, f'El token ha caducado. Lamentablemente, no pudimos enviarte un nuevo correo para verificar tu cuenta. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
                 return redirect('index')
-            except SMTPException as e:
-                print("NO SE PUDO ENVIAR EL CORREO.", e)
-                messages.error(request, f'La cuenta fue registrada exitosamente, pero no pudimos enviarte un correo para verificar tu cuenta. Por favor, escribe a contacto@creactivaanimaciones.cl para solucionar este problema.')
-                return redirect('index')
+            
 class CustomLoginView(SuccessMessageMixin, LoginView):
     success_message = "Sesión Iniciada Exitosamente"
     template_name = 'registration/login.html'  
@@ -183,38 +187,40 @@ class ContactoView(View):
             nombre = form.cleaned_data['nombre']
             apellido = form.cleaned_data['apellido']
             email = form.cleaned_data['email']
+            mensaje = form.cleaned_data['mensaje']
             form.save()
             try:
-                text_content = render_to_string(
-                    "templates/mails/correo_contacto.txt",
-                    context={
-                        'nombre': f'{nombre} {apellido}',
-                    }
+                correo_user = enviar_correo(
+                    r_nombre=nombre,
+                    r_email=email,
+                    e_mail="no-reply@creactivaanimaciones.cl",
+                    asunto="Gracias por comunicarte con CreActiva Animaciones",
+                    app="main",
+                    archivo="correo_contacto"
                 )
-                html_content = render_to_string(
-                    'templates/mails/correo_contacto.html',
-                    context={
-                        'nombre': f'{nombre} {apellido}',
-                    }
+                data = {
+                    'nombre': nombre,
+                    'apellido': apellido,
+                    'email': email,
+                    'mensaje': mensaje
+                }
+                enviar_correo_admin(
+                    r_email="contacto@creactivaanimaciones.cl",
+                    e_mail="no-reply@creactivaanimaciones.cl",
+                    asunto="Nuevo contacto en CreActiva Animaciones",
+                    app="main",
+                    archivo="notificacion_contacto_admin",
+                    form=data
                 )
-                msg = EmailMultiAlternatives(
-                    "Gracias por comunicarte con Creactiva Animaciones",
-                    text_content,
-                    "no-reply@creactivaanimaciones.cl",
-                    [email]
-                )
-                msg.attach_alternative(html_content, "text/html")
-                msg.send()
-
-                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
-                return redirect('index')
-            except SMTPException as e:
-                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
-                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
-                return redirect('index')
+                if correo_user == True:
+                    messages.success(request, 'Hemos recibido tu mensaje con éxito.')
+                    return redirect('index')
+                else:
+                    messages.error(request, 'Hemos recibido tu mensaje con éxito. Sin embargo, no pudimos enviarte la notificación de éxito por correo electrónico. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                    return redirect('index')
             except Exception as e:
-                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
                 print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                messages.error(request, 'Tu mensaje fue recibido con éxito. Sin embargo, ocurrió un error inesperado. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
                 return redirect('index')
         else:
             context = {'form': form}
@@ -236,38 +242,40 @@ class SugerenciasView(View):
             nombre = form.cleaned_data['nombre']
             apellido = form.cleaned_data['apellido']
             email = form.cleaned_data['email']
+            mensaje = form.cleaned_data['mensaje']
             form.save()
             try:
-                text_content = render_to_string(
-                    "templates/mails/correo_sugerencias.txt",
-                    context={
-                        'nombre': f'{nombre} {apellido}',
-                    }
+                correo_user = enviar_correo(
+                    r_nombre=nombre,
+                    r_email=email,
+                    e_mail="no-reply@creactivaanimaciones.cl",
+                    asunto="Gracias por ayudarnos a mejorar",
+                    app="main",
+                    archivo="correo_sugerencias"
                 )
-                html_content = render_to_string(
-                    'templates/mails/correo_sugerencias.html',
-                    context={
-                        'nombre': f'{nombre} {apellido}',
-                    }
+                data = {
+                    'nombre': nombre,
+                    'apellido': apellido,
+                    'email': email,
+                    'mensaje': mensaje
+                }
+                enviar_correo_admin(
+                    r_email="contacto@creactivaanimaciones.cl",
+                    e_mail="no-reply@creactivaanimaciones.cl",
+                    asunto="Nueva sugerencia en CreActiva Animaciones",
+                    app="main",
+                    archivo="notificacion_sugerencia_admin",
+                    form=data
                 )
-                msg = EmailMultiAlternatives(
-                    "Gracias por ayudarnos a mejorar",
-                    text_content,
-                    "no-reply@creactivaanimaciones.cl",
-                    [email]
-                )
-                msg.attach_alternative(html_content, "text/html")
-                msg.send()
-
-                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
-                return redirect('index')
-            except SMTPException as e:
-                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
-                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
-                return redirect('index')
+                if correo_user == True:
+                    messages.success(request, 'Hemos recibido tu sugerencia con éxito. Muchas gracis por ayudarnos a mejorar.')
+                    return redirect('index')
+                else:
+                    messages.error(request, 'Hemos recibido tu mensaje con éxito. Sin embargo, no pudimos enviarte la notificación de éxito por correo electrónico. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                    return redirect('index')
             except Exception as e:
-                messages.success(request, 'Hemos recibido tu mensaje con éxito.')
                 print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                messages.error(request, 'Tu mensaje fue recibido con éxito. Sin embargo, ocurrió un error inesperado. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
                 return redirect('index')
         else:
             context = {'form': form}
@@ -295,41 +303,35 @@ class ResetPasswordView(View):
     
     def post(self, request: HttpRequest):
         form = SolicitarResetPasswordForm(request.POST)
-        if form.is_valid():
-            email = request.POST['email']
-            # crear token
-            print(email)
-            user_object = User.objects.get(email=email)
-            token = crear_token(id=user_object.id, user=user_object.username)
-            url = f'{settings.BASE_URL}accounts/password-form/{token}'
-            text_content = render_to_string(
-                "templates/mails/reset_password.txt",
-                context={
-                    'nombre': user_object.first_name,
-                    'url': url
-                }
-            )
-            html_content = render_to_string(
-                'templates/mails/reset_password.html',
-                context={
-                    'nombre': user_object.first_name,
-                    'url': url
-                }
-            )
-            msg = EmailMultiAlternatives(
-                "Reestablece tu contraseña en Creactiva Animaciones",
-                text_content,
-                "no-reply@creactivaanimaciones.cl",
-                [user_object.email]
-            )
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
-            # mandar correo con token
-            messages.success(request, f'Te hemos enviado un link para reestablecer tu contraseña a {email}.')
-            return redirect('index')
+        email = request.POST['email']
+        user_object = User.objects.get(email=email)
+        if user_object is not None:
+            try:
+                # crear token
+                token = crear_token(id=user_object.id, user=user_object.username)
+                url = f'{settings.BASE_URL}accounts/password-form/{token}'
+                correo = enviar_correo(
+                    r_nombre=user_object.first_name,
+                    r_email=user_object.email,
+                    e_mail="no-reply@creactivaanimaciones.cl",
+                    asunto="Reestablece tu contraseña en CreActiva Animaciones",
+                    app="main",
+                    archivo="reset_password",
+                    url=url
+                )
+                if correo == True:
+                    messages.success(request, f'Te hemos enviado un link para reestablecer tu contraseña a {email}.')
+                    return redirect('index')
+                else:
+                    messages.error(request, f'No pudimos enviarte un link para reestablecer tu contraseña. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                    return redirect('contacto')
+            except Exception as e:
+                print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                messages.error(request, f'Ocurrió un error inesperado al intentar reestablecer tu contraseña. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                return redirect('contacto')
         else:
             form = SolicitarResetPasswordForm()
-            messages.error(request, 'No se ha podido reestablecer la contraseña. Por favor, intenta nuevamente.')
+            messages.error(request, 'El correo no existe. Por favor, intenta nuevamente.')
             return render(request, 'registration/password_reset.html', {'form': form})
 
 class ResetPasswordConfirmView(View):
@@ -377,34 +379,23 @@ class ResetPasswordConfirmView(View):
                 try:
                     user_object.password = make_password(password1)
                     user_object.save()
-                    text_content = render_to_string(
-                        "templates/mails/reset_password_done.txt",
-                        context={
-                            'nombre': user_object.first_name,
-                        }
+                    correo = enviar_correo(
+                        r_nombre=user_object.first_name,
+                        r_email=user_object.email,
+                        e_mail="no-reply@creactivaanimaciones.cl",
+                        asunto="Contraseña restablecida exitosamente en Creactiva Animaciones",
+                        app="main",
+                        archivo="reset_password_done",
                     )
-                    html_content = render_to_string(
-                        'templates/mails/reset_password_done.html',
-                        context={
-                            'nombre': user_object.first_name,
-                        }
-                    )
-                    msg = EmailMultiAlternatives(
-                        "Contraseña Restablecida Exitosamente Creactiva Animaciones",
-                        text_content,
-                        "no-reply@creactivaanimaciones.cl",
-                        [user_object.email]
-                    )
-                    msg.attach_alternative(html_content, "text/html")
-                    msg.send()
-
-                    messages.success(request, 'La contraseña se ha reestablecido satisfactoriamente. Por favor, inicie sesión.')
-                    return redirect('login')
-                except SMTPException as e:
-                    messages.error(request, f'Ocurrió un error. No pudimos confirmar tu nueva contraseña. Por favor, intenta nuevamente')
-                    return redirect('login')
+                    if correo == True:
+                        messages.success(request, 'La contraseña se ha reestablecido satisfactoriamente. Por favor, inicia sesión.')
+                        return redirect('login')
+                    else:
+                        messages.error(request, f'Ocurrió un error y no pudimos confirmar tu nueva contraseña. Por favor, intenta nuevamente o escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                        return redirect('login')
                 except Exception as e:
-                    messages.error(request, f'Ocurrió un error. No pudimos reestablecer tu contraseña. Por favor, intenta nuevamente')
+                    print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+                    messages.error(request, f'Ocurrió un error y no pudimos reestablecer tu contraseña. Por favor, intenta nuevamente o escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
                     return redirect('login')
         else:
             form = ResetPasswordForm()

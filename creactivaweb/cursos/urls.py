@@ -6,6 +6,5 @@ urlpatterns = [
     path('curso/<id>', CursoView.as_view(), name='curso'),
     # path('trailer/<id>', TrailerView.as_view(), name='trailer'),
     path('capitulo/<id>', CapituloView.as_view(), name='capitulo'),
-    path('recursos/glosario', RecursosView.as_view(), name='recursos'),
-
+    path('glosario', RecursosView.as_view(), name='recursos'),
 ]

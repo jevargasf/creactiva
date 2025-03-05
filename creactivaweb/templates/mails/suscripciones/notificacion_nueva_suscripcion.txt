@@ -1,0 +1,16 @@
+Estimado Fabián,
+
+Se ha registrado una nueva suscripción en CreActiva Animaciones. Los detalles son los siguientes:
+
+    Nombre: {{ form.nombre }} {{ form.apellido }}
+    Correo: {{ form.email }}
+    Tipo: {{ form.tipo }}
+    Monto: ${{ form.monto }}
+    Duración: {{ form.duracion }} meses
+    Fecha inicio: {{ form.fecha_inicio }}
+    Fecha término: {{ form.fecha_termino }}
+
+
+Atentamente,
+
+Equipo CreActiva

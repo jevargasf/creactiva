@@ -1,5 +1,5 @@
 from suscripciones.models import *
-from django.db.models import F
+from django.db.models import F, Q
 
 def get_solicitudes():
     data = SolicitudOrganizacion.objects.all()
@@ -16,7 +16,7 @@ def get_planes():
     return planes
 
 def planes_montos_mensuales():
-    data = Planes.objects.all().annotate(monto_mensual=F('monto')/F('duracion'))
+    data = Planes.objects.filter(~Q(nombre='Equipo')).annotate(monto_mensual=F('monto')/F('duracion'))
     return data
 
 def suscripcion_activa(user):    

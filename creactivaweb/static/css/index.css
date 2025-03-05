@@ -1755,7 +1755,7 @@ float: left;
 
 #plan-detalle table{
         display: inline-table;
-        margin: 10px 0px 200px 0px;
+        margin: 10px 0px 80px 0px;
         width:80%;
         border-collapse: collapse;
 
@@ -1781,6 +1781,17 @@ float: left;
         margin-bottom: 10px;
     }
     
+    #webpay-container{
+        width: 70%;
+        padding-bottom: 20px;
+        text-align: start;
+        padding-left: 10%;
+        margin-bottom: 5px;
+    }
+
+    #webpay-logo{
+        width: 50%;
+    }
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */

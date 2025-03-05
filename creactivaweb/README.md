@@ -645,3 +645,9 @@ OBSERVACIONES JOSÉ:
 OBSERVACIONES LUNES 03-03:
 - Revisar responsividad img info cap porque al parecer no se ajusta en todos los tamaños al aside, queda con bordes
 
+OBSERVACIONES MARTES 04-03:
+- Escribir excepción en check_suscripciones para usuarios Equipo
+- Detalle fabián: slider en cursos no muestra las flechas laterales
+- Subir nuevo código a producción
+- Probar nuevo código
+- Subir nuevo logo/logo webpay

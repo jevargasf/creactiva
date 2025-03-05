@@ -11,10 +11,9 @@ from django.utils.timezone import now
 from suscripciones.webpay import crear_transaccion, confirmar_transaccion
 from suscripciones.services import *
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail
-from smtplib import SMTPException
 from django.contrib.auth import login
 from django.urls import reverse
+from main.utils import enviar_correo, enviar_correo_admin
 class PlanesView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -269,15 +268,24 @@ class RespuestaWebpayView(View):
                         else:
                             codigo_object.cantidad = 0
                             codigo_object.save()
-                        send_mail(
-                            f"Nueva Suscripción Creactiva Animaciones",
-                            f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
-                            Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
-                            Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
-                            Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
-                            "no-reply@creactivaanimaciones.cl",
-                            ["contacto@creactivaanimaciones.cl"],
-                            fail_silently=False,
+                        data = {
+                            'nombre': user_object.first_name,
+                            'apellido': user_object.last_login,
+                            'email': user_object.email,
+                            'tipo': "Invidivual con Descuento",
+                            'plan': suscripcion.plan.nombre,
+                            'monto': suscripcion.monto,
+                            'duracion': suscripcion.plan.duracion,
+                            'fecha_inicio': suscripcion.fecha_inicio,
+                            'fecha_termino': suscripcion.fecha_termino
+                        }
+                        enviar_correo_admin(
+                            r_email="contacto@creactivaanimaciones.cl",
+                            e_mail="no-reply@creactivaanimaciones.cl",
+                            asunto="Nueva suscripción en CreActiva Animaciones",
+                            app="suscripciones",
+                            archivo="notificacion_nueva_suscripcion",
+                            form=data
                         )
                         messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                         context = {
@@ -295,15 +303,24 @@ class RespuestaWebpayView(View):
                         perfil_suscripcion_object.save()
                         suscripcion.save()
                         perfil_object.save()
-                        send_mail(
-                            f"Nueva Suscripción Creactiva Animaciones",
-                            f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
-                            Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
-                            Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
-                            Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
-                            "no-reply@creactivaanimaciones.cl",
-                            ["contacto@creactivaanimaciones.cl"],
-                            fail_silently=False,
+                        data = {
+                            'nombre': user_object.first_name,
+                            'apellido': user_object.last_login,
+                            'email': user_object.email,
+                            'tipo': "Invidivual Estudiante/Pueblo Originario",
+                            'plan': suscripcion.plan.nombre,
+                            'monto': suscripcion.monto,
+                            'duracion': suscripcion.plan.duracion,
+                            'fecha_inicio': suscripcion.fecha_inicio,
+                            'fecha_termino': suscripcion.fecha_termino
+                        }
+                        enviar_correo_admin(
+                            r_email="contacto@creactivaanimaciones.cl",
+                            e_mail="no-reply@creactivaanimaciones.cl",
+                            asunto="Nueva suscripción en CreActiva Animaciones",
+                            app="suscripciones",
+                            archivo="notificacion_nueva_suscripcion",
+                            form=data
                         )
                         messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                         context = {
@@ -320,15 +337,24 @@ class RespuestaWebpayView(View):
                     suscripcion.save()
                     perfil_object.save()
                     perfil_suscripcion_object.save()
-                    send_mail(
-                        f"Nueva Suscripción Creactiva Animaciones",
-                        f"""Detalles de la suscripción: Nombre usuario: {user_object.first_name} {user_object.last_name}, 
-                        Correo: {user_object.email}, Tipo suscripción: Individual, Plan: {suscripcion.plan.nombre}, 
-                        Monto: {suscripcion.plan.monto}, Duración: {suscripcion.plan.duracion} meses,  
-                        Fecha inicio: {suscripcion.fecha_inicio}, Fecha término: {suscripcion.fecha_termino}.""",
-                        "no-reply@creactivaanimaciones.cl",
-                        ["contacto@creactivaanimaciones.cl"],
-                        fail_silently=False,
+                    data = {
+                            'nombre': user_object.first_name,
+                            'apellido': user_object.last_login,
+                            'email': user_object.email,
+                            'tipo': "Invidivual Estándar",
+                            'plan': suscripcion.plan.nombre,
+                            'monto': suscripcion.monto,
+                            'duracion': suscripcion.plan.duracion,
+                            'fecha_inicio': suscripcion.fecha_inicio,
+                            'fecha_termino': suscripcion.fecha_termino
+                        }
+                    enviar_correo_admin(
+                        r_email="contacto@creactivaanimaciones.cl",
+                        e_mail="no-reply@creactivaanimaciones.cl",
+                        asunto="Nueva suscripción en CreActiva Animaciones",
+                        app="suscripciones",
+                        archivo="notificacion_nueva_suscripcion",
+                        form=data
                     )
                     messages.success(request, 'Tu suscripción ha sido procesada con éxito.')
                     context = {
@@ -367,10 +393,8 @@ class RespuestaWebpayView(View):
                 suscripcion.save()
                 messages.error(request, 'La operación fue anulada por el usuario.')
                 return redirect(f'planes/individual/{suscripcion.plan.id}')
-        except SMTPException as e:
-            print("NO SE PUDO ENVIAR EL CORREO.", e)
         except Exception as e:
-            messages.error(request, 'Lo sentimos, ocurrió un error en el pago. Por favor, póngase en contacto con nuestro equipo para resolverlo.')
+            messages.error(request, 'Lo sentimos, ocurrió un error en el pago. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
             print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
             redirect('contacto')
     
@@ -414,29 +438,48 @@ class SolicitudOrganizacionView(View):
                 usuario=user
             )
             solicitud.save()
-            send_mail(
-                f"Nueva Solicitud de Suscripción Organización",
-                f"""Detalles de la solicitud:\nNombre organización: {form.cleaned_data['nombre_organizacion']}\n 
-                Nombre representante: {user.first_name} {user.last_name}\n 
-                Correo representante: {user.email}\n""",
-                "no-reply@creactivaanimaciones.cl",
-                ["contacto@creactivaanimaciones.cl"],
-                fail_silently=False,
+            correo_user = enviar_correo(
+                r_nombre=user.first_name,
+                r_email=user.email,
+                e_mail="no-reply@creactivaanimaciones.cl",
+                asunto="Hemos recibido tu solicitud satisfactoriamente",
+                app="suscripciones",
+                archivo="solicitud_organizacion"
             )
-            send_mail(
-                f"Hemos recibido tu solicitud satisfactoriamente",
-                f"""
-                ¡Muchas gracias por contactarte con nosotros! Prontamente nuestro equipo se encargará de revisar tu solicitud y contactarte a este mismo correo.
-                """,
-                "no-reply@creactivaanimaciones.cl",
-                [f"{user.email}"],
-                fail_silently=False,
+            cursos = []
+            for curso in form.cleaned_data['cursos']:
+                curso_object = Curso.objects.get(pk=int(curso))
+                cursos.append(curso_object.nombre)
+
+            data = {
+                'nombre': user.first_name,
+                'apellido': user.last_name,
+                'email': user.email,
+                'nombre_organizacion': form.cleaned_data['nombre_organizacion'],
+                'tipo_organizacion': form.cleaned_data['tipo_organizacion'],
+                'pais': form.cleaned_data['pais'],
+                'comuna': form.cleaned_data['comuna'],
+                'cursos': cursos,
+                'mensaje': form.cleaned_data['mensaje']
+            }
+            enviar_correo_admin(
+                r_email="contacto@creactivaanimaciones.cl",
+                e_mail="no-reply@creactivaanimaciones.cl",
+                asunto="Nueva solicitud suscripción organización en CreActiva Animaciones",
+                app="suscripciones",
+                archivo="notificacion_contacto_admin",
+                form=data
             )
-            messages.success(request, 'Hemos recibido tu solicitud con éxito.')
-            return redirect('index')
+            if correo_user == True:
+                messages.success(request, 'Hemos recibido tu solicitud con éxito.')
+                return redirect('index')
+            else:
+                context = {'form': form}
+                messages.error(request, 'Hemos recibido tu solicitud con éxito, pero no hemos podido enviarte la notificación de recepción exitosa a tu correo. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
+                return render(request, 'suscripciones/plan_organizacion.html', context)            
         else:
             context = {'form': form}
-            messages.error(request, 'No se ha podido enviar tu solicitud. Por favor, intenta nuevamente.')
+            messages.error(request, 'No se ha podido enviar tu solicitud. Por favor, intenta nuevamente o escribe a contacto@creactivaanimaciones.cl para reportar este problema.')
             return render(request, 'suscripciones/plan_organizacion.html', context)
 
 
