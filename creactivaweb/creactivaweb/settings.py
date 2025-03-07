@@ -58,8 +58,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'creactivaweb.urls'
@@ -138,14 +137,7 @@ STATICFILES_DIRS = [
      #"/var/www/static/",
  ]
 
-#Whitenoise Middleware para manejo de archivos estáticos
-# STORAGES = {
-#     # ...
-#     "staticfiles": {
-#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-#     },
-# }
-WHITENOISE_INDEX_FILE = True
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -176,12 +168,12 @@ CACHES = {
 
 # MAIL SETTINGS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.creactivaanimaciones.cl'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
-EMAIL_HOST_USER = '_mainaccount@creactivaanimaciones.cl'
-EMAIL_HOST_PASSWORD = 'GA,B%L7p8JB)#vN^'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_TIMEOUT = 20
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -196,4 +188,4 @@ NUMBER_GROUPING = 3
 THOUSAND_SEPARATOR = "."
 
 # JWT PASS
-JWT_SECURE = "=)^+ls6f^[mb"
+JWT_SECURE = os.environ.get('JWT_SECURE')
