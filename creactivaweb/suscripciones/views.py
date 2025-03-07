@@ -245,7 +245,6 @@ class RespuestaWebpayView(View):
                 if perfil_object.descuento_creactiva == True:
                     # BUSCAR CÓDIGOS NO USADOS Y ACTIVOS
                     codigo_object = conseguir_codigo_usado(perfil_object)
-                    print(codigo_object)
                     if codigo_object != True:
                         perfil_codigo_object = PerfilCodigo.objects.get(codigo=codigo_object)
                         # USUARIO YA USÓ EL CÓDIGO
@@ -270,7 +269,7 @@ class RespuestaWebpayView(View):
                             codigo_object.save()
                         data = {
                             'nombre': user_object.first_name,
-                            'apellido': user_object.last_login,
+                            'apellido': user_object.last_name,
                             'email': user_object.email,
                             'tipo': "Invidivual con Descuento",
                             'plan': suscripcion.plan.nombre,
@@ -339,7 +338,7 @@ class RespuestaWebpayView(View):
                     perfil_suscripcion_object.save()
                     data = {
                             'nombre': user_object.first_name,
-                            'apellido': user_object.last_login,
+                            'apellido': user_object.last_name,
                             'email': user_object.email,
                             'tipo': "Invidivual Estándar",
                             'plan': suscripcion.plan.nombre,
@@ -451,9 +450,7 @@ class SolicitudOrganizacionView(View):
                 curso_object = Curso.objects.get(pk=int(curso))
                 cursos.append(curso_object.nombre)
             comuna = find_comuna(form.cleaned_data['comuna'])
-            print(comuna)
             tipo_organizacion = find_tipo_organizacion(form.cleaned_data['tipo_organizacion'])
-            print()
             data = {
                 'nombre': user.first_name,
                 'apellido': user.last_name,
@@ -561,7 +558,7 @@ class SuscripcionOrganizacionView(View):
                 messages.success(request, 'La suscripción se ha registrado con éxito.')
                 return redirect('index')
             except:
-                print("Algo falló.")
+
                 context = {
                     'id_org': id_org,
                     'form': form

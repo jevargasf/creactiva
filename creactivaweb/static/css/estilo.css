@@ -1,12 +1,12 @@
 @font-face {
   font-family: cabin;
-  src: url(fonts/CabinSketch-Regular.otf);
+  src: url(fonts/CabinSketch-Regular.ttf);
   font-weight: normal;
 }
 
 @font-face {
   font-family: cabin;
-  src: url(fonts/CabinSketch-Bold.otf);
+  src: url(fonts/CabinSketch-Regular.ttf);
   font-weight: bold;
 }
 
@@ -127,7 +127,7 @@ li{
 	font-size:30px;
 	font-family: cabin;
    -webkit-text-fill-color: #512319;
-   -webkit-text-stroke-width: .5px;
+
    -webkit-text-stroke-color: #512319;
 	margin:0px 0px 10px 0px;
     -webkit-tap-highlight-color: transparent;
@@ -178,22 +178,35 @@ p{
 @media (max-width: 1080px) {
 
 
+
+ul {
+    padding: 0px 1vw 0px 1vw;
+}
+
 h1{
-	font-size:90px;
+	font-size:12vw;
 
 }
 
 h2{
-	font-size:90px;
+	font-size:14vw;
+
+}
+p{
+    	font-size:5vw;
+}
+
+h3{
+	font-size:7vw;
 
 }
 
 li{
-	font-size:45px;
+	font-size:4.5vw;
 }
 
 b{
-	font-size:50px;
+	font-size:7vw;
 
 }
 }

@@ -5,7 +5,7 @@ from django.utils.timezone import now
 from datetime import timedelta
 
 def get_tipo_organizacion():
-    f = open("./static/json/organizaciones.json", "rb")
+    f = open("./static/json/organizaciones.json", "r", encoding='utf-8')
     text = f.read()
     f.close()
     lista = json.loads(text)
@@ -18,7 +18,7 @@ def get_tipo_organizacion():
     return choices
 
 def get_comunas():
-    f = open("./static/json/cut-comunas.json")
+    f = open("./static/json/cut-comunas.json", "r", encoding='utf-8')
     text = f.read()
     f.close()
     lista = json.loads(text)
@@ -32,7 +32,7 @@ def get_comunas():
     return choices
 
 def get_paises():
-    f = open("./static/json/iso-3166-2.json")
+    f = open("./static/json/iso-3166-2.json", "r", encoding='utf-8')
     text = f.read()
     f.close()
     lista = json.loads(text)
@@ -45,7 +45,7 @@ def get_paises():
     return choices
 
 def get_regiones():
-    f = open("./static/json/regiones.json")
+    f = open("./static/json/regiones.json", "r", encoding='utf-8')
     text = f.read()
     f.close()
     lista = json.loads(text)
@@ -67,7 +67,6 @@ class SelectCustom(Select):
 
 def str_to_list(string: str):
     lista = []
-    print("Inició")
     for a in string:
         if a.isdigit():
             lista.append(a)
@@ -79,7 +78,7 @@ def sumar_fecha(fecha, meses):
     dias = meses*30
     nueva_fecha = fecha + timedelta(days=dias)
     return nueva_fecha
-
+    
 def find_comuna(id_comuna):
     f = open("./static/json/cut-comunas.json")
     text = f.read()
