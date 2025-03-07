@@ -604,3 +604,66 @@ observaciones:
 ✔ foto capítulo no aparece en curso mapuzungun
 
 APUNTE: el sistema está hecho para que si no hay video trailer, no se puede entrar a la vista del trailer
+1600 x 720, 260 pppgi
+
+- quitar templates de las funciones de rendern_to_string correos
+
+SISTEMA DESCUENTOS PROMOCIONALES
+- conseguir_descuento_usado()
+    - CASO 1: ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, RETORNA: OBJETO CÓDIGO
+    - CASO 2: NO ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, PERO TIENE DESCUENTO ESTUDIANTE, RETORNA: TRUE
+    - CASO 3: NO ENCUENTRA REGISTRO CÓDIGO-USUARIO/DESCUENTO VIGENTE, NO TIENE DESCUENTO ESTUDIENTE, RETORNA: NONE 
+
+
+
+OBS DETALLES:
+- login: diferenciar excepciones: usuario no está registrado != contraseñas no coinciden
+- verificar= falta check verificado true o quitar del perfil el campo "verificado", porque parece que no lo usé
+
+✔ revisar scripts y ejecución tareas cron
+DETALLES REVISADOS EN LOCAL
+✔ mejora ejecución slick
+✔ revisar responsividad general
+✔ revisar responsividad cursos/trailer/capítulos
+✔ habilitar sistema cuentas staff y plan 1 semana gratuita
+✔ revisar script reproductor.js
+- cambios menores varios
+    ✔ Colocar el link para reestablecer contraseña en el texto pregunta
+    ✔ Revisar posiciones del menú hamburguesa
+    - Que el nav se colapse cuando se hace click fuera de él
+
+OBSERVACIONES JOSÉ:
+✔ Agregar autoplay a los sliders fila, a diferentes velocidades, harto tiempo
+✔ Poner numero de capitulo en vez de el titulo del curso en las filas.
+- Ver la posibilidad de hacer una barra de carga
+- Al poner pantalla completa, girar la pagina (en celus).
+- Que los titulos en la base de datos resistan un salto de linea
+- Ajustar el ancho del padding del slick, para que coincida con el ancho de las flechas laterales
+- No me permite enviar la solicitud de organizacion para la antartida u otro pais al parecer, tendrá que ver con la obligatoriedad de la region y la comuna por chile?.
+✔ El + de la pantalla capitulo debe desaparecer al verse en el celu
+
+OBSERVACIONES LUNES 03-03:
+- Revisar responsividad img info cap porque al parecer no se ajusta en todos los tamaños al aside, queda con bordes
+
+OBSERVACIONES MARTES 04-03:
+- Escribir excepción en check_suscripciones para usuarios Equipo
+- Detalle fabián: slider en cursos no muestra las flechas laterales
+✔ Subir nuevo logo/logo webpay
+- Subir nuevo código a producción
+- Probar nuevo código
+
+
+EVENTO REINICIAR:
+- después de ver el video y reiniciar, no se vuelven a cargar los cuestionarios
+- 
+
+SAFARI:
+- se descentran los elementos en safari (enviar en registro, )
+- responsividad elemento webpay
+- se descentra la imagen slider main en primera carga
+✔ MENSAJE POP UP SOLO CON CLICK
+✔ corrección josé metatags
+✔ info profe
+✔ xml cap 5 con corrección josé
+
+MAñANA: PASAR WEBPAY A PRODUCCIÓN

@@ -12,13 +12,16 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             data = CodigoPromocional.objects.filter(estado_codigo='1')
-            for codigo in data:
-                if now() > codigo.fecha_caducidad:
-                    codigo.estado_codigo = '0'
-                    codigo.save()
-                    self.stdout.write(f'{now()} CÓDIGO CADUCO:{codigo.codigo} ESTADO: {codigo.estado_codigo}')
-                else:
-                    self.stdout.write(f'{now()} CÓDIGO VIGENTE:{codigo.codigo} ESTADO: {codigo.estado_codigo}')
+            if len(data) == 0:
+                self.stdout.write(f'{now()} NO HAY CÓDIGOS VIGENTES.')
+            else:
+                for codigo in data:
+                    if now() > codigo.fecha_caducidad:
+                        codigo.estado_codigo = '0'
+                        codigo.save()
+                        self.stdout.write(f'{now()} CÓDIGO CADUCO:{codigo.codigo} ESTADO: {codigo.estado_codigo}')
+                    else:
+                        self.stdout.write(f'{now()} CÓDIGO VIGENTE:{codigo.codigo} ESTADO: {codigo.estado_codigo}')
         except CommandError as e:
             self.stderr.write(self.style.ERROR_OUTPUT(f"ERROR DE EJECUCIÓN. Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}"))    
         except Exception as e:

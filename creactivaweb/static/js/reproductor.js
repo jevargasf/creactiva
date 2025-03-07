@@ -28,7 +28,12 @@ setTimeout(function () {
         // RECUPERAR MIN DE REPRODUCCIÓN ALMACENADO
         minAlmacenado = document.getElementById("minuto")?.textContent
 
+        // LISTENER DE EVENTO BEFOREUNLOAD ACá
+        window.addEventListener("beforeunload", (event) => {
+            event.preventDefault();
+            event.returnValue = "¿Desea abandonar la reproducción del video?";
 
+            });
 
         
         // EL BOTÓN MÁS INFO
@@ -49,6 +54,8 @@ setTimeout(function () {
         btnMasInfoCap?.addEventListener("click", () => {
             videoElem.pause();
         });
+        // monitorEvents();
+
         // RECUPERAR EVENTO 'ended'
         videoElem.addEventListener("ended", () => {
             document.querySelector('#btn-capitulo-out').classList.remove('collapsed2');
@@ -84,12 +91,15 @@ setTimeout(function () {
         }
         document.addEventListener("visibilitychange", function logData() {
             console.log("Preparando la data...")
-
             if (document.visibilityState === "hidden") {
                 console.log("Enviando data...")
                 videoElem = document.getElementsByTagName("video")[0]
                 videoElem.pause();
-                segReproduccion = document.querySelector("div.progress-scrubbar-track").ariaValueNow
+                if (videoElem.ended === true){
+                    segReproduccion = 0
+                } else {
+                    segReproduccion = document.querySelector("div.progress-scrubbar-track").ariaValueNow
+                }
                 user = document.querySelector("#user").innerHTML
                 url = window.location.href
                 const csrftoken = getCookie('csrftoken');                
@@ -103,26 +113,12 @@ setTimeout(function () {
             }
             });
     });
+
+},2000);
     // CÓDIGO DEL ALERT
     $(document).ready(function () {
         $('#transicion').css('opacity', '0');
     });
-    // TIEMPO DE ESPERA = 5 segundos
-},1000);
-
-
-
-// LISTENER DE EVENTO BEFOREUNLOAD ACá
-window.addEventListener("beforeunload", (event) => {
-    event.preventDefault();
-    event.returnValue = "¿Desea abandonar la reproducción del video?";
-
-    });
-
-window.addEventListener("fullscreenchange", (event) => {
-    console.log("entramos en fullscreen")
-});
-
 // CONSTRUIR EL SETTIMEOUT OBJECT
 timeoutObject = {
     ocultarCursor(){
@@ -158,13 +154,10 @@ isFullScreen = false;
 document.addEventListener("fullscreenchange", () => {
 
     if (isFullScreen == false) {
-        console.log("entramos en fullscreen")
         isFullScreen = true
-
         document.addEventListener("mousemove", mouseHandler)
     } else if (isFullScreen == true) {
         document.removeEventListener("mousemove", mouseHandler)
-        console.log("saliendo de fs")
         timeoutObject.cancelarTimeout();
         defaultCursor();
         isFullScreen = false

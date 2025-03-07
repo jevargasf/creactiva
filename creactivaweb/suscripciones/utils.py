@@ -78,3 +78,25 @@ def sumar_fecha(fecha, meses):
     dias = meses*30
     nueva_fecha = fecha + timedelta(days=dias)
     return nueva_fecha
+
+def find_comuna(id_comuna):
+    f = open("./static/json/cut-comunas.json")
+    text = f.read()
+    f.close()
+    lista = json.loads(text)
+
+    for cat in lista:
+        data = ast.literal_eval(cat)
+        if data['codigo'] == id_comuna:
+    
+            return data['nombre']
+
+def find_tipo_organizacion(id_tipo):
+    f = open("./static/json/organizaciones.json", "rb")
+    text = f.read()
+    f.close()
+    lista = json.loads(text)
+
+    for x, cat in enumerate(lista):
+        if x == int(id_tipo):
+            return cat

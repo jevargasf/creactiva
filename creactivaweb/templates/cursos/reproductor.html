@@ -118,9 +118,8 @@ overflow: hidden;
 </div>
 
 
-<div class="div-btn-mas">
-    <button id="mas-info-cap" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información" data-cy="video-click-to-play"></button>
-</div>
+<button id="mas-info-cap" class="brillover" ><img src="{% static 'icon/mas.svg' %}" alt="Más información" data-cy="video-click-to-play"></button>
+
 
 
 <article id="info-cap-full">
@@ -131,6 +130,7 @@ overflow: hidden;
             <h4>{{ capitulo.desc_corta }}</h4>
             <p>{{ capitulo.descripcion | linebreaksbr }}</p>
             <h6>Duración: <b>{{ capitulo.duracion }} Minutos</b></h6>
+            <h6>Actividades: <b>{{ capitulo.num_actividades }} Actividades interactivas</b></h6>
             <h6>Contenido:</h6>
             <ul class="cap-lista bloques">
                 {% for contenido in capitulo.contenidos %}
@@ -147,7 +147,7 @@ overflow: hidden;
             <nav class="botones-cap">
                 <a id="cap-reproducir"><button><img src="{% static 'icon/play.svg' %}" alt="Reproducir"><h1>REPRODUCIR</h1></button></a>
                 <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
-                <a href="{% url 'curso' capitulo.curso.cur %}"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
+                <a href="{% url 'curso' capitulo.curso.cur %}" style="display: none;"><button><img  class="img-x2"  src="{% static 'icon/capitulos.svg' %}" alt="Ver Curso Completo"><h1>VER CURSO COMPLETO</h1></button></a>
                 {% include 'snippets/modal_compartir.html' %}
             </nav>
 
@@ -164,9 +164,10 @@ overflow: hidden;
 
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>
-<script src="{% static 'js/index.js' %}"></script>
-
+<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/btn_compartir.js' %}"></script>
 <script src="{% static 'js/reproductor.js' %}" type="text/javascript" defer></script>
+
 {{ minuto | json_script:"minuto" }}
 {{ request.user.username | json_script:"user" }}
 </body>

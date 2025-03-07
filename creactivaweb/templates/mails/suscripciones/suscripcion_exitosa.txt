@@ -1,0 +1,8 @@
+Bienvenido, {{ nombre }}. Como CreActiva Animaciones nos alegra enormemente que hayas confiado en nosotros para satisfacer tus inquietudes de nuevos conocimientos. A partir de este momento, puedes explorar y estudiar todo el contenido disponible en nuestra plataforma, organizando tu tiempo y horario para aprender a tu propio ritmo. Recuerda que podrás estudiar nuestros cursos todas las veces que necesites para reforzar tus conocimientos, y que constantemente publicaremos nuevos contenidos educativos para ti, sin que esto signifique un aumento en el costo de tu suscripción. 
+
+Nuevamente, bienvenido a nuestra comunidad de creactivas y creactivos motivados por aprender de manera CreActiva.
+    
+    
+Atentamente,
+    
+Equipo CreActiva.

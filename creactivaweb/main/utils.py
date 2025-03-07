@@ -4,6 +4,12 @@ from jwt import JWT
 from jwt.jwk import OctetJWK
 from django.utils import timezone
 from creactivaweb.settings import JWT_SECURE
+from suscripciones.models import Planes, Suscripcion, PerfilSuscripcion, CursosSuscripcion
+from django.utils.timezone import now
+from cursos.models import Curso
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from smtplib import SMTPException
 
 def crear_usuario(username: str, first_name: str, last_name: str, email: str, password: str):
     user = User.objects.create_user(
@@ -53,3 +59,99 @@ def traducir_token(token):
 
     mensaje = jwt.decode(token, jwk, do_time_check=True)
     return mensaje
+
+def crear_usuario_creactiva(username: str):
+    try:
+        user_object = User.objects.get(username=username)
+        user_object.is_active = True
+        perfil_object = Perfil.objects.get(user_id=user_object.id)
+        plan_object = Planes.objects.get(nombre="Equipo")
+        # CREAR UN PLAN INFINITO EN LA BD
+        # CREAR UNA SUSCRIPCIÓN, UN PERFILSUSCRIPCION Y UN CURSOSUSCRIPCION
+        # ACTUALIZAR CÓDIGO PERFIL
+        perfil_object.codigo = '100'
+        suscripcion_object = Suscripcion(
+            fecha_inicio=now(),
+            fecha_termino=now(),
+            monto=plan_object.monto,
+            codigo_promocional=plan_object.nombre,
+            plan=plan_object
+        )
+        suscripcion_object.save()
+        cursos_data = Curso.objects.all()
+        for curso in cursos_data:
+            cursosuscripcion_object = CursosSuscripcion(
+                suscripcion=suscripcion_object,
+                curso=curso
+            )
+            cursosuscripcion_object.save()
+
+        perfilsuscripcion_object = PerfilSuscripcion(
+            suscripcion=suscripcion_object,
+            perfil=perfil_object,
+            codigo_promocional=None,
+            estado_suscripcion='1'
+        )
+        user_object.save()
+        perfil_object.save()
+        perfilsuscripcion_object.save()
+        return True
+    except Exception as e:
+        print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+
+def enviar_correo(r_nombre: str, r_email: str, e_mail: str, asunto: str, app: str, archivo: str, url=None):
+    try:
+        if url == None:
+            context = {
+                'nombre': r_nombre
+            }
+        else:
+            context = {
+                'nombre': r_nombre,
+                'url': url
+            }
+        text_content = render_to_string(
+        f"templates/mails/{app}/{archivo}.txt",
+        context
+        )
+        html_content = render_to_string(
+            f'templates/mails/{app}/{archivo}.html',
+            context
+        )
+        msg = EmailMultiAlternatives(
+            asunto,
+            text_content,
+            e_mail,
+            [r_email]
+        )
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        return True
+    except SMTPException as e:
+        print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+        return False
+    
+def enviar_correo_admin(r_email: str, e_mail: str, asunto: str, app: str, archivo: str, form: dict):
+    try:
+        context = {'form': form}
+        text_content = render_to_string(
+        f"templates/mails/{app}/{archivo}.txt",
+        context
+        )
+        html_content = render_to_string(
+            f'templates/mails/{app}/{archivo}.html',
+            context
+        )
+        msg = EmailMultiAlternatives(
+            asunto,
+            text_content,
+            e_mail,
+            [r_email]
+        )
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        return True
+    except SMTPException as e:
+        print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
+        return False
+    

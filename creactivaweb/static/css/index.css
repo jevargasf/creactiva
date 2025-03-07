@@ -83,6 +83,12 @@
 }
 
 
+@font-face {
+    font-family: baltiholm;
+    src: url(fonts/Baltiholm.ttf);
+    font-style:normal;
+}
+
 
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
 /*-----------------------------------LIMPIEZA DE CSS----------------------------------------------------------------------*/
@@ -328,6 +334,16 @@ h8{
     font-family: latoblack;
     text-transform: uppercase;
     line-height: 40px;
+    
+}
+
+
+h9{
+    font-size:100px;
+    font-family: baltiholm;
+    line-height: 40px;
+    text-shadow:0px 0px 10px #57DEFF;
+    line-height: 70px;
 }
 
 p{
@@ -1138,9 +1154,10 @@ input:-webkit-autofill:active{
     color:#00224a;
     margin-bottom:30px;
     padding:10px 30px 10px 30px;
-    display: inline-block;
+    display: block;
     border-radius: 5px;
-
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form form button:hover{
@@ -1153,9 +1170,9 @@ input:-webkit-autofill:active{
 
 
 .form-register form button{
-    margin:40px 0px 0px 0px;
-    
+    margin: 40px auto auto auto;    
 }
+
 .form-logout{
     top: 0px;
 }
@@ -1738,7 +1755,7 @@ float: left;
 
 #plan-detalle table{
         display: inline-table;
-        margin: 10px 0px 200px 0px;
+        margin: 10px 0px 80px 0px;
         width:80%;
         border-collapse: collapse;
 
@@ -1764,6 +1781,17 @@ float: left;
         margin-bottom: 10px;
     }
     
+    #webpay-container{
+        width: 70%;
+        padding-bottom: 20px;
+        text-align: start;
+        padding-left: 10%;
+        margin-bottom: 5px;
+    }
+
+    #webpay-logo{
+        width: 50%;
+    }
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
 /* ----------------------------------------------------- NAVBAR ------------------------------------------------------- */
@@ -2244,6 +2272,11 @@ float: left;
     color:#57DEFF;
 }
 
+#instruccion{
+    font-family: latoregular;
+    margin-top: 10px;
+}
+
 #listado-curso{
     list-style: none;
     font-size:13px;
@@ -2271,7 +2304,9 @@ float: left;
     margin-top:0px;
 }
 
+#list-autor{
 
+}
 .botones-cur{
     width:100%;
     margin-top:20px;
@@ -3015,11 +3050,10 @@ aside#cur-cap {
 }
 
 #integra{
-    width:80%;
+    width:100%;
     text-align: center;
-    margin:0 auto;
     display: block;
-    margin-bottom: -20px;
+    margin: 20px auto 0px auto;
 }
 
 #nosotros_texto{
@@ -3037,8 +3071,10 @@ aside#cur-cap {
 #nosotros_texto aside h7{
     font-size:26px;
     color:#003c71;
-    padding: 6px;
     display: block;
+    margin:10px 0px 10px 0px;
+    text-transform: uppercase;
+    translate: 0px 6px;
 
 
 }
@@ -3048,6 +3084,7 @@ aside#cur-cap {
     font-size: 13px;
     text-align: justify;
     padding: 0px 6px 0px 6px;
+    letter-spacing: 0.5px;
 
 
 }
@@ -3063,6 +3100,8 @@ aside#cur-cap {
 
 #nosotros footer ul{
     list-style: none;
+    display: inline-block;
+    float:right;
 }
 #nosotros footer ul li{
     display: inline-block;
@@ -3076,6 +3115,7 @@ aside#cur-cap {
 
 #rs{
     float:right;
+    width:100%;
 }
 
 #rs h1{
@@ -3521,6 +3561,8 @@ table#detalle{
     }
 
     #nosotros footer ul{
+    float:initial;
+
         bottom:0px;
     }
     #nosotros footer ul{
@@ -3658,14 +3700,15 @@ table#detalle{
     width:100%;
     
 }
-/* #mas-info-cap{
-    display: none;
-} */
 
-.div-btn-mas{
-    width: 100%;
-    padding-top: 10%
+#mas-info{
+    display: none;
 }
+
+#mas-info-cap{
+    display: none;
+}
+
 
 #info-cap-full {
 
@@ -3675,6 +3718,19 @@ table#detalle{
     display: inline-block;
 }
 
+.botones-cap{
+    display: flex;
+    justify-content: center;
+}
+
+.botones-cap a{
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.botones-cap button{
+    width: 100%;
+}
 
 #tscVideoContent .play-button-overlay-glyph 
 {
@@ -3701,6 +3757,11 @@ table#detalle{
     margin-bottom: 0px;
     margin-top: 13%;
     padding-top: 5%;
+}
+
+
+#form-organizacion{
+    width: 80%;
 }
 
 }
@@ -4017,11 +4078,11 @@ aside#cur-cap{
         margin-bottom: calc(25% + 25px);
     }
     #info-cap-player{
-        translate: 0px -130px;    
+        display: none;
     }
 
     #info-cap-player h8{
-        font-size: 30px;
+        display: none;
     }
 
     #info-cap-player h4{
@@ -4046,6 +4107,47 @@ aside#cur-cap{
         margin-top: 15%;
     }
 
+    #form-organizacion{
+        top: 60%
+    }
+
+    #form-organizacion .form-mid input {
+        width: 75%;
+    }
+
+    #form-org-footer{
+        width: 75%;
+    }
+
+    #form-organizacion textarea{
+        width: 75%;
+    }
+
+    #form-check{
+        width: 75%;
+    }
+
+    #tipo_organizacion{
+        width: 75%;
+    }
+
+    #pais{
+        width: 75%;
+    }
+
+    #div-region, #div-comuna{
+        width: 75%;
+    }
+
+    #form-organizacion > h3{
+        text-wrap: wrap;
+        display: contents;
+    }
+}
+
+#form-sugerencias > h3{
+    text-wrap: wrap;
+    display: contents;
 }
 
 @media (max-width: 500px){
@@ -4085,24 +4187,27 @@ aside#cur-cap{
 @media (max-width: 400px){
 
     /* NAV Y LOGO CREACTIVA UNO ENCIMA DEL OTRO */
-    body > main > header > a{
+    .main-nav{
+        right: 40px;
+        width: 75%;
+        /* FALTA TIRAR EL BOTON MENÚ A LA IZQUIERDA Y VER CÓMO RESPONDE */
+    }
+
+    #logo{
         display: none;
     }
     
     body > main > nav{
         right: 10%;
-        left: 10%;
-        width: 80%;
+        width: 60%;
         }
 
-    #btn-menu{
-        float: left;
-    }
 
     #menudesplegabe{
         translate: -19px 19px;
         transform-origin: 0px 0px;
     }
+
 
     /* SLIDERS INDEX */
     .fila-slider dl dd{
@@ -4163,9 +4268,13 @@ aside#cur-cap{
     
 }
 
+/* DEVICE PIXEL RATIO */
 
-
-
+@media (max-resolution: 2dppx) and (max-width:400px) {
+    #slider-inicial-descripciones dd {
+        margin-bottom: 15px;
+    }
+  }
 
 
 

@@ -1,0 +1,13 @@
+Estimado Fabián,
+
+Se ha enviado una nueva sugerencia a CreActiva Animaciones. Los detalles son los siguientes:
+
+Nombre: {{ form.nombre }} {{ form.apellido }}
+Correo: {{ form.email }}
+Mensaje: {{ form.mensaje }}
+
+
+Atentamente,
+
+Equipo CreActiva
+

@@ -1,0 +1,6 @@
+Estimado, {{ nombre }}. Estamos muy contentos de contarte que hemos validado tu descuento {{ estudiante/pueblo originario }}. Muchas gracias por mostrar tu interés en ser parte de esta comunidad. Te invitamos a revisar los planes que tenemos para ti en el link {{ url }}. Solo tienes que seleccionar el plan que más te guste y automáticamente se aplicará tu Descuento CreActiva. ¡Te esperamos!
+
+
+Atentamente,
+
+Equipo CreActiva.

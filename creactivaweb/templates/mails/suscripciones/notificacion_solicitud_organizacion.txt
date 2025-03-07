@@ -1,0 +1,20 @@
+Estimado Fabián,
+
+Se ha registrado una nueva solicitud de suscripción organización en CreActiva Animaciones. Los detalles son los siguientes:
+    Nombre representante: {{ form.nombre }} {{ form.apellido }}
+    Correo: {{ form.email }}
+    Nombre organización: {{ form.nombre_organizacion }}
+    Tipo organización: {{ form.tipo_organizacion }}
+    País: {{ form.pais }}
+    Comuna: {{ form.comuna }}
+    {% for curso in form.cursos %}
+    Curso: {{ curso }}
+    {% endfor %}
+    Mensaje: {{ form.mensaje }}
+
+
+
+Atentamente,
+
+
+Equipo CreActiva

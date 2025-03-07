@@ -18,6 +18,7 @@ class Idioma(models.Model):
 class Autor(models.Model):
     aut = models.AutoField(primary_key=True, null=False, verbose_name='ID autor')
     nombre_autor = models.CharField(max_length=255, verbose_name='Nombre autor')
+    descriptor = models.CharField(max_length=255, blank=True, null=True, verbose_name='Descriptor')
 
     def __str__(self):
         return self.nombre_autor

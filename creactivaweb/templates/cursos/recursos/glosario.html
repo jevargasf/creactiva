@@ -1,599 +1,377 @@
 {% load static %}
 <html lang="es">
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Glosario de Mapuzungun</title>
-  <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilo.css' %}">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creactiva | Mapuzungun: Glosario</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilo.css' %}">
+    <style>
+      @keyframes rotatebg{
+        0%{rotate: 0deg;}
+        100%{rotate: 360deg;}
+      }
+  
+      #transicion{
+        width:500%;
+        height:500%;
+        background-color: #00224a;
+        position: fixed;
+        z-index: 6;
+        opacity: 1;
+        transition:all .75s;
+        pointer-events: none;
+        background-size: 20px 20px;
+        background-image:
+        linear-gradient(to right, #00315c 1px, transparent .1px),
+        linear-gradient(to bottom, #00315c 1px, transparent .1px);
+        background-repeat:  repeat;
+        background-position: center;
+        animation: rotatebg 100s infinite;
+        left:-200%;
+        top:-200%;
+        overflow: hidden;
+      }
+    </style>  
   <script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>
-  <script>
-      function admapu() {
-        var audio = document.getElementById("admapu");
-        audio.play();
-      }
-
-      function antu() {
-        var audio = document.getElementById("antu");
-        audio.play();
-      }
-
-      function akucha() {
-        var audio = document.getElementById("akucha");
-        audio.play();
-      }
-
-      function akun() {
-        var audio = document.getElementById("akun");
-        audio.play();
-      }
-      function akupeimi() {
-        var audio = document.getElementById("akupeimi");
-        audio.play();
-      }
-
-      function akuleimi() {
-        var audio = document.getElementById("akuleimi");
-        audio.play();
-      }
-      function akuaimi() {
-        var audio = document.getElementById("akuaimi");
-        audio.play();
-      }
-
-      function alfir() {
-        var audio = document.getElementById("alfir");
-        audio.play();
-      }
-
-      function alof() {
-        var audio = document.getElementById("alof");
-        audio.play();
-      }
-
-      function amuan() {
-        var audio = document.getElementById("amuan");
-        audio.play();
-      }
-
-      function amuayin() {
-        var audio = document.getElementById("amuayin");
-        audio.play();
-      }
-
-      function amuley() {
-        var audio = document.getElementById("amuley");
-        audio.play();
-      }
-
-      function amuleimi() {
-        var audio = document.getElementById("amuleimi");
-        audio.play();
-      }
-      function amun() {
-        var audio = document.getElementById("amun");
-        audio.play();
-      }
-
-      function amupen() {
-        var audio = document.getElementById("amupen");
-        audio.play();
-      }
-      function anunge() {
-        var audio = document.getElementById("anunge");
-        audio.play();
-      }
-
-      function are() {
-        var audio = document.getElementById("are");
-        audio.play();
-      }
-
-
-
-
-      function arelen() {
-        var audio = document.getElementById("arelen");
-        audio.play();
-      }
-
-      function arelepeimi() {
-        var audio = document.getElementById("arelepeimi");
-        audio.play();
-      }
-
-      function areleimi() {
-        var audio = document.getElementById("areleimi");
-        audio.play();
-      }
-
-      function areleaimi() {
-        var audio = document.getElementById("areleaimi");
-        audio.play();
-      }
-      function aukantun() {
-        var audio = document.getElementById("aukantun");
-        audio.play();
-      }
-
-      function aukantupimun() {
-        var audio = document.getElementById("aukantupimun");
-        audio.play();
-      }
-      function aukantuleimun() {
-        var audio = document.getElementById("aukantuleimun");
-        audio.play();
-      }
-
-      function aukantuaimun() {
-        var audio = document.getElementById("aukantuaimun");
-        audio.play();
-      }
-
-      function ayelen() {
-        var audio = document.getElementById("ayelen");
-        audio.play();
-      }
-
-      function ayelepeimu() {
-        var audio = document.getElementById("ayelepeimu");
-        audio.play();
-      }
-
-      function ayeleimu() {
-        var audio = document.getElementById("ayeleimu");
-        audio.play();
-      }
-      function ayeleaimu() {
-        var audio = document.getElementById("ayeleaimu");
-        audio.play();
-      }
-
-      function azngeimi() {
-        var audio = document.getElementById("azngeimi");
-        audio.play();
-      }
-      function azmapu() {
-        var audio = document.getElementById("azmapu");
-        audio.play();
-      }
-
-      function azucura() {
-        var audio = document.getElementById("azucura");
-        audio.play();
-      }
-
-
-
-
-
-
-
-
-
-      function chachay() {
-        var audio = document.getElementById("chachay");
-        audio.play();
-      }
-      function chalin() {
-        var audio = document.getElementById("chalin");
-        audio.play();
-      }
-
-      function chaliwun() {
-        var audio = document.getElementById("chaliwun");
-        audio.play();
-      }
-
-      function chaw() {
-        var audio = document.getElementById("chaw");
-        audio.play();
-      }
-
-      function chem() {
-        var audio = document.getElementById("chem");
-        audio.play();
-      }
-
-      function chezugun() {
-        var audio = document.getElementById("chezugun");
-        audio.play();
-      }
-      function chinura() {
-        var audio = document.getElementById("chinura");
-        audio.play();
-      }
-
-      function choz() {
-        var audio = document.getElementById("choz");
-        audio.play();
-      }
-      function chumleimi() {
-        var audio = document.getElementById("chumleimi");
-        audio.play();
-      }
-
-      function chumun() {
-        var audio = document.getElementById("chumun");
-        audio.play();
-      }
-
-
-
-      function dungun() {
-        var audio = document.getElementById("dungun");
-        audio.play();
-      }
-
-
-
-
-      function eimi() {
-        var audio = document.getElementById("eimi");
-        audio.play();
-      }
-
-      function eimu() {
-        var audio = document.getElementById("eimu");
-        audio.play();
-      }
-
-      function eimun() {
-        var audio = document.getElementById("eimun");
-        audio.play();
-      }
-
-      function eluwun() {
-        var audio = document.getElementById("eluwun");
-        audio.play();
-      }
-
-
-
-
-
-
-
-
-      function femun() {
-        var audio = document.getElementById("femun");
-        audio.play();
-      }
-
-      function femlan() {
-        var audio = document.getElementById("femlan");
-        audio.play();
-      }
-
-      function fewla() {
-        var audio = document.getElementById("fewla");
-        audio.play();
-      }
-
-      function fey() {
-        var audio = document.getElementById("fey");
-        audio.play();
-      }
-
-      function feyengu() {
-        var audio = document.getElementById("feyengu");
-        audio.play();
-      }
-
-      function feyengun() {
-        var audio = document.getElementById("feyengun");
-        audio.play();
-      }
-
-      function feyengutani() {
-        var audio = document.getElementById("feyengutani");
-        audio.play();
-      }
-
-      function feyenguntani() {
-        var audio = document.getElementById("feyenguntani");
-        audio.play();
-      }
-
-
-
-
-
-
-      function feyentun() {
-        var audio = document.getElementById("feyentun");
-        audio.play();
-      }
-
-      function feykay() {
-        var audio = document.getElementById("feykay");
-        audio.play();
-      }
-
-      function feytani() {
-        var audio = document.getElementById("feytani");
-        audio.play();
-      }
-
-      function filu() {
-        var audio = document.getElementById("filu");
-        audio.play();
-      }
-
-      function firku() {
-        var audio = document.getElementById("firku");
-        audio.play();
-      }
-
-      function firkumwe() {
-        var audio = document.getElementById("firkumwe");
-        audio.play();
-      }
-
-      function fishku() {
-        var audio = document.getElementById("fishku");
-        audio.play();
-      }
-
-      function futa() {
-        var audio = document.getElementById("futa");
-        audio.play();
-      }
-
-
-
-
-
-      function inche() {
-        var audio = document.getElementById("inche");
-        audio.play();
-      }
-
-      function inchiw() {
-        var audio = document.getElementById("inchiw");
-        audio.play();
-      }
-
-      function inchin() {
-        var audio = document.getElementById("inchin");
-        audio.play();
-      }
-
-
-
-
-
-
-
-
-
-    </script>
 </head>
 
 <body>
+  <!-- <div id="transicion"></div> -->
+
+  <content>
+    <section id="contenido">
+      <h3>Glosario</h3>
+      <h1 class="no-select">MAPUZUNGUN</h1>
+      <h3>El sonido de la tierra</h3>
+      <p class="no-select">Selecciona una palabra y escúchala</p>
+      <ul id="glosario-lista">
+        <script>
+          function playAudio(audioId) {
+            var audio = document.getElementById(audioId);
+            audio.play();
+          }
+
+          const audioData = {
+           'ailla': { title: 'Ailla', description: 'Nueve' },
+           'aillamari': { title: 'Ailla mari', description: 'Noventa' },
+           'aillapataka': { title: 'Ailla pataka', description: 'Novecientos' },
+           'akuaimi': { title: 'Akuaimi', description: 'Llegarás' },
+           'akucha': { title: 'Akucha', description: 'Aguja' },
+           'akuleimi': { title: 'Akuleimi', description: 'Estás llegando' },
+           'akun': { title: 'Akun', description: 'Llegar' },
+           'akupeimi': { title: 'Akupeimi', description: 'Llegaste' },
+           'alfir': { title: 'Alfir', description: 'Arveja' },
+           'alof': { title: 'Alof', description: 'Luz, lumbre' },
+           'amuan': { title: 'Amuan', description: 'Iré' },
+           'amuayin': { title: 'Amuayin', description: 'Iremos' },
+           'amuleimi': { title: 'Amuleimi', description: 'Vas, estás yendo' },
+           'amuley': { title: 'Amuley', description: 'Va, está yendo' },
+           'amun': { title: 'Amun', description: 'Ir' },
+           'amupen': { title: 'Amupen', description: 'Fui' },
+           'anunge': { title: 'Anünge', description: 'Siéntate, asiento' },
+           'are': { title: 'Are', description: 'Calor' },
+           'areleaimi': { title: 'Areleaimi', description: 'Tendrás calor' },
+           'areleimi': { title: 'Areleimi', description: 'Tienes calor' },
+           'arelen': { title: 'Arelen', description: 'Tener calor' },
+           'arelepeimi': { title: 'Arelepeimi', description: 'Tenías calor' },
+           'aukantun': { title: 'Aukantun', description: 'Jugar, juego' },
+           'aukantupimun': { title: 'Aukantupimün', description: 'Jugaron' },
+           'aukantuleimun': { title: 'Aukantuleimün', description: 'Están jugando' },
+           'aukantuaimun': { title: 'Aukantuaimün', description: 'Jugarán' },
+           'ayelen': { title: 'Ayelen', description: 'Estar feliz' },
+           'ayelepeimu': { title: 'Ayelepeimu', description: 'Estaban felices' },
+           'ayeleimu': { title: 'Ayeleimu', description: 'Están felices' },
+           'ayeleaimu': { title: 'Ayeleaimu', description: 'Estarán felices' },
+           'azmapu': { title: 'Azmapu', description: 'Aspectos o características de un territorio, incluye características físicas y modos o formas de organización o tradiciones propias' },
+           'azngeimi': { title: 'Azngeimi', description: 'Eres bonita, eres bonito' },
+           'azucura': { title: 'Azucura', description: 'Azúcar' },
+           'chachay': { title: 'Chachay', description: 'Abuelito, forma afectiva de referirse a un hombre' },
+           'chalin': { title: 'Chalin', description: 'Salud abuelito, forma afectiva de referirse a un hombre' },
+           'chaliwun': { title: 'Chaliwun', description: 'Saludarse' },
+           'chaw': { title: 'Chaw', description: 'Padre, papá' },
+           'chezugun': { title: 'Che zugun', description: 'El habla de la gente' },
+           'chem': { title: 'Chem', description: 'Cosa, cuestión. También se utiliza como pregunta: ¿qué?' },
+           'chinura': { title: 'Chiñura', description: 'Señora' },
+           'choz': { title: 'Choz', description: 'Amarillo' },
+           'chumleimi': { title: 'Chumleimi', description: '¿Cómo estás?' },
+           'chumun': { title: 'Chumün', description: 'Hacer, quehacer, hecho. Actividades, emociones o circunstancias de las personas o cosas' },
+           'eimi': { title: 'Eimi', description: 'Tú, usted (personal)' },
+           'eimu': { title: 'Eimu', description: 'Ustedes (dos personas)' },
+           'eimun': { title: 'Eimün', description: 'Ustedes (más de dos personas)' },
+           'eluwun': { title: 'Eluwün', description: 'Ceremonia mapuche de despedida de un difunto por parte de la comunidad y familia' },
+           'epu': { title: 'Epu', description: 'Dos' },
+           'epumari': { title: 'Epu mari', description: 'Veinte' },
+           'epupataka': { title: 'Epu pataka', description: 'Doscientos' },
+           'femlan': { title: 'Femlan', description: 'No lo hice' },
+           'femun': { title: 'Femun', description: 'Hice' },
+           'fewla': { title: 'Fewla', description: 'Ahora' },
+           'fey': { title: 'Fey', description: 'Él, ella' },
+           'feyengu': { title: 'Fey engu', description: 'Ellos o ellas (dos personas)' },
+           'feyengun': { title: 'Fey engün', description: 'Ellos o ellas (más de dos personas)' },
+           'feyenguntani': { title: 'Fey engün tañi', description: 'De ellos, de ellas (dos personas)' },
+           'feyengutani': { title: 'Fey engu tañi', description: 'De ellos, de ellas (dos personas)' },
+           'feyentun': { title: 'Feyentun', description: 'Creencia, fe' },
+           'feykay': { title: 'Feykay', description: 'Suficiente, nada más' },
+           'feytani': { title: 'Fey tañi', description: 'De él, de ella' },
+           'filu': { title: 'Filu', description: 'Culebra, serpiente' },
+           'firku': { title: 'Firkü', description: 'Frío, helado' },
+           'firkumwe': { title: 'Firkümwe', description: 'Enfriador, refrigerador' },
+           'fishku': { title: 'Fishkü', description: 'Frío, refrescante' },
+           'futa': { title: 'Füta', description: 'Marido' },
+           'inche': { title: 'Inche', description: 'Yo' },
+           'inchiw': { title: 'Inchiw', description: 'Nosotros (dos personas)' },
+           'kachu': { title: 'Kachu', description: 'Pasto' },
+           'kalku': { title: 'Kalku', description: 'Brujo, bruja' },
+           'kawell': { title: 'Kawell', description: 'Caballo' },
+           'kayu': { title: 'Kayu', description: 'Seis' },
+           'kayumari': { title: 'Kayu mari', description: 'Sesenta' },
+           'kayupataka': { title: 'Kayu pataka', description: 'Seiscientos' },
+           'kechu': { title: 'Kechu', description: 'Cinco' },
+           'kechumari': { title: 'Kechu mari', description: 'Cincuenta' },
+           'kechupataka': { title: 'Kechu pataka', description: 'Quinientos' },
+           'kelhu': { title: 'Kelhü', description: 'Rojo' },
+           'kellu': { title: 'Kellu', description: 'Ayudante' },
+           'kelluaingu': { title: 'Kelluaingu', description: 'Ayudarán' },
+           'kelluleingu': { title: 'Kelluleingu', description: 'Ayudan' },
+           'kellun': { title: 'Kellun', description: 'Ayudar' },
+           'kellupingu': { title: 'Kellupingu', description: 'Ayudaron' },
+           'kimche': { title: 'Kimche', description: 'Persona sabia, inteligente' },
+           'kimelfe': { title: 'Kimelfe', description: 'Profesor, profesora, enseñador' },
+           'kine': { title: 'Kiñe', description: 'Uno' },
+           'kintuay': { title: 'Kintuay', description: 'Buscará' },
+           'kintuley': { title: 'Kintuley', description: 'Está buscando' },
+           'kintun': { title: 'Kintun', description: 'Buscar' },
+           'kintupi': { title: 'Kintupi', description: 'Buscó' },
+           'kizuenguntani': { title: 'Kizu engün tañi', description: 'Su (de ellos, de ellas) (más de dos personas)' },
+           'kizutani': { title: 'Kizu tañi', description: 'Su (de él, de ella)' },
+           'ko': { title: 'Ko', description: 'Agua' },
+           'kofke': { title: 'Kofke', description: 'Pan' },
+           'koila': { title: 'Koila', description: 'Mentira, mentiroso' },
+           'kom': { title: 'Kom', description: 'Todos' },
+           'kompan': { title: 'Kompañ', description: 'Compañera, compañero' },
+           'kudaw': { title: 'Küdaw', description: 'Trabajo' },
+           'kula': { title: 'Küla', description: 'Tres' },
+           'kulamari': { title: 'Küla mari', description: 'Treinta' },
+           'kulapataka': { title: 'Küla pataka', description: 'Trescientos' },
+           'kume piwke': { title: 'Küme piwke', description: 'Buen corazón, persona noble' },
+           'kume': { title: 'Küme', description: 'Bueno, buena' },
+           'kumelean': { title: 'Kümelean', description: 'Estaré bien' },
+           'kumelelan': { title: 'Kümelelan', description: 'No estoy bien' },
+           'kumelen': { title: 'Kümelen', description: 'Estar bien, estoy bien' },
+           'kumelepen': { title: 'Kümelepen', description: 'Estaba bien' },
+           'kumengen': { title: 'Kümengen', description: 'Ser bueno, ser buena' },
+           'kumentun': { title: 'Kümentun', description: 'Disfrutar' },
+           'kunifal': { title: 'Kuñifal', description: 'Huérfano, persona indefensa' },
+           'kure': { title: 'Kure', description: 'Esposa, esposo' },
+           'kuru': { title: 'Kuru', description: 'Negro' },
+           'kuruf': { title: 'Kürüf', description: 'Viento' },
+           'kushe': { title: 'Kushe', description: 'Anciana' },
+           'kutral': { title: 'Kütral', description: 'Fuego' },
+           'kutraltun': { title: 'Kütraltun', description: 'Hacer fuego' },
+           'kutran': { title: 'Kutran', description: 'Enfermedad, enfermo' },
+           'kutranleayu': { title: 'Kutranleayu', description: 'Estaremos enfermos, estaremos enfermas' },
+           'kutranlen': { title: 'Kutranlen', description: 'Estar enfermo' },
+           'kutranlepiyu': { title: 'Kutranlepiyu', description: 'Estuvimos enfermos' },
+           'kutranliyu': { title: 'Kutranliyu', description: 'Estamos enfermos, estamos enfermas' },
+           'kuyen': { title: 'Küyen', description: 'Luna, mes' },
+           'kuyin': { title: 'Kuyin', description: 'Animal, dinero, pagar' },
+           'kuzaw': { title: 'Küzaw', description: 'Trabajo' },
+           'kuzawlelan': { title: 'Küzawlelan', description: 'No estoy trabajando' },
+           'kuzawlen': { title: 'Küzawlen', description: 'Estoy trabajando' },
+           'kuzawun': { title: 'Küzawün', description: 'Trabajar' },
+           'kuze': { title: 'Kuze', description: 'Abuelita' },
+           'lamngen': { title: 'Lamngen', description: 'Hermana, hermano' },
+           'lan': { title: 'Lan', description: 'Muerte' },
+           'lawen': { title: 'Lawen', description: 'Remedio' },
+           'lelfun': { title: 'Lelfün', description: 'Campo' },
+           'leubu': { title: 'Leubu', description: 'Río' },
+           'leufu': { title: 'Leufu', description: 'Río' },
+           'lhif': { title: 'Lhif', description: 'Limpia o limpio' },
+           'llazkuleaingun': { title: 'Llazküleaingün', description: 'Estarán enojadas/dos' },
+           'llazkulen': { title: 'Llazkülen', description: 'Estoy enojada, estoy enojado' },
+           'llazkulepingun': { title: 'Llazkülepingün', description: 'Estaban enojadas/dos' },
+           'llazkulingun': { title: 'Llazkülingün', description: 'Están enojadas/dos' },
+           'lof': { title: 'Lof', description: 'Comunidad' },
+           'lonko': { title: 'Lonko', description: 'Cabeza, líder de una comunidad o lof' },
+           'makun': { title: 'Makuñ', description: 'Manta' },
+           'mamull': { title: 'Mamüll', description: 'Madera, leña' },
+           'manun': { title: 'Mañum', description: 'Gracias' },
+           'mapu': { title: 'Mapu', description: 'Tierra' },
+           'mapuchezungun': { title: 'Mapuche zungun', description: 'El habla de la gente de la tierra' },
+           'mapuzungun': { title: 'Mapuzungun', description: 'Lenguaje de la tierra, sonido de la tierra' },
+           'mari': { title: 'Mari', description: 'Diez' },
+           'marimari': { title: 'Mari mari', description: 'Hola' },
+           'matetun': { title: 'Matetun', description: 'Tomar mate' },
+           'matu': { title: 'Matu', description: 'Rápida, rápido' },
+           'matungen': { title: 'Matungen', description: 'Ser rápida, ser rápido' },
+           'may': { title: 'May', description: 'Sí (afirmación)' },
+           'meli': { title: 'Meli', description: 'Cuatro' },
+           'melimari': { title: 'Meli mari', description: 'Cuarenta' },
+           'melipataka': { title: 'Meli pataka', description: 'Cuatrocientos' },
+           'mongen': { title: 'Mongen', description: 'Vida' },
+           'monkol': { title: 'Monkol', description: 'Redondo, circular' },
+           'mulen': { title: 'Mülen', description: 'Estar' },
+           'mutram': { title: 'Mütram', description: 'Conversación, diálogo' },
+           'mutxumwe': { title: 'Mütxümwe', description: 'Teléfono' },
+           'muzay': { title: 'Müzay', description: 'Bebida tradicional mapuche hecha con trigo, maíz, piñones u otro cereal' },
+           'nana': { title: 'ñaña', description: 'Forma afectiva de referirse a una mujer' },
+           'narki': { title: 'ñarki', description: 'Gato, gata' },
+           'newen': { title: 'Newen', description: 'Fuerza, fuerte' },
+           'newengeaimi': { title: 'Newengeaimi', description: 'Ten fuerza, ten valor' },
+           'newengen': { title: 'Newengen', description: 'Ser fuerte' },
+           'ngen': { title: 'Ngen', description: 'Espíritu o energía que gobierna' },
+           'ngenechen': { title: 'Ngenechen', description: 'Divinidad que gobierna a las personas, también se traduce como dios' },
+           'ngillatun': { title: 'Ngillatun', description: 'Ceremonia mapuche en que se pide a la tierra, universo, a dios y ancestros buen pasar para la comunidad y territorio en general' },
+           'nginileaingu': { title: 'Ngiñileaingu', description: 'Tendrán hambre' },
+           'nginileingu': { title: 'Ngiñileingu', description: 'Tienen hambre' },
+           'nginilen': { title: 'Ngiñilen', description: 'Estar hambriento' },
+           'nginilepingu': { title: 'Ngiñilepingu', description: 'Tenían hambre' },
+           'nginin': { title: 'Ngiñin', description: 'Hambre' },
+           'norche': { title: 'Norche', description: 'Persona recta, respetable' },
+           'pataka': { title: 'Pataka', description: 'Cien' },
+           'pelotatun': { title: 'Pelotatun', description: 'Fútbol' },
+           'peni': { title: 'Peñi', description: 'Hermano' },
+           'peukayal': { title: 'Peukayal', description: 'Adiós, nos vemos' },
+           'pewma': { title: 'Pewma', description: 'Sueño' },
+           'pian': { title: 'Pian', description: 'Diré' },
+           'pichi': { title: 'Pichi', description: 'Pequeño' },
+           'pichiwentru': { title: 'Pichiwentru', description: 'Niño' },
+           'pichizomo': { title: 'Pichizomo', description: 'Niña' },
+           'pifilka': { title: 'Pifilka', description: 'Instrumento musical de viento' },
+           'pilen': { title: 'Pilen', description: 'Estoy diciendo, digo' },
+           'pin': { title: 'Pin', description: 'Decir' },
+           'pingepi': { title: 'Pingepi', description: 'Le decían, se llamaba' },
+           'pipen': { title: 'Pipen', description: 'Dije' },
+           'pu': { title: 'Pu', description: 'Los, se utiliza para indicar un sustantivo en plural' },
+           'pui': { title: 'Pui', description: 'Acabo, finalizó' },
+           'pun': { title: 'Pun', description: 'Noche' },
+           'pura': { title: 'Pura', description: 'Ocho' },
+           'puramari': { title: 'Pura mari', description: 'Ochenta' },
+           'purapataka': { title: 'Pura pataka', description: 'Ochocientos' },
+           'purrum': { title: 'Pürrüm', description: 'Inmediatamente' },
+           'putokoayin': { title: 'Pütokoayin', description: 'Beberemos' },
+           'putokoliyin': { title: 'Pütokoliyin', description: 'Estamos bebiendo' },
+           'putokon': { title: 'Pütokon', description: 'Beber' },
+           'rakin': { title: 'Rakin', description: 'Contar' },
+           'rakizuam': { title: 'Rakizuam', description: 'Pensamiento' },
+           'rakizuamun': { title: 'Rakizuamün', description: 'Pensar' },
+           'ramtuayu': { title: 'Ramtuayu', description: 'Preguntaremos' },
+           'ramtuliyu': { title: 'Ramtuliyu', description: 'Estamos preguntando' },
+           'ramtun': { title: 'Ramtun', description: 'Preguntar, pregunta' },
+           'ramtupiyu': { title: 'Ramtupiyu', description: 'Preguntamos' },
+           'regle': { title: 'Regle', description: 'Siete' },
+           'reglemari': { title: 'Regle mari', description: 'Setenta' },
+           'reglepataka': { title: 'Regle pataka', description: 'Setecientos' },
+           'renma': { title: 'Reñma', description: 'Familia' },
+           'rewe': { title: 'Rewe', description: 'Figura o escultura sagrada hecha de madera donde los mapuche llevan a cabo oraciones y ceremonias' },
+           'rokin': { title: 'Rokin', description: 'Colación, bocadillo' },
+           'ruka': { title: 'Ruka', description: 'Casa' },
+           'rupalzungufe': { title: 'Rupalzungufe', description: 'Traductor, por quien pasan las palabras' },
+           'rupu': { title: 'Rüpü', description: 'Camino' },
+           'shumpall': { title: 'Shumpall', description: 'Sirena' },
+           'tamu': { title: 'Tamu', description: 'Vuestro, de ustedes (dos personas)' },
+           'tamun': { title: 'Tamün', description: 'Vuestro, de ustedes (más de dos personas)' },
+           'tani': { title: 'Tañi', description: 'Mi (posesivo)' },
+           'tayintain': { title: 'Tayin / tain', description: 'Nuestra o nuestro (más de dos personas)' },
+           'tayu': { title: 'Tayu', description: 'Nuestra o nuestro (dos personas)' },
+           'trawun': { title: 'Trawün', description: 'Reunión, junta' },
+           'trayen': { title: 'Trayen', description: 'Vertiente' },
+           'trayenko': { title: 'Trayenko', description: 'Agua de vertiente' },
+           'trekalen': { title: 'Trekalen', description: 'Estoy caminando' },
+           'trekan': { title: 'Trekan', description: 'Caminar' },
+           'trekapimi': { title: 'Trekapimi', description: 'Caminaste' },
+           'tremo': { title: 'Tremo', description: 'Sano, saludable' },
+           'tremoleay': { title: 'Tremoleay', description: 'Estará sano' },
+           'tremolen': { title: 'Tremolen', description: 'Estar sano' },
+           'tremolepi': { title: 'Tremolepi', description: 'Estaba sano' },
+           'tremoley': { title: 'Tremoley', description: 'Está sano' },
+           'trewa': { title: 'Trewa', description: 'Perro' },
+           'tripantu': { title: 'Tripantu', description: 'Año, salida del sol' },
+           'trompe': { title: 'Trompe', description: 'Instrumento musical de percusión' },
+           'tromuantu': { title: 'Tromu antü', description: 'Día nublado' },
+           'trutruka': { title: 'Trutruka', description: 'Instrumento musical de viento' },
+           'tukuluwun': { title: 'Tukuluwün', description: 'Vestimenta mapuche femenina' },
+           'tuwun': { title: 'Tuwun', description: 'Procedencia' },
+           'ufisha': { title: 'Ufisha', description: 'Oveja' },
+           'ule': { title: 'Ule', description: 'Mañana' },
+           'umautulan': { title: 'Umautulan', description: 'No dormí' },
+           'umautun': { title: 'Umautun', description: 'Dormí' },
+           'utre': { title: 'Utre', description: 'Frío, helado' },
+           'utreleayin': { title: 'Utreleayin', description: 'Tendremos frío' },
+           'utrelen': { title: 'Utrelen', description: 'Tener frío, sentir frío' },
+           'utrelepiyin': { title: 'Utrelepiyin', description: 'Teníamos frío' },
+           'utreliyin': { title: 'Utreliyin', description: 'Tenemos frío' },
+           'vilu': { title: 'Vilu', description: 'Culebra, serpiente' },
+           'wapoche': { title: 'Wapoche', description: 'Persona mañosa, persona brava' },
+           'waranka': { title: 'Waranka', description: 'Mil' },
+           'waria': { title: 'Waria', description: 'Ciudad' },
+           'wekufu': { title: 'Wekufu', description: 'Diablo, demonio' },
+           'wenankuleaimun': { title: 'Weñanküleaimün', description: 'Estarán tristes' },
+           'wenankuleimun': { title: 'Weñanküleimün', description: 'Están tristes' },
+           'wenankulen': { title: 'Weñankülen', description: 'Estar triste' },
+           'wenankulepimun': { title: 'Weñankülepimün', description: 'Estaban tristes' },
+           'wentru': { title: 'Wentru', description: 'Hombre' },
+           'wenu': { title: 'Wenu', description: 'Cielo' },
+           'wenuy': { title: 'Wenüy', description: 'Amigo, amiga' },
+           'werken': { title: 'Werken', description: 'Mensajero' },
+           'willa': { title: 'Willa', description: 'Ayer' },
+           'winka': { title: 'Winka', description: 'Persona no mapuche, chileno, extranjero' },
+           'winkakofke': { title: 'Winka kofke', description: 'Pan de ciudad, pan de los chilenos' },
+           'winkazungu': { title: 'Winka zungu', description: 'Idioma de los chilenos, español' },
+           'winkul': { title: 'Winkul', description: 'Cerro' },
+           'yal': { title: 'Yal', description: 'Comida' },
+           'yiaimi': { title: 'Yiaimi', description: 'Comerás' },
+           'yiaingun': { title: 'Yiaingün', description: 'Comerán' },
+           'yilingun': { title: 'Yilingün', description: 'Están comiendo' },
+           'yin': { title: 'Yin', description: 'Comer' },
+           'yipingun': { title: 'Yipingün', description: 'Comieron' },
+           'zewman': { title: 'Zewman', description: 'Hacer' },
+           'zomo': { title: 'Zomo', description: 'Mujer' },
+           'zuam': { title: 'Zuam', description: 'Asunto, quehacer' },
+           'zunguaimu': { title: 'Zunguaimu', description: 'Hablarán' },
+           'zunguleimu': { title: 'Zunguleimu', description: 'Están hablando' },
+           'zungun': { title: 'Zungun', description: 'Hablar, voz, sonido, noticia' },
+           'zungupeimu': { title: 'Zungupeimu', description: 'Hablaron' }
+         };
+
+
+const container = document.getElementById("glosario-lista");
+
+// Obtener las claves ordenadas alfabéticamente
+const palabrasOrdenadas = Object.keys(audioData).sort();
+
+// Variable para rastrear la letra actual
+let letraActual = "";
+
+palabrasOrdenadas.forEach(audioFile => {
+    const title = audioData[audioFile].title;  
+    const description = audioData[audioFile].description;  
+    const primeraLetra = title.charAt(0).toUpperCase(); // Obtener la primera letra
+
+    // Si la letra cambia, agregar un encabezado
+    if (primeraLetra !== letraActual) {
+        letraActual = primeraLetra;
+        const encabezado = document.createElement('h2');
+        encabezado.textContent = letraActual;
+        container.appendChild(encabezado);
+    }
+
+    // Crear el elemento de lista
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <b type="button" value="PLAY" onclick="playAudio('${audioFile}')" tabindex="1">${title}:</b>
+        ${description}.
+        <audio id="${audioFile}" src="static/sonidos/${audioFile}.wav"></audio>
+    `;
+    container.appendChild(li);
+});
+        </script>
+      </ul>
+    </section>
+  </content>
 
-<content>
-	<section id="contenido">
-		<h1>GLOSARIO <br>CURSO DE MAPUZUNGUN</h1>
-    <p>Selecciona una palabra y escúchala</p>
-		<ul>
-
-		<h2>A</h2>
-
-		<li><b type="button" value="PLAY" onclick="admapu()" tabindex=1>admapu:</b> aspectos o características de un territorio, incluye características físicas y modos o formas de organización o tradiciones propias.</li>
-		<audio id="admapu" src="{% static 'sonidos/admapu.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="antu()" tabindex=1>antü:</b> día.</li>
-		<audio id="antu" src="{% static 'sonidos/antu.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="akucha()" tabindex=1>akucha:</b> aguja.</li>
-		<audio id="akucha" src="{% static 'sonidos/akucha.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="akun()" tabindex=1>akun:</b> llegar.</li>
-		<audio id="akun" src="{% static 'sonidos/akun.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="akupeimi()" tabindex=1>akupeimi:</b> llegaste.</li>
-		<audio id="akupeimi" src="{% static 'sonidos/akupeimi.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="akuleimi()" tabindex=1>akuleimi:</b> estás llegando.</li>
-		<audio id="akuleimi" src="{% static 'sonidos/akuleimi.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="akuaimi()" tabindex=1>akuaimi:</b> llegarás.</li>
-		<audio id="akuaimi" src="{% static 'sonidos/akuaimi.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="alfir()" tabindex=1>alfir:</b> arverja.</li>
-		<audio id="alfir" src="{% static 'sonidos/alfir.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="alof()" tabindex=1>alof:</b> luz, lumbre.</li>
-		<audio id="alof" src="{% static 'sonidos/alof.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="amuan()" tabindex=1>amuan:</b> día.</li>
-		<audio id="amuan" src="{% static 'sonidos/amuan.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="amuayin()" tabindex=1>amuayin:</b> aguja.</li>
-		<audio id="amuayin" src="{% static 'sonidos/amuayin.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="amuley()" tabindex=1>amuley:</b> llegar.</li>
-		<audio id="amuley" src="{% static 'sonidos/amuley.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="amuleimi()" tabindex=1>amuleimi:</b> llegaste.</li>
-		<audio id="amuleimi" src="{% static 'sonidos/amuleimi.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="amun()" tabindex=1>amun:</b> estás llegando.</li>
-		<audio id="amun" src="{% static 'sonidos/amun.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="amupen()" tabindex=1>amupen:</b> llegarás.</li>
-		<audio id="amupen" src="{% static 'sonidos/amupen.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="anunge()" tabindex=1>anünge:</b> arverja.</li>
-		<audio id="anunge" src="{% static 'sonidos/anunge.mp3' %}"></audio>
-
-		<li><b type="button" value="PLAY" onclick="are()" tabindex=1>are:</b> luz, lumbre.</li>
-		<audio id="are" src="{% static 'sonidos/are.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="arelen()" tabindex=1>arelen:</b> tener calor.</li>
-    <audio id="arelen" src="{% static 'sonidos/arelen.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="arelepeimi()" tabindex=1>arelepeimi:</b> tenias calor.</li>
-    <audio id="arelepeimi" src="{% static 'sonidos/arelepeimi.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="areleimi()" tabindex=1>areleimi:</b> tienes calor.</li>
-    <audio id="areleimi" src="{% static 'sonidos/areleimi.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="areleaimi()" tabindex=1>areleaimi:</b> tendrás calor.</li>
-    <audio id="areleaimi" src="{% static 'sonidos/areleaimi.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="aukantun()" tabindex=1>aukantun:</b> jugar, juego.</li>
-    <audio id="aukantun" src="{% static 'sonidos/aukantun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="aukantupimun()" tabindex=1>aukantupimün:</b> jugaron.</li>
-    <audio id="aukantupimun" src="{% static 'sonidos/aukantupimun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="aukantuleimun()" tabindex=1>aukantuleimün:</b> están jugando.</li>
-    <audio id="aukantuleimun" src="{% static 'sonidos/aukantuleimun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="aukantuaimun()" tabindex=1>aukantuaimün:</b> jugarán.</li>
-    <audio id="aukantuaimun" src="{% static 'sonidos/aukantuaimun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="ayelen()" tabindex=1>ayelen:</b> estar feliz.</li>
-    <audio id="ayelen" src="{% static 'sonidos/ayelen.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="ayelepeimu()" tabindex=1>ayelepeimu:</b> estaban felices.</li>
-    <audio id="ayelepeimu" src="{% static 'sonidos/ayelepeimu.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="ayeleimu()" tabindex=1>ayeleimu:</b> están felices.</li>
-    <audio id="ayeleimu" src="{% static 'sonidos/ayeleimu.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="ayeleaimu()" tabindex=1>ayeleaimu:</b> estarán felices.</li>
-    <audio id="ayeleaimu" src="{% static 'sonidos/ayeleaimu.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="azngeimi()" tabindex=1>azngeimi:</b> eres bonita, eres bonito. </li>
-    <audio id="azngeimi" src="{% static 'sonidos/azngeimi.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="azmapu()" tabindex=1>azmapu:</b> aspectos o características de un territorio, incluye características físicas y modos o formas de organización o tradiciones propias.</li>
-    <audio id="azmapu" src="{% static 'sonidos/azmapu.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="azucura()" tabindex=1>azucura:</b> azúcar.</li>
-    <audio id="azucura" src="{% static 'sonidos/azucura.mp3' %}"></audio>
-
-    <h2>C</h2>
-
-    <li><b type="button" value="PLAY" onclick="chachay()" tabindex=1>chachay:</b> abuelito, forma afectiva de referirse a un hombre.</li>
-    <audio id="chachay" src="{% static 'sonidos/chachay.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chalin()" tabindex=1>chalin:</b> saludarse.</li>
-    <audio id="chalin" src="{% static 'sonidos/chalin.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chaliwun()" tabindex=1>chaliwun:</b> jugarán.</li>
-    <audio id="chaliwun" src="{% static 'sonidos/chaliwun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chaw()" tabindex=1>chaw:</b> padre, papá.</li>
-    <audio id="chaw" src="{% static 'sonidos/chaw.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chem()" tabindex=1>chem:</b> cosa, cuestión. también se utiliza como pregunta: ¿qué?.</li>
-    <audio id="chem" src="{% static 'sonidos/chem.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chezugun()" tabindex=1>che zugun:</b> el habla de la gente.</li>
-    <audio id="chezugun" src="{% static 'sonidos/chezugun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chinura()" tabindex=1>chiñura:</b> señora.</li>
-    <audio id="chinura" src="{% static 'sonidos/chinura.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="choz()" tabindex=1>choz:</b> amarillo. </li>
-    <audio id="choz" src="{% static 'sonidos/choz.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chumleimi()" tabindex=1>chumleimi:</b> ¿cómo estas?.</li>
-    <audio id="chumleimi" src="{% static 'sonidos/chumleimi.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="chumun()" tabindex=1>chumün:</b> hacer, que hacer, hecho. actividades, emociones o circunstancias de las personas o cosas.</li>
-    <audio id="chumun" src="{% static 'sonidos/chumun.mp3' %}"></audio>
-
-    <h2>D</h2>
-
-    <li><b type="button" value="PLAY" onclick="dungun()" tabindex=1>dungun:</b> hablar, voz, sonido, noticia.</li>
-    <audio id="dungun" src="{% static 'sonidos/dungun.mp3' %}"></audio>
-
-    <h2>E</h2>
-
-    <li><b type="button" value="PLAY" onclick="eimi()" tabindex=1>eimi:</b> tú, usted (personal).</li>
-    <audio id="eimi" src="{% static 'sonidos/eimi.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="eimu()" tabindex=1>eimu:</b> ustedes (dos personas).</li>
-    <audio id="eimu" src="{% static 'sonidos/eimu.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="eimun()" tabindex=1>eimün:</b> ustedes (mas de dos personas).</li>
-    <audio id="eimun" src="{% static 'sonidos/eimun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="eluwun()" tabindex=1>eluwün:</b> ceremonia mapuche de despedida de un difunto por parte de la comunidad y familia.</li>
-    <audio id="eluwun" src="{% static 'sonidos/eluwun.mp3' %}"></audio>
-
-    <h2>F</h2>
-
-    <li><b type="button" value="PLAY" onclick="femun()" tabindex=1>femun:</b> hice.</li>
-    <audio id="femun" src="{% static 'sonidos/femun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="femlan()" tabindex=1>femlan:</b> no lo hice.</li>
-    <audio id="femlan" src="{% static 'sonidos/femlan.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="fewla()" tabindex=1>fewla:</b> ahora.</li>
-    <audio id="fewla" src="{% static 'sonidos/fewla.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="fey()" tabindex=1>fey:</b> él, ella.</li>
-    <audio id="fey" src="{% static 'sonidos/fey.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="feyengu()" tabindex=1>fey engu:</b> ellos o ellas (dos personas).</li>
-    <audio id="feyengu" src="{% static 'sonidos/feyengu.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="feyengun()" tabindex=1>fey engün:</b> ellos o ellas (mas de dos personas).</li>
-    <audio id="feyengun" src="{% static 'sonidos/feyengun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="feyengutani()" tabindex=1>fey engu tañi:</b> de ellos, de ellas (dos personas).</li>
-    <audio id="feyengutani" src="{% static 'sonidos/feyengutani.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="feyenguntani()" tabindex=1>feyengün tañi:</b> de ellos, de ellas (mas de dos personas).</li>
-    <audio id="feyenguntani" src="{% static 'sonidos/feyenguntani.mp3' %}"></audio>    
-
-    <li><b type="button" value="PLAY" onclick="feyentun()" tabindex=1>feyentun:</b> creencia, fe.</li>
-    <audio id="feyentun" src="{% static 'sonidos/feyentun.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="feykay()" tabindex=1>feykay:</b> suficiente, nada más.</li>
-    <audio id="feykay" src="{% static 'sonidos/feykay.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="feytani()" tabindex=1>fey tañi:</b> de él, de ella.</li>
-    <audio id="feytani" src="{% static 'sonidos/feytani.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="filu()" tabindex=1>filu:</b> culebra, serpiente.</li>
-    <audio id="filu" src="{% static 'sonidos/filu.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="firku()" tabindex=1>firkü:</b> frío, helado.</li>
-    <audio id="firku" src="{% static 'sonidos/firku.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="firkumwe()" tabindex=1>firkümwe:</b> enfriador, refrigerador.</li>
-    <audio id="firkumwe" src="{% static 'sonidos/firkumwe.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="fishku()" tabindex=1>fishkü:</b> frío, refrescante.</li>
-    <audio id="fishku" src="{% static 'sonidos/fishku.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="futa()" tabindex=1>füta:</b> marido.</li>
-    <audio id="futa" src="{% static 'sonidos/futa.mp3' %}"></audio>    
-
-    <h2>I</h2>
-
-    <li><b type="button" value="PLAY" onclick="inche()" tabindex=1>inche:</b> yo.</li>
-    <audio id="inche" src="{% static 'sonidos/inche.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="inchiw()" tabindex=1>inchiw:</b> nosotros (dos personas).</li>
-    <audio id="inchiw" src="{% static 'sonidos/inchiw.mp3' %}"></audio>
-
-    <li><b type="button" value="PLAY" onclick="inchin()" tabindex=1>inchin:</b> nosotros (mas de dos).</li>
-    <audio id="inchin" src="{% static 'sonidos/inchin.mp3' %}"></audio>  
-
-
-
-
-
-		</ul>
-	</section>
-	</content>
 </body>
 </html>

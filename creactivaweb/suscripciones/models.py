@@ -12,6 +12,8 @@ class CodigoPromocional(models.Model):
     fecha_caducidad = models.DateTimeField(null=True, blank=True, verbose_name='Fecha caducidad')
     estado_codigo = models.CharField(max_length=1, null=False, default='1', verbose_name='Estado código')
 
+    def __str__(self):
+        return f"Código: {self.codigo} | Estado código: {self.estado_codigo} | Fecha creación: {datetime.date.strftime(self.fecha_creacion, '%d/%m/%Y')} | Cantidad: {self.cantidad}"
 class PerfilCodigo(models.Model):
     id = models.AutoField(primary_key=True, null=False, verbose_name='ID códigos perfiles')
     codigo = models.ForeignKey(
@@ -60,7 +62,7 @@ class Suscripcion(models.Model):
     )
 
     def __str__(self):
-        return f'ID: {self.id} | Fecha término: {datetime.date.strftime(self.fecha_termino, "%d/%m/%Y")} | Plan: {self.plan.nombre}'
+        return f'ID: {self.id} | Fecha inicio: {datetime.date.strftime(self.fecha_inicio, "%d/%m/%Y")} | Plan: {self.plan.nombre}'
 
 class CursosSuscripcion(models.Model):
     id = models.AutoField(primary_key=True, null=False,verbose_name='ID cursos suscripciones')
@@ -103,7 +105,7 @@ class PerfilSuscripcion(models.Model):
     boleta_entregada = models.BooleanField(default=False, null=True, blank=True, verbose_name='Boleta Entregada')
 
     def __str__(self) -> str:
-        return f"Usuario: {self.perfil.user} | ID suscripción: {self.suscripcion.id} | Descuento: {self.perfil.descuento_creactiva} | Estado suscripción: {self.estado_suscripcion}"
+        return f"Usuario: {self.perfil.user} | Fecha inicio: {datetime.date.strftime(self.suscripcion.fecha_inicio, '%d/%m/%Y')} | Descuento: {self.perfil.descuento_creactiva} | Boleta entregada: {self.boleta_entregada}"
 
 class SolicitudOrganizacion(models.Model):
     TIPOS_ORGANIZACIONES = get_tipo_organizacion()

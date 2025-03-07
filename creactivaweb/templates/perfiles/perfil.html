@@ -16,7 +16,11 @@
 
             <section id="datos-sus">
             <h7>{{ suscripcion.plan.nombre }}</h7>
+            {% if perfil.suscripcion.plan.nombre == 'Equipo CreActiva' %}
+            <p>Tienes una suscripción gratuita ilimitada</p>
+            {% else %}
             <p>Te quedan {{ dias_restantes }} días</p>
+            {% endif %}
             </section>
         </article>
         <h7 id="perfil-preview">Pronto encontrarás más novedades en tu perfil</h7>

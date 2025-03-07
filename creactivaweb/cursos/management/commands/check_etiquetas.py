@@ -13,17 +13,23 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             data_cursos = Curso.objects.filter(~Q(fecha_lanzamiento=None))
+            if len(data_cursos) == 0:
+                    self.stdout.write(f'{now()} NO HAY CURSOS QUE ACTUALIZAR.')                
+            else:
+                for curso in data_cursos:
+                    if now() > curso.fecha_lanzamiento:
+                        curso.etiqueta_promocional = '0'
+                        curso.save()
+                        self.stdout.write(f'{now()} FECHA LANZAMIENTO:{curso.fecha_lanzamiento} NUEVA ETIQUETA: {curso.etiqueta_promocional}')
             data_capitulos = Capitulo.objects.filter(~Q(fecha_lanzamiento=None))
-            for curso in data_cursos:
-                if now() > curso.fecha_lanzamiento:
-                    curso.etiqueta_promocional = '0'
-                    curso.save()
-                    self.stdout.write(f'{now()} FECHA LANZAMIENTO:{curso.fecha_lanzamiento} NUEVA ETIQUETA: {curso.etiqueta_promocional}')
-            for capitulo in data_capitulos:
-                if now() > capitulo.fecha_lanzamiento:
-                    capitulo.etiqueta_promocional = '0'
-                    capitulo.save()
-                    self.stdout.write(f'{now()} FECHA LANZAMIENTO:{capitulo.fecha_lanzamiento} NUEVA ETIQUETA: {capitulo.etiqueta_promocional}')
+            if len(data_capitulos) == 0:
+                    self.stdout.write(f'{now()} NO HAY CAPÍTULOS QUE ACTUALIZAR.')                
+            else:
+                for capitulo in data_capitulos:
+                    if now() > capitulo.fecha_lanzamiento:
+                        capitulo.etiqueta_promocional = '0'
+                        capitulo.save()
+                        self.stdout.write(f'{now()} FECHA LANZAMIENTO:{capitulo.fecha_lanzamiento} NUEVA ETIQUETA: {capitulo.etiqueta_promocional}')
         except CommandError as e:
             self.stderr.write(self.style.ERROR_OUTPUT(f"ERROR DE EJECUCIÓN. Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}"))    
         except Curso.DoesNotExist as e:
