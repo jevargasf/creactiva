@@ -18,7 +18,6 @@ async function envioData(url, csrftoken, data){
     
 }
 
-
 setTimeout(function () {
     // EL PUTO MALDITO BOTÓN PLAY
     btnComenzar = document.querySelector("button.video-click-to-play.ui.play-button-overlay-glyph");
@@ -114,7 +113,10 @@ setTimeout(function () {
             });
     });
 
-},2000);
+},2500);
+
+
+
     // CÓDIGO DEL ALERT
     $(document).ready(function () {
         $('#transicion').css('opacity', '0');
@@ -137,7 +139,7 @@ timeoutObject = {
 }
 
 function mouseHandler(e) {
-    zonaCursor = document.getElementById("body-trailer")
+    zonaCursor = document.getElementById("body-cap")
     zonaCursor.style.cursor = "auto"
     if (zonaCursor.style.cursor != "none") {
         timeoutObject.ocultarCursor();
@@ -146,7 +148,7 @@ function mouseHandler(e) {
 }
 
 function defaultCursor(){
-    document.getElementById("body-trailer").style.cursor = "auto"
+    document.getElementById("body-cap").style.cursor = "auto"
     console.log("cursor restaurado")
 }
 
@@ -164,3 +166,5 @@ document.addEventListener("fullscreenchange", () => {
     }
 
 });
+
+console.log("script ejecutado")

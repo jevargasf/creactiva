@@ -65,7 +65,7 @@ def crear_usuario_creactiva(username: str):
         user_object = User.objects.get(username=username)
         user_object.is_active = True
         perfil_object = Perfil.objects.get(user_id=user_object.id)
-        plan_object = Planes.objects.get(nombre="Equipo")
+        plan_object = Planes.objects.get(pk=7)
         # CREAR UN PLAN INFINITO EN LA BD
         # CREAR UNA SUSCRIPCIÓN, UN PERFILSUSCRIPCION Y UN CURSOSUSCRIPCION
         # ACTUALIZAR CÓDIGO PERFIL
@@ -110,21 +110,24 @@ def enviar_correo(r_nombre: str, r_email: str, e_mail: str, asunto: str, app: st
                 'nombre': r_nombre,
                 'url': url
             }
+        ruta = f"/home/creacti3/creactivaweb/templates/mails/{app}/{archivo}.txt"
         text_content = render_to_string(
-        f"templates/mails/{app}/{archivo}.txt",
+        ruta,
         context
         )
-        html_content = render_to_string(
-            f'templates/mails/{app}/{archivo}.html',
-            context
-        )
+        #ruta_html=f'/home/creacti3/creactivaweb/templates/mails/{app}/{archivo}.html'
+        
+        #html_content = render_to_string(
+        #    ruta_html,
+        #    context
+        #)
         msg = EmailMultiAlternatives(
             asunto,
             text_content,
             e_mail,
             [r_email]
         )
-        msg.attach_alternative(html_content, "text/html")
+        #msg.attach_alternative(html_content, "text/html")
         msg.send()
         return True
     except SMTPException as e:
@@ -134,21 +137,25 @@ def enviar_correo(r_nombre: str, r_email: str, e_mail: str, asunto: str, app: st
 def enviar_correo_admin(r_email: str, e_mail: str, asunto: str, app: str, archivo: str, form: dict):
     try:
         context = {'form': form}
+        
+        ruta = f"/home/creacti3/creactivaweb/templates/mails/{app}/{archivo}.txt"
         text_content = render_to_string(
-        f"templates/mails/{app}/{archivo}.txt",
+        ruta,
         context
         )
-        html_content = render_to_string(
-            f'templates/mails/{app}/{archivo}.html',
-            context
-        )
+        
+        #ruta_html = f'/home/creacti3/creactivaweb/templates/mails/{app}/{archivo}.html'
+        #html_content = render_to_string(
+        #    ruta_html,
+        #    context
+        #)
         msg = EmailMultiAlternatives(
             asunto,
             text_content,
             e_mail,
             [r_email]
         )
-        msg.attach_alternative(html_content, "text/html")
+        #msg.attach_alternative(html_content, "text/html")
         msg.send()
         return True
     except SMTPException as e:

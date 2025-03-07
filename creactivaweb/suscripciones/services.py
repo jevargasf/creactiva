@@ -16,7 +16,7 @@ def get_planes():
     return planes
 
 def planes_montos_mensuales():
-    data = Planes.objects.filter(~Q(nombre='Equipo')).annotate(monto_mensual=F('monto')/F('duracion'))
+    data = Planes.objects.filter(~Q(pk=7)).annotate(monto_mensual=F('monto')/F('duracion'))
     return data
 
 def suscripcion_activa(user):    
@@ -70,18 +70,18 @@ def stock_codigo():
 
 def conseguir_codigo_usado(perfil: Perfil) -> CodigoPromocional:
     try:
-        # BUSCA UN C脫DIGO REGISTRADO PARA EL USUARIO Y QUE NO HAYA USADO
+        # BUSCA UN CÓDIGO REGISTRADO PARA EL USUARIO Y QUE NO HAYA USADO
         perfil_codigo_object = PerfilCodigo.objects.get(perfil=perfil, estado_uso_codigo='0')
-        # SI EST脕 VIGENTE, LE PERMITE USARLO
+        # SI ESTÁ VIGENTE, LE PERMITE USARLO
         if perfil_codigo_object.codigo.estado_codigo == '1':
-            # DEVUELVE EL OBJETO C脫DIGO
+            # DEVUELVE EL OBJETO CÓDIGO
             return perfil_codigo_object.codigo
         else:
             return None
     except Exception as e:
         print(f"Error: {e}; file: {e.__traceback__.tb_frame.f_code.co_filename}; line: {e.__traceback__.tb_lineno}; type: {e.__class__}")
         if perfil.descuento_creactiva == True:
-            print("Excepci贸n controlada: Usuario es estudiante/pueblo originario.")
+            print("Error controlado: Usuario es estudiante o pueblo originario.")
             return True
         else:
             print("Error no controlado: Comportamiento inesperado.")

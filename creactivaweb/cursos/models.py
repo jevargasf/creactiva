@@ -79,7 +79,7 @@ class Capitulo(models.Model):
     desc_corta= models.CharField(max_length=255, null=True, verbose_name='Descripción Corta')
     descripcion = models.TextField(verbose_name='Descripción')
     num_actividades = models.IntegerField(verbose_name='Número de actividades interactivas')
-    link = models.URLField(verbose_name='Link capítulo', max_length=255)
+    link = models.CharField(verbose_name='Link capítulo', max_length=255)
     xml_cap = models.CharField(verbose_name='Link xml', null=True, max_length=255)
     js_cap = models.CharField(verbose_name='Link xml.js', null=True, max_length=255)
     thumbnail = models.CharField(verbose_name='Link thumbnail', null=True, max_length=255)
@@ -87,7 +87,7 @@ class Capitulo(models.Model):
     contenidos = models.JSONField(default=list, blank=True)
     etiqueta_promocional = models.CharField(max_length=1, choices=ETIQUETAS_PROMOCIONALES, null=True, blank=True, default='0', verbose_name='Etiqueta promocional')
     fecha_lanzamiento = models.DateTimeField(null=True, blank=True, default=None, verbose_name='Fecha lanzamiento')
-    link_trailer = models.URLField(verbose_name='Link trailer', default=None, null=True, blank=True, max_length=255)
+    link_trailer = models.CharField(verbose_name='Link trailer', default=None, null=True, blank=True, max_length=255)
     xml_trailer = models.CharField(verbose_name='Xml trailer', default=None, blank=True, null=True, max_length=255)
     js_trailer = models.CharField(verbose_name='Xml.js trailer', default=None, blank=True, null=True, max_length=255)
     material = models.ForeignKey(

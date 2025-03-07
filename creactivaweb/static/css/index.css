@@ -1411,6 +1411,10 @@ float: left;
     float:right;
 }
 
+#form-sugerencias > h3{
+    text-wrap: wrap;
+    display: contents;
+}
 
 
 /* ----------------------------------------------------- SELECCION USUARIO ------------------------------------------------------- */
@@ -1871,7 +1875,7 @@ float: left;
     box-sizing: border-box;
     transition: background-color 0.1s ease-in-out;
     text-align: right;
-    padding: 15px 15px 15px 35px;
+    padding: 12px 15px 12px 18px;
 
 }
 
@@ -1888,13 +1892,11 @@ float: left;
 .main-nav ul a.botonvideo{
     float: right;
     width: 100%;
-    background-color: #777;
+    background-color: #1787e9;
     box-sizing: border-box;
     transition: background-color 0.1s ease-in-out;
     color: #fff;
     text-align: right;
-    pointer-events: none;
-    cursor: no-drop;
 }
 
 .main-nav ul a:hover{
@@ -1903,7 +1905,7 @@ float: left;
 }
 
 .main-nav ul a.botonvideo:hover{
-
+    color:#0f61a8;
     background-color: #0bf7b8;
 
 }
@@ -2248,7 +2250,7 @@ float: left;
 
 
 #info-cur-info h4{
-    margin-top:50px;
+    margin-top:30px;
 }
 
 #info-cur-info p{
@@ -2272,9 +2274,12 @@ float: left;
     color:#57DEFF;
 }
 
-#instruccion{
-    font-family: latoregular;
-    margin-top: 10px;
+#info-cur-info > p:nth-child(6){
+    margin-top: 15px;
+}
+
+#info-cur-info > p:nth-child(6) > strong{
+        font-family: 'latoregular';
 }
 
 #listado-curso{
@@ -2299,14 +2304,12 @@ float: left;
 #listado-curso li h4{
     display: inline-block;
     margin-right:10px;
-    float:left;
+/*    float:left;*/
     line-height: 20px;
     margin-top:0px;
 }
 
-#list-autor{
 
-}
 .botones-cur{
     width:100%;
     margin-top:20px;
@@ -2754,6 +2757,14 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     color:#57DEFF;
 }
 
+#info-cap-info > p:nth-child(5){
+    margin-top: 15px;
+}
+
+#info-cap-info > p:nth-child(5) > strong{
+        font-family: 'latoregular';
+}
+
 .cap-lista{
     list-style: none;
 }
@@ -2815,12 +2826,36 @@ background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 100%);
     filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
 }
 
-h4#cur-desc-corta {
+#cur-desc-corta {
     margin-top:10px;
 }
 
-img.img-x2{
+.img-x2{
     height:17px;
+}
+
+#listado-curso #list-autor{
+    width: 100%;
+    display:block;
+    margin-top: 10px;
+}
+
+#list-autor-div{
+    display: flex;
+    width: fit-content;
+    flex-wrap: wrap;
+    font-size: 16px;
+    font-style: italic;
+}
+
+#list-autor-nombre{
+    width: 100%;
+    float: none;
+}
+
+#list-autor-div p{
+    width: 100%;
+    font-size: 13px;
 }
 
 /*------------------------------INFO CURSO--------------------------------------------------*/
@@ -2964,18 +2999,20 @@ aside#cur-cap {
     z-index: 5;
     -webkit-transition: opacity 1s;
     opacity: 1;
-    animation: cierre-alerta 1s forwards ease;
-    animation-delay: 7s;
+/*    animation: cierre-alerta 1s forwards ease;*/
+/*    animation-delay: 7s;*/
     text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .alert.collapsed{
-    animation-delay: 0s;
+ /*   animation-delay: 0s;*/
+      animation: cierre-alerta 1s forwards ease;
 }
 @keyframes cierre-alerta{
     0%{    opacity: 1;    }
-    100%{    opacity: 0; pointer-events: none;}
+    99%{    opacity: 0; pointer-events: none;}
+    100%{    display:none;}
 }
 
 .alert div{
@@ -3620,6 +3657,7 @@ table#detalle{
         padding:0px 20px 0px 20px;
         opacity: 1;
         text-align: center;
+                display:none;
     }
 
     #info-cap-player h4{
@@ -3702,7 +3740,7 @@ table#detalle{
 }
 
 #mas-info{
-    display: none;
+
 }
 
 #mas-info-cap{
@@ -4143,11 +4181,11 @@ aside#cur-cap{
         text-wrap: wrap;
         display: contents;
     }
-}
-
-#form-sugerencias > h3{
-    text-wrap: wrap;
-    display: contents;
+    
+        #menudesplegabe {
+            translate: -50% 19px;
+            transform-origin: 50% 0px;
+    }
 }
 
 @media (max-width: 500px){

@@ -78,7 +78,7 @@ def sumar_fecha(fecha, meses):
     dias = meses*30
     nueva_fecha = fecha + timedelta(days=dias)
     return nueva_fecha
-
+    
 def find_comuna(id_comuna):
     f = open("./static/json/cut-comunas.json")
     text = f.read()

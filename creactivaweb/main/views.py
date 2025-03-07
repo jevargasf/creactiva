@@ -268,7 +268,7 @@ class SugerenciasView(View):
                     form=data
                 )
                 if correo_user == True:
-                    messages.success(request, 'Hemos recibido tu sugerencia con éxito. Muchas gracis por ayudarnos a mejorar.')
+                    messages.success(request, 'Hemos recibido tu sugerencia con éxito. Muchas gracias por ayudarnos a mejorar.')
                     return redirect('index')
                 else:
                     messages.error(request, 'Hemos recibido tu mensaje con éxito. Sin embargo, no pudimos enviarte la notificación de éxito por correo electrónico. Por favor, escribe a contacto@creactivaanimaciones.cl para reportar este problema.')

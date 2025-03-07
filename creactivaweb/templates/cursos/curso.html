@@ -9,6 +9,8 @@
 <meta property="og:URL" content="https://www.creactivaanimaciones.cl" />
 <meta property="og:image" content="{% static 'img/' %}{{ curso.imagen_portada }}" />
 <meta property="og:description" content="{{ curso.desc_larga }}" />
+<meta name="description" content="{{ curso.desc_larga }}" />
+<meta name="keywords" content="animaciones, interactividad, videos educativos, sostenibilidad ambiental, difusión cultural, cultura, videos interactivos, motion graphics, 2D, 3D">
 {% endblock %}
 
 {% block content %}
@@ -45,7 +47,7 @@
             <!-- número de recursos adicionales -->
             {% if num_materiales == 0 %}
             {% else %}
-            <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recursos adicionales</h4></li>
+            <li><img src="{% static 'icon/recurso.svg' %}" alt=""><h4>{{ num_materiales }} Recurso adicional</h4></li>
             {% endif %}
             <!-- número de actividades interactivas -->
             <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
@@ -77,7 +79,7 @@
 <article id="info-cap-full" class="info-cur">
     <section id="info-curso">
         <aside id="info-cur-info"> 
-            <h5>Cultura</h5>
+            <h5>{{ curso.etiquetas }}</h5>
             <h8>{{ curso.nombre }}</h8>
             {% if curso.fecha_lanzamiento and curso.etiqueta_promocional == '2' %}
             <div>
@@ -102,10 +104,10 @@
                 <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
                 <li><img src="{% static 'icon/parlante.svg' %}" alt=""><h4>Español, Mapuzungun</h4></li>
                 {% for autor in curso.autores.all %}
-                <li id="list-autor"><img src="{% static 'icon/recurso.svg' %}" alt="">
+                <li id="list-autor">
                     <div id="list-autor-div">
-                        <li id="list-autor-nombre"><h4>Autora: {{ autor.nombre_autor }}</h4></li>
-                        <li><p>{{ autor.descriptor }}</p></li>
+                        <h4 id="list-autor-nombre">Autora: {{ autor.nombre_autor }}</h4>
+                        <p>{{ autor.descriptor }}</p>
                     </div>
                 </li>
                 {% endfor %}
@@ -114,8 +116,9 @@
             {% endif %}
             <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
             <p>{{ curso.desc_larga | linebreaksbr }}</p>
+            <p><strong>Nota:</strong> para que tengas la mejor experiencia ejecutando las actividades interactivas del curso, este debe reproducirse necesariamente en un computador. Se recomienda utilizar el explorador Google Chrome.</p>
 
-            <p id="instruccion">Nota: con el fin de ejecutar las actividades interactivas del curso, este debe reproducirse necesariamente en un computador. Se recomienda utilizar el explorador Google Chrome.</p>
+
             <nav class="botones-cur">
                 <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
                 <!-- target="_blank" -->

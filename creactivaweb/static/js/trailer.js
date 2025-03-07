@@ -38,11 +38,13 @@ setTimeout(function () {
     });
 
     
-},2000);
+},2500);
+
     // CÓDIGO DEL ALERT
     $(document).ready(function () {
         $('#transicion').css('opacity', '0');
     });
+    
 // CONSTRUIR EL SETTIMEOUT OBJECT
 timeoutObject = {
     ocultarCursor(){
@@ -91,3 +93,4 @@ document.addEventListener("fullscreenchange", () => {
     }
 
 });
+console.log("script ejecutado")

@@ -19,8 +19,8 @@ class Perfil(models.Model):
     comuna = models.CharField(max_length=5, null=True, blank=True, choices=COMUNAS, verbose_name='Comuna')
     nombre_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Ninguno', verbose_name='Nombre organización')
     tipo_organizacion = models.CharField(max_length=255, null=True, blank=True, default='Cuenta individual', choices=TIPOS_ORGANIZACION, verbose_name='Tipo organización')
-    descuento_creactiva = models.BooleanField(default=False, verbose_name='Descuento Creactiva')
     tipo_descuento = models.CharField(max_length=50, null=True, blank=True, default='0', choices=TIPOS_DESCUENTO, verbose_name='Tipo descuento')
+    descuento_creactiva = models.BooleanField(default=False, verbose_name='Descuento Creactiva')
     user = models.OneToOneField(
         User,
         related_name='perfil_usuario',

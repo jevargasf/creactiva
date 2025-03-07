@@ -1,5 +1,3 @@
-
-console.log("COMENZÓ LA EJECUCIÓN NDEX")
 window.addEventListener('load', function () {
     $('#transicion').css('opacity', '0');
     $('#transicion')
@@ -25,13 +23,24 @@ window.addEventListener('load', function () {
 //     });
 // });
 
-$("#btn-menu").click(function(){
+$("#btn-menu").click(function(event){
+    // Previene que el clic en el botón de menú cierre el menú inmediatamente
+    event.stopPropagation();
+    
+    // Alterna la clase 'collapsed' en el menú y en el botón
     document.querySelector('#menudesplegabe').classList.toggle('collapsed');
     document.querySelector('#btn-menu').classList.toggle('collapsed');
 });
 
-
-
+// Detecta un clic en cualquier parte del documento
+$(document).click(function(event){
+    // Verifica si el clic fue fuera del botón de menú y del menú desplegable
+    if (!$(event.target).closest('#btn-menu, #menudesplegabe').length) {
+        // Elimina la clase 'collapsed' si fue un clic fuera de los elementos
+        document.querySelector('#menudesplegabe').classList.remove('collapsed');
+        document.querySelector('#btn-menu').classList.remove('collapsed');
+    }
+});
 
 // BOTON CERRAR ALERTA
 $("#cerrarAlerta").click(function(){
@@ -48,7 +57,7 @@ $("#cerrarAlerta").click(function(){
 //         } else {
 //             $(this).addClass('collapsed');
 //             $("#add-favoritos img").attr("src", "/static/icon/fav-off.svg");
-//             $("#add-favoritos h1").text("AÑADIR A FAVORITOS");
+//             $("#add-favoritos h1").text("A�0�5ADIR A FAVORITOS");
 //         }
 //     });
 // });
@@ -92,7 +101,7 @@ $("#cap-reproducir").click(function() {
 
 
 
-// Animación Título Principal con scroll
+// Animaci��n T��tulo Principal con scroll
 
 
 
@@ -137,4 +146,3 @@ $('#btn-descuento').click(function(){
 
 $('#id_codigo').attr("placeholder", "Ingresa tu código de descuento");    
 
-console.log("TERMINÓ LA EJECUCIÓN INDEX")

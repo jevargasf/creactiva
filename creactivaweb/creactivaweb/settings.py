@@ -18,6 +18,8 @@ import mimetypes
 
 load_dotenv()
 
+
+#os.environ["DJANGO_SETTINGS_MODULE"] = "creactivaweb.settings"
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -33,7 +35,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 # VER SI HAY QUE AGREGAR MÁS HOSTS A ESTA CONFIGURACIÓN
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.creactivaanimaciones.cl']
 
 
 # Application definition
@@ -59,8 +61,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'creactivaweb.urls'
@@ -168,19 +169,25 @@ CACHES = {
 
 # MAIL SETTINGS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.creactivaanimaciones.cl'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+#EMAIL_HOST = 'mail.creactivaanimaciones.cl'
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
-EMAIL_HOST_USER = '_mainaccount@creactivaanimaciones.cl'
-EMAIL_HOST_PASSWORD = 'GA,B%L7p8JB)#vN^'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+#EMAIL_HOST_USER = '_mainaccount@creactivaanimaciones.cl'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+#EMAIL_HOST_PASSWORD = 'GA,B%L7p8JB)#vN^'
 EMAIL_TIMEOUT = 20
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # WEBPAY
-WEBPAY_URL = 'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions'
-WEBPAY_ID = '597055555532'
-WEBPAY_SECRET = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+WEBPAY_URL = os.environ.get('WEBPAY_URL')
+#WEBPAY_URL = 'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions'
+WEBPAY_ID = os.environ.get('WEBPAY_ID')
+#WEBPAY_ID = '597055555532'
+WEBPAY_SECRET = os.environ.get('WEBPAY_SECRET')
+#WEBPAY_SECRET = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
 
 USE_THOUSAND_SEPARATOR = True
 USE_DECIMAL_SEPARATOR = False
@@ -188,7 +195,8 @@ NUMBER_GROUPING = 3
 THOUSAND_SEPARATOR = "."
 
 # JWT PASS
-JWT_SECURE = "=)^+ls6f^[mb"
+JWT_SECURE = os.environ.get('JWT_SECURE')
+#JWT_SECURE = "=)^+ls6f^[mb"
 # LOG DE ERRORES
 LOGGING = {
     "version": 1,
@@ -203,3 +211,14 @@ LOGGING = {
         "level": "WARNING",
     },
 }
+
+
+# redirect to https connections
+SESSION_COOKIE_SECURE =True 
+CSRF_COOKIE_SECURE =True  
+SECURE_SSL_REDIRECT=True 
+
+# HSTS settings  
+SECURE_HSTS_SECONDS= 1209600 # 2 weeks 
+SECURE_HSTS_PRELOAD =True 
+SECURE_HSTS_INCLUDE_SUBDOMAINS=True 

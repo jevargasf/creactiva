@@ -7,4 +7,5 @@ urlpatterns = [
     # path('trailer/<id>', TrailerView.as_view(), name='trailer'),
     path('capitulo/<id>', CapituloView.as_view(), name='capitulo'),
     path('glosario', RecursosView.as_view(), name='recursos'),
+
 ]

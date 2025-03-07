@@ -8,13 +8,18 @@
 <meta property="og:URL" content="https://www.creactivaanimaciones.cl" />
 <meta property="og:image" content="{% static 'icon/index_portada.jpg' %}" />
 <meta property="og:description" content="Más que una plataforma de cursos y animaciones interactivas; Un espacio donde cada idea puede cobrar vida y cada reflexión tiene el potencial de transformar el mundo." />
+<meta name="description" content="Más que una plataforma de cursos y animaciones interactivas; Un espacio donde cada idea puede cobrar vida y cada reflexión tiene el potencial de transformar el mundo." />
+<meta name="keywords" content="animaciones, interactividad, videos educativos, sostenibilidad ambiental, difusión cultural, cultura, videos interactivos, motion graphics, 2D, 3D">
+
+
+
 {% endblock %}
 
     {% block content %}
         {% include 'snippets/navbar.html' %}
         {% include 'snippets/slider-main.html' %}
         {% include 'snippets/fondo_azul.html' %}
-        <div id="publicidad"></div>
+<p style="display: none;">Más que una plataforma de cursos y animaciones interactivas; Un espacio donde cada idea puede cobrar vida y cada reflexión tiene el potencial de transformar el mundo.</p>
         <div id="buscador" style="display: none;">
 
             <input id="busqueda" type="text" name="mensaje" required  placeholder="¿Qué te gustaría aprender hoy?">
