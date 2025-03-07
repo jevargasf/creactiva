@@ -101,13 +101,21 @@
                 <!-- número de actividades interactivas -->
                 <li><img src="{% static 'icon/interactivo.svg' %}" alt=""><h4>{{ actividades }} Actividades interactivas</h4></li>
                 <li><img src="{% static 'icon/parlante.svg' %}" alt=""><h4>Español, Mapuzungun</h4></li>
+                {% for autor in curso.autores.all %}
+                <li id="list-autor"><img src="{% static 'icon/recurso.svg' %}" alt="">
+                    <div id="list-autor-div">
+                        <li id="list-autor-nombre"><h4>Autora: {{ autor.nombre_autor }}</h4></li>
+                        <li><p>{{ autor.descriptor }}</p></li>
+                    </div>
+                </li>
+                {% endfor %}
                 <li style="display: none;"><img src="{% static 'icon/caption.svg' %}" alt=""><h4>Español</h4></li>
             </ul>
             {% endif %}
             <h4 id="cur-desc-corta">{{ curso.desc_corta }}</h4>
             <p>{{ curso.desc_larga | linebreaksbr }}</p>
 
-
+            <p id="instruccion">Nota: con el fin de ejecutar las actividades interactivas del curso, este debe reproducirse necesariamente en un computador. Se recomienda utilizar el explorador Google Chrome.</p>
             <nav class="botones-cur">
                 <a><button id="btn-compartir"><img src="{% static 'icon/share.svg' %}" alt="Compartir"><h1>COMPARTIR</h1></button></a>
                 <!-- target="_blank" -->

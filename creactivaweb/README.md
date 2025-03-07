@@ -625,7 +625,7 @@ DETALLES REVISADOS EN LOCAL
 ✔ mejora ejecución slick
 ✔ revisar responsividad general
 ✔ revisar responsividad cursos/trailer/capítulos
-- habilitar sistema cuentas staff y plan 1 semana gratuita
+✔ habilitar sistema cuentas staff y plan 1 semana gratuita
 ✔ revisar script reproductor.js
 - cambios menores varios
     ✔ Colocar el link para reestablecer contraseña en el texto pregunta
@@ -648,6 +648,22 @@ OBSERVACIONES LUNES 03-03:
 OBSERVACIONES MARTES 04-03:
 - Escribir excepción en check_suscripciones para usuarios Equipo
 - Detalle fabián: slider en cursos no muestra las flechas laterales
+✔ Subir nuevo logo/logo webpay
 - Subir nuevo código a producción
 - Probar nuevo código
-- Subir nuevo logo/logo webpay
+
+
+EVENTO REINICIAR:
+- después de ver el video y reiniciar, no se vuelven a cargar los cuestionarios
+- 
+
+SAFARI:
+- se descentran los elementos en safari (enviar en registro, )
+- responsividad elemento webpay
+- se descentra la imagen slider main en primera carga
+✔ MENSAJE POP UP SOLO CON CLICK
+✔ corrección josé metatags
+✔ info profe
+✔ xml cap 5 con corrección josé
+
+MAñANA: PASAR WEBPAY A PRODUCCIÓN

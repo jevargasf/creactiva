@@ -3,7 +3,7 @@ from django.views import View
 from django.http import HttpRequest, Http404, HttpResponseRedirect
 from suscripciones.forms import *
 from suscripciones.models import SolicitudOrganizacion, Suscripcion, CursosSuscripcion, PerfilSuscripcion, Planes
-from suscripciones.utils import str_to_list, sumar_fecha
+from suscripciones.utils import str_to_list, sumar_fecha, find_comuna, find_tipo_organizacion
 from django.contrib import messages
 from main.models import User, Perfil
 from cursos.models import Curso
@@ -305,7 +305,7 @@ class RespuestaWebpayView(View):
                         perfil_object.save()
                         data = {
                             'nombre': user_object.first_name,
-                            'apellido': user_object.last_login,
+                            'apellido': user_object.last_name,
                             'email': user_object.email,
                             'tipo': "Invidivual Estudiante/Pueblo Originario",
                             'plan': suscripcion.plan.nombre,
@@ -450,15 +450,18 @@ class SolicitudOrganizacionView(View):
             for curso in form.cleaned_data['cursos']:
                 curso_object = Curso.objects.get(pk=int(curso))
                 cursos.append(curso_object.nombre)
-
+            comuna = find_comuna(form.cleaned_data['comuna'])
+            print(comuna)
+            tipo_organizacion = find_tipo_organizacion(form.cleaned_data['tipo_organizacion'])
+            print()
             data = {
                 'nombre': user.first_name,
                 'apellido': user.last_name,
                 'email': user.email,
                 'nombre_organizacion': form.cleaned_data['nombre_organizacion'],
-                'tipo_organizacion': form.cleaned_data['tipo_organizacion'],
+                'tipo_organizacion': tipo_organizacion,
                 'pais': form.cleaned_data['pais'],
-                'comuna': form.cleaned_data['comuna'],
+                'comuna': comuna,
                 'cursos': cursos,
                 'mensaje': form.cleaned_data['mensaje']
             }
@@ -467,7 +470,7 @@ class SolicitudOrganizacionView(View):
                 e_mail="no-reply@creactivaanimaciones.cl",
                 asunto="Nueva solicitud suscripción organización en CreActiva Animaciones",
                 app="suscripciones",
-                archivo="notificacion_contacto_admin",
+                archivo="notificacion_solicitud_organizacion",
                 form=data
             )
             if correo_user == True:

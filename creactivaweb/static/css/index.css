@@ -85,7 +85,7 @@
 
 @font-face {
     font-family: baltiholm;
-    src: url(fonts/Baltiholm.ttf.ttf);
+    src: url(fonts/Baltiholm.ttf);
     font-style:normal;
 }
 
@@ -2272,6 +2272,11 @@ float: left;
     color:#57DEFF;
 }
 
+#instruccion{
+    font-family: latoregular;
+    margin-top: 10px;
+}
+
 #listado-curso{
     list-style: none;
     font-size:13px;
@@ -2299,7 +2304,9 @@ float: left;
     margin-top:0px;
 }
 
+#list-autor{
 
+}
 .botones-cur{
     width:100%;
     margin-top:20px;
@@ -4136,6 +4143,11 @@ aside#cur-cap{
         text-wrap: wrap;
         display: contents;
     }
+}
+
+#form-sugerencias > h3{
+    text-wrap: wrap;
+    display: contents;
 }
 
 @media (max-width: 500px){
