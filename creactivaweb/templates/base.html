@@ -8,38 +8,65 @@
     <link rel="icon" type="image/x-icon" href="{% static 'icon/favicon.ico' %}">
     <style>
         @keyframes rotatebg{
-    0%{rotate: 0deg;}
-    100%{rotate: 360deg;}
-}
+            0%{rotate: 0deg;}
+            100%{rotate: 360deg;}
+        }
 
-#transicion{
-    width:500%;
-    height:500%;
-    background-color: #00224a;
-    position: fixed;
-    z-index: 6;
-    opacity: 1;
-    transition:all .75s;
-    pointer-events: none;
-    background-size: 20px 20px;
-    background-image:
-      linear-gradient(to right, #00315c 1px, transparent .1px),
-      linear-gradient(to bottom, #00315c 1px, transparent .1px);
-      background-repeat:  repeat;
-      background-position: center;
-    animation: rotatebg 100s infinite;
-    left:-200%;
-    top:-200%;
-    overflow: hidden;
-}
+        #transicion{
+            width:500%;
+            height:500%;
+            background-color: #00224a;
+            position: fixed;
+            z-index: 6;
+            opacity: 1;
+            transition:all .75s;
+            pointer-events: none;
+            background-size: 20px 20px;
+            background-image:
+            linear-gradient(to right, #00315c 1px, transparent .1px),
+            linear-gradient(to bottom, #00315c 1px, transparent .1px);
+            background-repeat:  repeat;
+            background-position: center;
+            animation: rotatebg 100s infinite;
+            left:-200%;
+            top:-200%;
+            overflow: hidden;
+        }
 
-    </style>
+        .progress-container {
+            width: 80%;
+            height: 7px;
+            background: #024C8D;
+            border-radius: 5px;
+            overflow: hidden;
+            position: fixed;
+            top: 60%;
+            transition:opacity .35s;
+            left:50%;
+            translate:-50% -50%;
+            z-index: 7;
+
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #fff;
+            transition: width 0.2s ease;
+            -webkit-filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+            filter: drop-shadow( 0px 0px 5px rgba(123, 255, 248, 1));
+        }
+  </style>
     <title>CreActiva Animaciones</title>
     {% block head %}
     {% endblock %}
 </head>
 <body>
     <div id="transicion">
+    </div>
+
+
+    <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar"></div>
     </div>
 <p style="display: none;">M&aacute;s que una plataforma de cursos y animaciones interactivas; Un espacio donde cada idea puede cobrar vida y cada reflexi&oacute;n tiene el potencial de transformar el mundo.</p>
 

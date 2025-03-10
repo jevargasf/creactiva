@@ -1,14 +1,32 @@
-window.addEventListener('load', function () {
-    $('#transicion').css('opacity', '0');
-    $('#transicion')
-      .delay(2000)
-      .queue( function(next){ 
-        $(this).hide(); 
-        next(); 
-      });
+function updateProgressBar(event) {
+    let progressBar = document.getElementById("progressBar");
+    let loaded = event.loaded;
+    let total = event.total;
+    let progress = (loaded / total) * 100;
+    progressBar.style.width = progress + "%";
+}
 
-      $('body').css('overflow-y', 'auto');
-  })
+window.addEventListener("load", function () {
+    let progressBar = document.getElementById("progressBar");
+    progressBar.style.width = "100%";
+    setTimeout(() => {
+        $('#progressContainer').css('opacity', '0');
+        $('#transicion').css('opacity', '0');
+        $('body').css('overflow-y', 'auto');
+
+        // Después de 2 segundos, ocultar los elementos
+        setTimeout(() => {
+            $('#progressContainer').hide();
+            $('#transicion').hide();
+        }, 2000); // Espera 2 segundos antes de ocultarlos
+    }, 500); // Delay de 500 ms antes de comenzar el fade
+});
+
+document.onreadystatechange = function () {
+    let progressBar = document.getElementById("progressBar");
+    let progress = (document.readyState === "interactive") ? 50 : (document.readyState === "complete") ? 100 : 0;
+    progressBar.style.width = progress + "%";
+};
 
 
 // $(document).ready(function(){   
